@@ -16,20 +16,22 @@ class CreateBiodataTable extends Migration
         Schema::create('biodata', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('prodi_id')->nullable(true);
             $table->string('no_pendaftaran')->unique();
             $table->string('nik')->unique();
-            $table->string('nama');
+            $table->string('nama_depan');
+            $table->string('nama_belakang')->nullable();
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
-            $table->string('agama');
+            $table->enum('agama', ['islam', 'kristen', 'katholik', 'hindu', 'budha', 'konghucu']);
             $table->enum('jenis_kelamin', ['laki-laki', 'perempuan']);
             $table->string('alamat')->nullable(true);
+            $table->string('no_telepon')->nullable(true);
             $table->enum('jalur_masuk', ['reguler', 'transfer', 'pindahan', 'lanjutan'])->default('reguler');
             $table->string('asal_sekolah');
             $table->string('asal_jurusan');
+            $table->year('tahun lulus');
             $table->string('foto')->nullable(true);
-            $table->boolean('status');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

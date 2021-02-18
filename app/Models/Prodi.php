@@ -11,13 +11,13 @@ class Prodi extends Model
 
     protected $table = 'prodi';
 
-    protected $fillable = ['jenjang_id', 'nama'];
+    protected $fillable = ['jenjang_id', 'fakultas_id', 'nama'];
 
     public function jenjang() {
          return $this->belongsTo(Jenjang::class, 'jenjang_id', 'id');
     }
 
-    public function pendaftar() {
-        return $this->hasMany(Biodata::class, 'prodi_id', 'id');
+    public function fakultas() {
+        return $this->belongsTo(Fakultas::class, 'fakultas_id', 'id');
     }
 }

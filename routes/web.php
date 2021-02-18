@@ -18,6 +18,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-    Route::get('/register', [RegisterController::class, 'index'])->name('mahasiswa.register');
-    Route::post('/register', [RegisterController::class, 'store'])->name('mahasiswa.register.store');
 
+//    Route::get('/register', [RegisterController::class, 'index'])->name('mahasiswa.register');
+//    Route::post('/register', [RegisterController::class, 'store'])->name('mahasiswa.register.store');
+
+
+Auth::routes(['verify'=>true]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

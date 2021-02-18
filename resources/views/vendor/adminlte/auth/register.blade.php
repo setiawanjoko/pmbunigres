@@ -14,26 +14,21 @@
 @section('auth_header', __('adminlte::adminlte.register_message'))
 
 @section('auth_body')
-    <form action="{{ route('mahasiswa.register.store') }}" method="post">
+    <form action="{{ $register_url }}" method="post">
         {{ csrf_field() }}
 
-        @if (session('status'))
-            <div class="alert alert-success" role="alert">
-                {{ session('status') }}
-            </div>
-        @endif
         {{-- Name field --}}
         <div class="input-group mb-3">
-            <input type="text" name="nama" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}"
-                   value="{{ old('nama') }}" placeholder="{{ __('adminlte::adminlte.full_name') }}" autofocus>
+            <input type="text" name="name" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}"
+                   value="{{ old('name') }}" placeholder="{{ __('adminlte::adminlte.full_name') }}" autofocus>
             <div class="input-group-append">
                 <div class="input-group-text">
                     <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>
                 </div>
             </div>
-            @if($errors->has('nama'))
+            @if($errors->has('name'))
                 <div class="invalid-feedback">
-                    <strong>{{ $errors->first('nama') }}</strong>
+                    <strong>{{ $errors->first('name') }}</strong>
                 </div>
             @endif
         </div>

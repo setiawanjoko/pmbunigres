@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\Mahasiswa\RegisterController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Mahasiswa\BiodataController;
+use App\Http\Controllers\Mahasiswa\KeluargaController;
 use Illuminate\Support\Facades\Route;
 
 /*

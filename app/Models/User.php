@@ -20,7 +20,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'nama',
         'email',
         'password',
-        'temp_token'
+        'permission_id'
     ];
 
     /**
@@ -41,4 +41,12 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function permission() {
+        return $this->belongsTo(Permission::class, 'permission_id', 'id');
+    }
+
+    public function biodata() {
+        return $this->hasOne(Biodata::class, 'user_id', 'id');
+    }
 }

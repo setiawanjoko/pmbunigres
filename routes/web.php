@@ -25,4 +25,10 @@ Route::get('/', function () {
 
 Auth::routes(['verify'=>true]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware(['auth', 'verified'])->group(function(){
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/biodata', [BiodataController::class, 'create'])->name('biodata.create');
+    Route::post('/biodata', [BiodataController::class, 'store'])->name('biodata.store');
+    Route::get('/keluarga', [KeluargaController::class, 'create'])->name('keluarga.create');
+    Route::post('/keluarga', [KeluargaController::class, 'store'])->name('keluarga.store');
+});

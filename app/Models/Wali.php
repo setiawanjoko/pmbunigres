@@ -15,7 +15,7 @@ class Wali extends Model
         'biodata_id', 'hubungan', 'nama', 'status', 'pekerjaan', 'telepon', 'alamat', 'gaji'
     ];
 
-    public function pendaftar() {
+    public function biodata() {
         return $this->belongsTo(Biodata::class, 'biodata_id', 'id');
     }
 }

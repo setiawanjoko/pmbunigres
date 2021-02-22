@@ -49,4 +49,31 @@ class User extends Authenticatable implements MustVerifyEmail
     public function biodata() {
         return $this->hasOne(Biodata::class, 'user_id', 'id');
     }
+
+    public function ayah() {
+        return Wali::whereHas('biodata', function($query){
+            return $query->where([
+                ['biodata_id', $this->biodata->id],
+                ['hubungan', 'ayah']
+            ]);
+        })->first();
+    }
+
+    public function ibu() {
+        return Wali::whereHas('biodata', function($query){
+            return $query->where([
+                ['biodata_id', $this->biodata->id],
+                ['hubungan', 'ibu']
+            ]);
+        })->first();
+    }
+
+    public function wali() {
+        return Wali::whereHas('biodata', function($query){
+            return $query->where([
+                ['biodata_id', $this->biodata->id],
+                ['hubungan', 'wali']
+            ]);
+        })->first();
+    }
 }

@@ -11,6 +11,13 @@ use Illuminate\Http\Response;
 
 class KeluargaController extends Controller
 {
+    public function __construct()
+    {
+        if(is_null(auth()->user()->biodata)) {
+            return response()->redirectToRoute('biodata.create');
+        }
+    }
+
     public function create(): Response
     {
         $user = auth()->user();

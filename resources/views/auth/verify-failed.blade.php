@@ -59,16 +59,16 @@
         <div class="second-container">
             <div class="wrapper-verif">
                 <div class="wrap-content step1" id="step1">
-                    <img class="verif-ic" src="{{ asset('unigres/images/ic-check.svg') }}">
-                    <h5 class="verif-title">Selamat, Pendaftaran anda berhasil !</h5>
+                    <img class="verif-ic" src="{{ asset('unigres/images/ic-error.svg') }}">
+                    <h5 class="verif-title">Login Error! Anda belum menyelesaikan pembayaran.</h5>
                     <ol>
                         <li>Cek email masuk/spam anda untuk melakukan pembayaran biaya pendaftaran.</li>
                         <li>Apabila telah melakukan pembayaran silahkan login dan melengkapi form pendaftaran.</li>
                     </ol>
                 </div>
                 <div class="wrap-content step2 d-none" id="step2">
-                    <img class="verif-ic" src="{{ asset('unigres/images/ic-check.svg') }}" style="width: 58px;">
-                    <h5 class="verif-title mb-2">Selamat, Pendaftaran anda berhasil !</h5>
+                    <img class="verif-ic" src="{{ asset('unigres/images/ic-error.svg') }}" style="width: 58px;">
+                    <h5 class="verif-title mb-2">Login Error! Anda belum menyelesaikan pembayaran.</h5>
                     <p class="step2-title">Segera selesaikan pembayaran anda.</p>
                     <div class="card card-payment">
                         <div class="card-header">
@@ -88,8 +88,6 @@
                             </li>
                         </ul>
                     </div>
-
-                    <h5 class="verif-title mb-4">Panduan Pembayaran</h5>
                     <div class="accordion accordion-payment" id="accordionExample">
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingOne">
@@ -137,7 +135,7 @@
                 </div>
                 <div class="wrap-button-verif  wp-step-2 d-none" id="btn2">
                     <a class="btn btn-login m-0" href="#">Konfirmasi Pembayaran</a>
-                </div>cccc
+                </div>
             </div>
         </div>
     </section>

@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('homepage');
 
 
 //    Route::get('/register', [RegisterController::class, 'index'])->name('mahasiswa.register');

@@ -23,7 +23,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light main-nav">
     <div class="main-container">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{{ route('homepage') }}">
             <img class="logo-brand" src="{{ asset('unigres/images/logo.png') }}">
             <p>USM.<span>Unigres</span></p>
         </a>
@@ -42,7 +42,7 @@
                     <a class="nav-link" href="#">Contact</a>
                 </li>
                 <li class="nav-item btn-nav">
-                    <a class="nav-link" href="#">Login</a>
+                    <a class="nav-link" href="{{ route('login') }}">Login</a>
                 </li>
             </ul>
         </div>

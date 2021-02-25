@@ -137,7 +137,7 @@
                 </div>
                 <div class="wrap-button-verif  wp-step-2 d-none" id="btn2">
                     <a class="btn btn-login m-0" href="#">Konfirmasi Pembayaran</a>
-                </div>cccc
+                </div>
             </div>
         </div>
     </section>

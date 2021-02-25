@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Mahasiswa\BiodataController;
 use App\Http\Controllers\Mahasiswa\KeluargaController;
@@ -26,8 +27,9 @@ Route::get('/', function () {
 
 
 Auth::routes(['verify'=>true]);
+Route::get('/verify/failed', [VerificationController::class, 'warning'])->name('verification.failed');
 
-Route::middleware(['auth', 'verified'])->group(function(){
+Route::middleware(['auth', 'verify'])->group(function(){
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/biodata', [BiodataController::class, 'create'])->name('biodata.create');
     Route::post('/biodata', [BiodataController::class, 'store'])->name('biodata.store');

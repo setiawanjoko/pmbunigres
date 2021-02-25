@@ -68,7 +68,7 @@
                     <p class="login-info">Masukkan email dan password terdaftar !</p>
                     <input class="form-control" type="email" placeholder="Email address">
                     <input class="form-control" type="email" placeholder="Password">
-                    <a class="forgot-link" href="{{ route('password.reset') }}">Forgot Password?</a>
+                    <a class="forgot-link" href="{{ route('password.request') }}">Forgot Password?</a>
                     <button class="btn btn-login">Submit</button>
                     <p class="regist-here">Belum terdaftar? <a href="{{ route('register') }}">Daftar disini</a></p>
                 </div>

@@ -20,7 +20,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'nama',
         'email',
         'password',
-        'permission_id'
+        'permission_id',
+        'no_telepon',
+        'informasi'
     ];
 
     /**
@@ -75,5 +77,9 @@ class User extends Authenticatable implements MustVerifyEmail
                 ['hubungan', 'wali']
             ]);
         })->first();
+    }
+
+    public function prodiPilihan() {
+        return $this->biodata->prodiPilihan;
     }
 }

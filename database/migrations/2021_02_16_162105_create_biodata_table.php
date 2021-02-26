@@ -29,7 +29,7 @@ class CreateBiodataTable extends Migration
             $table->enum('jalur_masuk', ['reguler', 'transfer', 'pindahan', 'lanjutan'])->default('reguler');
             $table->string('asal_sekolah');
             $table->string('asal_jurusan');
-            $table->year('tahun lulus');
+            $table->year('tahun_lulus');
             $table->string('foto')->nullable(true);
             $table->softDeletes();
             $table->timestamps();

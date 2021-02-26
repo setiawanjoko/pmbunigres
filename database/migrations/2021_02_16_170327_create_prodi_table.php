@@ -16,7 +16,8 @@ class CreateProdiTable extends Migration
         Schema::create('prodi', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('jenjang_id');
-            $table->unsignedBigInteger('fakultas_id');
+            $table->unsignedBigInteger('fakultas_id')->nullable(true);
+            $table->string('kode_prodi');
             $table->string('nama');
             $table->timestamps();
         });

@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Permission;
+use App\Models\Jenjang;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
-class PermissionSeeder extends Seeder
+class JenjangSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,22 +17,27 @@ class PermissionSeeder extends Seeder
     {
         $data = [
             [
-                'permission'    => 'admin',
+                'nama'          => 'D3',
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
             [
-                'permission'    => 'camaba',
+                'nama'          => 'D4',
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
             [
-                'permission'    => 'monitor',
+                'nama'          => 'S1',
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
-            ]
+            ],
+            [
+                'nama'          => 'S2',
+                'created_at'    => Carbon::now(),
+                'updated_at'    => Carbon::now(),
+            ],
         ];
 
-        Permission::insert($data);
+        Jenjang::insert($data);
     }
 }

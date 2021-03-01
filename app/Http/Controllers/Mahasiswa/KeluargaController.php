@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Mahasiswa;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\Wali;
 use Exception;
 use Illuminate\Http\RedirectResponse;
@@ -13,9 +14,15 @@ class KeluargaController extends Controller
 {
     public function __construct()
     {
-        if(is_null(auth()->user()->biodata)) {
-            return response()->redirectToRoute('biodata.create');
-        }
+        $this->middleware(function ($request, $next) {
+            $biodata = auth()->user();
+            $biodata = $biodata->biodata;
+            if(empty($biodata) || is_null($biodata)) {
+                return response()->redirectToRoute('biodata.create');
+            } else {
+                return $next($request);
+            }
+        });
     }
 
     public function create(): Response

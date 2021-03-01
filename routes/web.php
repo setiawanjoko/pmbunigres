@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Mahasiswa\BiodataController;
 use App\Http\Controllers\Mahasiswa\KeluargaController;
+use App\Http\Controllers\Mahasiswa\ProdiPilihanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,4 +36,6 @@ Route::middleware(['auth', 'verify'])->group(function(){
     Route::post('/biodata', [BiodataController::class, 'store'])->name('biodata.store');
     Route::get('/keluarga', [KeluargaController::class, 'create'])->name('keluarga.create');
     Route::post('/keluarga', [KeluargaController::class, 'store'])->name('keluarga.store');
+    Route::get('/prodi-pilihan', [ProdiPilihanController::class, 'create'])->name('prodi-pilihan.create');
+    Route::post('/prodi-pilihan', [ProdiPilihanController::class, 'store'])->name('prodi-pilihan.store');
 });

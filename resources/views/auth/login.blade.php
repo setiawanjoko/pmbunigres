@@ -66,9 +66,9 @@
                     <img class="login-logo" src="{{ asset('unigres/images/logo.png') }}">
                     <p class="login-title">Ujian Seleksi Masuk. <span>Universitas Negeri Gresik</span></p>
                     <p class="login-info">Masukkan email dan password terdaftar !</p>
-                    <input class="form-control" type="email" placeholder="Email address">
-                    <input class="form-control" type="password" placeholder="Password">
-                    <a class="forgot-link" href="{{ route('password.request') }}">Forgot Password?</a>
+                    <input class="form-control" type="email" name="email" placeholder="Email address">
+                    <input class="form-control" type="password" name="password" placeholder="Password">
+                   <a class="forgot-link" href="{{ route('password.request') }}">Forgot Password?</a>
                     <button class="btn btn-login">Submit</button>
                     <p class="regist-here">Belum terdaftar? <a href="{{ route('register') }}">Daftar disini</a></p>
                 </div>

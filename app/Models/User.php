@@ -82,4 +82,8 @@ class User extends Authenticatable implements MustVerifyEmail
     public function prodiPilihan() {
         return $this->biodata->prodiPilihan;
     }
+
+    public function moodleAccount() {
+        return $this->hasOne(MoodleAccount::class, 'user_id', 'id');
+    }
 }

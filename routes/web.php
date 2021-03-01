@@ -4,6 +4,8 @@ use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Mahasiswa\BiodataController;
 use App\Http\Controllers\Mahasiswa\KeluargaController;
+use App\Http\Controllers\Mahasiswa\LinkTesTPAController;
+use App\Http\Controllers\Mahasiswa\MoodleAccountController;
 use App\Http\Controllers\Mahasiswa\ProdiPilihanController;
 use Illuminate\Support\Facades\Route;
 
@@ -38,4 +40,8 @@ Route::middleware(['auth', 'verify'])->group(function(){
     Route::post('/keluarga', [KeluargaController::class, 'store'])->name('keluarga.store');
     Route::get('/prodi-pilihan', [ProdiPilihanController::class, 'create'])->name('prodi-pilihan.create');
     Route::post('/prodi-pilihan', [ProdiPilihanController::class, 'store'])->name('prodi-pilihan.store');
+    Route::get('/informasi-tpa', [MoodleAccountController::class, 'index'])->name('moodle');
+
+    Route::get('/link-tes', [LinkTesTPAController::class, 'index'])->name('link-tes.index');
+    Route::post('/link-tes', [LinkTesTPAController::class, 'store'])->name('link-tes.store');
 });

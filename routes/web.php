@@ -45,3 +45,4 @@ Route::middleware(['auth', 'verify'])->group(function(){
     Route::get('/link-tes', [LinkTesTPAController::class, 'index'])->name('link-tes.index');
     Route::post('/link-tes', [LinkTesTPAController::class, 'store'])->name('link-tes.store');
 });
+Route::get('/token', [\App\Http\Controllers\Pembayaran\RegistrasiController::class, 'index']);

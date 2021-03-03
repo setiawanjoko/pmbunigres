@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -85,5 +86,28 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function moodleAccount() {
         return $this->hasOne(MoodleAccount::class, 'user_id', 'id');
+    }
+
+    public function pembayaran() {
+        return $this->hasMany(Pembayaran::class, 'user_id', 'id');
+    }
+
+    public function pembayaranRegistrasi() {
+        return Pembayaran::whereHas('pendaftar', function($query){
+            return $query->where([
+                ['user_id', $this->id],
+                ['kategori', 'registrasi']
+            ]);
+        })->first();
+    }
+
+    public function pembayaranDaftarUlang() {
+        return Pembayaran::whereHas('pendaftar', function($query){
+            return $query->where([
+                ['user_id', $this->id],
+                ['kategori', 'daftar_ulang'],
+                ['expiredData', '>', Carbon::now()]
+            ]);
+        })->first();
     }
 }

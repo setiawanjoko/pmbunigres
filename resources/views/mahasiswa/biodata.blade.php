@@ -61,6 +61,17 @@
             <div class="container-fluid dashboard-user">
                 <h4>Form Pendaftaran</h4>
                 <p>Isi form berikut dengan menggunakan data yang valid (Benar).</p>
+                <ul class="nav nav-pills mb-5 mx-auto">
+                    <li class="nav-item " role="presentation">
+                        <a class="nav-link active" data-bs-toggle="pill" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Data Calon Mahasiswa</a>
+                    </li>
+                    <li class="nav-item nav-data-ortu" role="presentation">
+                        <a class="nav-link" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Data Orang Tua/Wali</a>
+                    </li>
+                    <li class="nav-item nav-prodi" role="presentation">
+                        <a class="nav-link" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Program Studi</a>
+                    </li>
+                </ul>
                 @if(session('status'))
                             <div class="col-12">
                                 <div class="alert alert-{{ session('status') }} alert-dismissable">

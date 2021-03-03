@@ -29,6 +29,10 @@ Route::get('pengumuman', function () {
     return view('pengumuman');
 })->name('pengumuman');
 
+Route::get('instruksi-pembayaran', function () {
+    return view('instruksi-pembayaran');
+})->name('instruksi-pembayaran');
+
 
 //    Route::get('/register', [RegisterController::class, 'index'])->name('mahasiswa.register');
 //    Route::post('/register', [RegisterController::class, 'store'])->name('mahasiswa.register.store');

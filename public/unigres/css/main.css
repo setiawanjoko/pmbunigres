@@ -9,8 +9,8 @@ font-family: 'Helvetica 65 Medium', sans-serif;
 * {
   font-family: "Poppins", sans-serif;
 }
-main{
-  background-color: #F4F4F4;
+main {
+  background-color: #f4f4f4;
   min-height: 100vh;
 }
 .btn:focus {
@@ -29,7 +29,7 @@ main{
   margin-right: auto;
   margin-left: auto;
 }
-.second-container{
+.second-container {
   width: 100%;
   padding-right: var(--bs-gutter-x, 0.75rem);
   padding-left: var(--bs-gutter-x, 0.75rem);
@@ -39,8 +39,13 @@ main{
 .btn:focus {
   box-shadow: none;
 }
-.navbar-light{
+.navbar-light {
   padding: 28px 0px;
+}
+.navbar-light.dashboard {
+  background-color: #0078ba;
+  padding: 21px 0px;
+  margin-bottom: 0 !important;
 }
 .navbar-brand {
   display: flex;
@@ -84,14 +89,14 @@ main{
   padding-left: 15px;
   padding-right: 15px;
 }
-.navbar-light.second-nav .navbar-nav .nav-link{
+.navbar-light.second-nav .navbar-nav .nav-link {
   color: #ffffff;
 }
-.navbar-light.second-nav .navbar-nav .nav-item.btn-nav a:hover{
-  background-color: #FFFFFF;
+.navbar-light.second-nav .navbar-nav .nav-item.btn-nav a:hover {
+  background-color: #ffffff;
   color: #0078ba;
 }
-.navbar-light .navbar-nav .nav-item.btn-nav a{
+.navbar-light .navbar-nav .nav-item.btn-nav a {
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
@@ -100,38 +105,39 @@ main{
   text-transform: capitalize;
   padding: 8px 28px;
   background-color: rgb(255, 255, 255);
-  border: 1px solid #0078BA;
+  border: 1px solid #0078ba;
   border-radius: 80px;
-  color: #0078BA;
+  color: #0078ba;
   max-width: max-content;
 }
-.navbar-light .navbar-nav .nav-item.btn-nav a:hover{
-  background-color: #0078BA;
-  color: #FFFFFF;
+.navbar-light .navbar-nav .nav-item.btn-nav a:hover {
+  background-color: #0078ba;
+  color: #ffffff;
 }
-.navbar-light.second-nav .navbar-nav .nav-link.active, .navbar-light .navbar-nav .show > .nav-link{
-  color: #FFFFFF;
+.navbar-light.second-nav .navbar-nav .nav-link.active,
+.navbar-light .navbar-nav .show > .nav-link {
+  color: #ffffff;
 }
 .navbar-light .navbar-nav .nav-link.active,
 .navbar-light .navbar-nav .show > .nav-link {
   color: #0078ba;
   font-weight: bold;
 }
-section.main-banner{
+section.main-banner {
   position: relative;
   z-index: 10;
 }
-section.main-banner::before{
+section.main-banner::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   height: 182px;
   width: 100%;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   z-index: -1;
 }
-section.main-banner .wrapper-banner{
+section.main-banner .wrapper-banner {
   width: 100%;
   height: 380px;
   border-radius: 29px;
@@ -141,103 +147,107 @@ section.main-banner .wrapper-banner{
   background-position: left;
   overflow: hidden;
 }
-section.main-banner .wrapper-banner .banner-iner{
+section.main-banner .wrapper-banner .banner-iner {
   padding-top: 82px;
   width: 100%;
   height: 380px;
-  background:  linear-gradient(263.76deg, #0078BA 45.08%, rgba(0, 120, 186, 0) 114.7%);
+  background: linear-gradient(
+    263.76deg,
+    #0078ba 45.08%,
+    rgba(0, 120, 186, 0) 114.7%
+  );
 }
-section.main-banner p{
+section.main-banner p {
   font-style: normal;
   font-weight: normal;
   font-size: 24px;
   line-height: 36px;
   letter-spacing: 0.02em;
   text-transform: capitalize;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 0px;
 }
-section.main-banner .banner-caption{
+section.main-banner .banner-caption {
   font-style: normal;
   font-weight: bold;
   font-size: 58px;
   line-height: 87px;
   letter-spacing: 0.02em;
   text-transform: capitalize;
-  color: #FFFFFF;
+  color: #ffffff;
 }
-section.akademis-group{
+section.akademis-group {
   margin-top: -58px;
   position: relative;
   z-index: 11;
   margin-bottom: 48px;
 }
-section.akademis-group .wrapper-ak-group{
+section.akademis-group .wrapper-ak-group {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   box-shadow: 0px 4px 24px rgba(162, 162, 162, 0.2);
   border-radius: 20px;
   padding: 34px 74px;
 }
-section.akademis-group .link-item{
+section.akademis-group .link-item {
   text-decoration: none;
 }
-section.akademis-group .ak-item{
+section.akademis-group .ak-item {
   display: flex;
-  flex-direction:row;
+  flex-direction: row;
   align-items: flex-start;
 }
-section.akademis-group .ak-item img{
+section.akademis-group .ak-item img {
   height: 24px;
   margin-right: 14px;
 }
-section.akademis-group .ak-item .ak-body .title-1{
+section.akademis-group .ak-item .ak-body .title-1 {
   font-style: normal;
   font-weight: 600;
   font-size: 18px;
   line-height: 27px;
   letter-spacing: 0.02em;
   text-transform: capitalize;
-  color: #11222B;
+  color: #11222b;
   margin-bottom: 0;
 }
-section.akademis-group .ak-item .ak-body .title-2{
+section.akademis-group .ak-item .ak-body .title-2 {
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
   line-height: 21px;
   letter-spacing: 0.02em;
   text-transform: capitalize;
-  color: #11222B;
+  color: #11222b;
   opacity: 0.5;
   margin-bottom: 0;
 }
-section.announcement{
+section.announcement {
   padding-bottom: 52px;
 }
-section.announcement .wrapper-head-ann{
+section.announcement .wrapper-head-ann {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 28px;
 }
-section.announcement .wrapper-head-ann .left .ann-title{
-  font-family: 'Helvetica Neue', sans-serif;
+section.announcement .wrapper-head-ann .left .ann-title {
+  font-family: "Helvetica Neue", sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 38px;
   line-height: 46px;
   letter-spacing: 0.02em;
-  color: #0179BB;
+  color: #0179bb;
   margin-bottom: 6px;
 }
-section.announcement .wrapper-head-ann .left .ann-desc{
-  font-family: 'Helvetica 45 Light', sans-serif;
+section.announcement .wrapper-head-ann .left .ann-desc {
+  font-family: "Helvetica 45 Light", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -246,63 +256,63 @@ section.announcement .wrapper-head-ann .left .ann-desc{
   color: #000000;
   margin-bottom: 0;
 }
-section.announcement .wrapper-head-ann .link-vm{
-  font-family: 'Helvetica 65 Medium', sans-serif; 
+section.announcement .wrapper-head-ann .link-vm {
+  font-family: "Helvetica 65 Medium", sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
   line-height: 46px;
   letter-spacing: 0.02em;
-  color: #0078BA;
+  color: #0078ba;
   text-decoration: none;
 }
-section.announcement .wrapper-head-ann .link-vm i{
+section.announcement .wrapper-head-ann .link-vm i {
   margin-left: 14px;
 }
-section.announcement .link-item-ann{
+section.announcement .link-item-ann {
   text-decoration: none;
 }
-section.announcement .wrappe-item-ann{
+section.announcement .wrappe-item-ann {
   position: relative;
   width: 100%;
   padding: 19px 84px 19px 24px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-radius: 4px;
-  border: 1px solid #F3F3F4;
+  border: 1px solid #f3f3f4;
 }
-section.announcement .wrappe-item-ann .item-ann-title-1{
-  font-family: 'Helvetica Neue', sans-serif;
+section.announcement .wrappe-item-ann .item-ann-title-1 {
+  font-family: "Helvetica Neue", sans-serif;
   font-size: 16px;
   line-height: 28px;
   letter-spacing: 0.02em;
   color: #000000;
   margin-bottom: 4px;
 }
-section.announcement .wrappe-item-ann .item-ann-title-2{
-  font-family: 'Helvetica 45 Light', sans-serif;
+section.announcement .wrappe-item-ann .item-ann-title-2 {
+  font-family: "Helvetica 45 Light", sans-serif;
   font-size: 12px;
   line-height: 28px;
   letter-spacing: 0.02em;
-  color: #A2A2A2;
+  color: #a2a2a2;
   margin-bottom: 0;
 }
-section.announcement .wrappe-item-ann .badge-item{
+section.announcement .wrappe-item-ann .badge-item {
   position: absolute;
   right: 22px;
   top: 22px;
-  font-family: 'Helvetica 45 Light', sans-serif;
+  font-family: "Helvetica 45 Light", sans-serif;
   font-size: 12px;
   letter-spacing: 0.02em;
-  color: #1BB394;
+  color: #1bb394;
   padding: 8px 16px;
-  background: #DEF3EF;
+  background: #def3ef;
   border-radius: 4px;
 }
-footer{
+footer {
   padding-top: 28px;
   background-color: #f4f4f4;
 }
-footer .wrapper-footer{
+footer .wrapper-footer {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -313,8 +323,8 @@ footer .wrapper-footer{
   margin-bottom: 0;
   padding: 16px 0px;
 }
-footer .wrapper-footer li{
-  font-family: 'Helvetica 45 Light', sans-serif;
+footer .wrapper-footer li {
+  font-family: "Helvetica 45 Light", sans-serif;
   font-size: 12px;
   line-height: 28px;
   letter-spacing: 0.02em;
@@ -322,13 +332,13 @@ footer .wrapper-footer li{
   opacity: 0.65;
   margin-right: 23px;
 }
-footer .wrapper-footer li:nth-last-of-type(1){
+footer .wrapper-footer li:nth-last-of-type(1) {
   margin-right: 0;
 }
-footer .wrapper-footer li:nth-last-of-type(1)::after{
+footer .wrapper-footer li:nth-last-of-type(1)::after {
   display: none;
 }
-footer .wrapper-footer li::after{
+footer .wrapper-footer li::after {
   font-family: "Font Awesome 5 Free";
   content: "\f111";
   display: inline-block;
@@ -338,12 +348,11 @@ footer .wrapper-footer li::after{
   margin-bottom: 2px;
 }
 
-
 /* PENGUMUMAN */
-.navbar.second-nav{
+.navbar.second-nav {
   margin-bottom: -121px;
 }
-section.second-banner .wrapper-banner{
+section.second-banner .wrapper-banner {
   width: 100%;
   height: 380px;
   background-image: url("../images/banner-main.jpg");
@@ -352,43 +361,47 @@ section.second-banner .wrapper-banner{
   background-position: left;
   overflow: hidden;
 }
-section.second-banner .wrapper-banner .banner-iner{
+section.second-banner .wrapper-banner .banner-iner {
   padding-top: 152px;
   width: 100%;
   height: 380px;
-  background:  linear-gradient(263.76deg, #0078BA 60%, rgba(0, 120, 186, 0) 114.7%);
+  background: linear-gradient(
+    263.76deg,
+    #0078ba 60%,
+    rgba(0, 120, 186, 0) 114.7%
+  );
 }
-section.second-banner p{
-  font-family: 'Helvetica 45 Light', sans-serif;
+section.second-banner p {
+  font-family: "Helvetica 45 Light", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 24px;
   letter-spacing: 0.02em;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 0px;
 }
-section.second-banner .banner-caption{
-  font-family: 'Helvetica Neue', sans-serif;
+section.second-banner .banner-caption {
+  font-family: "Helvetica Neue", sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 38px;
   line-height: 46px;
   letter-spacing: 0.02em;
-  color: #FFFFFF;
+  color: #ffffff;
 }
-section.opening-countdown .wrapper-left h5{
-  font-family: 'Helvetica Neue', sans-serif;
+section.opening-countdown .wrapper-left h5 {
+  font-family: "Helvetica Neue", sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 38px;
   line-height: 46px;
   letter-spacing: 0.02em;
-  color: #0179BB;
+  color: #0179bb;
   margin-bottom: 6px;
 }
-section.opening-countdown .wrapper-left p{
-  font-family: 'Helvetica 45 Light', sans-serif;
+section.opening-countdown .wrapper-left p {
+  font-family: "Helvetica 45 Light", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -397,12 +410,12 @@ section.opening-countdown .wrapper-left p{
   color: #000000;
   margin-bottom: 0;
 }
-section.opening-countdown .wrapper-right{
+section.opening-countdown .wrapper-right {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
 }
-section.opening-countdown .wrapper-right .countdown{
+section.opening-countdown .wrapper-right .countdown {
   font-weight: bold;
   font-size: 38px;
   line-height: 72px;
@@ -410,105 +423,105 @@ section.opening-countdown .wrapper-right .countdown{
   color: rgba(17, 34, 43, 0.35);
   vertical-align: middle;
 }
-section.opening-countdown .wrapper-right .countdown span{
-  font-family: 'Helvetica Neue', sans-serif;
+section.opening-countdown .wrapper-right .countdown span {
+  font-family: "Helvetica Neue", sans-serif;
   padding: 12px 14px;
   margin: 0px 18px;
-  color: #11222B;
+  color: #11222b;
   position: relative;
 }
-section.opening-countdown .wrapper-right .countdown span:nth-child(1){
-  background: #0078BA;
+section.opening-countdown .wrapper-right .countdown span:nth-child(1) {
+  background: #0078ba;
   border-radius: 8px;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-left: 0;
 }
-section.opening-countdown .wrapper-right .countdown span:nth-last-of-type(1){
+section.opening-countdown .wrapper-right .countdown span:nth-last-of-type(1) {
   margin-right: 0;
 }
-section.opening-countdown .wrapper-right .countdown span:nth-child(1)::after{
+section.opening-countdown .wrapper-right .countdown span:nth-child(1)::after {
   content: "hari";
   position: absolute;
   bottom: -32px;
   left: 50%;
   transform: translateX(-50%);
-  font-family: 'Helvetica 35 Thin', sans-serif;
+  font-family: "Helvetica 35 Thin", sans-serif;
   font-weight: normal;
   font-size: 14px;
   line-height: 17px;
   text-align: center;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: #8F8E94;
+  color: #8f8e94;
 }
-section.opening-countdown .wrapper-right .countdown span:nth-child(2)::after{
+section.opening-countdown .wrapper-right .countdown span:nth-child(2)::after {
   content: "jam";
   position: absolute;
   bottom: -32px;
   left: 50%;
   transform: translateX(-50%);
-  font-family: 'Helvetica 35 Thin', sans-serif;
+  font-family: "Helvetica 35 Thin", sans-serif;
   font-weight: normal;
   font-size: 14px;
   line-height: 17px;
   text-align: center;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: #8F8E94;
+  color: #8f8e94;
 }
-section.opening-countdown .wrapper-right .countdown span:nth-child(3)::after{
+section.opening-countdown .wrapper-right .countdown span:nth-child(3)::after {
   content: "menit";
   position: absolute;
   bottom: -32px;
   left: 50%;
   transform: translateX(-50%);
-  font-family: 'Helvetica 35 Thin', sans-serif;
+  font-family: "Helvetica 35 Thin", sans-serif;
   font-weight: normal;
   font-size: 14px;
   line-height: 17px;
   text-align: center;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: #8F8E94;
+  color: #8f8e94;
 }
-section.opening-countdown .wrapper-right .countdown span:nth-child(4)::after{
+section.opening-countdown .wrapper-right .countdown span:nth-child(4)::after {
   content: "detik";
   position: absolute;
   bottom: -32px;
   left: 50%;
   transform: translateX(-50%);
-  font-family: 'Helvetica 35 Thin', sans-serif;
+  font-family: "Helvetica 35 Thin", sans-serif;
   font-weight: normal;
   font-size: 14px;
   line-height: 17px;
   text-align: center;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: #8F8E94;
+  color: #8f8e94;
 }
-section.form-registration{
+section.form-registration {
   margin-top: -148px;
   position: relative;
   z-index: 10;
 }
-section.form-registration .wrapper-registration{
+section.form-registration .wrapper-registration {
   padding: 46px 64px 70px 64px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   box-shadow: 0px 4px 24px rgba(162, 162, 162, 0.2);
   border-radius: 20px;
 }
-section.form-registration .wrapper-registration .form-title{
-  font-family: 'Helvetica Neue', sans-serif;
+section.form-registration .wrapper-registration .form-title {
+  font-family: "Helvetica Neue", sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 38px;
   line-height: 46px;
   letter-spacing: 0.02em;
-  color: #0179BB;
+  color: #0179bb;
   margin-bottom: 18px;
 }
-section.form-registration .wrapper-registration .form-info{
-  font-family: 'Helvetica 45 Light', sans-serif;
+section.form-registration .wrapper-registration .form-info {
+  font-family: "Helvetica 45 Light", sans-serif;
   font-weight: normal;
   font-size: 16px;
   line-height: 28px;
@@ -516,9 +529,9 @@ section.form-registration .wrapper-registration .form-info{
   color: #000000;
   margin-bottom: 28px;
 }
-section.form-registration .wrapper-registration .form-control{
-  font-family: 'Helvetica 45 Light', sans-serif;
-  background-color: #FAFAFA;
+section.form-registration .wrapper-registration .form-control {
+  font-family: "Helvetica 45 Light", sans-serif;
+  background-color: #fafafa;
   padding: 18px 22px;
   border-radius: 4px;
   font-size: 14px;
@@ -528,11 +541,11 @@ section.form-registration .wrapper-registration .form-control{
   border: none;
   margin-bottom: 18px;
 }
-section.form-registration .wrapper-registration .wrap-input{
+section.form-registration .wrapper-registration .wrap-input {
   margin-bottom: 18px;
 }
-section.form-registration .wrapper-registration .lable-radio{
-  font-family: 'Helvetica Neue', sans-serif;
+section.form-registration .wrapper-registration .lable-radio {
+  font-family: "Helvetica Neue", sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 14px;
@@ -540,42 +553,42 @@ section.form-registration .wrapper-registration .lable-radio{
   color: #000000;
   margin-bottom: 6px;
 }
-section.form-registration .wrapper-registration .form-check{
+section.form-registration .wrapper-registration .form-check {
   margin-bottom: 0;
 }
-section.form-registration .wrapper-registration .form-check .form-check-label{
-  font-family: 'Helvetica 45 Light', sans-serif;
+section.form-registration .wrapper-registration .form-check .form-check-label {
+  font-family: "Helvetica 45 Light", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
   line-height: 24px;
   letter-spacing: 0.02em;
-  color: #8F8E94;
+  color: #8f8e94;
 }
-section.form-registration .wrapper-registration .form-control::placeholder{
-  font-family: 'Helvetica 45 Light', sans-serif;
+section.form-registration .wrapper-registration .form-control::placeholder {
+  font-family: "Helvetica 45 Light", sans-serif;
   font-size: 14px;
   line-height: 17px;
   letter-spacing: 0.02em;
   color: #000000;
 }
-section.form-registration .wrapper-btn-form{
+section.form-registration .wrapper-btn-form {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
   margin-top: 24px;
 }
-section.form-registration .wrapper-btn-form .wrap-left .note-title{
-  font-family: 'Helvetica Neue', sans-serif;
+section.form-registration .wrapper-btn-form .wrap-left .note-title {
+  font-family: "Helvetica Neue", sans-serif;
   font-size: 14px;
   line-height: 28px;
   letter-spacing: 0.02em;
   color: #000000;
   margin-bottom: 8px;
 }
-section.form-registration .wrapper-btn-form .wrap-left .note{
-  font-family: 'Helvetica 45 Light', sans-serif;
+section.form-registration .wrapper-btn-form .wrap-left .note {
+  font-family: "Helvetica 45 Light", sans-serif;
   font-size: 14px;
   line-height: 28px;
   letter-spacing: 0.02em;
@@ -583,64 +596,64 @@ section.form-registration .wrapper-btn-form .wrap-left .note{
   max-width: 380px;
   margin-bottom: 38px;
 }
-section.form-registration .wrapper-btn-form .btn-regist{
-  font-family: 'Helvetica Neue', sans-serif;
+section.form-registration .wrapper-btn-form .btn-regist {
+  font-family: "Helvetica Neue", sans-serif;
   font-size: 16px;
   line-height: 28px;
   text-align: center;
   height: max-content;
   letter-spacing: 0.02em;
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 14px 84px;
-  background-color: #0078BA;
+  background-color: #0078ba;
   box-shadow: 0px 8px 24px rgba(2, 121, 186, 0.2);
   border-radius: 4px;
 }
 
-section.verif-registration{
+section.verif-registration {
   margin-top: -218px;
   position: relative;
   z-index: 10;
 }
-section.verif-registration .wrapper-verif{
+section.verif-registration .wrapper-verif {
   padding: 54px 64px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   box-shadow: 0px 4px 24px rgba(162, 162, 162, 0.2);
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-section.verif-registration .wrapper-verif .wrap-content{
+section.verif-registration .wrapper-verif .wrap-content {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-section.verif-registration .wrapper-verif .verif-ic{
+section.verif-registration .wrapper-verif .verif-ic {
   width: 84px;
   margin-bottom: 20px;
 }
-section.verif-registration .wrapper-verif .verif-title{
-  font-family: 'Helvetica Neue', sans-serif;
+section.verif-registration .wrapper-verif .verif-title {
+  font-family: "Helvetica Neue", sans-serif;
   font-style: normal;
   font-weight: bold;
   text-align: center;
   font-size: 24px;
   line-height: 29px;
   letter-spacing: 0.02em;
-  color: #11222B;
+  color: #11222b;
   margin-bottom: 32px;
 }
-section.verif-registration .wrapper-verif .step1 ol{
+section.verif-registration .wrapper-verif .step1 ol {
   padding: 15px 32px 15px 46px;
-  background-color: #F2FAFF;
+  background-color: #f2faff;
   border-radius: 4px;
   width: 100%;
   max-width: 680px;
   margin-bottom: 48px;
 }
-section.verif-registration .wrapper-verif ol li{
-  font-family: 'Helvetica 45 Light', sans-serif;
+section.verif-registration .wrapper-verif ol li {
+  font-family: "Helvetica 45 Light", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -648,60 +661,60 @@ section.verif-registration .wrapper-verif ol li{
   letter-spacing: 0.02em;
   color: #000000;
 }
-section.verif-registration .wrapper-verif .wrap-button-verif{
+section.verif-registration .wrapper-verif .wrap-button-verif {
   display: flex;
   flex-direction: row;
   align-items: center;
   flex-wrap: wrap;
   justify-content: center;
 }
-section.verif-registration .wrapper-verif .wrap-button-verif.wp-step-2{
+section.verif-registration .wrapper-verif .wrap-button-verif.wp-step-2 {
   width: 100%;
   max-width: 546px;
   justify-content: center;
 }
-section.verif-registration .wrapper-verif .wrap-button-verif .btn{
-  font-family: 'Helvetica 45 Light', sans-serif;
+section.verif-registration .wrapper-verif .wrap-button-verif .btn {
+  font-family: "Helvetica 45 Light", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 28px;
   text-align: center;
   letter-spacing: 0.02em;
-  color: #0078BA;
+  color: #0078ba;
   padding: 14px 32px;
   min-width: 224px;
-  background-color:#F3F3F4;
+  background-color: #f3f3f4;
   border-radius: 4px;
   margin-bottom: 12px;
 }
-section.verif-registration .wrapper-verif .wrap-button-verif .btn:hover{
-  background-color: #0078BA;
-  color: #FFFFFF;
+section.verif-registration .wrapper-verif .wrap-button-verif .btn:hover {
+  background-color: #0078ba;
+  color: #ffffff;
   box-shadow: 0px 8px 24px rgba(2, 121, 186, 0.2);
 }
-section.verif-registration .wrapper-verif .wrap-button-verif .btn:nth-child(1){
+section.verif-registration .wrapper-verif .wrap-button-verif .btn:nth-child(1) {
   margin-right: 18px;
 }
-section.verif-registration .wrapper-verif .step2-title{
-  font-family: 'Helvetica 45 Light', sans-serif;
+section.verif-registration .wrapper-verif .step2-title {
+  font-family: "Helvetica 45 Light", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 13px;
   line-height: 16px;
   text-align: center;
   letter-spacing: 0.02em;
-  color: #11222B;
+  color: #11222b;
   margin-bottom: 18px;
 }
-section.verif-registration .wrapper-verif .card-payment{
-  border-color: #8DC2D5;
+section.verif-registration .wrapper-verif .card-payment {
+  border-color: #8dc2d5;
   width: 100%;
   max-width: 546px;
   margin-bottom: 36px;
 }
-section.verif-registration .wrapper-verif .card-payment .card-header{
-  font-family: 'Helvetica 45 Light', sans-serif;
+section.verif-registration .wrapper-verif .card-payment .card-header {
+  font-family: "Helvetica 45 Light", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 13px;
@@ -709,110 +722,110 @@ section.verif-registration .wrapper-verif .card-payment .card-header{
   text-align: center;
   letter-spacing: 0.02em;
   color: #487183;
-  background-color: #D9EDF6;
-  border-color: #8DC2D5;
+  background-color: #d9edf6;
+  border-color: #8dc2d5;
   padding: 11px 20px;
 }
-section.verif-registration .card-payment .list-group-item{
+section.verif-registration .card-payment .list-group-item {
   padding: 16px 26px;
-  border-color: #8DC2D5;
+  border-color: #8dc2d5;
 }
-section.verif-registration .card-payment .list-title{
-  font-family: 'Helvetica Neue', sans-serif;
+section.verif-registration .card-payment .list-title {
+  font-family: "Helvetica Neue", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 13px;
   line-height: 16px;
   letter-spacing: 0.02em;
-  color: #11222B;
+  color: #11222b;
   margin-bottom: 12px;
 }
-section.verif-registration .accordion-payment{
+section.verif-registration .accordion-payment {
   width: 100%;
   max-width: 546px;
   margin-bottom: 38px;
 }
-section.verif-registration .accordion-payment .accordion-button{
-  font-family: 'Helvetica Neue', sans-serif;
+section.verif-registration .accordion-payment .accordion-button {
+  font-family: "Helvetica Neue", sans-serif;
   padding: 11px 18px;
-  background-color: #F5F5F5;
+  background-color: #f5f5f5;
   font-style: normal;
   font-weight: 500;
   font-size: 13px;
   line-height: 16px;
   letter-spacing: 0.02em;
-  color: #7C7F81;
+  color: #7c7f81;
 }
-section.verif-registration .accordion-payment .accordion-button:focus{
+section.verif-registration .accordion-payment .accordion-button:focus {
   box-shadow: none;
-  border-color: #7C7F81;
+  border-color: #7c7f81;
 }
-section.verif-registration .accordion-payment .accordion-button::after{
+section.verif-registration .accordion-payment .accordion-button::after {
   mix-blend-mode: luminosity;
 }
-section.verif-registration .accordion-payment .accordion-body{
+section.verif-registration .accordion-payment .accordion-body {
   padding: 12px 18px;
 }
-section.verif-registration .accordion-payment .accordion-body ol{
+section.verif-registration .accordion-payment .accordion-body ol {
   padding-left: 18px;
 }
-section.verif-registration .accordion-payment .accordion-body ol li{
-  font-family: 'Helvetica 45 Light', sans-serif;
+section.verif-registration .accordion-payment .accordion-body ol li {
+  font-family: "Helvetica 45 Light", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 13px;
   line-height: 22px;
   letter-spacing: 0.02em;
   text-transform: capitalize;
-  color: #7C7F81;
+  color: #7c7f81;
 }
-section.verif-registration .card-payment .wrap-briva{
+section.verif-registration .card-payment .wrap-briva {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
-section.verif-registration .card-payment .wrap-briva img{
+section.verif-registration .card-payment .wrap-briva img {
   width: 100px;
 }
-section.verif-registration .card-payment .wrap-briva p{
+section.verif-registration .card-payment .wrap-briva p {
   margin-left: 12px;
-  font-family: 'Helvetica Neue', sans-serif;
+  font-family: "Helvetica Neue", sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 24px;
   line-height: 29px;
   letter-spacing: 0.02em;
-  color: #0078BA;
+  color: #0078ba;
   margin-bottom: 0;
 }
-section.verif-registration .card-payment .price{
-  font-family: 'Helvetica Neue', sans-serif;
+section.verif-registration .card-payment .price {
+  font-family: "Helvetica Neue", sans-serif;
   font-size: 24px;
   font-weight: bold;
   line-height: 29px;
   margin-bottom: 0;
 }
 
-section.form-login{
+section.form-login {
   margin-top: -218px;
   position: relative;
   z-index: 10;
 }
-section.form-login .wrapper-login{
+section.form-login .wrapper-login {
   padding: 46px 64px 70px 64px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   box-shadow: 0px 4px 24px rgba(162, 162, 162, 0.2);
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-section.form-login .wrapper-login .login-logo{
+section.form-login .wrapper-login .login-logo {
   width: 120px;
   margin-bottom: 18px;
 }
-section.form-login .wrapper-login .login-title{
-  font-family: 'Helvetica 45 Light', sans-serif;
+section.form-login .wrapper-login .login-title {
+  font-family: "Helvetica 45 Light", sans-serif;
   font-weight: normal;
   font-size: 24px;
   line-height: 29px;
@@ -821,12 +834,12 @@ section.form-login .wrapper-login .login-title{
   margin-bottom: 14px;
   text-align: center;
 }
-section.form-login .wrapper-login .login-title span{
-  font-family: 'Helvetica Neue', sans-serif;
+section.form-login .wrapper-login .login-title span {
+  font-family: "Helvetica Neue", sans-serif;
   font-weight: bold;
 }
-section.form-login .wrapper-login .login-info{
-  font-family: 'Helvetica 45 Light', sans-serif;
+section.form-login .wrapper-login .login-info {
+  font-family: "Helvetica 45 Light", sans-serif;
   font-size: 16px;
   line-height: 28px;
   text-align: center;
@@ -834,22 +847,22 @@ section.form-login .wrapper-login .login-info{
   color: #000000;
   margin-bottom: 38px;
 }
-section.form-login .wrapper-login .form-control{
-  font-family: 'Helvetica 45 Light', sans-serif;
+section.form-login .wrapper-login .form-control {
+  font-family: "Helvetica 45 Light", sans-serif;
   font-size: 14px;
   line-height: 17px;
   letter-spacing: 0.02em;
   color: #000000;
   padding: 18px 24px;
-  background-color:#FAFAFA;
+  background-color: #fafafa;
   border-radius: 4px;
   border: none;
   width: 100%;
   max-width: 338px;
   margin-bottom: 18px;
 }
-section.form-login .wrapper-login .forgot-link{
-  font-family: 'Helvetica 45 Light', sans-serif;
+section.form-login .wrapper-login .forgot-link {
+  font-family: "Helvetica 45 Light", sans-serif;
   text-decoration: none;
   width: 100%;
   max-width: 338px;
@@ -858,26 +871,26 @@ section.form-login .wrapper-login .forgot-link{
   line-height: 28px;
   text-align: right;
   letter-spacing: 0.02em;
-  color: #1BB394;
+  color: #1bb394;
   margin-bottom: 32px;
 }
-section.form-login .wrapper-login .btn-login{
-  font-family: 'Helvetica 45 Light', sans-serif;
+section.form-login .wrapper-login .btn-login {
+  font-family: "Helvetica 45 Light", sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
   line-height: 28px;
   text-align: center;
   letter-spacing: 0.02em;
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 14px 84px;
-  background-color: #0078BA;
+  background-color: #0078ba;
   box-shadow: 0px 8px 24px rgba(2, 121, 186, 0.2);
   border-radius: 4px;
   margin-bottom: 36px;
 }
-section.form-login .wrapper-login .regist-here{
-  font-family: 'Helvetica 45 Light', sans-serif;
+section.form-login .wrapper-login .regist-here {
+  font-family: "Helvetica 45 Light", sans-serif;
   font-size: 16px;
   line-height: 28px;
   text-align: center;
@@ -885,7 +898,1039 @@ section.form-login .wrapper-login .regist-here{
   color: #000000;
   margin-bottom: 0;
 }
-section.form-login .wrapper-login .regist-here a{
+section.form-login .wrapper-login .regist-here a {
+  color: #1bb394;
+  text-decoration: none;
+}
+
+main.dashboard {
+  background-color: #ffffff;
+}
+.wrapper-dashboard-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 26px;
+  background-color: #11222b;
+}
+.wrapper-dashboard-nav .dashboard-top {
+  padding-left: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  list-style: none;
+  margin-bottom: 0;
+  flex-wrap: wrap;
+}
+.wrapper-dashboard-nav .dashboard-top li .nav-link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 4px 28px;
+  border-right: 1px solid rgba(255, 255, 255, 0.25);
+}
+.wrapper-dashboard-nav .dashboard-top li:nth-last-of-type(1) {
+  border-right: none;
+}
+.wrapper-dashboard-nav .dashboard-top li .wp-ic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #0078ba;
+  margin-right: 16px;
+}
+.wrapper-dashboard-nav .dashboard-top .nav-link.active .wp-ic {
+  background-color: #ffff00;
+}
+.wrapper-dashboard-nav .dashboard-top .nav-link.active .wp-ic img {
+  filter: none;
+}
+.wrapper-dashboard-nav .dashboard-top .nav-link.active .wp-ic span {
+  color: #11222b;
+}
+.wrapper-dashboard-nav .dashboard-top li .wp-ic img {
+  width: 40%;
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(115deg)
+    brightness(111%) contrast(101%);
+}
+.wrapper-dashboard-nav .dashboard-top li .wp-ic span {
+  font-family: "Helvetica Neue", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 10px;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+}
+.wrapper-dashboard-nav .dashboard-top li span {
+  font-family: "Helvetica 45 Light", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+}
+
+.dashboard-user h4 {
+  font-family: "Helvetica Neue", sans-serif;
+  margin-top: 46px;
+  margin-bottom: 18px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: #251462;
+}
+
+.dashboard-user p {
+  font-family: "Helvetica 45 Light", sans-serif;
+  margin-bottom: 46px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 28px;
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: #a2a2a2;
+}
+
+.dashboard-user .nav-pills {
+  background: #f3f3f429;
+  border-radius: 6px;
+  border: 1px solid #f3f3f4;
+  max-width: max-content;
+}
+
+.dashboard-user .nav-pills a:hover {
+  color: #6c757d;
+}
+
+.dashboard-user .nav-pills .nav-item .nav-link {
+  color: #a2a2a2;
+  padding: 15px 47px;
+}
+
+.dashboard-user .nav-pills .nav-item .nav-link.active {
+  padding: 15px 47px;
+  color: #fff;
+  background-color: #6060d0;
+  border-radius: 6px;
+}
+
+.dashboard-user .tab-content {
+  width: 100%;
+}
+.dashboard-user .tab-content .program-studi .card-header {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  letter-spacing: 0.02em;
+  color: #251462 !important;
+}
+.dashboard-user .tab-content .program-studi .card-body select {
+  margin-bottom: 20px;
+}
+.dashboard-user .tab-content .program-studi .card-body input {
+  margin-bottom: 20px;
+}
+.dashboard-user .tab-content .data-calon-mhs .row .left .card .card-header {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  letter-spacing: 0.02em;
+  color: #251462 !important;
+}
+
+.dashboard-user .tab-content .data-calon-mhs .row .left .card .card-body {
+  padding: 35px;
+}
+.dropdown-acount-1 {
+  background-color: #ffffff;
+  color: #6060d0 !important;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+  border-radius: 20px;
+}
+.dropdown-acount-1 .nav-link {
+  color: #6060d0 !important;
+}
+.dashboard-user .nav-pills {
+  background: #f3f3f429;
+  border-radius: 6px;
+  border: 1px solid #f3f3f4;
+}
+
+.dashboard-user .nav-pills a:hover {
+  color: #6c757d;
+}
+
+.dashboard-user .nav-pills .nav-item .nav-link {
+  color: #a2a2a2;
+  padding: 15px 47px;
+}
+
+.dashboard-user .nav-pills .nav-item .nav-link.active {
+  padding: 15px 47px;
+  color: #fff;
+  background-color: #6060d0;
+  border-radius: 6px;
+}
+
+.dashboard-user .tab-content {
+  width: 100%;
+}
+
+.dashboard-user .tab-content .data-calon-mhs .row .left .card .card-header {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  letter-spacing: 0.02em;
+  color: #251462 !important;
+}
+
+.dashboard-user .tab-content .data-calon-mhs .row .left .card .card-body {
+  padding: 35px;
+}
+
+.dashboard-user
+  .tab-content
+  .data-calon-mhs
+  .row
+  .left
+  .card
+  .card-body
+  .form-group
+  .row-form {
+  margin-left: 0;
+  margin-right: 0;
+}
+.konfirmasi-pembayaran .wrapper-info {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 24px 34px;
+  background-color: #fcfcfc;
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  max-width: 795px;
+  margin: auto;
+  margin-top: 52px;
+}
+.konfirmasi-pembayaran .wrapper-info img {
+  margin-top: 3px;
+  width: 20px;
+  filter: invert(52%) sepia(46%) saturate(4348%) hue-rotate(163deg)
+    brightness(92%) contrast(84%);
+  margin-right: 12px;
+}
+.konfirmasi-pembayaran .wrapper-info2 img {
+  margin-top: 3px;
+  width: 20px;
+  filter: invert(66%) sepia(36%) saturate(6765%) hue-rotate(130deg)
+    brightness(96%) contrast(79%);
+  margin-right: 12px;
+}
+.konfirmasi-pembayaran .wrapper-info2 {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 24px 34px;
+  background-color: #eaf7f4;
+  border-radius: 4px;
+  max-width: 795px;
+  margin: auto;
+  margin-top: 52px;
+  margin-bottom: 48px;
+}
+.konfirmasi-pembayaran .info1 {
+  font-family: "Helvetica 35 Thin", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.02em;
+  color: #000000;
+}
+.konfirmasi-pembayaran .info1 span {
+  font-weight: bold;
+}
+.konfirmasi-pembayaran .wrapper-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.konfirmasi-pembayaran .wrapper-button .btn-download {
+  font-family: "Helvetica Neue", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 28px;
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+  padding: 14px 40px;
+  background-color: #0078ba;
+  box-shadow: 0px 8px 24px rgba(0, 120, 186, 0.2);
+  border-radius: 4px;
+}
+.dashboard-user
+  .tab-content
+  .data-calon-mhs
+  .row
+  .left
+  .card
+  .card-body
+  .form-group
+  .row-form
+  .col-md-6 {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.dashboard-user
+  .tab-content
+  .data-calon-mhs
+  .row
+  .left
+  .card
+  .card-body
+  ::-webkit-input-placeholder {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: #8f8e94;
+}
+
+.dashboard-user
+  .tab-content
+  .data-calon-mhs
+  .row
+  .left
+  .card
+  .card-body
+  ::-moz-placeholder {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: #8f8e94;
+}
+
+.dashboard-user
+  .tab-content
+  .data-calon-mhs
+  .row
+  .left
+  .card
+  .card-body
+  :-ms-input-placeholder {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: #8f8e94;
+}
+
+.dashboard-user
+  .tab-content
+  .data-calon-mhs
+  .row
+  .left
+  .card
+  .card-body
+  ::-ms-input-placeholder {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: #8f8e94;
+}
+
+.dashboard-user
+  .tab-content
+  .data-calon-mhs
+  .row
+  .left
+  .card
+  .card-body
+  ::placeholder {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: #8f8e94;
+}
+
+.radio-button .custom-radio label {
+  margin: 0 !important;
+}
+.dashboard-user .tab-content .data-calon-mhs .row .left .card .card-body label {
+  padding-left: 8px;
+  width: 100%;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+}
+.dashboard-user .tab-content .data-calon-mhs .row .left .card .card-body input {
+  margin-bottom: 20px;
+}
+.dashboard-user
+  .tab-content
+  .data-calon-mhs
+  .row
+  .left
+  .card
+  .card-body
+  select {
+  margin-bottom: 20px;
+}
+
+.dashboard-user
+  .tab-content
+  .data-calon-mhs
+  .row
+  .left
+  .card
+  .card-body
+  .radio-button {
+  display: flex;
+  flex-direction: row;
+  padding-top: 15px;
+  width: 100%;
+}
+
+.dashboard-user
+  .tab-content
+  .data-calon-mhs
+  .row
+  .left
+  .card
+  .card-body
+  .radio-button
+  .form-check-inline {
+  padding-left: 20px;
+}
+
+.dashboard-user
+  .tab-content
+  .data-calon-mhs
+  .row
+  .left
+  .card
+  .card-body
+  .radio-button
+  .form-check-inline
+  label {
+  width: 100%;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: #8f8e94;
+}
+
+.dashboard-user
+  .tab-content
+  .data-calon-mhs
+  .row
+  .left
+  .card
+  .card-body
+  .form-control {
+  background: #f3f3f4;
+  border: none;
+  height: 52px;
+}
+
+.dashboard-user .tab-content .data-calon-mhs .row .left .btn-light:hover,
+.dashboard-user .tab-content .data-calon-mhs .row .left .btn-light:focus,
+.dashboard-user .tab-content .data-calon-mhs .row .left .btn-light:active,
+.dashboard-user .tab-content .data-calon-mhs .row .left .btn-light.active {
+  outline: 0 !important;
+  box-shadow: 0 4px 8px 0 rgba(27, 179, 149, 0.199),
+    0 6px 20px 0 rgba(27, 179, 149, 0.233);
+  background: #0078ba !important;
+  color: #ffffff !important;
+}
+
+.dashboard-user .tab-content .data-calon-mhs .row .left button {
+  margin-top: 20px;
+  font-size: 16px;
+  width: 224px;
+  margin-right: 4px;
+  border-radius: 4px;
+  padding: 14px 26px;
+  background: #0078ba;
+  color: #ffffff;
+}
+
+.dashboard-user .tab-content .data-calon-mhs .row .left .catatan {
+  margin-top: 28px;
+  margin-left: 18px;
+  margin-bottom: 10em;
+}
+
+.dashboard-user .tab-content .data-calon-mhs .row .left .catatan strong {
+  font-size: 14px;
+  line-height: 28px;
+  letter-spacing: 0.02em;
+}
+
+.dashboard-user .tab-content .data-calon-mhs .row .left .catatan p {
+  font-size: 14px;
+  line-height: 28px;
+  letter-spacing: 0.02em;
+  color: #8f8e94;
+  text-align: left;
+}
+
+.dashboard-user .tab-content .data-calon-mhs .row .right .card .card-header {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  letter-spacing: 0.02em;
+  color: #251462 !important;
+}
+
+.dashboard-user .tab-content .data-calon-mhs .row .right .card .card-body {
+  padding: 35px;
+  margin-top: 20px;
+}
+
+.dashboard-user
+  .tab-content
+  .data-calon-mhs
+  .row
+  .right
+  .card
+  .card-body
+  .card-img-top {
+  width: 60%;
+  margin-bottom: 28px;
+}
+
+.dashboard-user
+  .tab-content
+  .data-calon-mhs
+  .row
+  .right
+  .card
+  .card-body
+  .btn-file {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 38px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+}
+
+.dashboard-user
+  .tab-content
+  .data-calon-mhs
+  .row
+  .right
+  .card
+  .card-body
+  .btn-file
+  .custom-file-input {
+  position: absolute;
+  z-index: 2;
+  width: 20%;
+  height: 2em;
+  margin: 0;
+  opacity: 0;
+}
+
+.dashboard-user .tab-content .data-orang-tua .row {
+  justify-content: center;
+}
+.dashboard-user .tab-content .data-orang-tua .row .left form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dashboard-user .tab-content .data-orang-tua .row .left form .card {
+  width: 100%;
+}
+
+.dashboard-user
+  .tab-content
+  .data-orang-tua
+  .row
+  .left
+  form
+  .card
+  .card-header {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  letter-spacing: 0.02em;
+  color: #251462 !important;
+}
+
+.dashboard-user .tab-content .data-orang-tua .row .left form .card .card-body {
+  padding: 35px;
+}
+
+.dashboard-user
+  .tab-content
+  .data-orang-tua
+  .row
+  .left
+  form
+  .card
+  .card-body
+  .form-group
+  .row-form {
+  margin-left: 0;
+  margin-right: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.dashboard-user
+  .tab-content
+  .data-orang-tua
+  .row
+  .left
+  form
+  .card
+  .card-body
+  .form-group
+  .row-form
+  .col-md-6 {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.dashboard-user
+  .tab-content
+  .data-orang-tua
+  .row
+  .left
+  form
+  .card
+  .card-body
+  ::-webkit-input-placeholder {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: #8f8e94;
+}
+
+.dashboard-user
+  .tab-content
+  .data-orang-tua
+  .row
+  .left
+  form
+  .card
+  .card-body
+  ::-moz-placeholder {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: #8f8e94;
+}
+
+.dashboard-user
+  .tab-content
+  .data-orang-tua
+  .row
+  .left
+  form
+  .card
+  .card-body
+  :-ms-input-placeholder {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: #8f8e94;
+}
+
+.dashboard-user
+  .tab-content
+  .data-orang-tua
+  .row
+  .left
+  form
+  .card
+  .card-body
+  ::-ms-input-placeholder {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: #8f8e94;
+}
+
+.dashboard-user
+  .tab-content
+  .data-orang-tua
+  .row
+  .left
+  form
+  .card
+  .card-body
+  ::placeholder {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: #8f8e94;
+}
+
+.dashboard-user
+  .tab-content
+  .data-orang-tua
+  .row
+  .left
+  form
+  .card
+  .card-body
+  label {
+  margin-top: 20px;
+  width: 100%;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+}
+
+.dashboard-user
+  .tab-content
+  .data-orang-tua
+  .row
+  .left
+  form
+  .card
+  .card-body
+  .form-control {
+  background: #f3f3f4;
+  border: none;
+  height: 52px;
+}
+
+.dashboard-user .tab-content .data-orang-tua .row .left .btn-light:hover,
+.dashboard-user .tab-content .data-orang-tua .row .left .btn-light:focus,
+.dashboard-user .tab-content .data-orang-tua .row .left .btn-light:active,
+.dashboard-user .tab-content .data-orang-tua .row .left .btn-light.active {
+  outline: 0 !important;
+  box-shadow: 0 4px 8px 0 rgba(27, 179, 149, 0.199),
+    0 6px 20px 0 rgba(27, 179, 149, 0.233);
+  background: #14a789 !important;
+  color: #ffffff !important;
+}
+
+.dashboard-user .tab-content .data-orang-tua .row .left button {
+  margin-top: 20px;
+  font-size: 16px;
+  width: 224px;
+  margin-right: 4px;
+  border-radius: 4px;
+  padding: 14px 26px;
+  background: #0078ba;
+  color: #ffffff;
+}
+
+.dashboard-user .tab-content .data-orang-tua .row .left .catatan {
+  margin-top: 28px;
+  margin-left: 18px;
+  margin-bottom: 10em;
+  text-align: center;
+}
+
+.dashboard-user .tab-content .data-orang-tua .row .left .catatan strong {
+  font-size: 14px;
+  line-height: 28px;
+  letter-spacing: 0.02em;
+}
+
+.dashboard-user .tab-content .data-orang-tua .row .left .catatan p {
+  font-size: 14px;
+  line-height: 28px;
+  letter-spacing: 0.02em;
+  color: #8f8e94;
+  text-align: left;
+  text-align: center;
+}
+
+.dashboard-user .tab-content .program-studi .row {
+  justify-content: center;
+}
+.dashboard-user .tab-content .program-studi .row .left form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.dashboard-user .tab-content .program-studi .row .left .btn-light:hover,
+.dashboard-user .tab-content .program-studi .row .left .btn-light:focus,
+.dashboard-user .tab-content .program-studi .row .left .btn-light:active,
+.dashboard-user .tab-content .program-studi .row .left .btn-light.active {
+  outline: 0 !important;
+  box-shadow: 0 4px 8px 0 rgba(27, 179, 149, 0.199),
+    0 6px 20px 0 rgba(27, 179, 149, 0.233);
+  background: #0078ba !important;
+  color: #ffffff !important;
+}
+
+.dashboard-user .tab-content .program-studi .row .left button {
+  margin-top: 20px;
+  font-size: 16px;
+  width: 224px;
+  margin-right: 4px;
+  border-radius: 4px;
+  padding: 14px 26px;
+  background: #0078ba;
+  color: #ffffff;
+}
+
+.dashboard-user .tab-content .program-studi .row .left .catatan {
+  margin-top: 28px;
+  margin-left: 18px;
+  margin-bottom: 10em;
+  text-align: center;
+}
+
+.dashboard-user .tab-content .program-studi .row .left .catatan strong {
+  font-size: 14px;
+  line-height: 28px;
+  letter-spacing: 0.02em;
+}
+
+.dashboard-user .tab-content .program-studi .row .left .catatan p {
+  font-size: 14px;
+  line-height: 28px;
+  letter-spacing: 0.02em;
+  color: #8f8e94;
+  text-align: left;
+  text-align: center;
+}
+footer.dashboard {
+  background-color: #ffffff;
+}
+.konfirmasi-pembayaran .title-konfirm1 {
+  font-family: "Helvetica Neue", sans-serif;
+  margin-top: 48px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: #251462;
+  margin-bottom: 18px;
+}
+.konfirmasi-pembayaran .title-konfirm2 {
+  font-family: "Helvetica 35 Thin", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  text-align: center;
+  font-size: 16px;
+  line-height: 28px;
+  letter-spacing: 0.02em;
+  color: #a2a2a2;
+  margin-bottom: 64px;
+}
+.konfirmasi-pembayaran .left h5{
+  font-family: "Helvetica Neue", sans-serif;
+  font-style: normal;
+font-weight: bold;
+font-size: 18px;
+line-height: 22px;
+letter-spacing: 0.02em;
+color: #251462;
+margin-bottom: 38px;
+}
+.konfirmasi-pembayaran .left label{
+  font-family: "Helvetica 35 Thin", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.02em;
+  color: #000000;
+}
+.konfirmasi-pembayaran .left input{
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.02em;
+  color: #8F8E94;
+  border: none;
+  padding: 16px 0px;
+  background-color: transparent;
+  max-width: 340px;
+  transform: translateX(-94px);
+}
+.konfirmasi-pembayaran .left input:focus{
+  outline: none;
+  box-shadow: none;
+}
+.konfirmasi-pembayaran .left .input-group .wp-input{
+  overflow: hidden;
+  background-color: #F3F3F4;
+  border-radius: 6px;
+}
+.konfirmasi-pembayaran .left .input-group label{
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
+  background: #1499C4;
+  border-radius: 6px;
+  padding: 0px 24px;
+}
+.konfirmasi-pembayaran .left .btn-submit{
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  line-height: 28px;
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
+  padding: 12px 48px;
+  background: #0078BA;
+box-shadow: 0px 8px 24px rgba(0, 120, 186, 0.2);
+border-radius: 4px;
+}
+.konfirmasi-pembayaran .left .catatan{
+  font-family: "Helvetica Neue", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 28px;
+  letter-spacing: 0.02em;
+  color: #000000;
+}
+.konfirmasi-pembayaran .left .catatan2{
+  font-family: "Helvetica 35 Thin", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 28px;
+  letter-spacing: 0.02em;
+  color: #000000;
+}
+.konfirmasi-pembayaran .right h5{
+  font-family: "Helvetica Neue", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: 0.02em;
+  color: #251462;
+}
+.konfirmasi-pembayaran .right .card-body ol li{
+  font-family: "Helvetica 35 Thin", sans-serif;
+  font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 28px;
+letter-spacing: 0.02em;
+color: #A2A2A2;
+}
+.info-pengumuman .title-info-pengumuman{
+  font-family: "Helvetica Neue", sans-serif;
+  margin-top: 48px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: #251462;
+  margin-bottom: 18px;
+}
+.info-pengumuman .title-info-pengumuman2{
+  font-family: "Helvetica 35 Thin", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  text-align: center;
+  font-size: 16px;
+  line-height: 28px;
+  letter-spacing: 0.02em;
+  color: #a2a2a2;
+  margin-bottom: 64px;
+}
+.info-pengumuman .wp-info-pengumuman{
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.info-pengumuman .wp-info-pengumuman .link-vm{
+  font-family: "Helvetica 65 Medium", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 46px;
+  letter-spacing: 0.02em;
   color: #1BB394;
   text-decoration: none;
+  margin-top: 28px;
+}
+.info-pengumuman .wp-info-pengumuman .link-vm i{
+  margin-left: 14px;
+}
+.info-pengumuman .link-item-ann{
+  text-decoration: none;
+}
+.info-pengumuman .link-item-ann .wrappe-item-ann {
+  position: relative;
+  width: 100%;
+  min-width: 500px;
+  max-width: 500px;
+  padding: 19px 84px 19px 24px;
+  background-color: #ffffff;
+  border-radius: 4px;
+  border: 1px solid #f3f3f4;
+  margin-bottom: 1rem;
+}
+.info-pengumuman .link-item-ann .wrappe-item-ann .item-ann-title-1 {
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  line-height: 28px;
+  letter-spacing: 0.02em;
+  color: #000000;
+  margin-bottom: 4px;
+}
+.info-pengumuman .link-item-ann .wrappe-item-ann .item-ann-title-2 {
+  font-family: "Helvetica 45 Light", sans-serif;
+  font-size: 12px;
+  line-height: 28px;
+  letter-spacing: 0.02em;
+  color: #a2a2a2;
+  margin-bottom: 0;
+}
+.info-pengumuman .link-item-ann .wrappe-item-ann .badge-item {
+  position: absolute;
+  right: 22px;
+  top: 22px;
+  font-family: "Helvetica 45 Light", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: #1bb394;
+  padding: 8px 16px;
+  background: #def3ef;
+  border-radius: 4px;
 }

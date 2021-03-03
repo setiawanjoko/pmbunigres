@@ -71,36 +71,61 @@
                     <p class="form-info">Isi form berikut dengan menggunakan data yang valid (Benar).</p>
                     <div class="row">
                         <div class="col-lg-6">
-                            <input type="text" id="nama" name="nama" class="form-control" placeholder="Nama lengkap">
+                            <input type="text" id="nama" name="nama" class="form-control @if($errors->has('nama')) is-invalid @endif" placeholder="Nama lengkap" value="{{ old('nama') }}" required>
+                            @if($errors->has('nama'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('nama') }}
+                                </div>
+                            @endif
                         </div>
                         <div class="col-lg-6">
                             <label class="form-label lable-radio">Dapat Informasi PMB dari :</label>
                             <div class="wrap-input">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="informasi" id="inlineRadio1" value="sosial_media">
+                                    <input class="form-check-input" @if(old('informasi') == 'sosial_media') checked @endif type="radio" name="informasi" id="inlineRadio1" value="sosial_media" required>
                                     <label class="form-check-label" for="inlineRadio1">Social Media</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="informasi" id="inlineRadio2" value="teman_saudara">
+                                    <input class="form-check-input" @if(old('informasi') == 'teman_saudara') checked @endif type="radio" name="informasi" id="inlineRadio2" value="teman_saudara">
                                     <label class="form-check-label" for="inlineRadio2">Teman/Saudara</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="informasi" id="inlineRadio3" value="lainnya">
+                                    <input class="form-check-input" @if(old('informasi') == 'lainnya') checked @endif type="radio" name="informasi" id="inlineRadio3" value="lainnya">
                                     <label class="form-check-label" for="inlineRadio3">lain-lain</label>
                                 </div>
                             </div>
+                            @if($errors->has('informasi'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('informasi') }}
+                                </div>
+                            @endif
                         </div>
                         <div class="col-lg-6">
-                            <input type="tel" id="no_telepon" name="no_telepon" class="form-control" placeholder="No. Telf">
+                            <input type="tel" id="no_telepon" name="no_telepon" class="form-control @if($errors->has('no_telepon')) is-invalid @endif" placeholder="No. Telf" value="{{ old('no_telepon') }}">
+                            @if($errors->has('no_telepon'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('no_telepon') }}
+                                </div>
+                            @endif
                         </div>
                         <div class="col-lg-6">
-                            <input type="password" id="password" name="password" class="form-control" placeholder="Password">
+                            <input type="email" id="email" name="email" class="form-control @if($errors->has('email')) is-invalid @endif" placeholder="Email address" value="{{ old('email') }}">
+                            @if($errors->has('email'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('email') }}
+                                </div>
+                            @endif
                         </div>
                         <div class="col-lg-6">
-                            <input type="email" id="email" name="email" class="form-control" placeholder="Email address">
+                            <input type="password" id="password" name="password" class="form-control @if($errors->has('password')) is-invalid @endif" placeholder="Password">
+                            @if($errors->has('password'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('password') }}
+                                </div>
+                            @endif
                         </div>
                         <div class="col-lg-6">
-                            <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" placeholder="Confirm Password">
+                            <input type="password" id="password_confirmation" name="password_confirmation" class="form-control @if($errors->has('password')) is-invalid @endif" placeholder="Confirm Password">
                         </div>
                     </div>
                     <div class="wrapper-btn-form">

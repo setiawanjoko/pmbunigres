@@ -66,8 +66,13 @@
                     <img class="login-logo" src="{{ asset('unigres/images/logo.png') }}">
                     <p class="login-title">Ujian Seleksi Masuk. <span>Universitas Negeri Gresik</span></p>
                     <p class="login-info">Masukkan email dan password terdaftar !</p>
-                    <input class="form-control" type="email" name="email" placeholder="Email address">
-                    <input class="form-control" type="password" name="password" placeholder="Password">
+                    <input class="form-control @if($errors->has('email')) is-invalid @endif" type="email" name="email" placeholder="Email address" value="{{ old('email') }}" required>
+                    @if($errors->has('email'))
+                        <div class="invalid-feedback text-center">
+                            {{ $errors->first('email') }}
+                        </div>
+                    @endif
+                    <input class="form-control @if($errors->has('password')) is-invalid @endif" type="password" name="password" placeholder="Password" required>
                    <a class="forgot-link" href="{{ route('password.request') }}">Forgot Password?</a>
                     <button class="btn btn-login">Submit</button>
                     <p class="regist-here">Belum terdaftar? <a href="{{ route('register') }}">Daftar disini</a></p>

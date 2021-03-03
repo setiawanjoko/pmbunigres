@@ -25,6 +25,10 @@ Route::get('/', function () {
     return view('welcome');
 })->name('homepage');
 
+Route::get('pengumuman', function () {
+    return view('pengumuman');
+})->name('pengumuman');
+
 
 //    Route::get('/register', [RegisterController::class, 'index'])->name('mahasiswa.register');
 //    Route::post('/register', [RegisterController::class, 'store'])->name('mahasiswa.register.store');

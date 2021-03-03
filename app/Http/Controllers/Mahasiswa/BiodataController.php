@@ -40,7 +40,6 @@ class BiodataController extends Controller
             'tahun_lulus' => 'required', // tanyakan batasan yang bisa daftar lulusan berapa tahun sebelum pembukaan dibuka?
             'foto' => 'file|max:250|mimes:png,jpg,jpeg' // maks ukuran dalam KB
         ]);
-
         try {
             $berkas = $request->file('foto');
             $berkasName = date('Ymdhis') . "_" . $berkas->getClientOriginalName();
@@ -72,7 +71,7 @@ class BiodataController extends Controller
                 'foto' => $berkasName,
             ]);
 
-            return response()->redirectToRoute('biodata.create');
+            return response()->redirectToRoute('keluarga.create');
         }catch(\Exception $e) {
             if(Storage::exists('public/' . $berkasName)) Storage::delete('public/' . $berkasName);
             return redirect()->back()->with(['status' => 'danger', 'message' => $e->getMessage()]);

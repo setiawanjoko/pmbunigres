@@ -36,7 +36,7 @@
                     <a class="nav-link active" aria-current="page" href="{{ route('homepage') }}">Beranda</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="pages/pengumuman.html">Pengumuman</a>
+                    <a class="nav-link" href="{{ route('pengumuman') }}">Pengumuman</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Contact</a>
@@ -48,6 +48,7 @@
         </div>
     </div>
 </nav>
+
 <main>
     <section class="main-banner">
         <div class="main-container">

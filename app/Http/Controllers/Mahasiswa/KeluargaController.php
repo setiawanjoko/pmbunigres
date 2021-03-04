@@ -57,7 +57,6 @@ class KeluargaController extends Controller
             'no_telepon_wali' => 'string|nullable',
             'alamat_wali' => 'string|nullable',
         ]);
-
         try {
             $user = auth()->user();
             $biodata = $user->biodata;
@@ -100,8 +99,8 @@ class KeluargaController extends Controller
                     'gaji' => $data['gaji_wali']
                 ]);
             }
-
-            return redirect()->back()->with(['status' => 'success', 'message' => 'Data keluarga berhasil disimpan.']);
+            //return response()->redirectToRoute('prodi-pilihan.create');
+            return response()->redirectToRoute('prodi-pilihan.create')->with(['status' => 'success', 'message' => 'Data keluarga berhasil disimpan.']);
         } catch(Exception $e) {
             return redirect()->back()->with(['status' => 'danger', 'message' => $e->getMessage()]);
         }

@@ -39,8 +39,6 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <div class="dropdown dropdown-acount-1">
-                            {{-- <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                data-bs-toggle="dropdown" aria-expanded="false">{{ Auth::user()->nama }}</a> --}}
                             <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                 data-bs-toggle="dropdown" aria-expanded="false">{{ auth()->user()->nama }}</a>
                             <div class="dropdown-menu dropdown-acount" aria-labelledby="dropdownMenuLink">
@@ -63,22 +61,24 @@
                 <p>Isi form berikut dengan menggunakan data yang valid (Benar).</p>
                 <ul class="nav nav-pills mb-5 mx-auto">
                     <li class="nav-item " role="presentation">
-                        <a class="nav-link active" data-bs-toggle="pill" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Data Calon Mahasiswa</a>
+                        <a class="nav-link active" type="button">Data Calon Mahasiswa</a>
                     </li>
                     <li class="nav-item nav-data-ortu" role="presentation">
-                        <a class="nav-link" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Data Orang Tua/Wali</a>
+                        <a class="nav-link" href="{{route('keluarga.create')}}" type="button">Data Orang Tua/Wali</a>
                     </li>
                     <li class="nav-item nav-prodi" role="presentation">
-                        <a class="nav-link" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Program Studi</a>
+                        <a class="nav-link" href="{{route('prodi-pilihan.create')}}" type="button">Program Studi</a>
                     </li>
                 </ul>
                 @if(session('status'))
-                            <div class="col-12">
-                                <div class="alert alert-{{ session('status') }} alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                {{ session('message') }}
-                </div>
-                </div>
+                    <div class="col-12">
+                        <div class="alert alert-{{ session('status') }} alert-dismissible fade show" role="alert">
+                            {{ session('message') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
                 @endif
                 <div class="tab-content">
                     <div class="container data-calon-mhs tab-pane fade show active" id="pills-home" role="tabpanel"
@@ -283,17 +283,19 @@
                                             Foto Kartu Peserta
                                         </div>
                                         <div class="card-body">
-                                            <img class="card-img-top" id="foto"
-                                                src="{{ $data->asal_jurusan ?? asset('unigres/images/profile.svg') }}" alt="Profile Picture">
-                                                <input type="file" name="foto" id="foto" class="btn btn-primary btn-file">
-                                            {{-- <span class="btn btn-primary btn-file">
-                                                Browse
-                                            </span> --}}
-                                            @if($errors->has('foto'))
-                                            <div class="invalid-feedback">
-                                                <strong>{{ $errors->first('foto') }}</strong>
+                                            <img class="card-img-top" id="foto-img" src="{{ Storage::url($data->foto) ?? asset('unigres/images/profile.svg') }}" alt="Profile Picture">
+                                            <div class="mt-2 mb-4">
+                                                <div class="input-group" style="overflow: hiden;">
+                                                    <div class="wp-input">
+                                                        <input type="file" class="form-control input-file" name="foto" id="foto">
+                                                        @if($errors->has('foto'))
+                                                        <div class="invalid-feedback">
+                                                            <strong>{{ $errors->first('foto') }}</strong>
+                                                        </div>
+                                                        @endif
+                                                    </div>
+                                                  </div>
                                             </div>
-                                            @endif
                                             <span class="text-left">
                                                 <label class="mt-4">Foto background biru, kemeja warna putih, bagi
                                                     perempuan berhijab memakai kerudung hitam.</label>

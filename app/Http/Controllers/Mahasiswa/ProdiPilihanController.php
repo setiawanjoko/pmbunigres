@@ -42,7 +42,6 @@ class ProdiPilihanController extends Controller
             'pilihan_satu' => 'required',
             'pilihan_dua' => 'required|different:pilihan_satu'
         ]);
-
         try {
             ProdiPilihan::updateOrCreate([
                 'biodata_id' => auth()->user()->biodata->id,

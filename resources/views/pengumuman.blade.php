@@ -64,7 +64,7 @@
           <div class="wrapper-ak-group">
             <a class="link-item" href="#">
               <div class="ak-item">
-                <img src="../static/images/ic-document.svg">
+                <img src="{{ asset('unigres/images/ic-document.svg') }}">
                 <div class="ak-body">
                   <p class="title-1">Pendaftaran</p>
                   <p class="title-2">Mahasiswa Baru 2021</p>
@@ -73,7 +73,7 @@
             </a>
             <a class="link-item" href="#">
               <div class="ak-item">
-                <img src="../static/images/ic-document.svg">
+                <img src="{{ asset('unigres/images/ic-document.svg') }}">
                 <div class="ak-body">
                   <p class="title-1">Daftar Ulang</p>
                   <p class="title-2">Mahasiswa Baru 2021</p>
@@ -82,7 +82,7 @@
             </a>
             <a class="link-item" href="#">
               <div class="ak-item">
-                <img src="../static/images/ic-book.svg">
+                <img src="{{ asset('unigres/images/ic-book.svg') }}">
                 <div class="ak-body">
                   <p class="title-1">Test Potensi Akademik</p>
                   <p class="title-2">Mahasiswa Baru 2021</p>

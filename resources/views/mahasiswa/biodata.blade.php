@@ -283,7 +283,7 @@
                                             Foto Kartu Peserta
                                         </div>
                                         <div class="card-body">
-                                            <img class="card-img-top" id="foto-img" src="{{ Storage::url($data->foto) ?? asset('unigres/images/profile.svg') }}" alt="Profile Picture">
+                                            <img class="card-img-top" id="foto-img" src="@if(is_null($data)) {{ asset('unigres/images/profile.svg') }} @else {{ Storage::url($data->foto) }} @endif" alt="Profile Picture">
                                             <div class="mt-2 mb-4">
                                                 <div class="input-group" style="overflow: hiden;">
                                                     <div class="wp-input">

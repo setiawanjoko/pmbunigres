@@ -21,3 +21,25 @@ function generateSignature($path,$verb,$token,$timestamp,$payload){
 
     return base64_encode($signPayload);
 }
+
+function checkBrivaStatus($pembayaran) {
+    $token = getToken();
+    $timestamp = gmdate("Y-m-d\TH:i:s.000\Z");
+    $path = '/v1/briva/status/' . env('BRIVA_INSTITUTION_CODE') . '/' . env('BRIVA_NO') . "/$pembayaran->custCode";
+    $verb = 'GET';
+
+    $signature = generateSignature($path, $verb, $token, $timestamp, null);
+    $url = env('BRIVA_APP_URL') . $path;
+    $res = Http::withHeaders([
+        'BRI-Signature' => $signature,
+        'BRI-Timestamp' => $timestamp,
+    ])->withToken($token)->get($url);
+
+    $response = json_decode($res->body());
+
+    if($response->data->statusBayar == 'Y') {
+        return true;
+    } else {
+        return false;
+    }
+}

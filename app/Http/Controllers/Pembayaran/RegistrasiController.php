@@ -12,6 +12,25 @@ use Illuminate\Support\Facades\Http;
 
 class RegistrasiController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $user = auth()->user();
+            $pembayaran = $user->pembayaranRegistrasi();
+
+            if( !is_null($pembayaran) ) {
+                if(checkBrivaStatus($pembayaran)) {
+                    $pembayaran->status = true;
+                    $pembayaran->save();
+
+                    return response()->redirectToRoute('biodata.create');
+                }
+            }
+
+            return $next($request);
+        });
+    }
+
     public function index() {
         $user = auth()->user();
 
@@ -59,7 +78,7 @@ class RegistrasiController extends Controller
 
                 return response()->view('instruksi-pembayaran', compact('data'));
             } catch (\Exception $e) {
-                abort(500);
+                dd($e->getMessage());
             }
         } else {
             abort(500);

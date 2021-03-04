@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    
+
     <link href="http://fonts.cdnfonts.com/css/helvetica-neue-9" rel="stylesheet">
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
-    
+
     <link href="{{ asset('unigres/css/main.css') }}" rel="stylesheet" />
     <link href="{{ asset('unigres/css/responsive.css') }}" rel="stylesheet" />
 
@@ -73,12 +73,12 @@
                     <p class="list-title">TRANSFER VIRTUAL ACCOUNT BRI/BRIVA</p>
                     <div class="wrap-briva">
                       <img src="{{asset('unigres/images/briva.png')}}">
-                      <p>10004 2020010032</p>
+                      <p>{{ env('BRIVA_NO') . ' ' . $data->custCode }}</p>
                     </div>
                   </li>
                   <li class="list-group-item">
                     <p class="list-title">Jumlah yang harus di bayarkan:</p>
-                    <p class="price">Rp. 368.500,-</p>
+                    <p class="price">Rp. {{ number_format($data->amount, 0, '', '.') }},-</p>
                   </li>
                 </ul>
               </div>
@@ -124,7 +124,7 @@
                   </div>
                 </div>
               </div>
-            </div>          
+            </div>
           </div>
         </div>
       </section>

@@ -27,7 +27,7 @@ class VerificationController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '\biodata';
+    protected $redirectTo = 'biodata';
 
     /**
      * Create a new controller instance.

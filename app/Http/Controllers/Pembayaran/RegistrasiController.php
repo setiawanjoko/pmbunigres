@@ -63,7 +63,7 @@ class RegistrasiController extends Controller
             'Content-Type' => 'application/json'
         ])->withToken($token)->post($url, $data);
         $response = json_decode($res->body());
-
+        //dd($response);
         if($response->status && $response->responseDescription == 'Success') {
             try {
                 $data = Pembayaran::create([
@@ -81,7 +81,21 @@ class RegistrasiController extends Controller
                 dd($e->getMessage());
             }
         } else {
-            abort(500);
+            if (!is_null($response->data)) {
+                $data = Pembayaran::updateOrCreate(
+                    ['user_id' => auth()->user()->id],[
+                    'custCode' => $response->data->custCode,
+                    'amount' => $response->data->amount,
+                    'keterangan' => 'Pendaftaran PMB Unigres',
+                    'expiredDate' => $response->data->expiredDate,
+                    'status' => false,
+                    'kategori' => 'registrasi'
+                ]);
+                return response()->view('instruksi-pembayaran', compact('data'));
+            } else {
+                abort(500);
+            }
+            
         }
 
         // cek apakah sudah ada data pembayaran

@@ -56,7 +56,8 @@ class ProdiPilihanController extends Controller
                 'prodi_id' => $data['pilihan_dua'],
             ]);
 
-            return redirect()->back()->with(['status' => 'success', 'message' => 'Berhasil memilih program studi']);
+            return response()->redirectToRoute('moodle');//->with(['status' => 'success', 'message' => 'Data keluarga berhasil disimpan.']);
+            //return redirect()->back()->with(['status' => 'success', 'message' => 'Berhasil memilih program studi']);
         } catch (\Exception $e) {
             return redirect()->back()->with(['status' => 'danger', 'message' => 'Gagal memilih program studi']);
         }

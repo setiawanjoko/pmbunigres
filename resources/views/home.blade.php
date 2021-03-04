@@ -39,9 +39,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <div class="dropdown dropdown-acount-1">
-                            {{-- <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                data-bs-toggle="dropdown" aria-expanded="false">{{ Auth::user()->nama }}</a> --}}
-                                <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                 data-bs-toggle="dropdown" aria-expanded="false">{{ auth()->user()->nama }}</a>
                             <div class="dropdown-menu dropdown-acount" aria-labelledby="dropdownMenuLink">
                                 <a class="dropdown-item" href="#" onclick="event.preventDefault();
@@ -59,115 +57,56 @@
     <main class="dashboard">
         <div class="wrapper-dashboard-nav">
             <ul class="dashboard-top nav nav-pill" id="pills-tab1" role="tablist">
-        <li class="nav-item">
-            <div class="nav-link active" id="pills-home-tab2" data-bs-toggle="pill" data-bs-target="#pills-home2"
-                type="button" role="tab" aria-controls="pills-home2" aria-selected="true">
-                <div class="wp-ic">
-                    <span>Rp</span>
-                </div>
-                <span>Konfirmasi Pembayaran</span>
-            </div>
-        </li>
-        <li class="nav-item">
-            <div class="nav-link" id="pills-home-tab3" data-bs-toggle="pill" data-bs-target="#pills-home3" type="button"
-                role="tab" aria-controls="pills-home3" aria-selected="true">
-                <div class="wp-ic">
-                    <span>i</span>
-                </div>
-                <span>Informasi dan Pengumuman</span>
-            </div>
-        </li>
-        </ul>
-        </div>
-
-        <div class="tab-content" id="pills-tabContent1">
-        <div class="tab-pane fade show active" id="pills-home2" role="tabpanel" aria-labelledby="pills-home-tab2">
-            <div class="konfirmasi-pembayaran">
-                <div class="container">
-                    <h4 class="title-konfirm1">Konfirmasi Pembayaran</h4>
-                    <p class="title-konfirm2">Isi form berikut dengan menggunakan data yang valid (Benar).</p>
-                    <div class="row gx-5">
-                        <div class="col-md-6 left">
-                            <h5>Upload Bukti Pembayaran</h5>
-                            <form action="#">
-                                <div class="mb-5">
-                                    <label for="formFile" class="form-label">Browse File</label>
-                                    <div class="input-group mb-3" style="overflow: hiden;">
-                                        <div class="wp-input">
-                                            <input type="file" class="form-control input-file" id="inputGroupFile02">
-                                        </div>
-                                        <label class="input-group-text" for="inputGroupFile02">Browse File</label>
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-submit mb-5">Submit</button>
-                            </form>
-                            <p class="catatan">Catatan :</p>
-                            <p class="catatan2">Pastikan kembali data yang ada isi sudah benar sebelum menekan tombol
-                                submit</p>
+                <li class="nav-item" role="presentation">
+                    <a href="{{ route('biodata.create') }}" class="nav-link" type="button" aria-controls="pills-home1" aria-selected="true">
+                        <div class="wp-ic">
+                            <img src="{{ asset('unigres/images/data.svg') }}">
                         </div>
-                        <div class="col-md-6 right">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h5 class="mb-0">Catatan</h5>
-                                </div>
-                                <div class="card-body">
-                                    <ol>
-                                        <li>Pembayaran dilakukan maksimal 3 hari setelah pendaftaran, apabila tidak
-                                            melakukan konfirmasi pembayaran maka pendaftaran di batalkan.</li>
-                                        <li>Pembayaran dikonfirmasi 1x 24 jam</li>
-                                        <li>Pambayaran dengan format yang tidak sesuai harap mengkonfirmasi ke pihak
-                                            keuangan.</li>
-                                    </ol>
-                                </div>
-                            </div>
+                        <span>Data Calon Mahasiswa</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('moodle') }}" class="nav-link" type="button" aria-controls="pills-home1" aria-selected="true">
+                        <div class="wp-ic">
+                            <img src="{{ asset('unigres/images/data.svg') }}">
                         </div>
-                    </div>
-                    {{-- <div class="wrapper-info">
-                            <img src="{{ asset('unigres/images/ic-i.svg') }}">
-                    <p class="info1">Konfirmasi pembayaran <span>telah berhasil di kirim</span> dan menunggu persetujuan
-                        dari bagian keuangan. Apabila dalam 1x 24 jam belum di konfirmasi, silahkan hubungi bagian
-                        keuangan.</p>
-                </div>
-                <div class="wrapper-info2">
-                    <img src="{{ asset('unigres/images/ic-i.svg') }}">
-                    <p class="info1">Selamat konfirmasi pembayaran anda telah di setujui, silahkan download kartu
-                        peserta
-                        dan cek jadwal ujian dan ruangan ujian anda.</p>
-                </div>
-                <div class="wrapper-button">
-                    <button class="btn btn-download">Download - UMS0081024.pdf</button>
-                </div> --}}
-            </div>
+                        <span>Tes Potensi Akademik</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('home') }}" class="nav-link active" type="button" aria-controls="pills-home1" aria-selected="true">
+                        <div class="wp-ic">
+                            <span>i</span>
+                        </div>
+                        <span>Informasi dan Pengumuman</span>
+                    </a>
+                </li>
+            </ul>
         </div>
-        </div>
-        <div class="tab-pane fade" id="pills-home3" role="tabpanel" aria-labelledby="pills-home-tab3">
-            <div class="info-pengumuman">
-                <div class="container">
-                    <h4 class="title-info-pengumuman">Informasi dan Pengumuman</h4>
-                    <p class="title-info-pengumuman2">Informasi seputar seleksi ujian masuk universitas gresik</p>
-                    <div class="wp-info-pengumuman">
-                        <a class="link-item-ann" href="#">
-                            <div class="wrappe-item-ann">
-                                <p class="item-ann-title-1">Ujian Seleksi Masuk tahun 2019</p>
-                                <p class="item-ann-title-2">Publised by : <span>Admin | 29 Oktober 2019</span></p>
-                                <span class="badge badge-item">NEW</span>
-                            </div>
-                        </a>
-                        <a class="link-item-ann" href="#">
-                            <div class="wrappe-item-ann">
-                                <p class="item-ann-title-1">Pendaftaran Mahasiswa Baru 2019</p>
-                                <p class="item-ann-title-2">Publised by : <span>Admin | 15 Oktober 2019</span></p>
-                            </div>
-                        </a>
-                        <a class="link-vm" href="#">
-                            View More <i class="fa fa-arrow-right"></i>
-                        </a>
-                    </div>
+        <div class="info-pengumuman">
+            <div class="container">
+                <h4 class="title-info-pengumuman">Informasi dan Pengumuman</h4>
+                <p class="title-info-pengumuman2">Informasi seputar seleksi ujian masuk universitas gresik</p>
+                <div class="wp-info-pengumuman">
+                    <a class="link-item-ann" href="#">
+                        <div class="wrappe-item-ann">
+                            <p class="item-ann-title-1">Ujian Seleksi Masuk tahun 2019</p>
+                            <p class="item-ann-title-2">Publised by : <span>Admin | 29 Oktober 2019</span></p>
+                            <span class="badge badge-item">NEW</span>
+                        </div>
+                    </a>
+                    <a class="link-item-ann" href="#">
+                        <div class="wrappe-item-ann">
+                            <p class="item-ann-title-1">Pendaftaran Mahasiswa Baru 2019</p>
+                            <p class="item-ann-title-2">Publised by : <span>Admin | 15 Oktober 2019</span></p>
+                        </div>
+                    </a>
+                    <a class="link-vm" href="#">
+                        View More <i class="fa fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
         </div>
-        </div>
-
     </main>
     <footer class="dashboard">
         <ul class="wrapper-footer">

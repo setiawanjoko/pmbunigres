@@ -20,12 +20,11 @@ class BerkasController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'ijazah' => 'string|nullable',
-            'ktp' => 'string|nullable',
-            'skhun' => 'string|nullable',
-            'kartu_keluarga' => 'string|nullable'
+            'ijazah' => 'file|nullable|max:250|mimes:png,jpg,jpeg,pdf',
+            'ktp' => 'file|nullable|max:250|mimes:png,jpg,jpeg,pdf',
+            'skhun' => 'file|nullable|max:250|mimes:png,jpg,jpeg,pdf',
+            'kartu_keluarga' => 'file|nullable|max:250|mimes:png,jpg,jpeg,pdf'
         ]);
-        try {
             $ijazah = $request->file('ijazah');
             $ijazahname = date('Ymdhis') . "_" . $ijazah->getClientOriginalName();
             $request->file('ijazah')->storeAs('public/', $ijazahname);
@@ -42,6 +41,7 @@ class BerkasController extends Controller
             $kartu_keluarganame = date('Ymdhis') . "_" . $kartu_keluarga->getClientOriginalName();
             $request->file('kartu_keluarga')->storeAs('public/', $kartu_keluarganame);
 
+        try {
             Berkas::updateOrCreate(
                 ['user_id' => auth()->id], [
                     'ijazah' => $ijazahname,
@@ -49,9 +49,9 @@ class BerkasController extends Controller
                     'skhun' => $skhunname,
                     'kartu_keluarga' => $kartu_keluarganame,
                 ]);
-            
+
             return response()->redirectToRoute('Berkas.create');
-        } catch (\Throwable $e) {
+        } catch (\Exception $e) {
             if(Storage::exists('public/' . $ijazahname)) Storage::delete('public/' . $ijazahname);
             if(Storage::exists('public/' . $ktpname)) Storage::delete('public/' . $ktpname);
             if(Storage::exists('public/' . $skhunname)) Storage::delete('public/' . $skhunname);

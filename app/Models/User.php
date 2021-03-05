@@ -84,6 +84,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(MoodleAccount::class, 'user_id', 'id');
     }
 
+    public function berkas() {
+        return $this->hasOne(Berkas::class, 'user_id', 'id');
+    }
+
     public function pembayaran() {
         return $this->hasMany(Pembayaran::class, 'user_id', 'id');
     }

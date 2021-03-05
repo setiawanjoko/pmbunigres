@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Pembayaran;
 
 use App\Http\Controllers\Controller;
+use App\Models\Biaya;
 use App\Models\Biodata;
 use App\Models\Pembayaran;
 use Carbon\Carbon;
@@ -42,12 +43,18 @@ class RegistrasiController extends Controller
         $custCode = $this->generateCustCode();
         $expDate = Carbon::tomorrow()->format('Y-m-d H:i:s');
 
+        $biaya = Biaya::where([
+            ['prodi_id', $user->prodi_id],
+            ['gelombang_id', $user->gelombang()->id],
+            ['jenis_biaya', 'registrasi']
+        ])->first();
+
         $data = [
             'institutionCode' => env('BRIVA_INSTITUTION_CODE'),
             'brivaNo' => env('BRIVA_NO'),
             'custCode' => $custCode,
             'nama' => auth()->user()->nama,
-            'amount' => 368500,
+            'amount' => $biaya->nominal,
             'keterangan' => 'Pendaftaran PMB Unigres',
             'expiredDate' => $expDate
         ];
@@ -69,7 +76,7 @@ class RegistrasiController extends Controller
                 $data = Pembayaran::create([
                     'user_id' => auth()->user()->id,
                     'custCode' => $custCode,
-                    'amount' => 368500,
+                    'amount' => $biaya->nominal,
                     'keterangan' => 'Pendaftaran PMB Unigres',
                     'expiredDate' => $expDate,
                     'status' => false,
@@ -95,7 +102,7 @@ class RegistrasiController extends Controller
             } else {
                 abort(500);
             }
-            
+
         }
 
         // cek apakah sudah ada data pembayaran

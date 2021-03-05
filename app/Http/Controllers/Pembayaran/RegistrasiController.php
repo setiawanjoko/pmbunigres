@@ -35,7 +35,10 @@ class RegistrasiController extends Controller
     public function index() {
         $user = auth()->user();
 
-        $data = Pembayaran::where('user_id', $user->id)->first();
+        $data = Pembayaran::where([
+            ['user_id', $user->id],
+            ['kategori', 'registrasi']
+        ])->first();
         if(is_null($data)) {
             $token = getToken();
             $timestamp = gmdate("Y-m-d\TH:i:s.000\Z");

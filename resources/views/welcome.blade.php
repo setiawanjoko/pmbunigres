@@ -78,7 +78,7 @@
     <section class="akademis-group">
         <div class="second-container">
             <div class="wrapper-ak-group">
-                <a class="link-item" href="#">
+                <a class="link-item" href="{{ route('register') }}">
                     <div class="ak-item">
                         <img src="{{ asset('unigres/images/ic-document.svg') }}">
                         <div class="ak-body">

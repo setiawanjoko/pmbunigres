@@ -102,12 +102,19 @@ class MoodleAccountController extends Controller
 
         $courseID = ServerSetting::where('key', 'course_id_tes_tpa')->first();
 
-        foreach ($response->grades as $grade) {
-            if($grade->courseid == $courseID->value) {
-                $final = $grade->rawgrade;
-                break;
+        if (!empty($response->grades)) {
+            foreach ($response->grades as $grade) {
+                if($grade->courseid == $courseID->value) {
+                    if (!is_null($grade->rawgrade)) {
+                        $final = $grade->rawgrade;
+                        break;
+                    }
+                }
             }
+        } else {
+            $final =null;
         }
+        
 
         return $final;
     }

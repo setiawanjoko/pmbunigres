@@ -10,7 +10,7 @@ class Berkas extends Model
     use HasFactory;
 
     protected $fillable = [
-        'ijazah','ktp','skhun','kartu_keluarga'
+        'user_id', 'ijazah','ktp','skhun','kartu_keluarga'
     ];
 
     public function user(){

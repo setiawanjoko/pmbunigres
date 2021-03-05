@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProdiPilihanTable extends Migration
+class CreateBiayasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateProdiPilihanTable extends Migration
      */
     public function up()
     {
-        Schema::create('prodi_pilihan', function (Blueprint $table) {
+        Schema::create('biayas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('biodata_id');
             $table->unsignedBigInteger('prodi_id');
-            $table->tinyInteger('urutan');
+            $table->unsignedBigInteger('gelombang_id');
+            $table->enum('jenis_biaya', ['registrasi', 'daftar_ulang']);
+            $table->double('nominal')->default(0);
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateProdiPilihanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prodi_pilihan');
+        Schema::dropIfExists('biayas');
     }
 }

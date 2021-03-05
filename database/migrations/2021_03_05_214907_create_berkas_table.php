@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGelombangTable extends Migration
+class CreateBerkasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateGelombangTable extends Migration
      */
     public function up()
     {
-        Schema::create('gelombang', function (Blueprint $table) {
+        Schema::create('berkas', function (Blueprint $table) {
             $table->id();
-            $table->string('gelombang');
-            $table->date('tgl_mulai');
-            $table->date('tgl_selesai');
+            $table->unsignedBigInteger('user_id');
+            $table->string('ijazah')->nullable(true);
+            $table->string('ktp')->nullable(true);
+            $table->string('skhun')->nullable(true);
+            $table->string('kartu_keluarga')->nullable(true);
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class CreateGelombangTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gelombang');
+        Schema::dropIfExists('berkas');
     }
 }

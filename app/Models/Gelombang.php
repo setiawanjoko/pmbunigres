@@ -19,4 +19,12 @@ class Gelombang extends Model
         'tgl_mulai' => 'date',
         'tgl_selesai' => 'date'
     ];
+
+    public function user() {
+        return $this->hasMany(User::class, 'gelombang_id', 'id');
+    }
+
+    public function biaya() {
+        return $this->hasMany(Biaya::class, 'gelombang_id', 'id');
+    }
 }

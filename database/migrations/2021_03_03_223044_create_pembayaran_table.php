@@ -21,6 +21,7 @@ class CreatePembayaranTable extends Migration
             $table->string('keterangan')->nullable();
             $table->timestamp('expiredDate');
             $table->boolean('status')->default(0);
+            $table->enum('kategori', ['registrasi', 'daftar_ulang']);
             $table->timestamps();
         });
     }

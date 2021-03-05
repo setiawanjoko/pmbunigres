@@ -97,7 +97,7 @@
                             <a class="nav-link active" type="button">Data Orang Tua/Wali</a>
                         </li>
                         <li class="nav-item nav-prodi" role="presentation">
-                            <a class="nav-link" href="{{route('prodi-pilihan.create')}}" type="button">Program Studi</a>
+                            <a class="nav-link" href="{{route('berkas.create')}}" type="button">Berkas</a>
                         </li>
                 </ul>
                 @if(session('status'))
@@ -320,7 +320,7 @@
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-light btn-daftar">Submit</button>
-                    
+
                                     <div class="catatan">
                                         <strong>Catatan :</strong>
                                         <p>Pastikan kembali data yang ada isi sudah benar<br>sebelum menekan tombol submit</p>

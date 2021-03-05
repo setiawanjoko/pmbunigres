@@ -95,7 +95,7 @@
                         <a class="nav-link" href="{{route('keluarga.create')}}" type="button">Data Orang Tua/Wali</a>
                     </li>
                     <li class="nav-item nav-prodi">
-                        <a class="nav-link" href="{{route('prodi-pilihan.create')}}" type="button">Program Studi</a>
+                        <a class="nav-link" href="{{route('berkas.create')}}" type="button">Berkas</a>
                     </li>
                 </ul>
                 @if(session('status'))

@@ -35,75 +35,78 @@ class RegistrasiController extends Controller
     public function index() {
         $user = auth()->user();
 
-        $token = getToken();
-        $timestamp = gmdate("Y-m-d\TH:i:s.000\Z");
+        $data = Pembayaran::where('user_id', $user->id)->first();
+        if(is_null($data)) {
+            $token = getToken();
+            $timestamp = gmdate("Y-m-d\TH:i:s.000\Z");
 
-        $path = '/v1/briva/';
-        $verb = 'POST';
-        $custCode = $this->generateCustCode();
-        $expDate = Carbon::tomorrow()->format('Y-m-d H:i:s');
+            $path = '/v1/briva/';
+            $verb = 'POST';
+            $custCode = $this->generateCustCode();
+            $expDate = Carbon::tomorrow()->format('Y-m-d H:i:s');
 
-        $biaya = Biaya::where([
-            ['prodi_id', $user->prodi_id],
-            ['gelombang_id', $user->gelombang()->id],
-            ['jenis_biaya', 'registrasi']
-        ])->first();
+            $biaya = Biaya::where([
+                ['prodi_id', $user->prodi_id],
+                ['gelombang_id', $user->gelombang()->id],
+                ['jenis_biaya', 'registrasi']
+            ])->first();
 
-        $data = [
-            'institutionCode' => env('BRIVA_INSTITUTION_CODE'),
-            'brivaNo' => env('BRIVA_NO'),
-            'custCode' => $custCode,
-            'nama' => auth()->user()->nama,
-            'amount' => $biaya->nominal,
-            'keterangan' => 'Pendaftaran PMB Unigres',
-            'expiredDate' => $expDate
-        ];
-        $payload = json_encode($data);
+            $data = [
+                'institutionCode' => env('BRIVA_INSTITUTION_CODE'),
+                'brivaNo' => env('BRIVA_NO'),
+                'custCode' => $custCode,
+                'nama' => auth()->user()->nama,
+                'amount' => $biaya->nominal,
+                'keterangan' => 'Pendaftaran PMB Unigres',
+                'expiredDate' => $expDate
+            ];
+            $payload = json_encode($data);
 
-        $signature = generateSignature($path, $verb, $token, $timestamp, $payload);
-        //             dd($signature);
-        $url = env('BRIVA_APP_URL') . $path;
+            $signature = generateSignature($path, $verb, $token, $timestamp, $payload);
+            //             dd($signature);
+            $url = env('BRIVA_APP_URL') . $path;
 
-        $res = Http::withHeaders([
-            'BRI-Signature' => $signature,
-            'BRI-Timestamp' => $timestamp,
-            'Content-Type' => 'application/json'
-        ])->withToken($token)->post($url, $data);
-        $response = json_decode($res->body());
-        //dd($response);
-        if($response->status && $response->responseDescription == 'Success') {
-            try {
-                $data = Pembayaran::create([
-                    'user_id' => auth()->user()->id,
-                    'custCode' => $custCode,
-                    'amount' => $biaya->nominal,
-                    'keterangan' => 'Pendaftaran PMB Unigres',
-                    'expiredDate' => $expDate,
-                    'status' => false,
-                    'kategori' => 'registrasi'
-                ]);
+            $res = Http::withHeaders([
+                'BRI-Signature' => $signature,
+                'BRI-Timestamp' => $timestamp,
+                'Content-Type' => 'application/json'
+            ])->withToken($token)->post($url, $data);
+            $response = json_decode($res->body());
+            //dd($response);
+            if ($response->status && $response->responseDescription == 'Success') {
+                try {
+                    $data = Pembayaran::create([
+                        'user_id' => auth()->user()->id,
+                        'custCode' => $custCode,
+                        'amount' => $biaya->nominal,
+                        'keterangan' => 'Pendaftaran PMB Unigres',
+                        'expiredDate' => $expDate,
+                        'status' => false,
+                        'kategori' => 'registrasi'
+                    ]);
 
-                return response()->view('instruksi-pembayaran', compact('data'));
-            } catch (\Exception $e) {
-                dd($e->getMessage());
-            }
-        } else {
-            if (!is_null($response->data)) {
-                $data = Pembayaran::updateOrCreate(
-                    ['user_id' => auth()->user()->id],[
-                    'custCode' => $response->data->custCode,
-                    'amount' => $response->data->amount,
-                    'keterangan' => 'Pendaftaran PMB Unigres',
-                    'expiredDate' => $response->data->expiredDate,
-                    'status' => false,
-                    'kategori' => 'registrasi'
-                ]);
-                return response()->view('instruksi-pembayaran', compact('data'));
+                    return response()->view('instruksi-pembayaran', compact('data'));
+                } catch (\Exception $e) {
+                    dd($e->getMessage());
+                }
             } else {
-                abort(500);
-            }
+                if (!is_null($response->data)) {
+                    $data = Pembayaran::updateOrCreate(
+                        ['user_id' => auth()->user()->id], [
+                        'custCode' => $response->data->custCode,
+                        'amount' => $response->data->amount,
+                        'keterangan' => 'Pendaftaran PMB Unigres',
+                        'expiredDate' => $response->data->expiredDate,
+                        'status' => false,
+                        'kategori' => 'registrasi'
+                    ]);
+                    return response()->view('instruksi-pembayaran', compact('data'));
+                } else {
+                    abort(500);
+                }
 
-        }
+            }
+        } else return response()->view('instruksi-pembayaran', compact('data'));
 
         // cek apakah sudah ada data pembayaran
 //        if(!is_null($data)) {

@@ -20,4 +20,8 @@ class Prodi extends Model
     public function fakultas() {
         return $this->belongsTo(Fakultas::class, 'fakultas_id', 'id');
     }
+
+    public function biaya() {
+        return $this->hasMany(Biaya::class, 'prodi_id', 'id');
+    }
 }

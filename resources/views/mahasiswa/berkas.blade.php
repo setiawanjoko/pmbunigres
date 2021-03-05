@@ -114,46 +114,56 @@
                     <div class="container data-orang-tua tab-pane fade active show" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                         <div class="row">
                             <div class="col-md-6 left">
-                                <form action="{{ route('prodi-pilihan.store') }}" method="POST">
+                                <form action="{{ route('berkas.store') }}" method="POST">
                                     @csrf
                                     @method('POST')
                                     <div class="card">
                                         <div class="card-header">
-                                            Data Program Studi
+                                            Data Berkas
                                         </div>
                                         <div class="card-body p-4">
                                             <div class="form-row">
                                                 <div class="form-group">
-                                                    <label for="pilihan_satu">Program Studi Pertama</label>
-                                                    <select name="pilihan_satu" id="pilihan_satu" class="form-control form-control-sm @if($errors->has('pilihan_satu')) is-invalid @endif" required>
-                                                        @foreach($dataProdi as $jenjangKey => $jenjang)
-                                                            @foreach($jenjang->prodi as $prodiKey => $prodi)
-                                                                <option value="{{ $prodi->id }}" @if((!empty($pilihanPertama) && $pilihanPertama->prodi_id == $prodi->id) || old('pilihan_satu') == $prodi->id) selected @endif>{{ $jenjang->nama . ' ' . $prodi->nama }}</option>
-                                                            @endforeach
-                                                        @endforeach
-                                                    </select>
-                                                    @if($errors->has('pilihan_satu'))
+                                                    <label for="pilihan_satu">Ijazah</label>
+                                                    <input type="file" class="form-control input-file" name="ijazah" id="ijazah">
+                                                        @if($errors->has('ijazah'))
                                                         <div class="invalid-feedback">
-                                                            <strong>{{ $errors->first('pilihan_satu') }}</strong>
+                                                            <strong>{{ $errors->first('ijazah') }}</strong>
                                                         </div>
-                                                    @endif
+                                                        @endif
                                                 </div>
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group">
-                                                    <label for="pilihan_dua">Program Studi Kedua</label>
-                                                    <select name="pilihan_dua" id="pilihan_dua" class="form-control form-control-sm @if($errors->has('pilihan_dua')) is-invalid @endif" required>
-                                                        @foreach($dataProdi as $jenjangKey => $jenjang)
-                                                            @foreach($jenjang->prodi as $prodiKey => $prodi)
-                                                                <option value="{{ $prodi->id }}" @if((!empty($pilihanKedua) && $pilihanKedua->prodi_id == $prodi->id) || old('pilihan_dua') == $prodi->id) selected @endif>{{ $jenjang->nama . ' ' . $prodi->nama }}</option>
-                                                            @endforeach
-                                                        @endforeach
-                                                    </select>
-                                                    @if($errors->has('pilihan_dua'))
+                                                    <label for="pilihan_satu">SKHUN</label>
+                                                    <input type="file" class="form-control input-file" name="skhun" id="skhun">
+                                                        @if($errors->has('skhun'))
                                                         <div class="invalid-feedback">
-                                                            <strong>{{ $errors->first('pilihan_dua') }}</strong>
+                                                            <strong>{{ $errors->first('skhun') }}</strong>
                                                         </div>
-                                                    @endif
+                                                        @endif
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group">
+                                                    <label for="pilihan_satu">KTP</label>
+                                                    <input type="file" class="form-control input-file" name="ktp" id="ktp">
+                                                        @if($errors->has('ktp'))
+                                                        <div class="invalid-feedback">
+                                                            <strong>{{ $errors->first('ktp') }}</strong>
+                                                        </div>
+                                                        @endif
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group">
+                                                    <label for="pilihan_satu">Kartu Keluarga</label>
+                                                    <input type="file" class="form-control input-file" name="kartu_keluarga" id="kartu_keluarga">
+                                                        @if($errors->has('kartu_keluarga'))
+                                                        <div class="invalid-feedback">
+                                                            <strong>{{ $errors->first('kartu_keluarga') }}</strong>
+                                                        </div>
+                                                        @endif
                                                 </div>
                                             </div>
                                         </div>

@@ -45,6 +45,7 @@ Route::middleware(['auth', 'verify'])->group(function(){
         Route::post('/biodata', [BiodataController::class, 'store'])->name('biodata.store');
         Route::get('/keluarga', [KeluargaController::class, 'create'])->name('keluarga.create');
         Route::post('/keluarga', [KeluargaController::class, 'store'])->name('keluarga.store');
+        Route::post('/berkas', [KeluargaController::class, 'store'])->name('berkas.store');
 //        Route::get('/prodi-pilihan', [ProdiPilihanController::class, 'create'])->name('prodi-pilihan.create');
 //        Route::post('/prodi-pilihan', [ProdiPilihanController::class, 'store'])->name('prodi-pilihan.store');
         Route::get('/informasi-tpa', [MoodleAccountController::class, 'index'])->name('moodle');

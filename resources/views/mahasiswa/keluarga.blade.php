@@ -57,6 +57,34 @@
         @csrf
     </form>
     <main class="dashboard">
+        <div class="wrapper-dashboard-nav">
+            <ul class="dashboard-top nav nav-pill" id="pills-tab1" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a href="{{ route('biodata.create') }}" class="nav-link active" type="button" aria-controls="pills-home1" aria-selected="true">
+                        <div class="wp-ic">
+                            <img src="{{ asset('unigres/images/data.svg') }}">
+                        </div>
+                        <span>Data Calon Mahasiswa</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('moodle') }}" class="nav-link" type="button" aria-controls="pills-home1" aria-selected="true">
+                        <div class="wp-ic">
+                            <img src="{{ asset('unigres/images/data.svg') }}">
+                        </div>
+                        <span>Tes Potensi Akademik</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('home') }}" class="nav-link" type="button" aria-controls="pills-home1" aria-selected="true">
+                        <div class="wp-ic">
+                            <span>i</span>
+                        </div>
+                        <span>Informasi dan Pengumuman</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
         <div class="content">
             <div class="container-fluid dashboard-user">
                 <h4>Form Pendaftaran</h4>

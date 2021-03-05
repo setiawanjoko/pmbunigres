@@ -39,9 +39,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <div class="dropdown dropdown-acount-1">
-                            {{-- <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                data-bs-toggle="dropdown" aria-expanded="false">{{ Auth::user()->nama }}</a> --}}
-                                <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                 data-bs-toggle="dropdown" aria-expanded="false">{{ auth()->user()->nama }}</a>
                             <div class="dropdown-menu dropdown-acount" aria-labelledby="dropdownMenuLink">
                                 <a class="dropdown-item" href="#" onclick="event.preventDefault();
@@ -57,89 +55,79 @@
         @csrf
     </form>
     <main class="dashboard">
-        <div class="tab-content" id="pills-tabContent1">
-        <div class="tab-pane fade show active" id="pills-home2" role="tabpanel" aria-labelledby="pills-home-tab2">
-            <div class="konfirmasi-pembayaran">
-                <div class="container">
-                    <h4 class="title-konfirm1">Informasi TPA</h4>
-                    <p class="title-konfirm2">Berikut ini adalah informasi link TPA dan informasi user untuk mengakses.</p>
-                    <div class="row gx-5">
-                        <div class="col-md-6 left">
-                            <h5>Upload Bukti Pembayaran</h5>
-                            <form action="#">
-                                <div class="mb-5">
-                                    <label for="formFile" class="form-label">Browse File</label>
-                                    
-                                </div>
-                                <button type="submit" class="btn btn-submit mb-5">Submit</button>
-                            </form>
-                            <p class="catatan">Catatan :</p>
-                            <p class="catatan2">Pastikan kembali data yang ada isi sudah benar sebelum menekan tombol
-                                submit</p>
+        <div class="wrapper-dashboard-nav">
+            <ul class="dashboard-top nav nav-pill" id="pills-tab1" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a href="{{ route('biodata.create') }}" class="nav-link" type="button" aria-controls="pills-home1" aria-selected="true">
+                        <div class="wp-ic">
+                            <img src="{{ asset('unigres/images/data.svg') }}">
                         </div>
-                        <div class="col-md-6 right">
-                            <div class="card">
+                        <span>Data Calon Mahasiswa</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('home') }}" class="nav-link active" type="button" aria-controls="pills-home1" aria-selected="true">
+                        <div class="wp-ic">
+                            <img src="{{ asset('unigres/images/data.svg') }}">
+                        </div>
+                        <span>Tes Potensi Akademik</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('home') }}" class="nav-link" type="button" aria-controls="pills-home1" aria-selected="true">
+                        <div class="wp-ic">
+                            <span>i</span>
+                        </div>
+                        <span>Informasi dan Pengumuman</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="konfirmasi-pembayaran">
+            <div class="container">
+                <h4 class="title-konfirm1">Tes Potensi Akademik</h4>
+                <p class="title-konfirm2">Informasi link TPA dan akun.</p>
+                <div class="row gx-5">
+                    <div class="col-md-6 left">
+                        <h5>Link Tes Potensi Akademik</h5>
+                        <a href="{{ $dataLink->value ?? '#' }}" type="submit" class="btn btn-submit mb-5">Klik Disini!</a>
+                        <p class="catatan">Catatan :</p>
+                        <p class="catatan2">Jika link tidak merespon lakukan refresh website, atau tunggu hingga sampai link sudah aktif. Lalu segera lakukan tes potensi akademik.</p>
+                    </div>
+                    <div class="col-md-6 right">  
+                            <div class="card mb-3">
                                 <div class="card-header">
-                                    <h5 class="mb-0">Catatan</h5>
+                                    <h5 class="mb-0">Informasi user dan password Anda.</h5>
                                 </div>
                                 <div class="card-body">
-                                    <ol>
-                                        <li>Pembayaran dilakukan maksimal 3 hari setelah pendaftaran, apabila tidak
-                                            melakukan konfirmasi pembayaran maka pendaftaran di batalkan.</li>
-                                        <li>Pembayaran dikonfirmasi 1x 24 jam</li>
-                                        <li>Pambayaran dengan format yang tidak sesuai harap mengkonfirmasi ke pihak
-                                            keuangan.</li>
-                                    </ol>
+                                    <div class="row">
+                                        <div class="form-group mb-3">
+                                            <label for="username">Username</label>
+                                            <input type="text" class="form-control form-control-sm" value="{{ $dataMoodle->moodle_username }}" disabled readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="password">Password</label>
+                                            <input type="text" class="form-control form-control-sm" value="{{ $dataMoodle->moodle_default_password }}" disabled readonly>
+                                        </div>
+                                    </div>
                                 </div>
+                            </div>                   
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">Catatan</h5>
+                            </div>
+                            <div class="card-body">
+                                <ol>
+                                    <li>Silahkan untuk melakukan tes potensi akademik</li>
+                                    <li>Silahkan login menggunakan informasi akun diatas</li>
+                                    <li>Jika ada informasi yang kurang jelas, silahkan tanyakan ke pihak terkait.</li>
+                                </ol>
                             </div>
                         </div>
                     </div>
-                    {{-- <div class="wrapper-info">
-                            <img src="{{ asset('unigres/images/ic-i.svg') }}">
-                    <p class="info1">Konfirmasi pembayaran <span>telah berhasil di kirim</span> dan menunggu persetujuan
-                        dari bagian keuangan. Apabila dalam 1x 24 jam belum di konfirmasi, silahkan hubungi bagian
-                        keuangan.</p>
-                </div>
-                <div class="wrapper-info2">
-                    <img src="{{ asset('unigres/images/ic-i.svg') }}">
-                    <p class="info1">Selamat konfirmasi pembayaran anda telah di setujui, silahkan download kartu
-                        peserta
-                        dan cek jadwal ujian dan ruangan ujian anda.</p>
-                </div>
-                <div class="wrapper-button">
-                    <button class="btn btn-download">Download - UMS0081024.pdf</button>
-                </div> --}}
-            </div>
-        </div>
-        </div>
-        <div class="tab-pane fade" id="pills-home3" role="tabpanel" aria-labelledby="pills-home-tab3">
-            <div class="info-pengumuman">
-                <div class="container">
-                    <h4 class="title-info-pengumuman">Informasi dan Pengumuman</h4>
-                    <p class="title-info-pengumuman2">Informasi seputar seleksi ujian masuk universitas gresik</p>
-                    <div class="wp-info-pengumuman">
-                        <a class="link-item-ann" href="#">
-                            <div class="wrappe-item-ann">
-                                <p class="item-ann-title-1">Ujian Seleksi Masuk tahun 2019</p>
-                                <p class="item-ann-title-2">Publised by : <span>Admin | 29 Oktober 2019</span></p>
-                                <span class="badge badge-item">NEW</span>
-                            </div>
-                        </a>
-                        <a class="link-item-ann" href="#">
-                            <div class="wrappe-item-ann">
-                                <p class="item-ann-title-1">Pendaftaran Mahasiswa Baru 2019</p>
-                                <p class="item-ann-title-2">Publised by : <span>Admin | 15 Oktober 2019</span></p>
-                            </div>
-                        </a>
-                        <a class="link-vm" href="#">
-                            View More <i class="fa fa-arrow-right"></i>
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
-        </div>
-
     </main>
     <footer class="dashboard">
         <ul class="wrapper-footer">
@@ -152,6 +140,7 @@
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
     </script>
 </body>
+
 </html>
 
 {{-- @extends('adminlte::page')

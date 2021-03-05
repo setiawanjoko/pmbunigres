@@ -1,13 +1,12 @@
 <?php
 
 use App\Http\Controllers\Auth\VerificationController;
-use App\Http\Controllers\BerkasController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Mahasiswa\BiodataController;
 use App\Http\Controllers\Mahasiswa\KeluargaController;
 use App\Http\Controllers\Mahasiswa\LinkTesTPAController;
 use App\Http\Controllers\Mahasiswa\MoodleAccountController;
-use App\Http\Controllers\Mahasiswa\ProdiPilihanController;
+use App\Http\Controllers\Mahasiswa\BerkasController;
 use App\Http\Controllers\Pembayaran\RegistrasiController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;

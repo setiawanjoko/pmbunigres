@@ -100,7 +100,7 @@ class KeluargaController extends Controller
                 ]);
             }
             //return response()->redirectToRoute('prodi-pilihan.create');
-            return response()->redirectToRoute('prodi-pilihan.create')->with(['status' => 'success', 'message' => 'Data keluarga berhasil disimpan.']);
+            return response()->redirectToRoute('berkas.create')->with(['status' => 'success', 'message' => 'Data keluarga berhasil disimpan.']);
         } catch(Exception $e) {
             return redirect()->back()->with(['status' => 'danger', 'message' => $e->getMessage()]);
         }

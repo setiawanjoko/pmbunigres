@@ -64,7 +64,6 @@ class BiodataController extends Controller
                 'jenis_kelamin' => $data['jenis_kelamin'],
                 'alamat' => $data['alamat'],
                 'no_telepon' => $data['no_telepon'],
-                'jalur_masuk' => $jalurMasuk,
                 'asal_sekolah' => $data['asal_sekolah'],
                 'asal_jurusan' => $data['asal_jurusan'],
                 'tahun_lulus' => $data['tahun_lulus'],

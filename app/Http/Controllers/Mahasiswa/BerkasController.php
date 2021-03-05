@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Mahasiswa;
 
+use App\Http\Controllers\Controller;
 use App\Models\Berkas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -13,7 +14,7 @@ class BerkasController extends Controller
         $user = auth()->user();
         $data = $user->berkas;
 
-        return response()->view('berkas.biodata', compact('data'));
+        return response()->view('mahasiswa.berkas', compact('data'));
     }
 
     public function store(Request $request)

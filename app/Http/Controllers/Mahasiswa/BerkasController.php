@@ -25,32 +25,51 @@ class BerkasController extends Controller
             'skhun' => 'file|nullable|max:250|mimes:png,jpg,jpeg,pdf',
             'kartu_keluarga' => 'file|nullable|max:250|mimes:png,jpg,jpeg,pdf'
         ]);
-            $ijazah = $request->file('ijazah');
+
+        $berkas = auth()->user()->berkas;
+
+        $ijazah = $request->file('ijazah');
+        if (!is_null($ijazah)){
             $ijazahname = date('Ymdhis') . "_" . $ijazah->getClientOriginalName();
             $request->file('ijazah')->storeAs('public/', $ijazahname);
+        } else {
+            $ijazahname = $berkas->ijazah;
+        }
 
-            $ktp = $request->file('ktp');
+        $ktp = $request->file('ktp');
+        if (!is_null($ktp)){
             $ktpname = date('Ymdhis') . "_" . $ktp->getClientOriginalName();
             $request->file('ktp')->storeAs('public/', $ktpname);
+        } else {
+            $ktpname = $berkas->ktp;
+        }
 
-            $skhun = $request->file('skhun');
+        $skhun = $request->file('skhun');
+        if (!is_null($skhun)){
             $skhunname = date('Ymdhis') . "_" . $skhun->getClientOriginalName();
             $request->file('skhun')->storeAs('public/', $skhunname);
+        } else {
+            $skhunname = $berkas->skhun;
+        }
 
-            $kartu_keluarga = $request->file('kartu_keluarga');
+        $kartu_keluarga = $request->file('kartu_keluarga');
+        if (!is_null($kartu_keluarga)){
             $kartu_keluarganame = date('Ymdhis') . "_" . $kartu_keluarga->getClientOriginalName();
             $request->file('kartu_keluarga')->storeAs('public/', $kartu_keluarganame);
+        } else {
+            $kartu_keluarganame = $berkas->kartu_keluarga;
+        }
 
         try {
             Berkas::updateOrCreate(
-                ['user_id' => auth()->id], [
+                ['user_id' => auth()->user()->id], [
                     'ijazah' => $ijazahname,
                     'ktp' => $ktpname,
                     'skhun' => $skhunname,
                     'kartu_keluarga' => $kartu_keluarganame,
                 ]);
 
-            return response()->redirectToRoute('Berkas.create');
+            return response()->redirectToRoute('berkas.create');
         } catch (\Exception $e) {
             if(Storage::exists('public/' . $ijazahname)) Storage::delete('public/' . $ijazahname);
             if(Storage::exists('public/' . $ktpname)) Storage::delete('public/' . $ktpname);

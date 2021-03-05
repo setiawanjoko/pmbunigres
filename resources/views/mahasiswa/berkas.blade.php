@@ -112,7 +112,7 @@
                     <div class="container data-orang-tua tab-pane fade active show" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                         <div class="row">
                             <div class="col-md-6 left">
-                                <form action="{{ route('berkas.store') }}" method="POST">
+                                <form action="{{ route('berkas.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     @method('POST')
                                     <div class="card">

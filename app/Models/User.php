@@ -48,6 +48,13 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    public function gelombang() {
+        return Gelombang::where([
+            ['tgl_mulai', '>=', $this->created_at],
+            ['tgl_selesai', '<=', $this->email_verified_at]
+        ])->first();
+    }
+
     public function permission() {
         return $this->belongsTo(Permission::class, 'permission_id', 'id');
     }

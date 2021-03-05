@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Biaya;
 use App\Models\Gelombang;
 use Illuminate\Database\Seeder;
 
@@ -20,7 +21,8 @@ class DatabaseSeeder extends Seeder
 //            JenjangSeeder::class,
 //            FakultasSeeder::class,
 //            ProdiSeeder::class,
-        GelombangSeeder::class
+//        GelombangSeeder::class,
+        BiayaSeeder::class,
         ]);
     }
 }

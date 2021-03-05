@@ -50,8 +50,8 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function gelombang() {
         return Gelombang::where([
-            ['tgl_mulai', '>=', $this->created_at],
-            ['tgl_selesai', '<=', $this->email_verified_at]
+            ['tgl_mulai', '<=', $this->created_at],
+            ['tgl_selesai', '>=', $this->email_verified_at]
         ])->first();
     }
 

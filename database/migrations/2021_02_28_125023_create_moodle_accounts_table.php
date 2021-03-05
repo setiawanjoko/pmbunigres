@@ -18,6 +18,10 @@ class CreateMoodleAccountsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('moodle_username');
             $table->string('moodle_default_password');
+            $table->string('moodle_user_id')->nullable(true);
+            $table->string('moodle_firstname');
+            $table->string('moodle_lastname');
+            $table->string('moodle_email');
             $table->double('nilai_tpa')->nullable(true);
             $table->timestamps();
         });

@@ -27,9 +27,4 @@ class Biodata extends Model
     {
         return $this->hasMany(Wali::class, 'biodata_id', 'id');
     }
-
-    public function prodiPilihan(): HasMany
-    {
-        return $this->hasMany(ProdiPilihan::class, 'biodata_id', 'id');
-    }
 }

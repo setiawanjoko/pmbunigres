@@ -26,7 +26,6 @@ class CreateBiodataTable extends Migration
             $table->enum('jenis_kelamin', ['laki-laki', 'perempuan']);
             $table->string('alamat')->nullable(true);
             $table->string('no_telepon')->nullable(true);
-            $table->enum('jalur_masuk', ['reguler', 'transfer', 'pindahan', 'lanjutan'])->default('reguler');
             $table->string('asal_sekolah');
             $table->string('asal_jurusan');
             $table->year('tahun_lulus');

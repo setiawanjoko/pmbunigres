@@ -18,7 +18,6 @@ class CreateGelombangTable extends Migration
             $table->string('gelombang');
             $table->date('tgl_mulai');
             $table->date('tgl_selesai');
-            $table->enum('jalur_masuk', ['reguler', 'pindahan', 'transfer', 'lanjutan'])->default('reguler');
             $table->timestamps();
         });
     }

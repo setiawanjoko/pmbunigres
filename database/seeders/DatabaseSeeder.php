@@ -17,12 +17,12 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call([
-//            PermissionSeeder::class,
-//            JenjangSeeder::class,
-//            FakultasSeeder::class,
-//            ProdiSeeder::class,
-//        GelombangSeeder::class,
-        BiayaSeeder::class,
+            PermissionSeeder::class,
+            JenjangSeeder::class,
+            FakultasSeeder::class,
+            ProdiSeeder::class,
+            GelombangSeeder::class,
+            BiayaSeeder::class,
         ]);
     }
 }

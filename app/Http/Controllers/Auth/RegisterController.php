@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Jenjang;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -41,6 +42,14 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    public function showRegistrationForm()
+    {
+
+        $dataProdi = Jenjang::with('prodi')->get();
+
+        return view('auth.register', compact('dataProdi'));
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -54,7 +63,10 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'informasi' => ['required', 'in:sosial_media,teman_saudara,lainnya'],
-            'no_telepon' => ['required', 'string']
+            'no_telepon' => ['required', 'string'],
+            'kelas' => ['required', 'in:pagi,siang,sore'],
+            'prodi' => ['required', 'exists:prodi,id'],
+            'jalur_masuk' => ['required', 'in:reguler,transfer,pindahan,lanjutan']
         ]);
     }
 
@@ -71,7 +83,10 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'informasi' => $data['informasi'],
-            'no_telepon' => $data['no_telepon']
+            'no_telepon' => $data['no_telepon'],
+            'kelas' => $data['kelas'],
+            'prodi_id' => $data['prodi'],
+            'jalur_masuk' => $data['jalur_masuk']
         ]);
     }
 }

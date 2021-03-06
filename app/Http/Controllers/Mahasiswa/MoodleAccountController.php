@@ -88,7 +88,7 @@ class MoodleAccountController extends Controller
                 } else return false;
             } else dd($response->warnings);
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            abort(500);
         }
     }
 
@@ -114,7 +114,7 @@ class MoodleAccountController extends Controller
             } else {
                 $final =null;
             }
-        }        
+        }
 
         return $final;
     }

@@ -1,5 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\GelombangController;
+use App\Http\Controllers\Admin\JenjangController;
+use App\Http\Controllers\Admin\PendaftarController;
+use App\Http\Controllers\Admin\PengaturanGelombangController;
+use App\Http\Controllers\Admin\PengumumanController;
+use App\Http\Controllers\Admin\ProdiController;
+use App\Http\Controllers\Admin\TesTPAController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Mahasiswa\BiodataController;
@@ -50,7 +57,18 @@ Route::middleware(['auth', 'verify'])->group(function(){
 //        Route::get('/prodi-pilihan', [ProdiPilihanController::class, 'create'])->name('prodi-pilihan.create');
 //        Route::post('/prodi-pilihan', [ProdiPilihanController::class, 'store'])->name('prodi-pilihan.store');
         Route::get('/informasi-tpa', [MoodleAccountController::class, 'index'])->name('moodle');
+        Route::get('/nilai/{id}', [MoodleAccountController::class, 'checkNilai']);
         Route::get('/link-tes', [LinkTesTPAController::class, 'index'])->name('link-tes.index');
         Route::post('/link-tes', [LinkTesTPAController::class, 'store'])->name('link-tes.store');
+    });
+
+    Route::middleware(['can:admin'])->prefix('/admin')->group(function(){
+        Route::resource('/gelombang', GelombangController::class)->only(['index', 'create', 'store']);
+        Route::resource('/jenjang', JenjangController::class)->only(['index', 'create', 'store']);
+        Route::resource('/prodi', ProdiController::class)->only(['index', 'create', 'store']);
+        Route::resource('/pengaturan-gelombang', PengaturanGelombangController::class)->only(['index', 'create', 'store']);
+        Route::resource('/pengumuman', PengumumanController::class)->only(['index', 'create', 'store']);
+        Route::resource('/tes-tpa', TesTPAController::class)->only(['index', 'create', 'store']);
+        Route::resource('/pendaftar', PendaftarController::class)->only(['index']);
     });
 });

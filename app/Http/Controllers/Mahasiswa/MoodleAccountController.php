@@ -16,8 +16,8 @@ class MoodleAccountController extends Controller
                 return response()->redirectToRoute('biodata.create');
             }else if(empty(auth()->user()->ayah())) {
                 return response()->redirectToRoute('keluarga.create');
-            }else if(empty(auth()->user()->prodiPilihan())){
-                return response()->redirectToRoute('prodi-pilihan.create');
+            }else if(empty(auth()->user()->berkas)){
+                return response()->redirectToRoute('berkas.create');
             }else{
                 return $next($request);
             }
@@ -101,20 +101,20 @@ class MoodleAccountController extends Controller
         $response = json_decode($res->body());
 
         $courseID = ServerSetting::where('key', 'course_id_tes_tpa')->first();
-
-        if (!empty($response->grades)) {
-            foreach ($response->grades as $grade) {
-                if($grade->courseid == $courseID->value) {
-                    if (!is_null($grade->rawgrade)) {
-                        $final = $grade->rawgrade;
-                        break;
+        if (!is_null($courseID)) {
+            if (!empty($response->grades)) {
+                foreach ($response->grades as $grade) {
+                    if($grade->courseid == $courseID->value) {
+                        if (!empty($grade->rawgrade)) {
+                            $final = $grade->rawgrade;
+                            break;
+                        }
                     }
                 }
+            } else {
+                $final =null;
             }
-        } else {
-            $final =null;
-        }
-        
+        }        
 
         return $final;
     }

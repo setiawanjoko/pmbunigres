@@ -69,7 +69,7 @@ class BerkasController extends Controller
                     'kartu_keluarga' => $kartu_keluarganame,
                 ]);
 
-            return response()->redirectToRoute('berkas.create');
+            return response()->redirectToRoute('moodle');
         } catch (\Exception $e) {
             if(Storage::exists('public/' . $ijazahname)) Storage::delete('public/' . $ijazahname);
             if(Storage::exists('public/' . $ktpname)) Storage::delete('public/' . $ktpname);

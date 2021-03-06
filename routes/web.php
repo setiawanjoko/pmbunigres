@@ -61,14 +61,14 @@ Route::middleware(['auth', 'verify'])->group(function(){
         Route::get('/link-tes', [LinkTesTPAController::class, 'index'])->name('link-tes.index');
         Route::post('/link-tes', [LinkTesTPAController::class, 'store'])->name('link-tes.store');
     });
+});
 
-    Route::middleware(['can:admin'])->prefix('/admin')->group(function(){
-        Route::resource('/gelombang', GelombangController::class)->only(['index', 'create', 'store']);
-        Route::resource('/jenjang', JenjangController::class)->only(['index', 'create', 'store']);
-        Route::resource('/prodi', ProdiController::class)->only(['index', 'create', 'store']);
-        Route::resource('/pengaturan-gelombang', PengaturanGelombangController::class)->only(['index', 'create', 'store']);
-        Route::resource('/pengumuman', PengumumanController::class)->only(['index', 'create', 'store']);
-        Route::resource('/tes-tpa', TesTPAController::class)->only(['index', 'create', 'store']);
-        Route::resource('/pendaftar', PendaftarController::class)->only(['index']);
-    });
+Route::middleware(['auth', 'can:admin'])->prefix('/admin')->name('admin.')->group(function(){
+    Route::resource('/gelombang', GelombangController::class)->only(['index', 'create', 'store']);
+    Route::resource('/jenjang', JenjangController::class)->only(['index', 'create', 'store']);
+    Route::resource('/prodi', ProdiController::class)->only(['index', 'create', 'store']);
+    Route::resource('/pengaturan-gelombang', PengaturanGelombangController::class)->only(['index', 'create', 'store']);
+    Route::resource('/pengumuman', PengumumanController::class)->only(['index', 'create', 'store']);
+    Route::resource('/tes-tpa', TesTPAController::class)->only(['index', 'create', 'store']);
+    Route::resource('/pendaftar', PendaftarController::class)->only(['index']);
 });

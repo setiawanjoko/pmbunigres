@@ -24,4 +24,8 @@ class Prodi extends Model
     public function biaya() {
         return $this->hasMany(Biaya::class, 'prodi_id', 'id');
     }
+
+    public function pendaftar() {
+        return $this->hasMany(User::class, 'prodi_id', 'id');
+    }
 }

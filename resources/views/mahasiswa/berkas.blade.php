@@ -122,7 +122,10 @@
                                         <div class="card-body p-4">
                                             <div class="form-row">
                                                 <div class="form-group">
-                                                    <label for="pilihan_satu">Ijazah</label>
+                                                    <label for="pilihan_satu">Ijazah
+                                                        @if(!empty($data) && !is_null($data->ijazah))
+                                                            <a href="{{ asset('storage/' . $data->ijazah) }}" target="_blank">Lihat ijazah</a>
+                                                        @endif</label>
                                                     <input type="file" class="form-control input-file" name="ijazah" id="ijazah">
                                                         @if($errors->has('ijazah'))
                                                         <div class="invalid-feedback">
@@ -133,7 +136,10 @@
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group">
-                                                    <label for="pilihan_satu">SKHUN</label>
+                                                    <label for="pilihan_satu">SKHUN
+                                                        @if(!empty($data) && !is_null($data->skhun))
+                                                            <a href="{{ asset('storage/' . $data->skhun) }}" target="_blank">Lihat ijazah</a>
+                                                        @endif</label>
                                                     <input type="file" class="form-control input-file" name="skhun" id="skhun">
                                                         @if($errors->has('skhun'))
                                                         <div class="invalid-feedback">
@@ -144,7 +150,10 @@
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group">
-                                                    <label for="pilihan_satu">KTP</label>
+                                                    <label for="pilihan_satu">KTP
+                                                        @if(!empty($data) && !is_null($data->ktp))
+                                                            <a href="{{ asset('storage/' . $data->ktp) }}" target="_blank">Lihat ijazah</a>
+                                                        @endif</label>
                                                     <input type="file" class="form-control input-file" name="ktp" id="ktp">
                                                         @if($errors->has('ktp'))
                                                         <div class="invalid-feedback">
@@ -155,7 +164,10 @@
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group">
-                                                    <label for="pilihan_satu">Kartu Keluarga</label>
+                                                    <label for="pilihan_satu">Kartu Keluarga
+                                                        @if(!empty($data) && !is_null($data->kartu_keluarga))
+                                                            <a href="{{ asset('storage/' . $data->kartu_keluarga) }}" target="_blank">Lihat ijazah</a>
+                                                        @endif</label>
                                                     <input type="file" class="form-control input-file" name="kartu_keluarga" id="kartu_keluarga">
                                                         @if($errors->has('kartu_keluarga'))
                                                         <div class="invalid-feedback">
@@ -164,6 +176,11 @@
                                                         @endif
                                                 </div>
                                             </div>
+                                            <span class="text-left">
+                                                <label class="mt-4">Format file: JPEG, JPG, PNG, atau PDF</label>
+                                                <label class="mt-0">Ukuran file maksimal: 250kb</label>
+                                                <label class="mt-0">Kosongkan jika tidak ingin menambahkan atau mengubah berkas tertentu.</label>
+                                            </span>
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-light btn-daftar">Submit</button>

@@ -38,19 +38,23 @@ class BiodataController extends Controller
             'asal_sekolah' => 'required|string',
             'asal_jurusan' => 'required|string',
             'tahun_lulus' => 'required', // tanyakan batasan yang bisa daftar lulusan berapa tahun sebelum pembukaan dibuka?
-            'foto' => 'file|max:250|mimes:png,jpg,jpeg' // maks ukuran dalam KB
+            'foto' => 'required_without:current_foto|file|max:250|mimes:png,jpg,jpeg', // maks ukuran dalam KB
+            'current_foto' => 'present'
         ]);
         try {
             $berkas = $request->file('foto');
-            $berkasName = date('Ymdhis') . "_" . $berkas->getClientOriginalName();
+            $user = auth()->user();
+            $custCode = $user->pembayaranRegistrasi();
+            if(!is_null($berkas)) {
+                $berkasName = $custCode . "_" . $berkas->getClientOriginalName();
 
-            $request->file('foto')->storeAs('public/', $berkasName);
+                $request->file('foto')->storeAs('public/', $berkasName);
+            } else {
+                $berkasName = $data['current_foto'];
+            }
 
             // Create a function to generate registration number
             $registrationNumber = $this->generateRegistrationNumber();
-
-            // Create a function to get jalur masuk
-            $jalurMasuk = $this->getJalurMasuk();
 
             Biodata::updateOrCreate(
                 ['user_id' => auth()->id()], [

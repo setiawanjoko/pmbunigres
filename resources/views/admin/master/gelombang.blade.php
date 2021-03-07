@@ -120,7 +120,7 @@
                                     @method('POST')
                                 <div class="card">
                                     <div class="card-header">
-                                        Data Jenjang
+                                        Data Gelombang
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
@@ -166,12 +166,14 @@
                                 </div>
                                 </form>
                             </div>
-                            {{-- <div class="col-md-7 right dashboard-right">
+                            <div class="col-md-7 right dashboard-right">
                                 <table id="table_id" class="table table-striped table-bordered" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Jenjang</th>
+                                            <th>Gelombang</th>
+                                            <th>Tanggal Mulai</th>
+                                            <th>Tanggal Selesai</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -181,7 +183,7 @@
                                             <td class="text-center">{{ ++$i . '.' }}</td>
                                             <td>{{ $data->nama }}</td>
                                             <td class="text-center">
-                                                <form action="{{ route('admin.jenjang.destroy',$data->id) }}" method="POST">
+                                                <form action="{{ route('admin.gelombang.destroy',$data->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
@@ -191,7 +193,7 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                            </div> --}}
+                            </div>
                         </div>
                 </div>
             </div>

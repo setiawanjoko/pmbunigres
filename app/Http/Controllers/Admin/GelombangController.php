@@ -10,9 +10,9 @@ use PhpParser\Node\Stmt\Return_;
 class GelombangController extends Controller
 {
     public function index() {
-        $data = Gelombang::all();
+        $data =  Gelombang::latest()->paginate(5);
 
-        Return response()->view('admin.master.gelombang');
+        return view('admin.master.jenjang',compact('data'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     public function store(Request $request) {
@@ -29,7 +29,7 @@ class GelombangController extends Controller
                 'tgl_selesai' => $data['tgl_selesai']
             ]);
             
-            return response()->redirectTo('admin.gelombang');
+            return response()->redirectTo('admin.gelombang.index');
         } catch (\Exception $e) {
             dd($e->getMessage());
         }

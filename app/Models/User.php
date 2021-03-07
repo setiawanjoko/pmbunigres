@@ -115,8 +115,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return Pembayaran::whereHas('pendaftar', function($query){
             return $query->where([
                 ['user_id', $this->id],
-                ['kategori', 'daftar_ulang'],
-                ['expiredData', '>', Carbon::now()]
+                ['kategori', 'daftar_ulang']
             ]);
         })->first();
     }

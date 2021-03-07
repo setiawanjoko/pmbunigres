@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\GelombangController;
 use App\Http\Controllers\Admin\JenjangController;
+use App\Http\Controllers\Admin\FakultasController;
 use App\Http\Controllers\Admin\PendaftarController;
 use App\Http\Controllers\Admin\PengaturanGelombangController;
 use App\Http\Controllers\Admin\PengumumanController;
@@ -65,6 +66,7 @@ Route::middleware(['auth', 'verify'])->group(function(){
 
 Route::middleware(['auth', 'can:admin'])->prefix('/admin')->name('admin.')->group(function(){
     Route::resource('/gelombang', GelombangController::class)->only(['index', 'create', 'store','destroy']);
+    Route::resource('/fakultas', FakultasController::class)->only(['index', 'create', 'store','destroy']);
     Route::resource('/jenjang', JenjangController::class)->only(['index', 'create', 'store','destroy']);
     Route::resource('/prodi', ProdiController::class)->only(['index', 'create', 'store']);
     Route::resource('/pengaturan-gelombang', PengaturanGelombangController::class)->only(['index', 'create', 'store']);

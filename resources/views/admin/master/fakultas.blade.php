@@ -1,5 +1,5 @@
 @extends('admin.master.master')
-@section('gelombang')
+@section('fakultas')
 
     <div class="content">
         <div class="container-fluid dashboard-user">
@@ -9,13 +9,13 @@
                     <a class="nav-link" href="{{ route('admin.jenjang.index') }}" type="button">Jenjang</a>
                 </li>
                 <li class="nav-item nav-data-ortu">
-                    <a class="nav-link" href="{{ route('admin.gelombang.index') }}" type="button">Fakultas</a>
+                    <a class="nav-link active" type="button">Fakultas</a>
                 </li>
                 <li class="nav-item nav-prodi">
                     <a class="nav-link" href="#" type="button">Program Studi</a>
                 </li>
                 <li class="nav-item nav-prodi">
-                    <a class="nav-link active" href="{{ route('admin.gelombang.index') }}" type="button">Gelombang</a>
+                    <a class="nav-link" href="{{ route('admin.gelombang.index') }}" type="button">Gelombang</a>
                 </li>
                 <li class="nav-item nav-prodi">
                     <a class="nav-link" href="#" type="button">Pengaturan Gelombang</a>
@@ -39,44 +39,23 @@
                             </div>
                         @endif
                         <div class="col-md-5 left dashboard-left">
-                            <form action="{{ route('admin.gelombang.store') }}" method="POST">
+                            <form action="{{ route('admin.fakultas.store') }}" method="POST">
                                 @csrf
                                 @method('POST')
                                 <div class="card">
                                     <div class="card-header">
-                                        Data Jenjang
+                                        Data Fakultas
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-lg-12">
-                                                <label for="nama">Nama Gelombang</label>
-                                                <input type="text" name="nama" id="nama"
-                                                    class="form-control form-control-sm @if ($errors->has('nama')) is-invalid @endif"
-                                                value="{{ $data->nama ?? old('nama') }}" placeholder="Contoh: Gelombang 1,
-                                                Gelombang 2">
-                                                @if ($errors->has('nama'))
+                                                <label for="fakultas">Nama Fakultas</label>
+                                                <input type="text" name="fakultas" id="fakultas"
+                                                    class="form-control form-control-sm @if ($errors->has('fakultas')) is-invalid @endif"
+                                                placeholder="Contoh: S1, S2">
+                                                @if ($errors->has('fakultas'))
                                                     <div class="invalid-feedback">
-                                                        <strong>{{ $errors->first('nama') }}</strong>
-                                                    </div>
-                                                @endif
-                                                <label for="tgl_mulai">Tanggal Mulai</label>
-                                                <input type="date" name="tgl_mulai" id="tgl_mulai"
-                                                    class="form-control form-control-sm @if ($errors->has('tgl_mulai')) is-invalid @endif"
-                                                value="{{ $data->tgl_mulai ?? old('tgl_mulai') }}"
-                                                required>
-                                                @if ($errors->has('tgl_mulai'))
-                                                    <div class="invalid-feedback">
-                                                        <strong>{{ $errors->first('tgl_mulai') }}</strong>
-                                                    </div>
-                                                @endif
-                                                <label for="tgl_selesai">Tanggal Selesai</label>
-                                                <input type="date" name="tgl_selesai" id="tgl_selesai"
-                                                    class="form-control form-control-sm @if ($errors->has('tgl_selesai')) is-invalid @endif"
-                                                value="{{ $data->tgl_selesai ?? old('tgl_selesai') }}"
-                                                required>
-                                                @if ($errors->has('tgl_selesai'))
-                                                    <div class="invalid-feedback">
-                                                        <strong>{{ $errors->first('tgl_selesai') }}</strong>
+                                                        <strong>{{ $errors->first('fakultas') }}</strong>
                                                     </div>
                                                 @endif
                                             </div>
@@ -91,7 +70,7 @@
                                 </div>
                             </form>
                         </div>
-                        {{-- <div class="col-md-7 right dashboard-right">
+                        <div class="col-md-7 right dashboard-right">
                             <table id="table_id" class="table table-striped table-bordered" style="width:100%">
                                 <thead>
                                     <tr>
@@ -101,22 +80,24 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($data as $data)
-                                    <tr>
-                                        <td class="text-center">{{ ++$i . '.' }}</td>
-                                        <td>{{ $data->nama }}</td>
-                                        <td class="text-center">
-                                            <form action="{{ route('admin.jenjang.destroy',$data->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
-                                            </form>
-                                        </td>
-                                    </tr>
+                                    @foreach ($data as $d)
+                                        <tr>
+                                            <td class="text-center">{{ ++$i . '.' }}</td>
+                                            <td>{{ $d->fakultas }}</td>
+                                            <td class="text-center">
+                                                <form action="{{ route('admin.fakultas.destroy', $d->id) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm"
+                                                        onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
+                                                </form>
+                                            </td>
+                                        </tr>
                                     @endforeach
                                 </tbody>
                             </table>
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
             </div>

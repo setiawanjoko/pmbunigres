@@ -52,7 +52,7 @@
                                                 <label for="nama">Nama Jenjang</label>
                                                 <input type="text" name="nama" id="nama"
                                                     class="form-control form-control-sm @if ($errors->has('nama')) is-invalid @endif"
-                                                value="{{ $data->nama ?? old('nama') }}" placeholder="Contoh: S1, S2">
+                                                value="{{  old('nama') }}" placeholder="Contoh: S1, S2">
                                                 @if ($errors->has('nama'))
                                                     <div class="invalid-feedback">
                                                         <strong>{{ $errors->first('nama') }}</strong>
@@ -71,18 +71,18 @@
                             </form>
                         </div>
                         <div class="col-md-7 right dashboard-right">
-                            <table id="table_id" class="table table-striped table-bordered" style="width:100%">
+                            <table id="tabel-data" class="table table-striped table-bordered" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
+                                        <th style="width:40px;">No</th>
                                         <th>Jenjang</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($data as $data)
+                                    @foreach ($data as $key=>$data)
                                         <tr>
-                                            <td class="text-center">{{ ++$i . '.' }}</td>
+                                            <td class="text-center">{{ ++$key . '.' }}</td>
                                             <td>{{ $data->nama }}</td>
                                             <td class="text-center">
                                                 <form action="{{ route('admin.jenjang.destroy', $data->id) }}"

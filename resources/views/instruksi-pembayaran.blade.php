@@ -125,6 +125,9 @@
                 </div>
               </div>
             </div>
+              <div class="wrap-button-verif wp-step-1" id="btn1">
+                  <a class="btn btn-login" href="{{ route('biodata.create') }}">Kembali</a>
+              </div>
           </div>
         </div>
       </section>

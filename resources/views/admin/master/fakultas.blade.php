@@ -1,15 +1,15 @@
 @extends('admin.master.master')
-@section('jenjang')
+@section('fakultas')
 
     <div class="content">
         <div class="container-fluid dashboard-user">
             <h4>Data Master</h4>
             <ul class="nav nav-pills mb-5 mx-auto">
                 <li class="nav-item ">
-                    <a class="nav-link active" href="{{ route('admin.jenjang.index') }}" type="button">Jenjang</a>
+                    <a class="nav-link" href="{{ route('admin.jenjang.index') }}" type="button">Jenjang</a>
                 </li>
                 <li class="nav-item nav-data-ortu">
-                    <a class="nav-link" href="{{ route('admin.fakultas.index') }}" type="button">Fakultas</a>
+                    <a class="nav-link active" type="button">Fakultas</a>
                 </li>
                 <li class="nav-item nav-prodi">
                     <a class="nav-link" href="#" type="button">Program Studi</a>
@@ -39,23 +39,23 @@
                             </div>
                         @endif
                         <div class="col-md-5 left dashboard-left">
-                            <form action="{{ route('admin.jenjang.store') }}" method="POST">
+                            <form action="{{ route('admin.fakultas.store') }}" method="POST">
                                 @csrf
                                 @method('POST')
                                 <div class="card">
                                     <div class="card-header">
-                                        Data Jenjang
+                                        Data Fakultas
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-lg-12">
-                                                <label for="nama">Nama Jenjang</label>
-                                                <input type="text" name="nama" id="nama"
-                                                    class="form-control form-control-sm @if ($errors->has('nama')) is-invalid @endif"
-                                                value="{{ $data->nama ?? old('nama') }}" placeholder="Contoh: S1, S2">
-                                                @if ($errors->has('nama'))
+                                                <label for="fakultas">Nama Fakultas</label>
+                                                <input type="text" name="fakultas" id="fakultas"
+                                                    class="form-control form-control-sm @if ($errors->has('fakultas')) is-invalid @endif"
+                                                placeholder="Contoh: S1, S2">
+                                                @if ($errors->has('fakultas'))
                                                     <div class="invalid-feedback">
-                                                        <strong>{{ $errors->first('nama') }}</strong>
+                                                        <strong>{{ $errors->first('fakultas') }}</strong>
                                                     </div>
                                                 @endif
                                             </div>
@@ -80,12 +80,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($data as $data)
+                                    @foreach ($data as $d)
                                         <tr>
                                             <td class="text-center">{{ ++$i . '.' }}</td>
-                                            <td>{{ $data->nama }}</td>
+                                            <td>{{ $d->fakultas }}</td>
                                             <td class="text-center">
-                                                <form action="{{ route('admin.jenjang.destroy', $data->id) }}"
+                                                <form action="{{ route('admin.fakultas.destroy', $d->id) }}"
                                                     method="POST">
                                                     @csrf
                                                     @method('DELETE')

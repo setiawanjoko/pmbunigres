@@ -90,41 +90,54 @@
                 <div class="row gx-5">
                     <div class="col-md-6 left">
                         <h5>Link Tes Potensi Akademik</h5>
-                        <a href="{{ $dataLink->value ?? '#' }}" type="submit" class="btn btn-submit mb-5">Klik Disini!</a>
+                        <a href="{{ $dataLink->value ?? '#' }}" type="submit" class="btn btn-submit mb-5" target="_blank">Klik Disini!</a>
                         <p class="catatan">Catatan :</p>
                         <p class="catatan2">Jika link tidak merespon lakukan refresh website, atau tunggu hingga sampai link sudah aktif. Lalu segera lakukan tes potensi akademik.</p>
                     </div>
-                    <div class="col-md-6 right">  
-                            <div class="card mb-3">
-                                <div class="card-header">
-                                    <h5 class="mb-0">Informasi user dan password Anda.</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="form-group mb-3">
-                                            <label for="username">Username</label>
-                                            <input type="text" class="form-control form-control-sm" value="{{ $dataMoodle->moodle_username }}" disabled readonly>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="password">Password</label>
-                                            <input type="text" class="form-control form-control-sm" value="{{ $dataMoodle->moodle_default_password }}" disabled readonly>
+                    @if(is_null($dataMoodle->nilai_tpa))
+                        <div class="col-md-6 right">
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        <h5 class="mb-0">Informasi user dan password Anda.</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="form-group mb-3">
+                                                <label for="username">Username</label>
+                                                <input type="text" class="form-control form-control-sm" value="{{ $dataMoodle->moodle_username }}" disabled readonly>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="password">Password</label>
+                                                <input type="text" class="form-control form-control-sm" value="{{ $dataMoodle->moodle_default_password }}" disabled readonly>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>                   
-                        <div class="card">
-                            <div class="card-header">
-                                <h5 class="mb-0">Catatan</h5>
-                            </div>
-                            <div class="card-body">
-                                <ol>
-                                    <li>Silahkan untuk melakukan tes potensi akademik</li>
-                                    <li>Silahkan login menggunakan informasi akun diatas</li>
-                                    <li>Jika ada informasi yang kurang jelas, silahkan tanyakan ke pihak terkait.</li>
-                                </ol>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Catatan</h5>
+                                </div>
+                                <div class="card-body">
+                                    <ol>
+                                        <li>Silahkan untuk melakukan tes potensi akademik</li>
+                                        <li>Silahkan login menggunakan informasi akun diatas</li>
+                                        <li>Jika ada informasi yang kurang jelas, silahkan tanyakan ke pihak terkait.</li>
+                                    </ol>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @else
+                        <div class="col-md-6 righ bg-successt">
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Nilai Tes Potensi Akademik.</h5>
+                                </div>
+                                <div class="card-body">
+                                    <h1>{{ $dataMoodle->nilai_tpa }}</h1>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

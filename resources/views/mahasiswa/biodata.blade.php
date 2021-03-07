@@ -316,11 +316,13 @@
                                                 <div class="input-group" style="overflow: hiden;">
                                                     <div class="wp-input">
                                                         <input type="file" class="form-control input-file" name="foto" id="foto">
-                                                        @if($errors->has('foto'))
-                                                        <div class="invalid-feedback">
-                                                            <strong>{{ $errors->first('foto') }}</strong>
+                                                        @error('foto')
+                                                        <div class="text-danger small">
+                                                            {{ $message }}
                                                         </div>
-                                                        @endif
+                                                        @enderror
+                                                        <input type="hidden" name="current_foto" class="form-control"
+                                                               id="current_foto" value="{{ $data->foto ?? '' }}">
                                                     </div>
                                                   </div>
                                             </div>
@@ -328,7 +330,7 @@
                                                 <label class="mt-4">Foto background biru, kemeja warna putih, bagi
                                                     perempuan berhijab memakai kerudung hitam.</label>
                                                 <label class="mt-4">Format file: JPEG, JPG, PNG</label>
-                                                <label class="mt-0">Ukuran file maksimal: 1mb</label>
+                                                <label class="mt-0">Ukuran file maksimal: 250kb</label>
                                             </span>
                                         </div>
                                     </div>

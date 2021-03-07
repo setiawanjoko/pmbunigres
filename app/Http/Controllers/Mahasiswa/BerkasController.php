@@ -26,48 +26,52 @@ class BerkasController extends Controller
             'kartu_keluarga' => 'file|nullable|max:250|mimes:png,jpg,jpeg,pdf'
         ]);
 
-        $berkas = auth()->user()->berkas;
+        $user = auth()->user();
+        $berkas = $user->berkas;
+        $custCode = $user->pembayaranRegistrasi()->custCode;
 
         $ijazah = $request->file('ijazah');
         if (!is_null($ijazah)){
-            $ijazahname = date('Ymdhis') . "_" . $ijazah->getClientOriginalName();
+            $ijazahname = $custCode . "_ijazah." . $ijazah->extension();
             $request->file('ijazah')->storeAs('public/', $ijazahname);
-        } else {
+        } else if(!is_null($berkas)){
             $ijazahname = $berkas->ijazah;
-        }
+        } else $ijazahname = null;
 
         $ktp = $request->file('ktp');
         if (!is_null($ktp)){
-            $ktpname = date('Ymdhis') . "_" . $ktp->getClientOriginalName();
+            $ktpname = $custCode . "_ktp." . $ktp->extension();
             $request->file('ktp')->storeAs('public/', $ktpname);
-        } else {
+        } else if(!is_null($berkas)){
             $ktpname = $berkas->ktp;
-        }
+        } else $ktpname = null;
 
         $skhun = $request->file('skhun');
         if (!is_null($skhun)){
-            $skhunname = date('Ymdhis') . "_" . $skhun->getClientOriginalName();
+            $skhunname = $custCode . "_skhun." . $skhun->extension();
             $request->file('skhun')->storeAs('public/', $skhunname);
-        } else {
+        } else if(!is_null($berkas)){
             $skhunname = $berkas->skhun;
-        }
+        } else $skhunname = null;
 
         $kartu_keluarga = $request->file('kartu_keluarga');
         if (!is_null($kartu_keluarga)){
-            $kartu_keluarganame = date('Ymdhis') . "_" . $kartu_keluarga->getClientOriginalName();
+            $kartu_keluarganame = $custCode . "_kartu_keluarga." . $kartu_keluarga->extension();
             $request->file('kartu_keluarga')->storeAs('public/', $kartu_keluarganame);
-        } else {
+        } else if(!is_null($berkas)){
             $kartu_keluarganame = $berkas->kartu_keluarga;
-        }
+        } else $kartu_keluarganame = null;
 
         try {
-            Berkas::updateOrCreate(
-                ['user_id' => auth()->user()->id], [
+            if(!is_null($ijazahname) || !is_null($ktpname) || !is_null($skhunname) || !is_null($kartu_keluarganame)) {
+                Berkas::updateOrCreate(
+                    ['user_id' => auth()->user()->id], [
                     'ijazah' => $ijazahname,
                     'ktp' => $ktpname,
                     'skhun' => $skhunname,
                     'kartu_keluarga' => $kartu_keluarganame,
                 ]);
+            }
 
             return response()->redirectToRoute('moodle');
         } catch (\Exception $e) {

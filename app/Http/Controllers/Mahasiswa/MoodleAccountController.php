@@ -32,6 +32,7 @@ class MoodleAccountController extends Controller
 
         if(is_null($dataMoodle->nilai_tpa)) {
             $dataMoodle->nilai_tpa = $this->checkNilai($dataMoodle->moodle_user_id);
+            $dataMoodle->save();
         }
 
         $dataLink = ServerSetting::where('key', 'link_tes_tpa')->first();
@@ -92,7 +93,7 @@ class MoodleAccountController extends Controller
         }
     }
 
-    private function checkNilai(int $id) {
+    public function checkNilai(int $id) {
         $moodleUrl = env('MOODLE_APP_SOCKET');
         $moodleToken = env('MOODLE_ADMIN_TOKEN');
         $final=null;
@@ -100,7 +101,7 @@ class MoodleAccountController extends Controller
         $res = Http::post($moodleUrl . "webservice/rest/server.php?wstoken=$moodleToken&wsfunction=gradereport_overview_get_course_grades&moodlewsrestformat=json&userid=$id");
         $response = json_decode($res->body());
 
-        $courseID = ServerSetting::where('key', 'course_id_tes_tpa')->first();
+        $courseID = ServerSetting::where('key', 'module_id_tes_tpa')->first();
         if (!is_null($courseID)) {
             if (!empty($response->grades)) {
                 foreach ($response->grades as $grade) {

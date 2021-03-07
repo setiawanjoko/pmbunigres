@@ -20,7 +20,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light second-nav dashboard">
     <div class="main-container">
-        <a class="navbar-brand" href="{{ route('home') }}">
+        <a class="navbar-brand" href="{{ route('homepage') }}">
             <img class="logo-brand" src="{{ asset('unigres/images/logo.png') }}">
             <p>USM.<span>Unigres</span></p>
         </a>

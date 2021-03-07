@@ -10,9 +10,10 @@ use Illuminate\Http\Request;
 class JenjangController extends Controller
 {
     public function index() {
-        $data = Jenjang::all();
+        $data = Jenjang::latest()->paginate(5);
 
-        return response()->view('admin.master.jenjang');
+        return view('admin.master.jenjang',compact('data'))->with('i', (request()->input('page', 1) - 1) * 5);
+        //return response()->view('admin.master.jenjang',compact('data'));
     }
 
     public function store(Request $request) {
@@ -25,11 +26,12 @@ class JenjangController extends Controller
                 'nama' => $data['nama']
             ]);
 
-            return response()->redirectToRoute('admin.jenjang');
+            return response()->redirectToRoute('admin.jenjang.index');
         } catch(\Exception $e) {
             dd($e->getMessage());
         }
     }
+    
     public function destroy($id)
     {
         $count = Prodi::where('jenjang_id', $id)->whereHas('pendaftar')->count();
@@ -39,7 +41,7 @@ class JenjangController extends Controller
 
             $jenjang->delete();
 
-            return response()->redirectToRoute('admin.jenjang');
+            return response()->redirectToRoute('admin.jenjang.index');
         } else {
             return redirect()->back()->with([
                 'status' => 'error',

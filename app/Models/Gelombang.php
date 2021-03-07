@@ -12,7 +12,7 @@ class Gelombang extends Model
     protected $table = 'gelombang';
 
     protected $fillable = [
-        'gelombang', 'tgl_mulai', 'tgl_selesai', 'jalur_masuk'
+        'gelombang', 'tgl_mulai', 'tgl_selesai'
     ];
 
     protected $casts = [

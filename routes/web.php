@@ -64,8 +64,8 @@ Route::middleware(['auth', 'verify'])->group(function(){
 });
 
 Route::middleware(['auth', 'can:admin'])->prefix('/admin')->name('admin.')->group(function(){
-    Route::resource('/gelombang', GelombangController::class)->only(['index', 'create', 'store']);
-    Route::resource('/jenjang', JenjangController::class)->only(['index', 'create', 'store']);
+    Route::resource('/gelombang', GelombangController::class)->only(['index', 'create', 'store','destroy']);
+    Route::resource('/jenjang', JenjangController::class)->only(['index', 'create', 'store','destroy']);
     Route::resource('/prodi', ProdiController::class)->only(['index', 'create', 'store']);
     Route::resource('/pengaturan-gelombang', PengaturanGelombangController::class)->only(['index', 'create', 'store']);
     Route::resource('/pengumuman', PengumumanController::class)->only(['index', 'create', 'store']);

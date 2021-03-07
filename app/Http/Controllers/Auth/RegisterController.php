@@ -44,7 +44,6 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
-
         $dataProdi = Jenjang::with('prodi')->get();
 
         return view('auth.register', compact('dataProdi'));

@@ -10,9 +10,9 @@ use Illuminate\Http\Request;
 class JenjangController extends Controller
 {
     public function index() {
-        $data = Jenjang::latest()->paginate(5);
+        $data = Jenjang::all();
 
-        return view('admin.master.jenjang',compact('data'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('admin.master.jenjang',compact('data'));
         //return response()->view('admin.master.jenjang',compact('data'));
     }
 
@@ -31,7 +31,7 @@ class JenjangController extends Controller
             dd($e->getMessage());
         }
     }
-    
+
     public function destroy($id)
     {
         $count = Prodi::where('jenjang_id', $id)->whereHas('pendaftar')->count();

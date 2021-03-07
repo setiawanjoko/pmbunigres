@@ -71,7 +71,7 @@
                             </form>
                         </div>
                         <div class="col-md-7 right dashboard-right">
-                            <table id="table_id" class="table table-striped table-bordered" style="width:100%">
+                            <table id="tabel-data" class="table table-striped table-bordered" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>No</th>

@@ -59,7 +59,7 @@ Route::middleware(['auth', 'verify'])->group(function(){
 //        Route::get('/prodi-pilihan', [ProdiPilihanController::class, 'create'])->name('prodi-pilihan.create');
 //        Route::post('/prodi-pilihan', [ProdiPilihanController::class, 'store'])->name('prodi-pilihan.store');
         Route::get('/informasi-tpa', [MoodleAccountController::class, 'index'])->name('moodle');
-        Route::get('/nilai/{id}', [MoodleAccountController::class, 'checkNilai']);
+//        Route::get('/nilai/{id}', [MoodleAccountController::class, 'checkNilai']);
         Route::get('/daftar-ulang', [DaftarUlangController::class, 'index'])->name('daftar-ulang');
     });
 });

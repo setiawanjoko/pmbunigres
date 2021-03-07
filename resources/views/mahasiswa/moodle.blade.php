@@ -127,7 +127,7 @@
                             </div>
                         </div>
                     @else
-                        <div class="col-md-6 righ bg-successt">
+                        <div class="col-md-6 right">
                             <div class="card mb-3">
                                 <div class="card-header">
                                     <h5 class="mb-0">Nilai Tes Potensi Akademik.</h5>
@@ -135,7 +135,8 @@
                                 <div class="card-body">
                                     <h1>{{ $dataMoodle->nilai_tpa }}</h1>
                                 </div>
-                            </div>
+                            </div><p class="catatan">Catatan :</p>
+                            <p class="catatan2">Lakukan proses daftar ulang pada menu Informasi dan Pengumuman.</p>
                         </div>
                     @endif
                 </div>

@@ -10,9 +10,9 @@ use PhpParser\Node\Stmt\Return_;
 class GelombangController extends Controller
 {
     public function index() {
-        $data =  Gelombang::latest()->paginate(5);
+        $data =  Gelombang::all();
 
-        return view('admin.master.jenjang',compact('data'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('admin.master.gelombang',compact('data'));
     }
 
     public function store(Request $request) {
@@ -35,7 +35,19 @@ class GelombangController extends Controller
         }
     }
 
-    // public function destroy($id) {
-    //     $count = 
-    // }
+    public function destroy($id)
+    {
+        // $count = Prodi::where('fakultas_id', $id)->whereHas('pendaftar')->count();
+        $data = Gelombang::find($id);
+
+        if($data->biaya == null) {
+            $data->delete();
+            return response()->redirectToRoute('admin.gelombang.index');
+        } else {
+            return redirect()->back()->with([
+                'status' => 'error',
+                'message' => 'Terdapat data biaya pada gelombang ini.'
+            ]);
+        }
+    }
 }

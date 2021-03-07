@@ -15,6 +15,7 @@ use App\Http\Controllers\Mahasiswa\KeluargaController;
 use App\Http\Controllers\Mahasiswa\LinkTesTPAController;
 use App\Http\Controllers\Mahasiswa\MoodleAccountController;
 use App\Http\Controllers\Mahasiswa\BerkasController;
+use App\Http\Controllers\Pembayaran\DaftarUlangController;
 use App\Http\Controllers\Pembayaran\RegistrasiController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -59,8 +60,7 @@ Route::middleware(['auth', 'verify'])->group(function(){
 //        Route::post('/prodi-pilihan', [ProdiPilihanController::class, 'store'])->name('prodi-pilihan.store');
         Route::get('/informasi-tpa', [MoodleAccountController::class, 'index'])->name('moodle');
         Route::get('/nilai/{id}', [MoodleAccountController::class, 'checkNilai']);
-        Route::get('/link-tes', [LinkTesTPAController::class, 'index'])->name('link-tes.index');
-        Route::post('/link-tes', [LinkTesTPAController::class, 'store'])->name('link-tes.store');
+        Route::get('/daftar-ulang', [DaftarUlangController::class, 'index'])->name('daftar-ulang');
     });
 });
 

@@ -98,14 +98,14 @@
                         <a class="nav-link" href="{{route('berkas.create')}}" type="button">Berkas</a>
                     </li>
                 </ul>
+                <div class="wrapper-info2">
+                        <img src="{{ asset('unigres/images/ic-i.svg') }}">
+                        <p class="info1" style="margin-bottom: 0px;">Selamat konfirmasi pembayaran anda telah di setujui.</p>
+                    </div>
                 @if(session('status'))
-                    <div class="col-12">
-                        <div class="alert alert-{{ session('status') }} alert-dismissible fade show" role="alert">
-                            {{ session('message') }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
+                    <div class="wrapper-info">
+                        <img src="{{ asset('unigres/images/ic-i.svg') }}">
+                        <p class="info1" style="margin-bottom: 0px;">{{ session('message') }}</p>
                     </div>
                 @endif
                 <div class="tab-content">
@@ -126,7 +126,7 @@
                                                     <label for="no_ktp">Nama depan</label>
                                                     <input type="text" name="nama_depan" id="nama_depan"
                                                         class="form-control form-control-sm @if($errors->has('nama_depan')) is-invalid @endif"
-                                                        value="{{ $data->nama_depan ?? old('nama_depan') }}">
+                                                        value="{{ $data->nama_depan ?? old('nama_depan') }}" required>
                                                     @if($errors->has('nama_depan'))
                                                     <div class="invalid-feedback">
                                                         <strong>{{ $errors->first('nama_depan') }}</strong>
@@ -137,7 +137,7 @@
                                                     <label for="no_ktp">Nama belakang</label>
                                                     <input type="text" name="nama_belakang" id="nama_belakang"
                                                         class="form-control form-control-sm @if($errors->has('nama_belakang')) is-invalid @endif"
-                                                        value="{{ $data->nama_belakang ?? old('nama_belakang') }}">
+                                                        value="{{ $data->nama_belakang ?? old('nama_belakang') }}" required>
                                                     @if($errors->has('nama_belakang'))
                                                     <div class="invalid-feedback">
                                                         <strong>{{ $errors->first('nama_belakang') }}</strong>

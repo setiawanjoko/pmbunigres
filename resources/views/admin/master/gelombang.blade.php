@@ -91,7 +91,7 @@
                                 </form>
                             </div>
                             <div class="col-md-7 right dashboard-right">
-                                <table id="table_id" class="table table-striped table-bordered" style="width:100%">
+                                <table id="tabel-data" class="table table-striped table-bordered" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>No</th>
@@ -121,32 +121,6 @@
                                 </table>
                             </div>
                         </div>
-                        {{-- <div class="col-md-7 right dashboard-right">
-                            <table id="table_id" class="table table-striped table-bordered" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Jenjang</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($data as $data)
-                                    <tr>
-                                        <td class="text-center">{{ ++$i . '.' }}</td>
-                                        <td>{{ $data->nama }}</td>
-                                        <td class="text-center">
-                                            <form action="{{ route('admin.jenjang.destroy',$data->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div> --}}
                     </div>
                 </div>
             </div>

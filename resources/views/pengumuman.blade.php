@@ -62,32 +62,32 @@
       <section class="akademis-group">
         <div class="second-container">
           <div class="wrapper-ak-group">
-            <a class="link-item" href="#">
+            <a class="link-item" href="{{ route('register') }}">
               <div class="ak-item">
-                <img src="{{ asset('unigres/images/ic-document.svg') }}">
-                <div class="ak-body">
-                  <p class="title-1">Pendaftaran</p>
-                  <p class="title-2">Mahasiswa Baru 2021</p>
-                </div>
+                  <img src="{{ asset('unigres/images/ic-document.svg') }}">
+                  <div class="ak-body">
+                      <p class="title-1">Pendaftaran</p>
+                      <p class="title-2">Mahasiswa Baru 2021</p>
+                  </div>
               </div>
             </a>
-            <a class="link-item" href="#">
-              <div class="ak-item">
-                <img src="{{ asset('unigres/images/ic-document.svg') }}">
-                <div class="ak-body">
-                  <p class="title-1">Daftar Ulang</p>
-                  <p class="title-2">Mahasiswa Baru 2021</p>
+            <a class="link-item" href="{{ route('home') }}">
+                <div class="ak-item">
+                    <img src="{{ asset('unigres/images/ic-document.svg') }}">
+                    <div class="ak-body">
+                        <p class="title-1">Daftar Ulang</p>
+                        <p class="title-2">Mahasiswa Baru 2021</p>
+                    </div>
                 </div>
-              </div>
             </a>
-            <a class="link-item" href="#">
-              <div class="ak-item">
-                <img src="{{ asset('unigres/images/ic-book.svg') }}">
-                <div class="ak-body">
-                  <p class="title-1">Test Potensi Akademik</p>
-                  <p class="title-2">Mahasiswa Baru 2021</p>
+            <a class="link-item" href="{{ route('moodle') }}">
+                <div class="ak-item">
+                    <img src="{{ asset('unigres/images/ic-book.svg') }}">
+                    <div class="ak-body">
+                        <p class="title-1">Test Potensi Akademik</p>
+                        <p class="title-2">Mahasiswa Baru 2021</p>
+                    </div>
                 </div>
-              </div>
             </a>
           </div>
         </div>
@@ -95,7 +95,7 @@
       <section class="announcement">
         <div class="second-container">
           <div class="row gx-3 gy-3">
-            <div class="col-lg-6">
+            {{-- <div class="col-lg-6">
               <a class="link-item-ann" href="#">
                 <div class="wrappe-item-ann">
                   <p class="item-ann-title-1">Ujian Seleksi Masuk tahun 2019</p>
@@ -128,7 +128,7 @@
                   <p class="item-ann-title-2">Publised by : <span>Admin | 15 Oktober 2019</span></p>
                 </div>
               </a>
-            </div>
+            </div> --}}
           </div>
         </div>
       </section>

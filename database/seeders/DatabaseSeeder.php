@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             ProdiSeeder::class,
             GelombangSeeder::class,
             BiayaSeeder::class,
+            AdminSeeder::class
         ]);
     }
 }

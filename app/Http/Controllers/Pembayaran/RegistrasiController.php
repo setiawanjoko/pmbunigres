@@ -148,7 +148,7 @@ class RegistrasiController extends Controller
 
     public function generateCustCode(): string
     {
-        $count = Pembayaran::whereDate('created_at', Carbon::today())->count();
+        $count = Pembayaran::whereDate('created_at', Carbon::today())->where('kategori', 'registrasi')->count();
         $number = $count + 1;
         $date = date_format(Carbon::today(), 'ymd');
         $seq = substr(str_repeat(0, 4).$number, - 4);

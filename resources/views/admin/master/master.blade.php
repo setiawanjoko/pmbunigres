@@ -64,7 +64,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link active" type="button" aria-controls="pills-home1" aria-selected="true">
+                <a href="{{ route('admin.jenjang.index') }}" class="nav-link" type="button" aria-controls="pills-home1" aria-selected="true">
                     <div class="wp-ic">
                         <img src="{{ asset('unigres/images/data.svg') }}">
                     </div>
@@ -72,9 +72,9 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link" type="button" aria-controls="pills-home1" aria-selected="true">
+                <a href="{{ route('admin.tes-tpa.index') }}" class="nav-link" type="button" aria-controls="pills-home1" aria-selected="true">
                     <div class="wp-ic">
-                        <span>i</span>
+                        <span>P</span>
                     </div>
                     <span>Pengaturan</span>
                 </a>
@@ -87,6 +87,7 @@
     @yield('pengaturan-gelombang')
     @yield('pengumuman')
     @yield('program-studi')
+    @yield('tes-tpa')
 </main>
 <footer class="dashboard">
     <ul class="wrapper-footer">

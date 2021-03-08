@@ -49,16 +49,16 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-lg-12">
-                                                <label for="kode_prodi">Kode Prodi</label>
-                                                <input type="text" name="kode_prodi" id="kode_prodi"
-                                                class="form-control form-control-sm @if ($errors->has('kode_prodi')) is-invalid @endif"
-                                                value="{{ old('kode_prodi') }}" placeholder="Kode Prodi. Contoh : 01, 02">
-                                                @if ($errors->has('kode_prodi'))
+                                                <label for="k_prodi">Kode Prodi</label>
+                                                <input type="text" name="k_prodi" id="k_prodi"
+                                                class="form-control form-control-sm @if ($errors->has('k_prodi')) is-invalid @endif"
+                                                value="{{ old('k_prodi') }}" placeholder="Kode Prodi. Contoh : 01, 02">
+                                                @if ($errors->has('k_prodi'))
                                                 <div class="invalid-feedback">
-                                                    <strong>{{ $errors->first('kode_prodi') }}</strong>
+                                                    <strong>{{ $errors->first('k_prodi') }}</strong>
                                                 </div>
                                                 @endif
-                                                <label for="kode_prodi">Nama Prodi</label>
+                                                <label for="nama">Nama Prodi</label>
                                                 <input type="text" name="nama" id="nama"
                                                 class="form-control form-control-sm @if ($errors->has('nama')) is-invalid @endif"
                                                 value="{{ old('nama') }}" placeholder="Nama Prodi">
@@ -67,7 +67,7 @@
                                                     <strong>{{ $errors->first('nama') }}</strong>
                                                 </div>
                                                 @endif
-                                                <label for="kode_prodi">Jenjang</label>
+                                                <label for="jenjang_id">Jenjang</label>
                                                 <select name="jenjang_id" id="jenjang_id" class="form-control @if($errors->has('jenjang_id')) is-invalid @endif" required>
                                                     <option selected disabled>-- Silahkan Pilih Jenjang --</option>
                                                     @foreach($dataJenjang as $jenjang)
@@ -79,7 +79,7 @@
                                                         <strong>{{ $errors->first('jenjang_id') }}</strong>
                                                     </div>
                                                 @endif
-                                                <label for="kode_prodi">Fakultas</label>
+                                                <label for="fakultas_id">Fakultas</label>
                                                 <select name="fakultas_id" id="fakultas_id" class="form-control @if($errors->has('fakultas_id')) is-invalid @endif" required>
                                                     <option selected disabled>-- Silahkan Pilih Fakultas --</option>
                                                     @foreach($dataFakultas as $fakultas)
@@ -103,14 +103,15 @@
                                 </div>
                                 </form>
                             </div>
-                            {{-- <div class="col-md-7 right dashboard-right">
+                            <div class="col-md-7 right dashboard-right">
                                 <table id="tabel-data" class="table table-striped table-bordered" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Gelombang</th>
-                                            <th>Tanggal Mulai</th>
-                                            <th>Tanggal Selesai</th>
+                                            <th>Kode Prodi</th>
+                                            <th>Nama Prodi</th>
+                                            <th>ID Jenjang</th>
+                                            <th>ID Fakultas</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -118,11 +119,12 @@
                                         @foreach ($data as $d=>$data)
                                         <tr>
                                             <td class="text-center">{{ ++$d . '.' }}</td>
-                                            <td>{{ $data->gelombang }}</td>
-                                            <td>{{ date_format($data->tgl_mulai,"d M Y") }}</td>
-                                            <td>{{ date_format($data->tgl_selesai,"d M Y") }}</td>
+                                            <td>{{ $data->kode_prodi }}</td>
+                                            <td>{{ $data->nama }}</td>
+                                            <td>{{ $data->jenjang_id }}</td>
+                                            <td>{{ $data->fakultas_id }}</td>
                                             <td class="text-center">
-                                                <form action="{{ route('admin.gelombang.destroy',$data->id) }}" method="POST">
+                                                <form action="{{ route('admin.prodi.destroy',$data->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
@@ -132,7 +134,7 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                            </div> --}}
+                            </div>
                         </div>
                     </div>
                 </div>

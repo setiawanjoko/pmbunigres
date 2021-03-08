@@ -12,7 +12,7 @@
                     <a class="nav-link" href="{{ route('admin.fakultas.index') }}" type="button">Fakultas</a>
                 </li>
                 <li class="nav-item nav-prodi">
-                    <a class="nav-link" href="#" type="button">Program Studi</a>
+                    <a class="nav-link" href="{{ route('admin.prodi.index') }}" type="button">Program Studi</a>
                 </li>
                 <li class="nav-item nav-prodi">
                     <a class="nav-link" href="{{ route('admin.gelombang.index') }}" type="button">Gelombang</a>

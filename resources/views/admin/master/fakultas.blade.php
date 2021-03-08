@@ -12,7 +12,7 @@
                     <a class="nav-link active" type="button">Fakultas</a>
                 </li>
                 <li class="nav-item nav-prodi">
-                    <a class="nav-link" href="#" type="button">Program Studi</a>
+                    <a class="nav-link" href="{{ route('admin.prodi.index') }}" type="button">Program Studi</a>
                 </li>
                 <li class="nav-item nav-prodi">
                     <a class="nav-link" href="{{ route('admin.gelombang.index') }}" type="button">Gelombang</a>
@@ -80,12 +80,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($data as $d)
+                                    @foreach ($data as $key=>$data)
                                         <tr>
-                                            <td class="text-center">{{ ++$i . '.' }}</td>
-                                            <td>{{ $d->fakultas }}</td>
+                                            <td class="text-center">{{ ++$key . '.' }}</td>
+                                            <td>{{ $data->fakultas }}</td>
                                             <td class="text-center">
-                                                <form action="{{ route('admin.fakultas.destroy', $d->id) }}"
+                                                <form action="{{ route('admin.fakultas.destroy', $data->id) }}"
                                                     method="POST">
                                                     @csrf
                                                     @method('DELETE')

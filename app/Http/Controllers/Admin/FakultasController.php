@@ -11,9 +11,9 @@ use Illuminate\Http\Request;
 class FakultasController extends Controller
 {
     public function index() {
-        $data = Fakultas::latest()->paginate(10);
+        $data = Fakultas::all();
 
-        return view('admin.master.fakultas',compact('data'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('admin.master.fakultas',compact('data'));
     }
 
     public function create() {

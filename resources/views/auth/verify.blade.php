@@ -132,10 +132,6 @@
                 </div>
                 <div class="wrap-button-verif wp-step-1" id="btn1">
                     <a class="btn btn-login" href="{{ route('login') }}">Login</a>
-                    <button class="btn btn-instruction" onclick="hideShow()">Instruksi Pembayaran</button>
-                </div>
-                <div class="wrap-button-verif  wp-step-2 d-none" id="btn2">
-                    <a class="btn btn-login m-0" href="#">Konfirmasi Pembayaran</a>
                 </div>
             </div>
         </div>

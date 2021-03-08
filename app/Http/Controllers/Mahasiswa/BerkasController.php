@@ -9,6 +9,19 @@ use Illuminate\Support\Facades\Storage;
 
 class BerkasController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            if(empty(auth()->user()->biodata)) {
+                return response()->redirectToRoute('biodata.create');
+            }else if(empty(auth()->user()->ayah())) {
+                return response()->redirectToRoute('keluarga.create');
+            } else {
+                return $next($request);
+            }
+        });
+    }
+    
     public function create()
     {
         $user = auth()->user();

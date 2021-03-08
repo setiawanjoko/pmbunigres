@@ -88,7 +88,7 @@
                 <h4 class="title-info-pengumuman">Informasi dan Pengumuman</h4>
                 <p class="title-info-pengumuman2">Informasi seputar seleksi ujian masuk universitas gresik</p>
                 <div class="wp-info-pengumuman">
-                    @if(!is_null(auth()->user()->moodleAccount->nilai_tpa) && is_null(auth()->user()->pembayaranDaftarUlang()))
+                    @if(!empty(auth()->user()->moodleAccount->nilai_tpa) && is_null(auth()->user()->pembayaranDaftarUlang()))
                         <a class="link-item-ann" href="{{ route('daftar-ulang') }}">
                             <div class="wrappe-item-ann">
                                 <p class="item-ann-title-1">Instruksi Pembayaran Daftar Ulang</p>

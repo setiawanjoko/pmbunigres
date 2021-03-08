@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Prodi;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
 
 function getToken(){
@@ -42,4 +45,19 @@ function checkBrivaStatus($pembayaran) {
     } else {
         return false;
     }
+}
+
+function generateNIM($prodi_id){
+    $count = User::whereHas('pembayaran', function($query){
+        return $query->where([
+            ['kategori', 'daftar_ulang'],
+            ['status', 1]
+        ]);
+    })->where('prodi_id', $prodi_id)->count();
+    $prodi = Prodi::find($prodi_id);
+
+    $date = Carbon::today()->year;
+    $nim = $date . $prodi->kode_prodi . substr(str_repeat(0, 4).$count, - 4);
+
+    return $nim;
 }

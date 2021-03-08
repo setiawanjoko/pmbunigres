@@ -14,7 +14,7 @@ class ProdiController extends Controller
        $data = Prodi::all();
        $dataJenjang = Jenjang::all();
        $dataFakultas = Fakultas::all();
-
+       
        return response()->view('admin.master.program-studi', compact('data','dataJenjang','dataFakultas'));
     }
 

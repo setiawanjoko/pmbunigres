@@ -41,9 +41,11 @@ class MoodleAccountController extends Controller
     }
 
     private function createMoodleAccount() {
-        $randomAlfanumeric = str_shuffle('abcdefghjklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ234567890');
+        $randomAlfaSmall = str_shuffle('abcdefghjklmnopqrstuvwxyz');
+        $randomAlfaBig = str_shuffle('ABCDEFGHJKLMNOPQRSTUVWXYZ');
+        $randomNumeric = str_shuffle('1234567890');
         $randomSymbol = str_shuffle('!$^.,');
-        $password = substr($randomAlfanumeric, 0, 9) . $randomSymbol;
+        $password = substr($randomAlfaSmall, 0, 3) . substr($randomAlfaBig, 0, 3) . substr($randomNumeric, 0, 3) . substr($randomSymbol, 0, 3);
         $biodata = auth()->user()->biodata;
         $firstname = $biodata->nama_depan;
         $lastname = $biodata->nama_belakang;

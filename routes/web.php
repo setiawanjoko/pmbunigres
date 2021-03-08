@@ -49,17 +49,16 @@ Route::get('/verify/failed', [VerificationController::class, 'warning'])->name('
 Route::middleware(['auth', 'verify'])->group(function(){
     Route::get('/instruksi-pembayaran', [RegistrasiController::class, 'index'])->name('instruksi-bayar');
     Route::middleware(['paid.registration'])->group(function(){
-        Route::get('/home', [HomeController::class, 'index'])->name('home');
-        Route::get('/biodata', [BiodataController::class, 'create'])->name('biodata.create');
-        Route::post('/biodata', [BiodataController::class, 'store'])->name('biodata.store');
-        Route::get('/keluarga', [KeluargaController::class, 'create'])->name('keluarga.create');
-        Route::post('/keluarga', [KeluargaController::class, 'store'])->name('keluarga.store');
-        Route::get('/berkas', [BerkasController::class, 'create'])->name('berkas.create');
-        Route::post('/berkas', [BerkasController::class, 'store'])->name('berkas.store');
-//        Route::get('/prodi-pilihan', [ProdiPilihanController::class, 'create'])->name('prodi-pilihan.create');
-//        Route::post('/prodi-pilihan', [ProdiPilihanController::class, 'store'])->name('prodi-pilihan.store');
-        Route::get('/informasi-tpa', [MoodleAccountController::class, 'index'])->name('moodle');
-//        Route::get('/nilai/{id}', [MoodleAccountController::class, 'checkNilai']);
+        Route::middleware(['paid.reregistration'])->group(function(){
+            Route::get('/home', [HomeController::class, 'index'])->name('home');
+            Route::get('/biodata', [BiodataController::class, 'create'])->name('biodata.create');
+            Route::post('/biodata', [BiodataController::class, 'store'])->name('biodata.store');
+            Route::get('/keluarga', [KeluargaController::class, 'create'])->name('keluarga.create');
+            Route::post('/keluarga', [KeluargaController::class, 'store'])->name('keluarga.store');
+            Route::get('/berkas', [BerkasController::class, 'create'])->name('berkas.create');
+            Route::post('/berkas', [BerkasController::class, 'store'])->name('berkas.store');
+            Route::get('/informasi-tpa', [MoodleAccountController::class, 'index'])->name('moodle');
+        });
         Route::get('/daftar-ulang', [DaftarUlangController::class, 'index'])->name('daftar-ulang');
     });
 });

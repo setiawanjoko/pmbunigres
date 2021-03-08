@@ -88,22 +88,20 @@
                 <h4 class="title-info-pengumuman">Informasi dan Pengumuman</h4>
                 <p class="title-info-pengumuman2">Informasi seputar seleksi ujian masuk universitas gresik</p>
                 <div class="wp-info-pengumuman">
-                    <a class="link-item-ann" href="#">
-                        <div class="wrappe-item-ann">
-                            <p class="item-ann-title-1">Ujian Seleksi Masuk tahun 2019</p>
-                            <p class="item-ann-title-2">Publised by : <span>Admin | 29 Oktober 2019</span></p>
-                            <span class="badge badge-item">NEW</span>
-                        </div>
-                    </a>
-                    <a class="link-item-ann" href="#">
-                        <div class="wrappe-item-ann">
-                            <p class="item-ann-title-1">Pendaftaran Mahasiswa Baru 2019</p>
-                            <p class="item-ann-title-2">Publised by : <span>Admin | 15 Oktober 2019</span></p>
-                        </div>
-                    </a>
-                    <a class="link-vm" href="#">
-                        View More <i class="fa fa-arrow-right"></i>
-                    </a>
+                    @if(!is_null(auth()->user()->moodleAccount->nilai_tpa) && is_null(auth()->user()->pembayaranDaftarUlang()))
+                        <a class="link-item-ann" href="{{ route('daftar-ulang') }}">
+                            <div class="wrappe-item-ann">
+                                <p class="item-ann-title-1">Instruksi Pembayaran Daftar Ulang</p>
+                                <span class="badge badge-item">Penting</span>
+                            </div>
+                    @elseif(!is_null(auth()->user()->pembayaranDaftarUlang()) && !is_null(auth()->user()->biodata->nim)))
+                        <a class="link-item-ann" href="#">
+                            <div class="wrappe-item-ann">
+                                <p class="item-ann-title-1">{{ auth()->user()->biodata->nim ?? '' }}</p>
+                                <p class="item-ann-title-2"><span>Nomor Induk Mahasiswa</span></p>
+                            </div>
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>

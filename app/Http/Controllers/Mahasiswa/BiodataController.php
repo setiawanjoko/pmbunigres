@@ -44,7 +44,7 @@ class BiodataController extends Controller
         try {
             $berkas = $request->file('foto');
             $user = auth()->user();
-            $custCode = $user->pembayaranRegistrasi();
+            $custCode = $user->pembayaranRegistrasi()->custCode;
             if(!is_null($berkas)) {
                 $berkasName = $custCode . "_" . $berkas->getClientOriginalName();
 

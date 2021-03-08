@@ -95,7 +95,6 @@
                         <p class="catatan2">Jika link tidak merespon lakukan refresh website, atau tunggu hingga sampai link sudah aktif. Lalu segera lakukan tes potensi akademik.</p>
                     </div>
                     
-                    {{dd($dataMoodle)}}
                     @if(is_null($dataMoodle->nilai_tpa))
                         <div class="col-md-6 right">
                                 <div class="card mb-3">

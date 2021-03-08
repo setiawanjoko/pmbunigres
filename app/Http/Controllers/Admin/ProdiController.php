@@ -21,12 +21,19 @@ class ProdiController extends Controller
     public function store(Request $request) {
         $data = $request->validate([
             'nama' => 'required|string',
-            'kode_prodi' => 'string'
+            'kode_prodi' => 'required|string',
+            'jenjang_id' => 'integer',
+            'fakultas_id' => 'integer'
         ]);
 
+        dd($data);
+
         try {
-            Jenjang::create([
-                'nama' => $data['nama']
+            Prodi::create([
+                'nama' => $data['nama'],
+                'kode_prodi' => $data['kode_prodi'],
+                'jenjang_id' => $data['jenjang_id'],
+                'fakultas_id' => $data['fakultas_id']
             ]);
 
             return response()->redirectToRoute('admin.jenjang.store');

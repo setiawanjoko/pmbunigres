@@ -272,7 +272,7 @@
                                                     @endif
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <label for="tahun_masuk">Tahun Masuk</label>
+                                                    <label for="tahun_masuk">Tahun Lusus</label>
                                                     <input type="number" name="tahun_lulus" id="tahun_lulus"
                                                         class="form-control form-control-sm @if($errors->has('tahun_lulus')) is-invalid @endif "
                                                         value="{{ $data->tahun_lulus ?? old('tahun_lulus') }}" required>

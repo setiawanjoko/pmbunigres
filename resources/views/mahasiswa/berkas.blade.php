@@ -122,7 +122,7 @@
                                         <div class="card-body p-4">
                                             <div class="form-row">
                                                 <div class="form-group">
-                                                    <label for="pilihan_satu">Ijazah
+                                                    <label for="ijazah">Ijazah
                                                         @if(!empty($data) && !is_null($data->ijazah))
                                                             <a href="{{ asset('storage/' . $data->ijazah) }}" target="_blank">Lihat ijazah</a>
                                                         @endif</label>
@@ -136,7 +136,7 @@
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group">
-                                                    <label for="pilihan_satu">SKHUN
+                                                    <label for="skhun">SKHUN
                                                         @if(!empty($data) && !is_null($data->skhun))
                                                             <a href="{{ asset('storage/' . $data->skhun) }}" target="_blank">Lihat ijazah</a>
                                                         @endif</label>
@@ -150,7 +150,7 @@
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group">
-                                                    <label for="pilihan_satu">KTP
+                                                    <label for="ktp">KTP
                                                         @if(!empty($data) && !is_null($data->ktp))
                                                             <a href="{{ asset('storage/' . $data->ktp) }}" target="_blank">Lihat ijazah</a>
                                                         @endif</label>
@@ -164,7 +164,7 @@
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group">
-                                                    <label for="pilihan_satu">Kartu Keluarga
+                                                    <label for="kartu_keluarga">Kartu Keluarga
                                                         @if(!empty($data) && !is_null($data->kartu_keluarga))
                                                             <a href="{{ asset('storage/' . $data->kartu_keluarga) }}" target="_blank">Lihat ijazah</a>
                                                         @endif</label>

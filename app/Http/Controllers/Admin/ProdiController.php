@@ -26,6 +26,8 @@ class ProdiController extends Controller
             'k_prodi' => 'required|string'
         ]);
 
+        dd($data);
+
         try {
             Prodi::create([
                 'nama' => $data['nama'],

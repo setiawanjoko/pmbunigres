@@ -23,35 +23,35 @@ class PengaturanGelombangController extends Controller
 
     public function store(Request $request) {
         $data = $request->validate([
-            'gelombang' => 'required|exist:gelombang,id',
-            'prodi' => 'required|exist:prodi,id',
+            'gelombang' => 'required|exists:gelombang,id',
+            'prodi' => 'required|exists:prodi,id',
             'registrasi' => 'required|numeric',
             'daftar_ulang' => 'required|numeric'
         ]);
 
         try {
-            Biaya::updateOrCreate([
+            Biaya::updateOrCreate(
                 [
                     'gelombang_id' => $data['gelombang'],
-                    'prodi_id' => $data['prodi']
-                ],[
+                    'prodi_id' => $data['prodi'],
                     'jenis_biaya' => 'registrasi',
+                ],[
                     'nominal' => $data['registrasi']
                 ]
-            ]);
-            Biaya::updateOrCreate([
+            );
+            Biaya::updateOrCreate(
                 [
                     'gelombang_id' => $data['gelombang'],
-                    'prodi_id' => $data['prodi']
-                ],[
+                    'prodi_id' => $data['prodi'],
                     'jenis_biaya' => 'daftar_ulang',
+                ],[
                     'nominal' => $data['daftar_ulang']
                 ]
-            ]);
+            );
 
             return $this->index();
         } catch(\Exception $e){
-            abort(500);
+            dd($e->getMessage());
         }
     }
 }

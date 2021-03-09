@@ -35,5 +35,8 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('monitor', function (User $user) {
             return $user->permission_id == 3;
         });
+        Gate::define('keuangan', function (User $user) {
+            return $user->permission_id == 4;
+        });
     }
 }

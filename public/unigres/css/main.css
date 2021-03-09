@@ -1115,12 +1115,12 @@ main.dashboard {
   flex-direction: row;
   align-items: flex-start;
   padding: 24px 34px;
-  background-color: #fcfcfc;
+  /* background-color: #fcfcfc; */
   border: 1px solid #e5e5e5;
   border-radius: 4px;
   max-width: 795px;
   margin: auto;
-  margin-top: 52px;
+  margin-bottom: 52px;
 }
 .dashboard-user .wrapper-info img, .konfirmasi-pembayaran .wrapper-info img {
   margin-top: 3px;
@@ -1625,6 +1625,20 @@ main.dashboard {
   background: #f3f3f4;
   border: none;
   height: 52px;
+}
+
+.dashboard-user
+  .tab-content
+  .data-orang-tua
+  .row
+  .left
+  form
+  .card
+  .card-body
+  .form-control[type="file"]{
+  background: #f3f3f4;
+  border: none;
+  height: auto;
 }
 
 .dashboard-user .tab-content .data-orang-tua .row .left .btn-light:hover,

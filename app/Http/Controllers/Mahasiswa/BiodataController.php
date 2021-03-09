@@ -74,7 +74,7 @@ class BiodataController extends Controller
                 'foto' => $berkasName,
             ]);
 
-            return response()->redirectToRoute('keluarga.create');
+            return response()->redirectToRoute('keluarga.create')->with(['status' => 'success', 'message' => 'Data biodata berhasil disimpan.']);
         }catch(\Exception $e) {
             if(Storage::exists('public/' . $berkasName)) Storage::delete('public/' . $berkasName);
             return redirect()->back()->with(['status' => 'danger', 'message' => $e->getMessage()]);

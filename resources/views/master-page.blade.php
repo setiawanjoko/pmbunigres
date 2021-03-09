@@ -86,6 +86,7 @@
     <section class="akademis-group">
         <div class="second-container">
                 <div class="wrapper-ak-group">
+                    @if (!Auth::check())
                     <a class="link-item" href="{{ route('register') }}">
                         <div class="ak-item">
                             <img src="{{ asset('unigres/images/ic-document.svg') }}">
@@ -95,6 +96,17 @@
                             </div>
                         </div>
                     </a>
+                    @else
+                    <a class="link-item" href="{{ route('biodata.create') }}">
+                        <div class="ak-item">
+                            <img src="{{ asset('unigres/images/ic-document.svg') }}">
+                            <div class="ak-body">
+                                <p class="title-1">Biodata</p>
+                                <p class="title-2">Informasi Biodata Anda</p>
+                            </div>
+                        </div>
+                    </a>
+                    @endif
                     <a class="link-item" href="{{ route('home') }}">
                         <div class="ak-item">
                             <img src="{{ asset('unigres/images/ic-document.svg') }}">

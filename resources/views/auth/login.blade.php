@@ -36,10 +36,10 @@
                     <a class="nav-link" href="{{ route('homepage') }}">Beranda</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Pengumuman</a>
+                    <a class="nav-link" href="{{ route('pengumuman') }}">Pengumuman</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link" href="{{ route('kontak') }}">Contact</a>
                 </li>
                 <li class="nav-item btn-nav">
                     <a class="nav-link" href="{{ route('login') }}">Login</a>

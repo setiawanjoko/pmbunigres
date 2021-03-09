@@ -39,6 +39,10 @@ Route::get('pengumuman', function () {
     return view('pengumuman');
 })->name('pengumuman');
 
+Route::get('kontak', function () {
+    return view('contact');
+})->name('kontak');
+
 //    Route::get('/register', [RegisterController::class, 'index'])->name('mahasiswa.register');
 //    Route::post('/register', [RegisterController::class, 'store'])->name('mahasiswa.register.store');
 

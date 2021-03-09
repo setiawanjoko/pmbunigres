@@ -25,8 +25,9 @@ class RedirectIfAuthenticated
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
                 $user = Auth::user();
-                if($user->can('admin')) return '/admin/tes-tpa';
-                else if($user->can('camaba')) return '/biodata';
+                if($user->can('admin')) return response()->redirectToRoute('admin.tes-tpa.index');
+                else if($user->can('camaba')) return response()->redirectToRoute('biodata.create');
+                else if($user->can('keuangan')) return response()->redirectToRoute('keuangan.check-status');
             }
         }
 

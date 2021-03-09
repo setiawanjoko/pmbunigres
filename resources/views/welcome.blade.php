@@ -11,7 +11,7 @@
 @parent
 @endsection
 
-@section('welcome')
+@section('content')
 <section class="announcement">
     <div class="second-container">
         <div class="wrapper-head-ann">

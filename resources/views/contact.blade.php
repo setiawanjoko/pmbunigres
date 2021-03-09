@@ -1,6 +1,6 @@
 @extends('master-page')
 
-@section('title', 'Pengumuman')
+@section('title', 'Kontak')
 
 @section('content-title')
 <h5 class="banner-caption">Kontak</h5>
@@ -19,8 +19,11 @@
 </li>
 @endsection
 
-@section('pengumuman')
-<section class="announcement">
+@section('fill-content')    
+@endsection
+
+@section('content')
+<section class="announcement mt-5">
   <div class="second-container">
     <div class="row">
         <div class="col-lg-12">

@@ -33,13 +33,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('homepage') }}">Beranda</a>
+                    <a class="nav-link" aria-current="page" href="{{ route('homepage') }}">Beranda</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('pengumuman') }}">Pengumuman</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('kontak') }}">Contact</a>
+                    <a class="nav-link" href="{{ route('kontak') }}">Kontak</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('register') }}">Registrasi</a>
                 </li>
                 <li class="nav-item btn-nav">
                     <a class="nav-link" href="{{ route('login') }}">Login</a>

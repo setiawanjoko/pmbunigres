@@ -21,12 +21,7 @@ class Gelombang extends Model
     ];
 
     public function user() {
-        $data = User::where([
-            ['email_verified_at', '>=', $this->tgl_mulai],
-            ['email_verified_at', '<=', $this->tgl_selesai]
-        ])->get();
-
-        return $data;
+        return $this->hasMany(User::class, 'gelombang_id', 'id');
     }
 
     public function biaya() {

@@ -135,6 +135,7 @@
                                 <option value="pagi" @if(old('kelas') == 'pagi') selected @endif>Pagi</option>
                                 <option value="siang" @if(old('kelas') == 'siang') selected @endif>Siang</option>
                                 <option value="sore" @if(old('kelas') == 'sore') selected @endif>Sore</option>
+                                <option value="malam" @if(old('kelas') == 'malam') selected @endif>Malam</option>
                             </select>
                             @if($errors->has('kelas'))
                                 <div class="invalid-feedback">

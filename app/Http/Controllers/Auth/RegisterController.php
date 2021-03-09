@@ -3,12 +3,16 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Gelombang;
 use App\Models\Jenjang;
+use App\Models\Prodi;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller
 {
@@ -57,13 +61,28 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $prodi = Prodi::find($data['prodi']);
+        $arr = array();
+        if($prodi->pagi) {
+            array_push($arr, 'pagi');
+        }
+        if($prodi->siang) {
+            array_push($arr, 'siang');
+        }
+        if($prodi->sore) {
+            array_push($arr, 'sore');
+        }
+        if($prodi->malam) {
+            array_push($arr, 'malam');
+        }
+
         return Validator::make($data, [
             'nama' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'informasi' => ['required', 'in:sosial_media,teman_saudara,lainnya'],
             'no_telepon' => ['required', 'string'],
-            'kelas' => ['required', 'in:pagi,siang,sore'],
+            'kelas' => ['required', Rule::in($arr)],
             'prodi' => ['required', 'exists:prodi,id'],
             'jalur_masuk' => ['required', 'in:reguler,transfer,pindahan,lanjutan']
         ]);
@@ -77,6 +96,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $gelombang = Gelombang::where([
+            ['tgl_mulai', '<=', Carbon::today()],
+            ['tgl_selesai', '>=', Carbon::today()]
+        ])->first();
+
         return User::create([
             'nama' => $data['nama'],
             'email' => $data['email'],
@@ -85,7 +109,8 @@ class RegisterController extends Controller
             'no_telepon' => $data['no_telepon'],
             'kelas' => $data['kelas'],
             'prodi_id' => $data['prodi'],
-            'jalur_masuk' => $data['jalur_masuk']
+            'jalur_masuk' => $data['jalur_masuk'],
+            'gelombang_id' => $gelombang->id
         ]);
     }
 }

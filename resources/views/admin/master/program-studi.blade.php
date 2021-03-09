@@ -49,7 +49,18 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-lg-12">
-                                                <label for="k_prodi">Kode Prodi</label>
+                                                <label for="s_prodi">Kode Prodi SIAKAD</label>
+                                                <input type="text" name="s_prodi" id="s_prodi"
+                                                class="form-control form-control-sm @if ($errors->has('s_prodi')) is-invalid @endif"
+                                                value="{{ old('s_prodi') }}" placeholder="Kode Prodi. Contoh : 61201, 14202">
+                                                @if ($errors->has('s_prodi'))
+                                                <div class="invalid-feedback">
+                                                    <strong>{{ $errors->first('s_prodi') }}</strong>
+                                                </div>
+                                                @endif
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <label for="k_prodi">Kode Prodi NIM</label>
                                                 <input type="text" name="k_prodi" id="k_prodi"
                                                 class="form-control form-control-sm @if ($errors->has('k_prodi')) is-invalid @endif"
                                                 value="{{ old('k_prodi') }}" placeholder="Kode Prodi. Contoh : 01, 02">
@@ -58,6 +69,8 @@
                                                     <strong>{{ $errors->first('k_prodi') }}</strong>
                                                 </div>
                                                 @endif
+                                            </div>
+                                            <div class="col-lg-12">
                                                 <label for="nama">Nama Prodi</label>
                                                 <input type="text" name="nama" id="nama"
                                                 class="form-control form-control-sm @if ($errors->has('nama')) is-invalid @endif"
@@ -67,6 +80,8 @@
                                                     <strong>{{ $errors->first('nama') }}</strong>
                                                 </div>
                                                 @endif
+                                            </div>
+                                            <div class="col-lg-12">
                                                 <label for="jenjang_id">Jenjang</label>
                                                 <select name="jenjang_id" id="jenjang_id" class="form-control @if($errors->has('jenjang_id')) is-invalid @endif" required>
                                                     <option selected disabled>-- Silahkan Pilih Jenjang --</option>
@@ -79,6 +94,8 @@
                                                         <strong>{{ $errors->first('jenjang_id') }}</strong>
                                                     </div>
                                                 @endif
+                                            </div>
+                                            <div class="col-lg-12">
                                                 <label for="fakultas_id">Fakultas</label>
                                                 <select name="fakultas_id" id="fakultas_id" class="form-control @if($errors->has('fakultas_id')) is-invalid @endif" required>
                                                     <option selected disabled>-- Silahkan Pilih Fakultas --</option>
@@ -89,6 +106,102 @@
                                                 @if($errors->has('fakultas_id'))
                                                     <div class="invalid-feedback">
                                                         <strong>{{ $errors->first('fakultas_id') }}</strong>
+                                                    </div>
+                                                @endif
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <label for="pagi">Kelas Pagi</label>
+                                                <div class="wrap-input">
+                                                    <div class="form-check form-check-inline">
+                                                        <input type="radio" name="pagi" id="pagi_ya"
+                                                               class="form-check-input @if($errors->has('pagi')) is-invalid @endif"
+                                                               value="true" @if(old('pagi')) checked @endif>
+                                                        <label class="form-check-label"
+                                                               for="pagi_ya">Ya</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input type="radio" name="pagi" id="pagi_tidak"
+                                                               class="form-check-input @if($errors->has('pagi')) is-invalid @endif"
+                                                               value="false" @if(!(old('pagi'))) checked @endif>
+                                                        <label class="form-check-label"
+                                                               for="pagi_tidak">Tidak</label>
+                                                    </div>
+                                                </div>
+                                                @if($errors->has('pagi'))
+                                                    <div class="invalid-feedback">
+                                                        <strong>{{ $errors->first('pagi') }}</strong>
+                                                    </div>
+                                                @endif
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <label for="siang">Kelas Siang</label>
+                                                <div class="wrap-input">
+                                                    <div class="form-check form-check-inline">
+                                                        <input type="radio" name="siang" id="siang_ya"
+                                                               class="form-check-input @if($errors->has('siang')) is-invalid @endif"
+                                                               value="true" @if(old('siang')) checked @endif>
+                                                        <label class="form-check-label"
+                                                               for="siang_ya">Ya</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input type="radio" name="siang" id="siang_tidak"
+                                                               class="form-check-input @if($errors->has('siang')) is-invalid @endif"
+                                                               value="false" @if(!(old('siang'))) checked @endif>
+                                                        <label class="form-check-label"
+                                                               for="siang_tidak">Tidak</label>
+                                                    </div>
+                                                </div>
+                                                @if($errors->has('siang'))
+                                                    <div class="invalid-feedback">
+                                                        <strong>{{ $errors->first('siang') }}</strong>
+                                                    </div>
+                                                @endif
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <label for="sore">Kelas Sore</label>
+                                                <div class="wrap-input">
+                                                    <div class="form-check form-check-inline">
+                                                        <input type="radio" name="sore" id="sore_ya"
+                                                               class="form-check-input @if($errors->has('sore')) is-invalid @endif"
+                                                               value="true" @if(old('sore')) checked @endif>
+                                                        <label class="form-check-label"
+                                                               for="sore_ya">Ya</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input type="radio" name="sore" id="sore_tidak"
+                                                               class="form-check-input @if($errors->has('sore')) is-invalid @endif"
+                                                               value="false" @if(!(old('sore'))) checked @endif>
+                                                        <label class="form-check-label"
+                                                               for="sore_tidak">Tidak</label>
+                                                    </div>
+                                                </div>
+                                                @if($errors->has('sore'))
+                                                    <div class="invalid-feedback">
+                                                        <strong>{{ $errors->first('sore') }}</strong>
+                                                    </div>
+                                                @endif
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <label for="malam">Kelas Malam</label>
+                                                <div class="wrap-input">
+                                                    <div class="form-check form-check-inline">
+                                                        <input type="radio" name="malam" id="malam_ya"
+                                                               class="form-check-input @if($errors->has('malam')) is-invalid @endif"
+                                                               value="true" @if(old('malam')) checked @endif>
+                                                        <label class="form-check-label"
+                                                               for="malam_ya">Ya</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input type="radio" name="malam" id="malam_tidak"
+                                                               class="form-check-input @if($errors->has('malam')) is-invalid @endif"
+                                                               value="false" @if(!(old('malam'))) checked @endif>
+                                                        <label class="form-check-label"
+                                                               for="malam_tidak">Tidak</label>
+                                                    </div>
+                                                </div>
+                                                @if($errors->has('malam'))
+                                                    <div class="invalid-feedback">
+                                                        <strong>{{ $errors->first('malam') }}</strong>
                                                     </div>
                                                 @endif
                                             </div>
@@ -110,21 +223,21 @@
                                             <th>No</th>
                                             <th>Kode Prodi</th>
                                             <th>Nama Prodi</th>
-                                            <th>ID Jenjang</th>
-                                            <th>ID Fakultas</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($data as $d=>$data)
+                                        @foreach ($data as $prodi)
                                         <tr>
-                                            <td class="text-center">{{ ++$d . '.' }}</td>
-                                            <td>{{ $data->kode_prodi }}</td>
-                                            <td>{{ $data->nama }}</td>
-                                            <td>{{ $data->jenjang_id }}</td>
-                                            <td>{{ $data->fakultas_id }}</td>
+                                            <td class="text-center">{{ $loop->iteration . '.' }}</td>
+                                            <td>{{ $prodi->kode_prodi_siakad . ' / ' . $prodi->kode_prodi_nim }}</td>
+                                            <td>
+                                                {{ $prodi->nama }}<br>
+                                                <small class="text-sm">Jenjang: {{ $prodi->jenjang->nama }}</small><br>
+                                                <small class="text-sm">Fakultas: {{ $prodi->fakultas['nama'] }}</small>
+                                            </td>
                                             <td class="text-center">
-                                                <form action="{{ route('admin.prodi.destroy',$data->id) }}" method="POST">
+                                                <form action="{{ route('admin.prodi.destroy',$prodi->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>

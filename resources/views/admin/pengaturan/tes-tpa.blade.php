@@ -37,7 +37,7 @@
                                             <input type="text" name="link" id="link"
                                                    class="form-control form-control-sm @if($errors->has('link')) is-invalid @endif"
                                                    value="{{ $data->value ?? old('link') }}">
-                                            <span class="small">Contoh: http://tpa.unigres.ac.id/mod/quiz/view.php?id=0</span>
+                                            <span class="small">Contoh: http://tpa.unigres.ac.id/course/view.php?id=0</span>
                                             @if($errors->has('link'))
                                                 <div class="invalid-feedback">
                                                     <strong>{{ $errors->first('link') }}</strong>

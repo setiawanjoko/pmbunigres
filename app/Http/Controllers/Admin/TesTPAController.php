@@ -22,7 +22,7 @@ class TesTPAController extends Controller
 
         try {
             $query = parse_url($data['link'], PHP_URL_PATH );
-            if (strpos($query, "/mod/quiz/view.php") !== false) {
+            if (strpos($query, "/course/view.php") !== false) {
                 $query = parse_url($data['link'], PHP_URL_QUERY );
                 parse_str($query, $output);
 

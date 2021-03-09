@@ -11,7 +11,7 @@ class Prodi extends Model
 
     protected $table = 'prodi';
 
-    protected $fillable = ['jenjang_id', 'fakultas_id', 'nama','kode_prodi'];
+    protected $fillable = ['jenjang_id', 'fakultas_id', 'nama', 'kode_prodi_nim', 'kode_prodi_siakad', 'pagi', 'siang', 'sore', 'malam'];
 
     public function jenjang() {
          return $this->belongsTo(Jenjang::class, 'jenjang_id', 'id');

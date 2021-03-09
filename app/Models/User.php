@@ -24,7 +24,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'permission_id',
         'no_telepon',
         'informasi',
-        'kelas',
         'prodi_id',
         'nim'
     ];
@@ -122,5 +121,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function prodi() {
         return $this->belongsTo(Prodi::class, 'prodi_id', 'id');
+    }
+
+    public function pengumuman() {
+        return $this->hasMany(Pengumuman::class, 'petugas_id', 'id');
     }
 }

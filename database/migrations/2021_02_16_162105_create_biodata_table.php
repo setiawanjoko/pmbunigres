@@ -18,6 +18,7 @@ class CreateBiodataTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('no_pendaftaran')->unique();
             $table->string('nik')->unique();
+            $table->string('nim')->nullable();
             $table->string('nama_depan');
             $table->string('nama_belakang')->nullable();
             $table->string('tempat_lahir');

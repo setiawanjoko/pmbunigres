@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddNimToBiodataTable extends Migration
+class CreatePengumumanTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class AddNimToBiodataTable extends Migration
      */
     public function up()
     {
-        Schema::table('biodata', function (Blueprint $table) {
-            $table->string('nim')->nullable();
+        Schema::create('pengumuman', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('petugas_id');
+            $table->string('judul');
+            $table->string('deskripsi');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +29,6 @@ class AddNimToBiodataTable extends Migration
      */
     public function down()
     {
-        Schema::table('biodata', function (Blueprint $table) {
-            $table->dropColumn('nim');
-        });
+        Schema::dropIfExists('pengumuman');
     }
 }

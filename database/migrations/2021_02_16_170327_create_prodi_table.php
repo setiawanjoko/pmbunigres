@@ -17,8 +17,13 @@ class CreateProdiTable extends Migration
             $table->id();
             $table->unsignedBigInteger('jenjang_id');
             $table->unsignedBigInteger('fakultas_id')->nullable(true);
-            $table->string('kode_prodi');
+            $table->string('kode_prodi_nim');
+            $table->string('kode_prodi_siakad');
             $table->string('nama');
+            $table->boolean('pagi')->default(false);
+            $table->boolean('siang')->default(false);
+            $table->boolean('sore')->default(false);
+            $table->boolean('malam')->default(false);
             $table->timestamps();
         });
     }

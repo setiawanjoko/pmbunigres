@@ -42,7 +42,6 @@ Route::get('pengumuman', function () {
 //    Route::get('/register', [RegisterController::class, 'index'])->name('mahasiswa.register');
 //    Route::post('/register', [RegisterController::class, 'store'])->name('mahasiswa.register.store');
 
-
 Auth::routes(['verify'=>true]);
 Route::get('/verify/failed', [VerificationController::class, 'warning'])->name('verification.failed');
 

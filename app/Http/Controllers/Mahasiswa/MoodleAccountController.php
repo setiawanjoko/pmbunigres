@@ -109,7 +109,7 @@ class MoodleAccountController extends Controller
                 foreach ($response->grades as $grade) {
                     if($grade->courseid == $courseID->value) {
                         if (!empty($grade->rawgrade)) {
-                            $final = $grade->rawgrade;
+                            $final = $grade->grade;
                             break;
                         }
                     }

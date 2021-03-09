@@ -23,7 +23,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light main-nav">
     <div class="main-container">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{{ route('homepage') }}">
             <img class="logo-brand" src="{{ asset('unigres/images/logo.png') }}">
             <p>USM.<span>Unigres</span></p>
         </a>
@@ -37,15 +37,15 @@
                     <a class="nav-link active" aria-current="page" href="{{ route('homepage') }}">Beranda</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('pengumuman') }}">Pengumuman</a>
+                    <a class="nav-link" aria-current="page"  href="{{ route('pengumuman') }}">Pengumuman</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('kontak') }}">Kontak</a>
+                    <a class="nav-link" aria-current="page"  href="{{ route('kontak') }}">Kontak</a>
                 </li>  
                 @show
                 @if (!Auth::check())
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('register') }}">Registrasi</a>
+                    <a class="nav-link" aria-current="page" href="{{ route('register') }}">Registrasi</a>
                 </li>
                 <li class="nav-item btn-nav">
                     <a class="nav-link" href="{{ route('login') }}">Login</a>
@@ -55,9 +55,12 @@
                     <div class="dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">{{ auth()->user()->nama }}</a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                @can('admin') 
+                                    <a class="dropdown-item" href="{{ route('admin.tes-tpa.index')}}">Halaman Admin</a>
+                                @endcan
                                 <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{__('logout')}}</a>
                             </div>
-                        </div>
+                    </div>
                 </li>                    
                 @endif
             </ul>
@@ -79,41 +82,43 @@
             </div>
         </div>
     </section>
+    @section('fill-content')
     <section class="akademis-group">
         <div class="second-container">
-            <div class="wrapper-ak-group">
-                <a class="link-item" href="{{ route('register') }}">
-                    <div class="ak-item">
-                        <img src="{{ asset('unigres/images/ic-document.svg') }}">
-                        <div class="ak-body">
-                            <p class="title-1">Pendaftaran</p>
-                            <p class="title-2">Mahasiswa Baru 2021</p>
+                <div class="wrapper-ak-group">
+                    <a class="link-item" href="{{ route('register') }}">
+                        <div class="ak-item">
+                            <img src="{{ asset('unigres/images/ic-document.svg') }}">
+                            <div class="ak-body">
+                                <p class="title-1">Pendaftaran</p>
+                                <p class="title-2">Mahasiswa Baru 2021</p>
+                            </div>
                         </div>
-                    </div>
-                </a>
-                <a class="link-item" href="{{ route('home') }}">
-                    <div class="ak-item">
-                        <img src="{{ asset('unigres/images/ic-document.svg') }}">
-                        <div class="ak-body">
-                            <p class="title-1">Daftar Ulang</p>
-                            <p class="title-2">Mahasiswa Baru 2021</p>
+                    </a>
+                    <a class="link-item" href="{{ route('home') }}">
+                        <div class="ak-item">
+                            <img src="{{ asset('unigres/images/ic-document.svg') }}">
+                            <div class="ak-body">
+                                <p class="title-1">Daftar Ulang</p>
+                                <p class="title-2">Mahasiswa Baru 2021</p>
+                            </div>
                         </div>
-                    </div>
-                </a>
-                <a class="link-item" href="{{ route('moodle') }}">
-                    <div class="ak-item">
-                        <img src="{{ asset('unigres/images/ic-book.svg') }}">
-                        <div class="ak-body">
-                            <p class="title-1">Test Potensi Akademik</p>
-                            <p class="title-2">Mahasiswa Baru 2021</p>
+                    </a>
+                    <a class="link-item" href="{{ route('moodle') }}">
+                        <div class="ak-item">
+                            <img src="{{ asset('unigres/images/ic-book.svg') }}">
+                            <div class="ak-body">
+                                <p class="title-1">Test Potensi Akademik</p>
+                                <p class="title-2">Mahasiswa Baru 2021</p>
+                            </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
             </div>
-        </div>
-    </section>
-    @yield('welcome')
-    @yield('pengumuman')
+        </section>
+    @show
+
+    @yield('content')
     <footer>
         <ul class="wrapper-footer">
             <li>Copyright © 2019 Universitas Gresik</li>

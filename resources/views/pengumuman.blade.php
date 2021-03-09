@@ -19,7 +19,7 @@
 </li>
 @endsection
 
-@section('pengumuman')
+@section('content')
 <section class="announcement">
   <div class="second-container">
     <div class="row gx-3 gy-3">

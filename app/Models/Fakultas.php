@@ -16,4 +16,8 @@ class Fakultas extends Model
     public function prodi() {
         return $this->hasMany(Prodi::class, 'fakultas_id', 'id');
     }
+
+    public function getNamaAttribute() {
+        return $this->fakultas;
+    }
 }

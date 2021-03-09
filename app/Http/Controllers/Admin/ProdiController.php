@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class ProdiController extends Controller
 {
     public function index() {
-       $data = Prodi::all();
+       $data = Prodi::with(['jenjang', 'fakultas'])->get();
        $dataJenjang = Jenjang::all();
        $dataFakultas = Fakultas::all();
 
@@ -23,17 +23,25 @@ class ProdiController extends Controller
             'nama' => 'required|string',
             'jenjang_id' => 'integer',
             'fakultas_id' => 'integer',
-            'k_prodi' => 'required|string'
+            'k_prodi' => 'required|string',
+            's_prodi' => 'required|string',
+            'pagi' => 'required',
+            'siang' => 'required',
+            'sore' => 'required',
+            'malam' => 'required',
         ]);
-
-        dd($data);
 
         try {
             Prodi::create([
                 'nama' => $data['nama'],
                 'jenjang_id' => $data['jenjang_id'],
                 'fakultas_id' => $data['fakultas_id'],
-                'kode_prodi' => $data['k_prodi']
+                'kode_prodi_nim' => $data['k_prodi'],
+                'kode_prodi_siakad' => $data['s_prodi'],
+                'pagi' => $data['pagi'],
+                'siang' => $data['siang'],
+                'sore' => $data['sore'],
+                'malam' => $data['malam'],
             ]);
 
             return response()->redirectToRoute('admin.prodi.store');

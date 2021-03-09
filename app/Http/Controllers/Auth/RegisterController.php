@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Gelombang;
 use App\Models\Jenjang;
 use App\Models\Prodi;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -94,6 +96,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $gelombang = Gelombang::where([
+            ['tgl_mulai', '<=', Carbon::today()],
+            ['tgl_selesai', '>=', Carbon::today()]
+        ])->first();
+
         return User::create([
             'nama' => $data['nama'],
             'email' => $data['email'],
@@ -102,7 +109,8 @@ class RegisterController extends Controller
             'no_telepon' => $data['no_telepon'],
             'kelas' => $data['kelas'],
             'prodi_id' => $data['prodi'],
-            'jalur_masuk' => $data['jalur_masuk']
+            'jalur_masuk' => $data['jalur_masuk'],
+            'gelombang_id' => $gelombang->id
         ]);
     }
 }

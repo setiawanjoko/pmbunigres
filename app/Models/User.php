@@ -22,6 +22,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'password',
         'permission_id',
+        'gelombang_id',
         'no_telepon',
         'informasi',
         'prodi_id',
@@ -48,10 +49,7 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     public function gelombang() {
-        return Gelombang::where([
-            ['tgl_mulai', '<=', $this->created_at],
-            ['tgl_selesai', '>=', $this->email_verified_at]
-        ])->first();
+        return $this->belongsTo(Gelombang::class, 'gelombang_id', 'id');
     }
 
     public function permission() {

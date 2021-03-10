@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Kelas;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
@@ -16,20 +17,25 @@ class KelasSeeder extends Seeder
     {
         $data = [
             [
-                'prodi_id' => '1',
+                'prodi_id' => 1,
                 'kelas' => 'A',
                 'pagi' => true,
+                'sore' => false,
                 'malam' => true,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
             [
-                'prodi_id' => '1',
+                'prodi_id' => 1,
                 'kelas' => 'B',
+                'pagi' => false,
                 'sore' => true,
+                'malam' => false,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
         ];
+
+        Kelas::insert($data);
     }
 }

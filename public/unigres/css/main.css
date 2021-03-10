@@ -141,21 +141,17 @@ section.main-banner .wrapper-banner {
   width: 100%;
   height: 380px;
   border-radius: 29px;
-  background-image: url("../images/banner-main.jpg");
+  background-image: url("../images/banner-main-flip.jpg");
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: left;
+  background-position: right;
   overflow: hidden;
 }
 section.main-banner .wrapper-banner .banner-iner {
-  padding-top: 82px;
+  padding: 10% 0;
   width: 100%;
   height: 380px;
-  background: linear-gradient(
-    263.76deg,
-    #0078ba 45.08%,
-    rgba(0, 120, 186, 0) 114.7%
-  );
+  background: linear-gradient(90deg, rgba(0,120,186,1) 0%, rgba(0,164,219,1) 49%, rgba(0,212,255,0.1825105042016807) 100%);
 }
 section.main-banner p {
   font-style: normal;

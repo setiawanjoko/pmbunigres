@@ -94,27 +94,51 @@
                         <p class="catatan">Catatan :</p>
                         <p>
                             <ol>
-                                <li class="catatan2">Silahkan untuk melakukan tes potensi akademik</li>
-                                <li class="catatan2">Silahkan login menggunakan informasi akun</li>
+                                <li class="catatan2">Silahkan klik link diatas untuk masuk ke halaman tes potensi akademik</li>
+                                <li class="catatan2">Lalu login menggunakan informasi akun yang telah diberikan</li>
                                 <li class="catatan2">Jika ada informasi yang kurang jelas, silahkan tanyakan ke pihak terkait.</li>
                             </ol>
                         </p>
                         <p class="catatan2">Jika link tidak merespon lakukan refresh website, atau tunggu hingga sampai link sudah aktif. Lalu segera lakukan tes potensi akademik.</p>
                     </div>                    
-                    @if(!is_null($dataMoodle->nilai_tpa))
                     <div class="col-md-6 right">
+                        @if(!is_null($dataMoodle->nilai_tpa))
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Nilai Tes Potensi Akademik.</h5>
+                                </div>
+                                <div class="card-body">
+                                    <h1>{{ $dataMoodle->nilai_tpa }}</h1>
+                                </div>
+                            </div><p class="catatan">Catatan :</p>
+                            <p class="catatan2">Lakukan proses daftar ulang pada menu Informasi dan Pengumuman.</p>
+                        @endif
+                        <div class="mb-3">
+                            <p class="h5 mb-4" style="font-family: 'Helvetica Neue', sans-serif;
+                            font-style: normal;
+                            font-weight: bold;
+                            font-size: 18px;
+                            line-height: 22px;
+                            letter-spacing: 0.02em;
+                            color: #251462;
+                            margin-bottom: 38px;">Selamat Anda Telah Lulus, Sebagai calon Mahasiswa Universitas Gresik</p>
+                            <p style="font-family: 'Helvetica 35 Thin', sans-serif;
+                            font-style: normal;
+                            font-weight: normal;
+                            font-size: 14px;
+                            line-height: 28px;
+                            letter-spacing: 0.02em;
+                            color: #000000;">Untuk langkah selanjutnya, silahkan menuju halaman informasi dan pengumuman untuk informasi Daftar Ulang.</p>
+                        </div>
                         <div class="card mb-3">
                             <div class="card-header">
                                 <h5 class="mb-0">Nilai Tes Potensi Akademik.</h5>
                             </div>
                             <div class="card-body">
-                                <h1>{{ $dataMoodle->nilai_tpa }}</h1>
+                                <h2>100</h2>
                             </div>
-                        </div><p class="catatan">Catatan :</p>
-                        <p class="catatan2">Lakukan proses daftar ulang pada menu Informasi dan Pengumuman.</p>
-                    </div>
-                    @endif
-                    <div class="col-md-6 right">
+                        </div>
+
                             <div class="card mb-3">
                                 <div class="card-header">
                                     <h5 class="mb-0">Informasi user dan password Anda.</h5>

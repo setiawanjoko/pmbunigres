@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ProdiController;
 use App\Http\Controllers\Admin\TesTPAController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Keuangan\CheckStatusController;
 use App\Http\Controllers\Mahasiswa\BiodataController;
 use App\Http\Controllers\Mahasiswa\KeluargaController;
 use App\Http\Controllers\Mahasiswa\LinkTesTPAController;
@@ -43,13 +44,10 @@ Route::get('kontak', function () {
     return view('contact');
 })->name('kontak');
 
-//    Route::get('/register', [RegisterController::class, 'index'])->name('mahasiswa.register');
-//    Route::post('/register', [RegisterController::class, 'store'])->name('mahasiswa.register.store');
-
 Auth::routes(['verify'=>true]);
 Route::get('/verify/failed', [VerificationController::class, 'warning'])->name('verification.failed');
 
-Route::middleware(['auth', 'verify'])->group(function(){
+Route::middleware(['auth', 'verify', 'can:camaba'])->group(function(){
     Route::get('/instruksi-pembayaran', [RegistrasiController::class, 'index'])->name('instruksi-bayar');
     Route::middleware(['paid.registration'])->group(function(){
         Route::middleware(['paid.reregistration'])->group(function(){
@@ -75,4 +73,9 @@ Route::middleware(['auth', 'can:admin'])->prefix('/admin')->name('admin.')->grou
     Route::resource('/pengumuman', PengumumanController::class)->only(['index', 'create', 'store']);
     Route::resource('/tes-tpa', TesTPAController::class)->only(['index', 'store']);
     Route::resource('/pendaftar', PendaftarController::class)->only(['index']);
+});
+
+Route::middleware(['auth', 'can:keuangan'])->prefix('/keuangan')->name('keuangan.')->group(function(){
+    Route::get('/check-status', [CheckStatusController::class, 'index'])->name('check-status');
+    Route::post('/check-status', [CheckStatusController::class, 'index'])->name('check-status.filter');
 });

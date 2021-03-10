@@ -16,7 +16,7 @@ class BiayaSeeder extends Seeder
      */
     public function run()
     {
-        $data = [
+        /*$data = [
             [
                 'prodi_id' => 1,
                 'gelombang_id' => 1,
@@ -177,6 +177,41 @@ class BiayaSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ]
+        ];*/
+
+        $data = [
+            [
+                'jalur_masuk_id' => 1,
+                'gelombang_id' => 1,
+                'jenis_biaya' => 'registrasi',
+                'nominal' => 200000,
+                'created_at'    => Carbon::now(),
+                'updated_at'    => Carbon::now(),
+            ],
+            [
+                'jalur_masuk_id' => 2,
+                'gelombang_id' => 1,
+                'jenis_biaya' => 'registrasi',
+                'nominal' => 200000,
+                'created_at'    => Carbon::now(),
+                'updated_at'    => Carbon::now(),
+            ],
+            [
+                'jalur_masuk_id' => 1,
+                'gelombang_id' => 1,
+                'jenis_biaya' => 'daftar_ulang',
+                'nominal' => 5000000,
+                'created_at'    => Carbon::now(),
+                'updated_at'    => Carbon::now(),
+            ],
+            [
+                'jalur_masuk_id' => 2,
+                'gelombang_id' => 1,
+                'jenis_biaya' => 'daftar_ulang',
+                'nominal' => 5000000,
+                'created_at'    => Carbon::now(),
+                'updated_at'    => Carbon::now(),
+            ],
         ];
 
         Biaya::insert($data);

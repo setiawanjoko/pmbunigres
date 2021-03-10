@@ -30,6 +30,11 @@ class PermissionSeeder extends Seeder
                 'permission'    => 'monitor',
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
+            ],
+            [
+                'permission'    => 'keuangan',
+                'created_at'    => Carbon::now(),
+                'updated_at'    => Carbon::now(),
             ]
         ];
 

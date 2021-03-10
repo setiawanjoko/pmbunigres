@@ -3,12 +3,7 @@
 @section('title', 'Registrasi')
 
 @section('content-title')
-    <p class="banner-title">Ujian Seleksi Masuk</p>
-    <h5 class="banner-caption">Universitas Gresik</h5>
-@endsection
-
-@section('nav-bar')
-@parent
+<h5 class="banner-caption">Universitas Gresik</h5>
 @endsection
 
 @section('fill-content')
@@ -32,10 +27,10 @@
                     <div class="col-lg-6">
                         <select name="jalur_masuk" id="jalur_masuk" class="form-control @if($errors->has('jalur_masuk')) is-invalid @endif" required>
                             <option selected disabled>-- Pilih Jalur Masuk --</option>
-                            <option value="reguler" @if(old('jalur_masuk') == 'reguler') selected @endif>Reguler</option>
-                            <option value="transfer" @if(old('jalur_masuk') == 'transfer') selected @endif>Transfer</option>
-                            <option value="pindahan" @if(old('jalur_masuk') == 'pindahan') selected @endif>Pindahan</option>
-                            <option value="lanjutan" @if(old('jalur_masuk') == 'lanjutan') selected @endif>Lanjutan</option>
+                            <option value="reguler" @if(old('jalur_masuk') == 'reguler') selected @endif>Reguler (Murni dari SMK/SMA sederajat)</option>
+                            <option value="transfer" @if(old('jalur_masuk') == 'transfer') selected @endif>Transfer (Dari D3 melanjutkan ke S1)</option>
+                            <option value="pindahan" @if(old('jalur_masuk') == 'pindahan') selected @endif>Pindahan (Pindahan dari peguruan tinggi lain)</option>
+                            <option value="lanjutan" @if(old('jalur_masuk') == 'lanjutan') selected @endif>Lanjutan (Khusus Ners lulusan S.Keperawatan dari Unigres)</option>
                             @if($errors->has('jalur_masuk'))
                                 <div class="invalid-feedback">
                                     {{ $errors->first('jalur_masuk') }}

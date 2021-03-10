@@ -31,6 +31,7 @@ class CreateBiodataTable extends Migration
             $table->string('asal_jurusan');
             $table->year('tahun_lulus');
             $table->string('foto')->nullable(true);
+            $table->enum('ukuran_almamater', ['S', 'M', 'L', 'XL']);
             $table->softDeletes();
             $table->timestamps();
         });

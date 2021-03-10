@@ -179,7 +179,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        <label for="asal_sma">Asal Sekolah</label>
+                                        <label for="asal_sma">Asal Sekolah / Asal Perguruan Tinggi</label>
                                         <input type="text" name="asal_sekolah" id="asal_sekolah"
                                             class="form-control form-control-sm @if($errors->has('asal_sekolah')) is-invalid @endif "
                                             value="{{ $data->asal_sekolah ?? old('asal_sekolah') }}"
@@ -191,7 +191,7 @@
                                         @endif
                                     </div>
                                     <div class="col-lg-6">
-                                        <label for="tahun_masuk">Tahun Lusus</label>
+                                        <label for="tahun_masuk">Tahun Lulus</label>
                                         <input type="number" name="tahun_lulus" id="tahun_lulus"
                                             class="form-control form-control-sm @if($errors->has('tahun_lulus')) is-invalid @endif "
                                             value="{{ $data->tahun_lulus ?? old('tahun_lulus') }}" required>

@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        // ToDo: Tambahkan semua class seeder ke fungsi di bawah ini
         $this->call([
             PermissionSeeder::class,
             JenjangSeeder::class,

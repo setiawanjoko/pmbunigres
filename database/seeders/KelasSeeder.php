@@ -15,6 +15,7 @@ class KelasSeeder extends Seeder
      */
     public function run()
     {
+        // ToDo: Modifikasi variable data sesuai dengan kebutuhan model Kelas
         $data = [
             [
                 'prodi_id' => 1,

@@ -15,6 +15,7 @@ class ProdiSeeder extends Seeder
      */
     public function run()
     {
+        // ToDo: modifikasi variable data sesuai dengan kebutuhan model Prodi
         $data = [
             [
                 'jenjang_id' => 1,

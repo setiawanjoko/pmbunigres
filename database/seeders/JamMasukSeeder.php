@@ -2,12 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Biaya;
-use App\Models\Prodi;
-use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
-class BiayaSeeder extends Seeder
+class JamMasukSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,6 +13,6 @@ class BiayaSeeder extends Seeder
      */
     public function run()
     {
-        // ToDo: Buat variable data, sesuaikand dengan kebutuhan model Biaya
+        // ToDo: Buat variable data sesuai dengan kolom di table jam_masuks dan insert ke modelnya. Referensi: seeder lain.
     }
 }

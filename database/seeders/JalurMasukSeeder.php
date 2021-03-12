@@ -15,6 +15,7 @@ class JalurMasukSeeder extends Seeder
      */
     public function run()
     {
+        // ToDo: Modifikasi variable data sesuai dengan model terbaru
         $data = [
             [
                 'kelas_id' => 1,

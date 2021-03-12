@@ -41,11 +41,11 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page"  href="{{ route('kontak') }}">Kontak</a>
-                </li>  
+                </li> 
                 @show
                 @if (!Auth::check())
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ route('register') }}">Registrasi</a>
+                    <a class="nav-link" aria-current="page" href="{{ route('register') }}">Pendaftaran</a>
                 </li>
                 <li class="nav-item btn-nav">
                     <a class="nav-link" href="{{ route('login') }}">Login</a>

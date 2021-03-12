@@ -46,11 +46,11 @@
                                 <label class="form-check-label" for="inlineRadio1">Social Media</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" @if(old('informasi') == 'teman_saudara') checked @endif type="radio" name="informasi" id="inlineRadio2" value="teman_saudara">
+                                <input class="form-check-input" @if(old('informasi') == 'teman_saudara') checked @endif type="radio" name="informasi" id="inlineRadio2" value="teman_saudara" required>
                                 <label class="form-check-label" for="inlineRadio2">Teman/Saudara</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" @if(old('informasi') == 'lainnya') checked @endif type="radio" name="informasi" id="inlineRadio3" value="lainnya">
+                                <input class="form-check-input" @if(old('informasi') == 'lainnya') checked @endif type="radio" name="informasi" id="inlineRadio3" value="lainnya" required>
                                 <label class="form-check-label" for="inlineRadio3">lain-lain</label>
                             </div>
                         </div>
@@ -98,7 +98,7 @@
                         @endif
                     </div>
                     <div class="col-lg-6">
-                        <input type="email" id="email" name="email" class="form-control @if($errors->has('email')) is-invalid @endif" placeholder="Email" value="{{ old('email') }}">
+                        <input type="email" id="email" name="email" class="form-control @if($errors->has('email')) is-invalid @endif" placeholder="Email" value="{{ old('email') }}" required>
                         @if($errors->has('email'))
                             <div class="invalid-feedback">
                                 {{ $errors->first('email') }}
@@ -106,7 +106,7 @@
                         @endif
                     </div>
                     <div class="col-lg-6">
-                        <input type="password" id="password" name="password" class="form-control @if($errors->has('password')) is-invalid @endif" placeholder="Password">
+                        <input type="password" id="password" name="password" class="form-control @if($errors->has('password')) is-invalid @endif" placeholder="Password" required>
                         @if($errors->has('password'))
                             <div class="invalid-feedback">
                                 {{ $errors->first('password') }}
@@ -114,7 +114,7 @@
                         @endif
                     </div>
                     <div class="col-lg-6">
-                        <input type="password" id="password_confirmation" name="password_confirmation" class="form-control @if($errors->has('password')) is-invalid @endif" placeholder="Konfirmasi Password">
+                        <input type="password" id="password_confirmation" name="password_confirmation" class="form-control @if($errors->has('password')) is-invalid @endif" placeholder="Konfirmasi Password" required>
                     </div>
                 </div>
                 <div class="wrapper-btn-form">

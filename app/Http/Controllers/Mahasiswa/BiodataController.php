@@ -20,6 +20,7 @@ class BiodataController extends Controller
     }
 
     public function store(Request $request) {
+        //dd($request['ukuran_almamater']);
         $data = $request->validate([
             'nama_depan' => 'required|string',
             'nama_belakang' => 'string', // nama belakang dibuat tidak wajib diisi untuk memberikan opsi bagi yang hanya memiliki 1 kata pada namanya
@@ -33,6 +34,7 @@ class BiodataController extends Controller
             'tanggal_lahir' => 'required|date', // apakah ada batasan usia
             'agama' => 'required|in:islam,kristen,katholik,budha,hindu,konghucu',
             'jenis_kelamin' => 'required|in:laki-laki,perempuan',
+            'ukuran_almamater' => 'required|in:S,M,L,XL',
             'alamat' => 'required|string',
             'no_telepon' => 'numeric|unique:biodata,no_telepon,' . auth()->id() . ',user_id', // no telepon dibuat tidak wajib diisi untuk memberikan opsi bagi yang tidak memiliki telepon
             'asal_sekolah' => 'required|string',
@@ -71,6 +73,7 @@ class BiodataController extends Controller
                 'asal_sekolah' => $data['asal_sekolah'],
                 'asal_jurusan' => $data['asal_jurusan'],
                 'tahun_lulus' => $data['tahun_lulus'],
+                'ukuran_almamater' => $data['ukuran_almamater'],
                 'foto' => $berkasName,
             ]);
 

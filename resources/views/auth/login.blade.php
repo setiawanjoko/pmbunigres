@@ -42,7 +42,7 @@
                     <a class="nav-link" href="{{ route('kontak') }}">Kontak</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('register') }}">Registrasi</a>
+                    <a class="nav-link" href="{{ route('register') }}">Pendaftaran</a>
                 </li>
                 <li class="nav-item btn-nav">
                     <a class="nav-link" href="{{ route('login') }}">Login</a>

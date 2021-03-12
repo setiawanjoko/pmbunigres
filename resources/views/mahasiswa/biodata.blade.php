@@ -179,7 +179,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        <label for="asal_sma">Asal Sekolah / Asal Perguruan Tinggi</label>
+                                        <label for="asal_sma">Asal Sekolah / Perguruan Tinggi</label>
                                         <input type="text" name="asal_sekolah" id="asal_sekolah"
                                             class="form-control form-control-sm @if($errors->has('asal_sekolah')) is-invalid @endif "
                                             value="{{ $data->asal_sekolah ?? old('asal_sekolah') }}"
@@ -201,7 +201,7 @@
                                         </div>
                                         @endif
                                     </div>
-                                    <div class="col-lg-12">
+                                    <div class="col-lg-6">
                                         <label for="asal_jurusan">Asal Jurusan</label>
                                         <input type="text" name="asal_jurusan" id="asal_jurusan"
                                             class="form-control form-control-sm @if($errors->has('asal_jurusan')) is-invalid @endif "
@@ -212,6 +212,39 @@
                                             <strong>{{ $errors->first('asal_jurusan') }}</strong>
                                         </div>
                                         @endif
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label class="form-label lable-radio mb-3">Ukuran Jas</label>
+                                        <div class="wrap-input">
+                                            <div class="form-check form-check-inline">
+                                                <input type="radio" name="ukuran_almamater" id="size_s"
+                                                    class="form-check-input @if($errors->has('ukuran_almamater')) is-invalid @endif"
+                                                    value="S" @if((!empty($data) && $data->ukuran_almamater ==
+                                                    'S') || old('ukuran_almamater') == 'S') checked @endif>
+                                                <label class="form-check-label" for="size_s">S</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input type="radio" name="ukuran_almamater" id="size_m"
+                                                    class="form-check-input @if($errors->has('ukuran_almamater')) is-invalid @endif"
+                                                    value="M" @if((!empty($data) && $data->ukuran_almamater ==
+                                                    'M') || old('ukuran_almamater') == 'M') checked @endif>
+                                                <label class="form-check-label" for="size_m">M</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input type="radio" name="ukuran_almamater" id="size_l"
+                                                    class="form-check-input @if($errors->has('ukuran_almamater')) is-invalid @endif"
+                                                    value="L" @if((!empty($data) && $data->ukuran_almamater ==
+                                                    'L') || old('ukuran_almamater') == 'L') checked @endif>
+                                                <label class="form-check-label" for="size_l">L</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input type="radio" name="ukuran_almamater" id="size_xl"
+                                                    class="form-check-input @if($errors->has('ukuran_almamater')) is-invalid @endif"
+                                                    value="XL" @if((!empty($data) && $data->ukuran_almamater ==
+                                                    'XL') || old('ukuran_almamater') == 'XL') checked @endif>
+                                                <label class="form-check-label" for="size_xl">XL</label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

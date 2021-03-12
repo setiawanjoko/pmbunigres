@@ -50,7 +50,7 @@ class RegistrasiController extends Controller
 
             $biaya = Biaya::where([
                 ['prodi_id', $user->prodi_id],
-                ['gelombang_id', $user->gelombang()->id],
+                ['gelombang_id', $user->gelombang->id],
                 ['jenis_biaya', 'registrasi']
             ])->first();
 

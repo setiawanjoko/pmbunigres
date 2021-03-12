@@ -18,15 +18,17 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
+        'permission_id',
+        'prodi_id',
+        'jalur_masuk_id',
+        'jam_masuk_id',
+        'gelombang_id',
         'nama',
         'email',
         'password',
-        'permission_id',
-        'gelombang_id',
         'no_telepon',
         'informasi',
-        'kelas_id',
-        'nim'
+        'tes_kesehatan'
     ];
 
     /**
@@ -48,19 +50,24 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    public function prodi() {
+        return $this->belongsTo(Prodi::class, 'prodi_id', 'id');
+    }
+
      public function gelombang() {
          return $this->belongsTo(Gelombang::class, 'gelombang_id', 'id');
      }
 
-    /*public function gelombang() {
-        return Gelombang::where([
-            ['tgl_mulai', '<=', $this->created_at],
-            ['tgl_selesai', '>=', $this->email_verified_at]
-        ])->first();
-    }*/
-
     public function permission() {
         return $this->belongsTo(Permission::class, 'permission_id', 'id');
+    }
+
+    public function jamMasuk() {
+        return $this->belongsTo(JamMasuk::class, 'jam_masuk_id', 'id');
+    }
+
+    public function jalurMasuk() {
+        return $this->belongsTo(JalurMasuk::class, 'jalur_masuk_id', 'id');
     }
 
     public function biodata() {
@@ -122,10 +129,6 @@ class User extends Authenticatable implements MustVerifyEmail
                 ['kategori', 'daftar_ulang']
             ]);
         })->first();
-    }
-
-    public function kelas() {
-        return $this->belongsTo(Kelas::class, 'kelas_id', 'id');
     }
 
     public function pengumuman() {

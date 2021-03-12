@@ -20,6 +20,9 @@ class CreateProdiTable extends Migration
             $table->string('kode_prodi_nim');
             $table->string('kode_prodi_siakad');
             $table->string('nama');
+            $table->boolean('tes_kesehatan')->default(false);
+            $table->string('keterangan_tes_kesehatan')->nullable(true);
+            $table->string('link_grup')->nullable(true);
             $table->timestamps();
         });
     }

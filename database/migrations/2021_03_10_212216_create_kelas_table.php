@@ -17,10 +17,6 @@ class CreateKelasTable extends Migration
             $table->id();
             $table->unsignedBigInteger('prodi_id');
             $table->string('kelas');
-            $table->boolean('pagi')->default(false);
-            $table->boolean('siang')->default(false);
-            $table->boolean('sore')->default(false);
-            $table->boolean('malam')->default(false);
             $table->timestamps();
         });
     }

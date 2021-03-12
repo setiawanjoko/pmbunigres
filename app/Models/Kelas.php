@@ -12,7 +12,7 @@ class Kelas extends Model
     protected $table = 'kelas';
 
     protected $fillable = [
-        'prodi_id', 'kelas', 'pagi', 'siang', 'sore', 'malam'
+        'prodi_id', 'kelas'
     ];
 
     public function prodi() {

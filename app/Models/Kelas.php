@@ -19,11 +19,7 @@ class Kelas extends Model
         return $this->belongsTo(Prodi::class, 'prodi_id', 'id');
     }
 
-    public function jalurMasuk() {
-        return $this->hasMany(JalurMasuk::class, 'kelas_id', 'id');
-    }
-
-    public function pendaftar() {
-        return $this->hasMany(User::class, 'kelas_id', 'id');
+    public function jalurMasukKelas(){
+        return $this->hasMany(JalurMasukKelas::class,'kelas_id','id');
     }
 }

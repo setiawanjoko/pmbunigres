@@ -17,7 +17,7 @@ class Biaya extends Model
         return $this->belongsTo(Gelombang::class, 'gelombang_id', 'id');
     }
 
-    public function jalurMasuk() {
-        return $this->belongsTo(JalurMasuk::class, 'jalur_masuk_id', 'id');
-    }
+    public function jalurMasukKelas(){
+        return $this->hasMany(JalurMasukKelas::class, 'biaya_id', 'id');
+    } 
 }

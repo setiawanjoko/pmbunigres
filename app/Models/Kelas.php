@@ -22,4 +22,8 @@ class Kelas extends Model
     public function jalurMasukKelas(){
         return $this->hasMany(JalurMasukKelas::class,'kelas_id','id');
     }
+
+    public function jamMasukKelas(){
+        return $this->hasMany(JamMasukKelas::class, 'kelas_id', 'id');
+    }
 }

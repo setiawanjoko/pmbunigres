@@ -10,7 +10,7 @@ class Biaya extends Model
     use HasFactory;
 
     protected $fillable = [
-        'gelombang_id', 'jalur_masuk_id', 'jenis_biaya', 'nominal'
+        'gelombang_id', 'jenis_biaya', 'nominal'
     ];
 
     public function gelombang() {
@@ -19,5 +19,5 @@ class Biaya extends Model
 
     public function jalurMasukKelas(){
         return $this->hasMany(JalurMasukKelas::class, 'biaya_id', 'id');
-    } 
+    }
 }

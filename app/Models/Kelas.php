@@ -26,4 +26,8 @@ class Kelas extends Model
     public function jamMasukKelas(){
         return $this->hasMany(JamMasukKelas::class, 'kelas_id', 'id');
     }
+
+    public function jamMasuk(){
+        return $this->belongsToMany(JamMasuk::class, 'jam_masuk_kelas', 'kelas_id', 'jam_masuk_id');
+    }
 }

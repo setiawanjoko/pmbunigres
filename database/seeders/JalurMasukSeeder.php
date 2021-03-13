@@ -15,23 +15,24 @@ class JalurMasukSeeder extends Seeder
      */
     public function run()
     {
-        // ToDo: Modifikasi variable data sesuai dengan model terbaru
         $data = [
             [
-                'kelas_id' => 1,
-                'reguler' => true,
-                'transfer' => true,
-                'pindahan' => false,
-                'lanjutan' => false,
+                'jalur_masuk' => 'reguler',
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
             [
-                'kelas_id' => 1,
-                'reguler' => false,
-                'transfer' => false,
-                'pindahan' => true,
-                'lanjutan' => false,
+                'jalur_masuk' => 'transfer',
+                'created_at'    => Carbon::now(),
+                'updated_at'    => Carbon::now(),
+            ],
+            [
+                'jalur_masuk' => 'pindahan',
+                'created_at'    => Carbon::now(),
+                'updated_at'    => Carbon::now(),
+            ],
+            [
+                'jalur_masuk' => 'lanjutan',
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],

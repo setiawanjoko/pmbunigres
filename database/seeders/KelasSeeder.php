@@ -17,6 +17,7 @@ class KelasSeeder extends Seeder
     {
         // ToDo: Modifikasi variable data sesuai dengan kebutuhan model Kelas
         $data = [
+            // Ilmu Hukum
             [
                 'prodi_id' => 1,
                 'kelas' => 'A',
@@ -29,22 +30,27 @@ class KelasSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
+
+            // Manajemen
             [
                 'prodi_id' => 2,
                 'kelas' => 'A',
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
+
+            // Akuntansi
             [
                 'prodi_id' => 3,
                 'kelas' => 'A',
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
+
+            // Teknik Mesin
             [
                 'prodi_id' => 4,
                 'kelas' => 'A',
-                'kelas' => 'pagi',
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
@@ -54,6 +60,8 @@ class KelasSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
+
+            // Teknik Sipil
             [
                 'prodi_id' => 5,
                 'kelas' => 'A',
@@ -65,19 +73,25 @@ class KelasSeeder extends Seeder
                 'kelas' => 'B',
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
-            ],            
+            ],
+
+            // Administrasi Pendidikan
             [
                 'prodi_id' => 6,
                 'kelas' => 'A',
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
+
+            // Sastra Inggris
             [
                 'prodi_id' => 7,
                 'kelas' => 'A',
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
+
+            // Ilmu Keperawatan
             [
                 'prodi_id' => 8,
                 'kelas' => 'A',
@@ -90,6 +104,8 @@ class KelasSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
+
+            // Profesi NERS
             [
                 'prodi_id' => 9,
                 'kelas' => '1',
@@ -108,6 +124,8 @@ class KelasSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
+
+            // Manajemen Pendidikan
             [
                 'prodi_id' => 10,
                 'kelas' => 'A',

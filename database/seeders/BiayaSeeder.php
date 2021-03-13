@@ -17,7 +17,6 @@ class BiayaSeeder extends Seeder
     {
         $data = [
             //registrasi
-            //1
             [
                 'gelombang_id' => 1,
                 'kategori' => 'registrasi',
@@ -25,15 +24,6 @@ class BiayaSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
-            //2
-            [
-                'gelombang_id' => 1,
-                'kategori' => 'registrasi',
-                'nominal' => 200000,
-                'created_at'    => Carbon::now(),
-                'updated_at'    => Carbon::now(),
-            ], 
-            //3
             [
                 'gelombang_id' => 2,
                 'kategori' => 'registrasi',
@@ -41,33 +31,15 @@ class BiayaSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
-            //4
-            [
-                'gelombang_id' => 2,
-                'kategori' => 'registrasi',
-                'nominal' => 200000,
-                'created_at'    => Carbon::now(),
-                'updated_at'    => Carbon::now(),
-            ], 
-            //5
             [
                 'gelombang_id' => 3,
                 'kategori' => 'registrasi',
                 'nominal' => 200000,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
-            ],
-            //6
-            [
-                'gelombang_id' => 3,
-                'kategori' => 'registrasi',
-                'nominal' => 200000,
-                'created_at'    => Carbon::now(),
-                'updated_at'    => Carbon::now(),
-            ],            
+            ],       
             
             //daftar_ulang
-            //7
             [
                 'gelombang_id' => 1,
                 'kategori' => 'daftar_ulang',
@@ -75,7 +47,6 @@ class BiayaSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ], 
-            //8
             [
                 'gelombang_id' => 1,
                 'kategori' => 'daftar_ulang',
@@ -83,7 +54,6 @@ class BiayaSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ], 
-            //9
             [
                 'gelombang_id' => 1,
                 'kategori' => 'daftar_ulang',
@@ -91,7 +61,6 @@ class BiayaSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ], 
-            //10
             [
                 'gelombang_id' => 1,
                 'kategori' => 'daftar_ulang',
@@ -99,7 +68,6 @@ class BiayaSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ], 
-            //11
             [
                 'gelombang_id' => 1,
                 'kategori' => 'daftar_ulang',
@@ -107,7 +75,6 @@ class BiayaSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ], 
-            //12
             [
                 'gelombang_id' => 1,
                 'kategori' => 'daftar_ulang',
@@ -115,7 +82,6 @@ class BiayaSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ], 
-            //13
             [
                 'gelombang_id' => 1,
                 'kategori' => 'daftar_ulang',
@@ -123,7 +89,6 @@ class BiayaSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ], 
-            //14
             [
                 'gelombang_id' => 1,
                 'kategori' => 'daftar_ulang',
@@ -131,7 +96,6 @@ class BiayaSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ], 
-            //15
             [
                 'gelombang_id' => 1,
                 'kategori' => 'daftar_ulang',
@@ -139,7 +103,6 @@ class BiayaSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ], 
-            //16
             [
                 'gelombang_id' => 1,
                 'kategori' => 'daftar_ulang',
@@ -147,7 +110,6 @@ class BiayaSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ], 
-            //17
             [
                 'gelombang_id' => 1,
                 'kategori' => 'daftar_ulang',
@@ -155,7 +117,6 @@ class BiayaSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ], 
-            //18
             [
                 'gelombang_id' => 1,
                 'kategori' => 'daftar_ulang',
@@ -164,39 +125,35 @@ class BiayaSeeder extends Seeder
                 'updated_at'    => Carbon::now(),
             ], 
 
-            //19
+            //gel2
             [
                 'gelombang_id' => 2,
                 'kategori' => 'daftar_ulang',
-                'nominal' => 4125000,
+                'nominal' => 4245000,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ], 
-            //20
             [
                 'gelombang_id' => 2,
                 'kategori' => 'daftar_ulang',
-                'nominal' => 4175000,
+                'nominal' => 4295000,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ], 
-            //21
             [
                 'gelombang_id' => 2,
                 'kategori' => 'daftar_ulang',
-                'nominal' => 5800000,
+                'nominal' => 5950000,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ], 
-            //22
             [
                 'gelombang_id' => 2,
                 'kategori' => 'daftar_ulang',
-                'nominal' => 4500000,
+                'nominal' => 4650000,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ], 
-            //23
             [
                 'gelombang_id' => 2,
                 'kategori' => 'daftar_ulang',
@@ -204,7 +161,6 @@ class BiayaSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ], 
-            //24
             [
                 'gelombang_id' => 2,
                 'kategori' => 'daftar_ulang',
@@ -232,7 +188,7 @@ class BiayaSeeder extends Seeder
             [
                 'gelombang_id' => 2,
                 'kategori' => 'daftar_ulang',
-                'nominal' => 5125000,
+                'nominal' => 5245000,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ], 
@@ -240,7 +196,7 @@ class BiayaSeeder extends Seeder
             [
                 'gelombang_id' => 2,
                 'kategori' => 'daftar_ulang',
-                'nominal' => 5175000,
+                'nominal' => 5295000,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ], 
@@ -248,7 +204,7 @@ class BiayaSeeder extends Seeder
             [
                 'gelombang_id' => 2,
                 'kategori' => 'daftar_ulang',
-                'nominal' => 6800000,
+                'nominal' => 6950000,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ], 
@@ -256,16 +212,17 @@ class BiayaSeeder extends Seeder
             [
                 'gelombang_id' => 2,
                 'kategori' => 'daftar_ulang',
-                'nominal' => 5500000,
+                'nominal' => 5650000,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
 
+            //gel3
             //31
             [
                 'gelombang_id' => 3,
                 'kategori' => 'daftar_ulang',
-                'nominal' => 4300000,
+                'nominal' => 4420000,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
@@ -273,7 +230,7 @@ class BiayaSeeder extends Seeder
             [
                 'gelombang_id' => 3,
                 'kategori' => 'daftar_ulang',
-                'nominal' => 4350000,
+                'nominal' => 4470000,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ], 
@@ -281,7 +238,7 @@ class BiayaSeeder extends Seeder
             [
                 'gelombang_id' => 3,
                 'kategori' => 'daftar_ulang',
-                'nominal' => 5925000,
+                'nominal' => 6075000,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ], 
@@ -289,7 +246,7 @@ class BiayaSeeder extends Seeder
             [
                 'gelombang_id' => 3,
                 'kategori' => 'daftar_ulang',
-                'nominal' => 4625000,
+                'nominal' => 4775000,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ], 
@@ -329,7 +286,7 @@ class BiayaSeeder extends Seeder
             [
                 'gelombang_id' => 3,
                 'kategori' => 'daftar_ulang',
-                'nominal' => 5300000,
+                'nominal' => 5420000,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ], 
@@ -337,7 +294,7 @@ class BiayaSeeder extends Seeder
             [
                 'gelombang_id' => 3,
                 'kategori' => 'daftar_ulang',
-                'nominal' => 5350000,
+                'nominal' => 5470000,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ], 
@@ -345,7 +302,7 @@ class BiayaSeeder extends Seeder
             [
                 'gelombang_id' => 3,
                 'kategori' => 'daftar_ulang',
-                'nominal' => 6925000,
+                'nominal' => 7075000,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ], 
@@ -353,7 +310,7 @@ class BiayaSeeder extends Seeder
             [
                 'gelombang_id' => 3,
                 'kategori' => 'daftar_ulang',
-                'nominal' => 5625000,
+                'nominal' => 5775000,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ], 

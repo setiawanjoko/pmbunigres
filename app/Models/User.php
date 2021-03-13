@@ -110,6 +110,50 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(Berkas::class, 'user_id', 'id');
     }
 
+    public function biayaRegistrasi() {
+        $jamMasuk = $this->jam_masuk_id;
+        $jalurMasuk = $this->jalur_masuk_id;
+        $gelombang = $this->gelombang_id;
+        $kelas = Kelas::where([
+            ['prodi_id', $this->prodi_id],
+            ['lulusan_unigres', $this->lulusan_unigres]
+        ])
+            ->whereHas('jamMasuk', function ($query) use($jamMasuk){
+                return $query->where('jam_masuks.id', $jamMasuk);
+            })->first();
+
+        return Biaya::where([
+            ['kelas_id', $kelas->id],
+            ['gelombang_id', $gelombang],
+            ['kategori', 'registrasi']
+        ])
+            ->whereHas('jalurMasuk', function($query) use($jalurMasuk){
+                return $query->where('jalur_masuk.id', $jalurMasuk);
+            })->first();
+    }
+
+    public function biayaDaftarUlang() {
+        $jamMasuk = $this->jam_masuk_id;
+        $jalurMasuk = $this->jalur_masuk_id;
+        $gelombang = $this->gelombang_id;
+        $kelas = Kelas::where([
+            ['prodi_id', $this->prodi_id],
+            ['lulusan_unigres', $this->lulusan_unigres]
+        ])
+            ->whereHas('jamMasuk', function ($query) use($jamMasuk){
+                return $query->where('jam_masuks.id', $jamMasuk);
+            })->first();
+
+        return Biaya::where([
+            ['kelas_id', $kelas->id],
+            ['gelombang_id', $gelombang],
+            ['kategori', 'daftar_ulang']
+        ])
+            ->whereHas('jalurMasuk', function($query) use($jalurMasuk){
+                return $query->where('jalur_masuk.id', $jalurMasuk);
+            })->first();
+    }
+
     public function pembayaran() {
         return $this->hasMany(Pembayaran::class, 'user_id', 'id');
     }

@@ -40,6 +40,7 @@ class RegistrasiController extends Controller
             ['kategori', 'registrasi']
         ])->first();
         if(is_null($data)) {
+            $biaya = $user->biayaRegistrasi();
             $token = getToken();
             $timestamp = gmdate("Y-m-d\TH:i:s.000\Z");
 
@@ -47,12 +48,6 @@ class RegistrasiController extends Controller
             $verb = 'POST';
             $custCode = $this->generateCustCode();
             $expDate = Carbon::tomorrow()->format('Y-m-d H:i:s');
-
-            $biaya = Biaya::where([
-                ['prodi_id', $user->prodi_id],
-                ['gelombang_id', $user->gelombang->id],
-                ['jenis_biaya', 'registrasi']
-            ])->first();
 
             $data = [
                 'institutionCode' => env('BRIVA_INSTITUTION_CODE'),

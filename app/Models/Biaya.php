@@ -9,6 +9,8 @@ class Biaya extends Model
 {
     use HasFactory;
 
+    protected $table = 'biayas';
+
     protected $fillable = [
         'gelombang_id', 'jalur_masuk_id', 'kelas_id', 'kategori', 'nominal'
     ];

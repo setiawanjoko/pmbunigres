@@ -20,6 +20,6 @@ class JalurMasuk extends Model
     }
 
     public function kelas(){
-        return $this->belongsToMany(Kelas::class, 'jalur_masuk_kelas', 'jalur_masuk_id', 'kelas_id');
+        return $this->belongsToMany(Kelas::class, 'biayas', 'jalur_masuk_id', 'kelas_id');
     }
 }

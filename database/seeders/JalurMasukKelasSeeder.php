@@ -14,5 +14,7 @@ class JalurMasukKelasSeeder extends Seeder
     public function run()
     {
         // ToDo: Modifikasi variable data sesuai dengan model JalurMasukKelas
+        // 'kelas_id', 'jalur_masuk_id', 'biaya_id', 'url'
+        
     }
 }

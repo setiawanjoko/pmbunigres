@@ -16,11 +16,29 @@
                 <h5 class="form-title">Registrasi</h5>
                 <p class="form-info">Isi form berikut dengan menggunakan data yang valid (Benar).</p>
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-6">
                         <input type="text" id="nama" name="nama" class="form-control @if($errors->has('nama')) is-invalid @endif" placeholder="Nama lengkap" value="{{ old('nama') }}" required>
                         @if($errors->has('nama'))
                             <div class="invalid-feedback">
                                 {{ $errors->first('nama') }}
+                            </div>
+                        @endif
+                    </div>
+                    <div class="col-lg-6">
+                        <label class="form-label lable-radio">Khusus Pascasarjana dan Profesi</label>
+                        <div class="wrap-input">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" @if(old('lulusan_unigres') == 1) checked @endif type="radio" name="lulusan_unigres" id="inlineRadio1" value="1" required>
+                                <label class="form-check-label" for="inlineRadio1">Lulusan Unigres</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" @if(old('lulusan_unigres') == 0) checked @endif type="radio" name="lulusan_unigres" id="inlineRadio2" value="0" required>
+                                <label class="form-check-label" for="inlineRadio2">Bukan Lulusan Unigres</label>
+                            </div>
+                        </div>
+                        @if($errors->has('informasi'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('informasi') }}
                             </div>
                         @endif
                     </div>
@@ -40,13 +58,13 @@
                         @endif
                     </div>
                     <div class="col-lg-6">
-                        <select name="jalur_masuk" id="jalur_masuk" class="form-control @if($errors->has('jalur_masuk')) is-invalid @endif" aria-describedby="jalur_masuk_help" required>
+                        <select name="jalur_masuk" id="jalur_masuk" class="mb-0 form-control @if($errors->has('jalur_masuk')) is-invalid @endif" aria-describedby="jalur_masuk_help" required>
                             <option selected disabled>-- Pilih Jalur Masuk --</option>
                             @foreach($dataJalurMasuk as $jalurMasuk)
-                                <option value="{{ $jalurMasuk->id }}" @if(old('jalur_masuk') == $jalurMasuk->id) selected @endif>{{ $jalurMasuk->jalur_masuk }}</option>
+                            <option value="{{ $jalurMasuk->id }}" @if(old('jalur_masuk') == $jalurMasuk->id) selected @endif>{{ $jalurMasuk->jalur_masuk }}</option>
                             @endforeach
                         </select>
-                        <small id="jalur_masuk_help" class="form-text text-muted">Lihat catatan kaki</small>
+                        <small style="font-size: 0.70em;" id="jalur_masuk_help" class="form-text text-muted">Keterangan jalur masuk lihat catatan kaki.</small>
                         @if($errors->has('jalur_masuk'))
                             <div class="invalid-feedback">
                                 {{ $errors->first('jalur_masuk') }}
@@ -97,12 +115,13 @@
                         @endif
                     </div>
                     <div class="col-lg-6">
-                        <input type="email" id="email" name="email" class="form-control @if($errors->has('email')) is-invalid @endif" placeholder="Email" value="{{ old('email') }}" required>
+                        <input type="email" id="email" name="email" class="mb-0 form-control @if($errors->has('email')) is-invalid @endif" placeholder="Email" value="{{ old('email') }}" required>
                         @if($errors->has('email'))
                             <div class="invalid-feedback">
                                 {{ $errors->first('email') }}
                             </div>
                         @endif
+                        <small style="font-size: 0.70em;" class="form-text text-muted">Pastikan Anda memiliki akun email pribadi yang aktif.</small>
                     </div>
                     <div class="col-lg-6">
                         <input type="password" id="password" name="password" class="form-control @if($errors->has('password')) is-invalid @endif" placeholder="Password" required>
@@ -118,14 +137,13 @@
                 </div>
                 <div class="wrapper-btn-form">
                     <div class="wrap-left">
-                        <p class="note-title">Catatan :</p>
-                        <p class="note">
-                            Pastikan Anda memiliki akun email pribadi yang aktif.
-                        </p>
-                        <p class="note">Reguler (Murni dari SMK/SMA sederajat)</p>
-                        <p class="note">Transfer (Dari D3 melanjutkan ke S1)</p>
-                        <p class="note">Pindahan (Pindahan dari peguruan tinggi lain)</p>
-                        <p class="note">Lanjutan (Khusus Ners lulusan S.Keperawatan dari Unigres)</p>
+                        <p class="note-title mb-0">Catatan Jalur Masuk :</p>
+                            <ol class="note">
+                                <li>Reguler (Murni dari SMK/SMA sederajat)</li>
+                                <li>Transfer (Dari D3 melanjutkan ke S1)</li>
+                                <li>Pindahan (Pindahan dari peguruan tinggi lain)</li>
+                                <li>Lanjutan (Khusus Ners lulusan S.Keperawatan dari Unigres)</li>
+                            </ol>
                     </div>
                     <button type="submit" class="btn btn-regist">Submit</button>
                 </div>

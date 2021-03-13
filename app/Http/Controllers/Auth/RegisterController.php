@@ -88,7 +88,8 @@ class RegisterController extends Controller
             'no_telepon' => ['required', 'string'],
             'kelas' => ['required', Rule::in($arr)],
             'prodi' => ['required', 'exists:prodi,id'],
-            'jalur_masuk' => ['required', 'in:reguler,transfer,pindahan,lanjutan']
+            'jalur_masuk' => ['required', 'in:reguler,transfer,pindahan,lanjutan'],
+            'lulusan_unigres' => ['boolean'],
         ]);
     }
 

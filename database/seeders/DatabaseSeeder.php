@@ -27,6 +27,9 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             KelasSeeder::class,
             JalurMasukSeeder::class,
+            JamMasukSeeder::class,
+            JamMasukKelasSeeder::class,
+            JalurMasukKelasSeeder::class
         ]);
     }
 }

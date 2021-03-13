@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\JamMasuk;
+use App\Models\JamMasukKelas;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
@@ -177,6 +177,6 @@ class JamMasukKelasSeeder extends Seeder
                 'updated_at'    => Carbon::now(),
             ],
         ];
-        JamMasuk::insert($data);
+        JamMasukKelas::insert($data);
     }
 }

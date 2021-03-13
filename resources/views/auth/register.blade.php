@@ -25,18 +25,46 @@
                         @endif
                     </div>
                     <div class="col-lg-6">
-                        <select name="jalur_masuk" id="jalur_masuk" class="form-control @if($errors->has('jalur_masuk')) is-invalid @endif" required>
-                            <option selected disabled>-- Pilih Jalur Masuk --</option>
-                            <option value="reguler" @if(old('jalur_masuk') == 'reguler') selected @endif>Reguler (Murni dari SMK/SMA sederajat)</option>
-                            <option value="transfer" @if(old('jalur_masuk') == 'transfer') selected @endif>Transfer (Dari D3 melanjutkan ke S1)</option>
-                            <option value="pindahan" @if(old('jalur_masuk') == 'pindahan') selected @endif>Pindahan (Pindahan dari peguruan tinggi lain)</option>
-                            <option value="lanjutan" @if(old('jalur_masuk') == 'lanjutan') selected @endif>Lanjutan (Khusus Ners lulusan S.Keperawatan dari Unigres)</option>
-                            @if($errors->has('jalur_masuk'))
-                                <div class="invalid-feedback">
-                                    {{ $errors->first('jalur_masuk') }}
-                                </div>
-                            @endif
+                        <select name="prodi" id="prodi" class="form-control @if($errors->has('prodi')) is-invalid @endif" required>
+                            <option selected disabled>-- Pilih Program Studi --</option>
+                            @foreach($dataProdi as $jenjangKey => $jenjang)
+                                @foreach($jenjang->prodi as $prodiKey => $prodi)
+                                    <option value="{{ $prodi->id }}" @if((!empty($pilihanPertama) && $pilihanPertama->prodi_id == $prodi->id) || old('prodi') == $prodi->id) selected @endif>{{ $jenjang->nama . ' ' . $prodi->nama }}</option>
+                                @endforeach
+                            @endforeach
                         </select>
+                        @if($errors->has('prodi'))
+                            <div class="invalid-feedback">
+                                <strong>{{ $errors->first('prodi') }}</strong>
+                            </div>
+                        @endif
+                    </div>
+                    <div class="col-lg-6">
+                        <select name="jalur_masuk" id="jalur_masuk" class="form-control @if($errors->has('jalur_masuk')) is-invalid @endif" aria-describedby="jalur_masuk_help" required>
+                            <option selected disabled>-- Pilih Jalur Masuk --</option>
+                            @foreach($dataJalurMasuk as $jalurMasuk)
+                                <option value="{{ $jalurMasuk->id }}" @if(old('jalur_masuk') == $jalurMasuk->id) selected @endif>{{ $jalurMasuk->jalur_masuk }}</option>
+                            @endforeach
+                        </select>
+                        <small id="jalur_masuk_help" class="form-text text-muted">Lihat catatan kaki</small>
+                        @if($errors->has('jalur_masuk'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('jalur_masuk') }}
+                            </div>
+                        @endif
+                    </div>
+                    <div class="col-lg-6">
+                        <select name="kelas" id="kelas" class="form-control @if($errors->has('kelas')) is-invalid @endif" required>
+                            <option selected disabled>-- Pilih Kelas --</option>
+                            @foreach($dataJamMasuk as $jamMasuk)
+                                <option value="{{ $jamMasuk->id }}" @if(old('kelas') == $jamMasuk->id) selected @endif>{{ $jamMasuk->jam_masuk }}</option>
+                            @endforeach
+                        </select>
+                        @if($errors->has('kelas'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('kelas') }}
+                            </div>
+                        @endif
                     </div>
                     <div class="col-lg-6">
                         <label class="form-label lable-radio">Dapat Informasi PMB dari :</label>
@@ -57,35 +85,6 @@
                         @if($errors->has('informasi'))
                             <div class="invalid-feedback">
                                 {{ $errors->first('informasi') }}
-                            </div>
-                        @endif
-                    </div>
-                    <div class="col-lg-6">
-                        <select name="prodi" id="prodi" class="form-control @if($errors->has('prodi')) is-invalid @endif" required>
-                            <option selected disabled>-- Pilih Program Studi --</option>
-                            @foreach($dataProdi as $jenjangKey => $jenjang)
-                                @foreach($jenjang->prodi as $prodiKey => $prodi)
-                                    <option value="{{ $prodi->id }}" @if((!empty($pilihanPertama) && $pilihanPertama->prodi_id == $prodi->id) || old('prodi') == $prodi->id) selected @endif>{{ $jenjang->nama . ' ' . $prodi->nama }}</option>
-                                @endforeach
-                            @endforeach
-                        </select>
-                        @if($errors->has('prodi'))
-                            <div class="invalid-feedback">
-                                <strong>{{ $errors->first('prodi') }}</strong>
-                            </div>
-                        @endif
-                    </div>
-                    <div class="col-lg-6">
-                        <select name="kelas" id="kelas" class="form-control @if($errors->has('kelas')) is-invalid @endif" required>
-                            <option selected disabled>-- Pilih Kelas --</option>
-                            <option value="pagi" @if(old('kelas') == 'pagi') selected @endif>Pagi</option>
-                            <option value="siang" @if(old('kelas') == 'siang') selected @endif>Siang</option>
-                            <option value="sore" @if(old('kelas') == 'sore') selected @endif>Sore</option>
-                            <option value="malam" @if(old('kelas') == 'malam') selected @endif>Malam</option>
-                        </select>
-                        @if($errors->has('kelas'))
-                            <div class="invalid-feedback">
-                                {{ $errors->first('kelas') }}
                             </div>
                         @endif
                     </div>
@@ -120,7 +119,13 @@
                 <div class="wrapper-btn-form">
                     <div class="wrap-left">
                         <p class="note-title">Catatan :</p>
-                        <p class="note">Pastikan Anda memiliki akun email pribadi yang aktif.</p>
+                        <p class="note">
+                            Pastikan Anda memiliki akun email pribadi yang aktif.
+                        </p>
+                        <p class="note">Reguler (Murni dari SMK/SMA sederajat)</p>
+                        <p class="note">Transfer (Dari D3 melanjutkan ke S1)</p>
+                        <p class="note">Pindahan (Pindahan dari peguruan tinggi lain)</p>
+                        <p class="note">Lanjutan (Khusus Ners lulusan S.Keperawatan dari Unigres)</p>
                     </div>
                     <button type="submit" class="btn btn-regist">Submit</button>
                 </div>

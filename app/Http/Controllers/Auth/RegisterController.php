@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Gelombang;
+use App\Models\JalurMasuk;
+use App\Models\JamMasuk;
 use App\Models\Jenjang;
 use App\Models\Prodi;
 use App\Providers\RouteServiceProvider;
@@ -48,9 +50,11 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
-        $dataProdi = Jenjang::with('prodi.kelas.jalurMasuk')->get();
+        $dataProdi = Jenjang::with('prodi')->get();
+        $dataJalurMasuk = JalurMasuk::all();
+        $dataJamMasuk = JamMasuk::all();
 
-        return view('auth.register', compact('dataProdi'));
+        return view('auth.register', compact('dataProdi', 'dataJalurMasuk', 'dataJamMasuk'));
     }
 
     /**

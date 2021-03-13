@@ -28,7 +28,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'no_telepon',
         'informasi',
-        'tes_kesehatan'
+        'tes_kesehatan',
+        'lulusan_ungires',
     ];
 
     /**

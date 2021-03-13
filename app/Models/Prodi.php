@@ -24,4 +24,22 @@ class Prodi extends Model
     public function kelas() {
         return $this->hasMany(Kelas::class, 'prodi_id', 'id');
     }
+
+    public function jamMasuk() {
+        $id = $this->id;
+        $data = JamMasuk::whereHas('kelas', function($query) use ($id){
+            return $query->where('prodi_id', $id);
+        })->get();
+
+        return $data;
+    }
+
+    public function jalurMasuk() {
+        $id = $this->id;
+        $data = JalurMasuk::whereHas('kelas', function($query) use ($id){
+            return $query->where('prodi_id', $id);
+        })->get();
+
+        return $data;
+    }
 }

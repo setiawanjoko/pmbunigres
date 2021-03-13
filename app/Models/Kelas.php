@@ -30,4 +30,8 @@ class Kelas extends Model
     public function jamMasuk(){
         return $this->belongsToMany(JamMasuk::class, 'jam_masuk_kelas', 'kelas_id', 'jam_masuk_id');
     }
+
+    public function jalurMasuk(){
+        return $this->belongsToMany(JalurMasuk::class, 'jalur_masuk_kelas', 'kelas_id', 'jalur_masuk_id');
+    }
 }

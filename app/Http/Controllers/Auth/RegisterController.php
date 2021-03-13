@@ -66,18 +66,15 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         $prodi = Prodi::find($data['prodi']);
-        $arr = array();
-        if($prodi->pagi) {
-            array_push($arr, 'pagi');
+        $jamMasuk = $prodi->jamMasuk();
+        $jamMasukValidation = array();
+        foreach($jamMasuk as $jam){
+            array_push($jamMasukValidation, $jam->id);
         }
-        if($prodi->siang) {
-            array_push($arr, 'siang');
-        }
-        if($prodi->sore) {
-            array_push($arr, 'sore');
-        }
-        if($prodi->malam) {
-            array_push($arr, 'malam');
+        $jalurMasuk = $prodi->jalurMasuk();
+        $jalurMasukValidation = array();
+        foreach($jalurMasuk as $jalur){
+            array_push($jalurMasukValidation, $jalur->id);
         }
 
         return Validator::make($data, [
@@ -86,10 +83,10 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'informasi' => ['required', 'in:sosial_media,teman_saudara,lainnya'],
             'no_telepon' => ['required', 'string'],
-            'kelas' => ['required', Rule::in($arr)],
+            'kelas' => ['required', Rule::in($jamMasukValidation)],
             'prodi' => ['required', 'exists:prodi,id'],
-            'jalur_masuk' => ['required', 'in:reguler,transfer,pindahan,lanjutan'],
-            'lulusan_unigres' => ['boolean'],
+            'jalur_masuk' => ['required', Rule::in($jalurMasukValidation)],
+            'lulusan_unigres' => ['required', 'boolean'],
         ]);
     }
 
@@ -112,10 +109,11 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'informasi' => $data['informasi'],
             'no_telepon' => $data['no_telepon'],
-            'kelas' => $data['kelas'],
+            'jam_masuk_id' => $data['kelas'],
             'prodi_id' => $data['prodi'],
-            'jalur_masuk' => $data['jalur_masuk'],
-            'gelombang_id' => $gelombang->id
+            'jalur_masuk_id' => $data['jalur_masuk'],
+            'gelombang_id' => $gelombang->id,
+            'lulusan_unigres' => $data['lulusan_unigres']
         ]);
     }
 }

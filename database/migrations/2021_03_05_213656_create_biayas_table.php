@@ -16,6 +16,8 @@ class CreateBiayasTable extends Migration
         Schema::create('biayas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('gelombang_id');
+            $table->unsignedBigInteger('jalur_masuk_id');
+            $table->unsignedBigInteger('kelas_id');
             $table->enum('kategori', ['registrasi', 'daftar_ulang']);
             $table->double('nominal')->default(0);
             $table->timestamps();

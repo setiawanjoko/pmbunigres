@@ -15,8 +15,8 @@ class JalurMasuk extends Model
         'jalur_masuk'
     ];
 
-    public function jalurMasukKelas(){
-        return $this->hasMany(JalurMasukKelas::class, 'jalur_masuk_id', 'id');
+    public function biaya(){
+        return $this->hasMany(Biaya::class, 'jalur_masuk_id', 'id');
     }
 
     public function kelas(){

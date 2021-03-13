@@ -28,8 +28,7 @@ class DatabaseSeeder extends Seeder
             KelasSeeder::class,
             JalurMasukSeeder::class,
             JamMasukSeeder::class,
-            JamMasukKelasSeeder::class,
-            JalurMasukKelasSeeder::class
+            JamMasukKelasSeeder::class
         ]);
     }
 }

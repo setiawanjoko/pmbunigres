@@ -10,14 +10,18 @@ class Biaya extends Model
     use HasFactory;
 
     protected $fillable = [
-        'gelombang_id', 'jenis_biaya', 'nominal'
+        'gelombang_id', 'jalur_masuk_id', 'kelas_id', 'kategori', 'nominal'
     ];
 
     public function gelombang() {
         return $this->belongsTo(Gelombang::class, 'gelombang_id', 'id');
     }
 
-    public function jalurMasukKelas(){
-        return $this->hasMany(JalurMasukKelas::class, 'biaya_id', 'id');
+    public function jalurMasuk(){
+        return $this->belongsTo(JalurMasuk::class, 'jalur_masuk_id','id');
+    }
+
+    public function kelas(){
+        return $this->belongsTo(Kelas::class,'kelas_id','id');
     }
 }

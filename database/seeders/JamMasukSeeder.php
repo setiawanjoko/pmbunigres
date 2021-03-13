@@ -15,7 +15,6 @@ class JamMasukSeeder extends Seeder
      */
     public function run()
     {
-        // ToDo: Buat variable data sesuai dengan kolom di table jam_masuks dan insert ke modelnya. Referensi: seeder lain.
         $data = [
             [
                 'jam_masuk' => 'pagi',

@@ -17,6 +17,7 @@ class CreateKelasTable extends Migration
             $table->id();
             $table->unsignedBigInteger('prodi_id');
             $table->string('kelas');
+            $table->boolean('lulusan_unigres')->default(false);
             $table->timestamps();
         });
     }

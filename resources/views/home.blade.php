@@ -42,7 +42,7 @@
                     <span class="badge badge-item">Penting</span>
                 </div>
             </a>
-                @elseif(!is_null(auth()->user()->pembayaranDaftarUlang()) && !is_null(auth()->user()->biodata->nim)))
+                @elseif(!is_null(auth()->user()->pembayaranDaftarUlang()) && !is_null(auth()->user()->biodata->nim))
                 <a class="link-item-ann" href="#">
                     <p class="h5 text-center">Selamat Anda menyelesaikan pembayaran daftar ulang</p>
                     <div class="wrappe-item-ann">

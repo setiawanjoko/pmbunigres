@@ -50,7 +50,7 @@ class MoodleAccountController extends Controller
         $firstname = $biodata->nama_depan;
         $lastname = $biodata->nama_belakang;
         $email = auth()->user()->email;
-        $username = strstr($email, '@', true);
+        $username = $biodata->no_pendaftaran;
 
         $moodleUrl = env('MOODLE_APP_SOCKET');
         $moodleToken = env('MOODLE_ADMIN_TOKEN');

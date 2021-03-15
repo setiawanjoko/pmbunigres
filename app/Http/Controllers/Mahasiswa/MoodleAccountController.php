@@ -58,17 +58,6 @@ class MoodleAccountController extends Controller
         $moodleUrl = env('MOODLE_APP_SOCKET');
         $moodleToken = env('MOODLE_ADMIN_TOKEN');
         try {
-//            dd($moodleToken);
-            /*$res = Http::post($moodleUrl . 'webservice/rest/server.php', [
-                'wstoken' => (string)$moodleToken,
-                'wsfunction' => 'auth_email_signup_user',
-                'moodlewsrestformat' => 'json',
-                'username' => $username,
-                'firstname' => $firstname,
-                'lastname' => $lastname,
-                'email' => $email,
-                'password' => $password,
-            ]);*/
 
             $res = Http::post($moodleUrl . "webservice/rest/server.php?wstoken=$moodleToken&wsfunction=auth_email_signup_user&moodlewsrestformat=json&username=$username&email=$email&password=$password&firstname=$firstname&lastname=$lastname");
             $response = json_decode($res->body());

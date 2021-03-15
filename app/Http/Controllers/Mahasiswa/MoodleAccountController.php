@@ -31,11 +31,9 @@ class MoodleAccountController extends Controller
         }
 
         if(is_null($dataMoodle->nilai_tpa)) {
-            //dd($this->checkNilai($dataMoodle->moodle_user_id));
             $dataMoodle->nilai_tpa = $this->checkNilai($dataMoodle->moodle_user_id);
 
             $dataMoodle->save();
-            //dd($dataMoodle);
         }
 
         $dataLink = ServerSetting::where('key', 'link_tes_tpa')->first();

@@ -31,8 +31,11 @@ class MoodleAccountController extends Controller
         }
 
         if(is_null($dataMoodle->nilai_tpa)) {
+            //dd($this->checkNilai($dataMoodle->moodle_user_id));
             $dataMoodle->nilai_tpa = $this->checkNilai($dataMoodle->moodle_user_id);
+
             $dataMoodle->save();
+            //dd($dataMoodle);
         }
 
         $dataLink = ServerSetting::where('key', 'link_tes_tpa')->first();
@@ -109,7 +112,7 @@ class MoodleAccountController extends Controller
                 foreach ($response->grades as $grade) {
                     if($grade->courseid == $courseID->value) {
                         if (!empty($grade->rawgrade)) {
-                            $final = $grade->grade;
+                            $final = $grade->rawgrade;
                             break;
                         }
                     }

@@ -50,7 +50,7 @@
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <label for="gelombang">Gelombang</label>
-                                                <select name="gelombang" id="gelombang" class="form-control @if($errors->has('daftar_ulang')) is-invalid @endif">
+                                                <select name="gelombang" id="gelombang" class="form-control @if($errors->has('jam')) is-invalid @endif">
                                                     @foreach($dataGelombang as $gelombang)
                                                         <option value="{{ $gelombang->id }}">{{ $gelombang->gelombang }}</option>
                                                     @endforeach
@@ -63,12 +63,12 @@
                                             </div>
                                             <div class="col-lg-6">
                                                 <label for="prodi">Program Studi</label>
-                                                <select name="prodi" id="prodi" class="form-control @if($errors->has('daftar_ulang')) is-invalid @endif">
-                                                    @foreach($dataProdi as $jenjangKey => $jenjang)
+                                                <select name="prodi" id="prodi" class="form-control @if($errors->has('jam')) is-invalid @endif">
+                                                    {{-- @foreach($dataJenjang as $jenjangKey => $jenjang)
                                                         @foreach($jenjang->prodi as $prodiKey => $prodi)
                                                             <option value="{{ $prodi->id }}">{{ $jenjang->nama . ' ' . $prodi->nama }}</option>
                                                         @endforeach
-                                                    @endforeach
+                                                    @endforeach --}}
                                                 </select>
                                                 @if ($errors->has('prodi'))
                                                     <div class="invalid-feedback">
@@ -77,22 +77,63 @@
                                                 @endif
                                             </div>
                                         </div>
+                                        <div class="row">                                     
+                                            <div class="col-lg-12">
+                                                <label for="kelas">Nama Kelas</label>
+                                                <input type="text" name="kelas" id="kelas" class="form-control @if($errors->has('kelas')) is-invalid @endif">
+                                                @if ($errors->has('kelas'))
+                                                    <div class="invalid-feedback">
+                                                        <strong>{{ $errors->first('kelas') }}</strong>
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        </div>
                                         <div class="row">
                                             <div class="col-lg-6">
-                                                <label for="registrasi">Biaya Registrasi</label>
-                                                <input type="number" name="registrasi" id="registrasi" class="form-control @if($errors->has('daftar_ulang')) is-invalid @endif">
-                                                @if ($errors->has('registrasi'))
+                                                <label for="jam">Jam Masuk</label>
+                                                @foreach($dataJam as $jam)
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="checkbox" id="jam" name="jam" value="{{ $jam->id }}">
+                                                    <label class="form-check-label" for="jam">{{ Str::ucfirst($jam->jam_masuk) }}</label>
+                                                </div>
+                                                @endforeach
+                                                @if ($errors->has('jam'))
                                                     <div class="invalid-feedback">
-                                                        <strong>{{ $errors->first('registrasi') }}</strong>
+                                                        <strong>{{ $errors->first('jam') }}</strong>
                                                     </div>
                                                 @endif
                                             </div>
                                             <div class="col-lg-6">
-                                                <label for="daftar_ulang">Biaya Daftar Ulang</label>
-                                                <input type="number" name="daftar_ulang" id="daftar_ulang" class="form-control @if($errors->has('daftar_ulang')) is-invalid @endif">
-                                                @if ($errors->has('daftar_ulang'))
+                                                <label for="jam">Jalur Masuk</label>
+                                                @foreach($dataJalur as $jalur)
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="checkbox" id="jalur" name="jalur" value="{{ $jalur->id }}">
+                                                    <label class="form-check-label" for="jalur">{{ Str::ucfirst($jalur->jalur_masuk) }}</label>
+                                                </div>
+                                                @endforeach
+                                                @if ($errors->has('jalur'))
                                                     <div class="invalid-feedback">
-                                                        <strong>{{ $errors->first('daftar_ulang') }}</strong>
+                                                        <strong>{{ $errors->first('jalur') }}</strong>
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <label for="biaya_registrasi">Biaya Registrasi</label>
+                                                <input type="number" name="biaya_registrasi" id="biaya_registrasi" class="form-control @if($errors->has('biaya_registrasi')) is-invalid @endif">
+                                                @if ($errors->has('biaya_registrasi'))
+                                                    <div class="invalid-feedback">
+                                                        <strong>{{ $errors->first('biaya_registrasi') }}</strong>
+                                                    </div>
+                                                @endif
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <label for="biaya_daftar_ulang">Biaya Daftar Ulang</label>
+                                                <input type="number" name="biaya_daftar_ulang" id="biaya_daftar_ulang" class="form-control @if($errors->has('jam')) is-invalid @endif">
+                                                @if ($errors->has('jam'))
+                                                    <div class="invalid-feedback">
+                                                        <strong>{{ $errors->first('jam') }}</strong>
                                                     </div>
                                                 @endif
                                             </div>
@@ -114,18 +155,21 @@
                                     <th style="width:40px;">No</th>
                                     <th>Gelombang</th>
                                     <th>Program Studi</th>
+                                    <th>Kelas</th>
+                                    <th>Jam</th>
+                                    <th>Jalur Masuk</th>
                                     <th>Kategori</th>
-                                    <th>Biaya Biaya</th>
+                                    <th>Biaya</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($data as $biaya)
+                                {{-- @foreach($data as $biaya)
                                     <tr>
                                         <td class="text-center">{{ $loop->iteration }}</td>
                                         <td>{{ $biaya->gelombang->gelombang }}</td>
                                         <td>{{ $biaya->prodi->jenjang->nama . ' ' . $biaya->prodi->nama }}</td>
-                                        <td>@if($biaya->jenis_biaya == 'registrasi') Registrasi @elseif($biaya->jenis_biaya == 'daftar_ulang') Daftar ulang @endif</td>
+                                        <td>@if($biaya->jenis_biaya == 'kelas') kelas @elseif($biaya->jenis_biaya == 'jam') Daftar ulang @endif</td>
                                         <td>Rp. {{ number_format($biaya->nominal, 0, '', '.')  }},-</td>
                                         <td class="text-center">
                                             <form action="{{ route('admin.pengaturan-gelombang.destroy', $biaya->id) }}"
@@ -137,7 +181,7 @@
                                             </form>
                                         </td>
                                     </tr>
-                                @endforeach
+                                @endforeach --}}
                                 </tbody>
                             </table>
                         </div>

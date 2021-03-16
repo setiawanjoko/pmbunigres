@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Biaya;
 use App\Models\Gelombang;
+use App\Models\JalurMasuk;
+use App\Models\JamMasuk;
 use App\Models\Jenjang;
 use App\Models\Prodi;
 use Illuminate\Http\Request;
@@ -12,13 +14,11 @@ use Illuminate\Http\Request;
 class PengaturanGelombangController extends Controller
 {
     public function index($id = null) {
-        $data = Biaya::with(['gelombang', 'prodi'])->get();
         $dataGelombang = Gelombang::all();
-        $dataProdi = Jenjang::with('prodi')->get();
-        if(!is_null($id)) {
-            $dataBiaya = Biaya::find();
-        } else $dataBiaya = null;
-        return response()->view('admin.master.pengaturan-gelombang', compact('data', 'dataGelombang', 'dataProdi', 'dataBiaya'));
+        $dataJalur = JalurMasuk::all();
+        $dataJam = JamMasuk::all();
+        $dataJenjang = Jenjang::with('prodi')->get();
+        return response()->view('admin.master.pengaturan-gelombang', compact('dataGelombang', 'dataJalur', 'dataJam','dataJenjang'));
     }
 
     public function store(Request $request) {

@@ -16,6 +16,7 @@ use App\Http\Controllers\Mahasiswa\KeluargaController;
 use App\Http\Controllers\Mahasiswa\LinkTesTPAController;
 use App\Http\Controllers\Mahasiswa\MoodleAccountController;
 use App\Http\Controllers\Mahasiswa\BerkasController;
+use App\Http\Controllers\Mahasiswa\TesKesehatanController;
 use App\Http\Controllers\Pembayaran\DaftarUlangController;
 use App\Http\Controllers\Pembayaran\RegistrasiController;
 use Illuminate\Support\Facades\Route;
@@ -59,6 +60,7 @@ Route::middleware(['auth', 'verify', 'can:camaba'])->group(function(){
             Route::get('/berkas', [BerkasController::class, 'create'])->name('berkas.create');
             Route::post('/berkas', [BerkasController::class, 'store'])->name('berkas.store');
             Route::get('/informasi-tpa', [MoodleAccountController::class, 'index'])->name('moodle');
+            Route::get('/tes-kesehatan', [TesKesehatanController::class, 'index'])->name('tes-kesehatan');
         });
         Route::get('/daftar-ulang', [DaftarUlangController::class, 'index'])->name('daftar-ulang');
     });

@@ -19,6 +19,7 @@ use App\Http\Controllers\Mahasiswa\BerkasController;
 use App\Http\Controllers\Mahasiswa\TesKesehatanController;
 use App\Http\Controllers\Pembayaran\DaftarUlangController;
 use App\Http\Controllers\Pembayaran\RegistrasiController;
+use App\Http\Controllers\RegisNersController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -44,6 +45,14 @@ Route::get('pengumuman', function () {
 Route::get('kontak', function () {
     return view('contact');
 })->name('kontak');
+
+// Route::get('regisners', function () {
+//     return view('/auth/regis-ners');
+// })->name('regisners');
+
+Route::get('regisners', [RegisNersController::class, 'index'])->name('regisners');
+Route::post('regisners', [RegisNersController::class, 'store'])->name('regisners.store');
+Route::get('getkelasners/{id}/{lulusan_unigres}', [RegisNersController::class, 'get_kelas']);
 
 Auth::routes(['verify'=>true]);
 Route::get('/verify/failed', [VerificationController::class, 'warning'])->name('verification.failed');

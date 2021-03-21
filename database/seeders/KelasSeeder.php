@@ -21,12 +21,14 @@ class KelasSeeder extends Seeder
             [
                 'prodi_id' => 1,
                 'kelas' => 'A',
+                'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
             [
                 'prodi_id' => 1,
                 'kelas' => 'B',
+                'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
@@ -35,6 +37,7 @@ class KelasSeeder extends Seeder
             [
                 'prodi_id' => 2,
                 'kelas' => 'A',
+                'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
@@ -43,6 +46,7 @@ class KelasSeeder extends Seeder
             [
                 'prodi_id' => 3,
                 'kelas' => 'A',
+                'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
@@ -51,12 +55,14 @@ class KelasSeeder extends Seeder
             [
                 'prodi_id' => 4,
                 'kelas' => 'A',
+                'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
             [
                 'prodi_id' => 4,
                 'kelas' => 'B',
+                'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
@@ -65,12 +71,14 @@ class KelasSeeder extends Seeder
             [
                 'prodi_id' => 5,
                 'kelas' => 'A',
+                'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
             [
                 'prodi_id' => 5,
                 'kelas' => 'B',
+                'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
@@ -79,6 +87,7 @@ class KelasSeeder extends Seeder
             [
                 'prodi_id' => 6,
                 'kelas' => 'A',
+                'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
@@ -87,6 +96,7 @@ class KelasSeeder extends Seeder
             [
                 'prodi_id' => 7,
                 'kelas' => 'A',
+                'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
@@ -95,12 +105,14 @@ class KelasSeeder extends Seeder
             [
                 'prodi_id' => 8,
                 'kelas' => 'A',
+                'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
             [
                 'prodi_id' => 8,
                 'kelas' => 'B',
+                'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
@@ -108,19 +120,22 @@ class KelasSeeder extends Seeder
             // Profesi NERS
             [
                 'prodi_id' => 9,
-                'kelas' => '1',
+                'kelas' => 'A',
+                'lulusan_unigres' => 1,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
             [
                 'prodi_id' => 9,
-                'kelas' => '2',
+                'kelas' => 'B',
+                'lulusan_unigres' => 1,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
             [
                 'prodi_id' => 9,
-                'kelas' => '3',
+                'kelas' => 'C (Reguler)',
+                'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
@@ -129,12 +144,14 @@ class KelasSeeder extends Seeder
             [
                 'prodi_id' => 10,
                 'kelas' => 'A',
+                'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
             [
                 'prodi_id' => 10,
                 'kelas' => 'B',
+                'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],

@@ -28,11 +28,11 @@
                         <label class="form-label lable-radio">Khusus Pascasarjana dan Profesi</label>
                         <div class="wrap-input" id="lulusan_unigres">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" @if(old('lulusan_unigres') == 1) checked @endif type="radio" name="lulusan_unigres" id="inlineRadio1" value="1" required>
+                                <input class="form-check-input" @if(old('lulusan_unigres') == 1) checked @endif type="radio" name="lulusan_unigres" id="lulusan_unigres1" value="1" required>
                                 <label class="form-check-label" for="inlineRadio1">Lulusan Unigres</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" @if(old('lulusan_unigres') == 0) checked @endif type="radio" name="lulusan_unigres" id="inlineRadio2" value="0" required>
+                                <input class="form-check-input" @if(old('lulusan_unigres') == 0) checked @endif type="radio" name="lulusan_unigres" id="lulusan_unigres2" value="0" required>
                                 <label class="form-check-label" for="inlineRadio2">Bukan Lulusan Unigres</label>
                             </div>
                         </div>
@@ -88,15 +88,15 @@
                         <label class="form-label lable-radio">Dapat Informasi PMB dari :</label>
                         <div class="wrap-input" id="informasi">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" @if(old('informasi') == 'sosial_media') checked @endif type="radio" name="informasi" id="inlineRadio1" value="sosial_media" required>
+                                <input class="form-check-input" @if(old('informasi') == 'sosial_media') checked @endif type="radio" name="informasi" id="informasi1" value="sosial_media" required>
                                 <label class="form-check-label" for="inlineRadio1">Social Media</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" @if(old('informasi') == 'teman_saudara') checked @endif type="radio" name="informasi" id="inlineRadio2" value="teman_saudara" required>
+                                <input class="form-check-input" @if(old('informasi') == 'teman_saudara') checked @endif type="radio" name="informasi" id="informasi2" value="teman_saudara" required>
                                 <label class="form-check-label" for="inlineRadio2">Teman/Saudara</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" @if(old('informasi') == 'lainnya') checked @endif type="radio" name="informasi" id="inlineRadio3" value="lainnya" required>
+                                <input class="form-check-input" @if(old('informasi') == 'lainnya') checked @endif type="radio" name="informasi" id="informasi3" value="lainnya" required>
                                 <label class="form-check-label" for="inlineRadio3">lain-lain</label>
                             </div>
                         </div>
@@ -156,9 +156,11 @@
     $( document ).ready(function() {
         $("#prodi").change(function () {
             var prodi = $("#prodi option:selected" ).val();
+            var lulusan = $('input[name="lulusan_unigres"]:checked').val();
+
             $.ajax({
                 type:'GET',
-                url:'getjammasuk/' + prodi,
+                url:'getjammasuk/' + prodi + '/' + lulusan,
                 success:function(data){
                     if (prodi == 9 || prodi == 10) {
                         $("#kelas").find('option').remove().end().append('<option selected disabled>-- Kelas Anda Sebelumnya --</option>');
@@ -187,6 +189,30 @@
                     $("#jalur_masuk").find('option').remove().end().append('<option selected disabled>-- Silahkan Jalur Masuk --</option>');
                     $.each(data, function(){
                         $("#jalur_masuk").append('<option  value="'+ this.jalur_masuk_id +'">'+ this.jalur_masuk +'</option>')                            
+                    });
+                }
+            });
+        });
+
+        $("#lulusan_unigres").change(function () {
+            var prodi = $("#prodi option:selected" ).val();
+            var lulusan = $('input[name="lulusan_unigres"]:checked').val();
+
+            $.ajax({
+                type:'GET',
+                url:'getjammasuk/' + prodi + '/' + lulusan,
+                success:function(data){
+                    if (prodi == 9 || prodi == 10) {
+                        $("#kelas").find('option').remove().end().append('<option selected disabled>-- Kelas Anda Sebelumnya --</option>');
+                    } else {
+                        $("#kelas").find('option').remove().end().append('<option selected disabled>-- Silahkan Pilih Kelas --</option>');
+                    }
+                    $.each(data, function(){
+                        if (this.prodi_id == 9 || this.prodi_id == 10) {
+                            $("#kelas").append('<option  value="'+ this.id +'">Kelas '+ this.kelas +'</option>')                            
+                        }else{
+                            $("#kelas").append('<option value="'+ this.id +'">Kelas '+ this.jam_masuk +'</option>')
+                        }
                     });
                 }
             });

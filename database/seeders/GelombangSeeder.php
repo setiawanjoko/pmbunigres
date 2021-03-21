@@ -18,22 +18,22 @@ class GelombangSeeder extends Seeder
         $data = [
             [
                 'gelombang'     => 'Gelombang 1',
-                'tgl_mulai'    => Carbon::createFromDate(2021,03,1),
-                'tgl_selesai'    => Carbon::createFromDate(2021,03,7),
+                'tgl_mulai'    => Carbon::createFromDate(2021,03,22),
+                'tgl_selesai'    => Carbon::createFromDate(2021,03,31),
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
             [
                 'gelombang'     => 'Gelombang 2',
-                'tgl_mulai'    => Carbon::createFromDate(2021,03,8),
-                'tgl_selesai'    => Carbon::createFromDate(2021,03,14),
+                'tgl_mulai'    => Carbon::createFromDate(2021,04,1),
+                'tgl_selesai'    => Carbon::createFromDate(2021,04,30),
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
             [
                 'gelombang'     => 'Gelombang 3',
-                'tgl_mulai'    => Carbon::createFromDate(2021,03,15),
-                'tgl_selesai'    => Carbon::createFromDate(2021,03,21),
+                'tgl_mulai'    => Carbon::createFromDate(2021,05,1),
+                'tgl_selesai'    => Carbon::createFromDate(2021,05,31),
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],

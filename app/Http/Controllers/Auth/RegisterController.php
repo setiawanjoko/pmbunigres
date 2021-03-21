@@ -49,13 +49,13 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-    public function get_jam_masuk($id){        
+    public function get_jam_masuk($id, $lulusan_unigres){        
         $data = DB::select('SELECT k.id,j.jam_masuk_id,m.jam_masuk,k.kelas,k.prodi_id,p.nama
                             FROM jam_masuk_kelas j
                             LEFT OUTER JOIN kelas k ON j.kelas_id = k.id 
                             LEFT OUTER JOIN jam_masuks m ON j.jam_masuk_id = m.id
                             LEFT OUTER JOIN prodi p ON k.prodi_id = p.id
-                            where p.id = ?', [$id]);
+                            where p.id = ? and k.lulusan_unigres = ?', [$id,$lulusan_unigres]);
         return $data;
     }
 
@@ -90,17 +90,17 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        $prodi = Prodi::find($data['prodi']);
-        $jamMasuk = $prodi->jamMasuk();
-        $jamMasukValidation = array();
-        foreach($jamMasuk as $jam){
-            array_push($jamMasukValidation, $jam->id);
-        }
-        $jalurMasuk = $prodi->jalurMasuk();
-        $jalurMasukValidation = array();
-        foreach($jalurMasuk as $jalur){
-            array_push($jalurMasukValidation, $jalur->id);
-        }
+        // $prodi = Prodi::find($data['prodi']);
+        // $jamMasuk = $prodi->jamMasuk();
+        // $jamMasukValidation = array();
+        // foreach($jamMasuk as $jam){
+        //     array_push($jamMasukValidation, $jam->id);
+        // }
+        // $jalurMasuk = $prodi->jalurMasuk();
+        // $jalurMasukValidation = array();
+        // foreach($jalurMasuk as $jalur){
+        //     array_push($jalurMasukValidation, $jalur->id);
+        // }
 
         return Validator::make($data, [
             'nama' => ['required', 'string', 'max:255'],
@@ -108,9 +108,9 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'informasi' => ['required', 'in:sosial_media,teman_saudara,lainnya'],
             'no_telepon' => ['required', 'string'],
-            'kelas' => ['required', Rule::in($jamMasukValidation)],
+            //'kelas' => ['required', Rule::in($jamMasukValidation)],
             'prodi' => ['required', 'exists:prodi,id'],
-            'jalur_masuk' => ['required', Rule::in($jalurMasukValidation)],
+            //'jalur_masuk' => ['required', Rule::in($jalurMasukValidation)],
             'lulusan_unigres' => ['required', 'boolean'],
         ]);
     }

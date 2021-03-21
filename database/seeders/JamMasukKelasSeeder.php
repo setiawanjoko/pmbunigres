@@ -124,7 +124,7 @@ class JamMasukKelasSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
-
+            
             // Sastra Inggris
             [
                 'kelas_id' => 10,
@@ -157,6 +157,26 @@ class JamMasukKelasSeeder extends Seeder
             [
                 'kelas_id' => 12,
                 'jam_masuk_id' => 3, // sore
+                'created_at'    => Carbon::now(),
+                'updated_at'    => Carbon::now(),
+            ],
+
+            // NERS
+            [
+                'kelas_id' => 13,
+                'jam_masuk_id' => 1, // pagi
+                'created_at'    => Carbon::now(),
+                'updated_at'    => Carbon::now(),
+            ],
+            [
+                'kelas_id' => 14,
+                'jam_masuk_id' => 1, // pagi
+                'created_at'    => Carbon::now(),
+                'updated_at'    => Carbon::now(),
+            ],
+            [
+                'kelas_id' => 15,
+                'jam_masuk_id' => 1, // pagi
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],

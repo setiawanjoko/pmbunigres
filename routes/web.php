@@ -53,7 +53,7 @@ Route::get('kontak', function () {
 
 Route::get('regisners', [RegisNersController::class, 'index'])->name('regisners');
 Route::post('regisners', [RegisNersController::class, 'store'])->name('regisners.store');
-Route::get('getjammasuk/{id}', [RegisterController::class, 'get_jam_masuk']);
+Route::get('getjammasuk/{id}/{lulusan_unigres}', [RegisterController::class, 'get_jam_masuk']);
 Route::get('getjalurmasuk/{id}', [RegisterController::class, 'get_jalur_masuk']);
 Route::get('getkelasners/{id}/{lulusan_unigres}', [RegisNersController::class, 'get_kelas']);
 

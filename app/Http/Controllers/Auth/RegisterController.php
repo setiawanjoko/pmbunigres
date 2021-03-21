@@ -12,6 +12,7 @@ use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -47,6 +48,30 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
+
+    public function get_jam_masuk($id){        
+        $data = DB::select('SELECT k.id,j.jam_masuk_id,m.jam_masuk,k.kelas,k.prodi_id,p.nama
+                            FROM jam_masuk_kelas j
+                            LEFT OUTER JOIN kelas k ON j.kelas_id = k.id 
+                            LEFT OUTER JOIN jam_masuks m ON j.jam_masuk_id = m.id
+                            LEFT OUTER JOIN prodi p ON k.prodi_id = p.id
+                            where p.id = ?', [$id]);
+        return $data;
+    }
+
+    public function get_jalur_masuk($id){
+        $gelombang = $gelombang = Gelombang::where([
+            ['tgl_mulai', '<=', Carbon::today()],
+            ['tgl_selesai', '>=', Carbon::today()]
+        ])->first();
+
+        $data = DB::select('SELECT b.gelombang_id,b.kelas_id,b.id,b.jalur_masuk_id,j.jalur_masuk
+                            FROM biayas b
+                            LEFT OUTER JOIN jalur_masuk j ON b.jalur_masuk_id = j.id
+                            WHERE b.kategori = '.'"'.'registrasi'.'"'.' and b.kelas_id = ? and b.gelombang_id = ?', [$id,$gelombang->id]);
+        return $data;
+    }
+
 
     public function showRegistrationForm()
     {

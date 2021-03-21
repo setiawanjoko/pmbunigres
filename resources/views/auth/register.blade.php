@@ -26,7 +26,7 @@
                     </div>
                     <div class="col-lg-6">
                         <label class="form-label lable-radio">Khusus Pascasarjana dan Profesi</label>
-                        <div class="wrap-input">
+                        <div class="wrap-input" id="lulusan_unigres">
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" @if(old('lulusan_unigres') == 1) checked @endif type="radio" name="lulusan_unigres" id="inlineRadio1" value="1" required>
                                 <label class="form-check-label" for="inlineRadio1">Lulusan Unigres</label>
@@ -58,6 +58,19 @@
                         @endif
                     </div>
                     <div class="col-lg-6">
+                        <select name="kelas" id="kelas" class="form-control @if($errors->has('kelas')) is-invalid @endif" required>
+                            <option selected disabled>-- Pilih Kelas --</option>
+                            @foreach($dataJamMasuk as $jamMasuk)
+                            <option value="{{ $jamMasuk->id }}" @if(old('kelas') == $jamMasuk->id) selected @endif>{{ $jamMasuk->jam_masuk }}</option>
+                            @endforeach
+                        </select>
+                        @if($errors->has('kelas'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('kelas') }}
+                        </div>
+                        @endif
+                    </div>
+                    <div class="col-lg-6">
                         <select name="jalur_masuk" id="jalur_masuk" class="mb-0 form-control @if($errors->has('jalur_masuk')) is-invalid @endif" aria-describedby="jalur_masuk_help" required>
                             <option selected disabled>-- Pilih Jalur Masuk --</option>
                             @foreach($dataJalurMasuk as $jalurMasuk)
@@ -72,21 +85,8 @@
                         @endif
                     </div>
                     <div class="col-lg-6">
-                        <select name="kelas" id="kelas" class="form-control @if($errors->has('kelas')) is-invalid @endif" required>
-                            <option selected disabled>-- Pilih Kelas --</option>
-                            @foreach($dataJamMasuk as $jamMasuk)
-                                <option value="{{ $jamMasuk->id }}" @if(old('kelas') == $jamMasuk->id) selected @endif>{{ $jamMasuk->jam_masuk }}</option>
-                            @endforeach
-                        </select>
-                        @if($errors->has('kelas'))
-                            <div class="invalid-feedback">
-                                {{ $errors->first('kelas') }}
-                            </div>
-                        @endif
-                    </div>
-                    <div class="col-lg-6">
                         <label class="form-label lable-radio">Dapat Informasi PMB dari :</label>
-                        <div class="wrap-input">
+                        <div class="wrap-input" id="informasi">
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" @if(old('informasi') == 'sosial_media') checked @endif type="radio" name="informasi" id="inlineRadio1" value="sosial_media" required>
                                 <label class="form-check-label" for="inlineRadio1">Social Media</label>
@@ -151,4 +151,47 @@
         </form>
     </div>
 </section>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+    $( document ).ready(function() {
+        $("#prodi").change(function () {
+            var prodi = $("#prodi option:selected" ).val();
+            $.ajax({
+                type:'GET',
+                url:'getjammasuk/' + prodi,
+                success:function(data){
+                    if (prodi == 9 || prodi == 10) {
+                        $("#kelas").find('option').remove().end().append('<option selected disabled>-- Kelas Anda Sebelumnya --</option>');
+                    } else {
+                        $("#kelas").find('option').remove().end().append('<option selected disabled>-- Silahkan Pilih Kelas --</option>');
+                    }
+                    $.each(data, function(){
+                        if (this.prodi_id == 9 || this.prodi_id == 10) {
+                            $("#kelas").append('<option  value="'+ this.id +'">Kelas '+ this.kelas +'</option>')                            
+                        }else{
+                            $("#kelas").append('<option value="'+ this.id +'">Kelas '+ this.jam_masuk +'</option>')
+                        }
+                    });
+                }
+            });
+        });
+
+        $("#kelas").change(function () {
+            var kls = $("#kelas option:selected" ).val();
+            console.log(kls);
+
+            $.ajax({
+                type:'GET',
+                url:'getjalurmasuk/' + kls,
+                success:function(data){
+                    $("#jalur_masuk").find('option').remove().end().append('<option selected disabled>-- Silahkan Jalur Masuk --</option>');
+                    $.each(data, function(){
+                        $("#jalur_masuk").append('<option  value="'+ this.jalur_masuk_id +'">'+ this.jalur_masuk +'</option>')                            
+                    });
+                }
+            });
+        });
+    });
+
+</script>
 @endsection

@@ -22,6 +22,7 @@ use App\Http\Controllers\Pembayaran\RegistrasiController;
 use App\Http\Controllers\RegisNersController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +53,8 @@ Route::get('kontak', function () {
 
 Route::get('regisners', [RegisNersController::class, 'index'])->name('regisners');
 Route::post('regisners', [RegisNersController::class, 'store'])->name('regisners.store');
+Route::get('getjammasuk/{id}', [RegisterController::class, 'get_jam_masuk']);
+Route::get('getjalurmasuk/{id}', [RegisterController::class, 'get_jalur_masuk']);
 Route::get('getkelasners/{id}/{lulusan_unigres}', [RegisNersController::class, 'get_kelas']);
 
 Auth::routes(['verify'=>true]);

@@ -68,7 +68,7 @@ class RegisterController extends Controller
         $data = DB::select('SELECT b.gelombang_id,b.kelas_id,b.id,b.jalur_masuk_id,j.jalur_masuk
                             FROM biayas b
                             LEFT OUTER JOIN jalur_masuk j ON b.jalur_masuk_id = j.id
-                            WHERE b.kategori = '.'"'.'registrasi'.'"'.' and b.kelas_id = ? and b.gelombang_id = ?', [$id,$gelombang->id]);
+                            WHERE b.kategori = \'registrasi\' and b.kelas_id = ? and b.gelombang_id = ?', [$id,$gelombang->id]);
         return $data;
     }
 
@@ -108,9 +108,10 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'informasi' => ['required', 'in:sosial_media,teman_saudara,lainnya'],
             'no_telepon' => ['required', 'string'],
-            //'kelas' => ['required', Rule::in($jamMasukValidation)],
+            'kelas' => ['required', 'integer'],//Rule::in($jamMasukValidation)],
             'prodi' => ['required', 'exists:prodi,id'],
-            //'jalur_masuk' => ['required', Rule::in($jalurMasukValidation)],
+            'jalur_masuk' => ['required', 'integer'],//Rule::in($jalurMasukValidation)],
+            'lulusan_unigres' => ['required', 'boolean'],
             'lulusan_unigres' => ['required', 'boolean'],
         ]);
     }

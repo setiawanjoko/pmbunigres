@@ -157,7 +157,7 @@
         $("#prodi").change(function () {
             var prodi = $("#prodi option:selected" ).val();
             var lulusan = $('input[name="lulusan_unigres"]:checked').val();
-
+            console.log(prodi);
             $.ajax({
                 type:'GET',
                 url:'getjammasuk/' + prodi + '/' + lulusan,
@@ -197,7 +197,7 @@
         $("#lulusan_unigres").change(function () {
             var prodi = $("#prodi option:selected" ).val();
             var lulusan = $('input[name="lulusan_unigres"]:checked').val();
-
+            
             $.ajax({
                 type:'GET',
                 url:'getjammasuk/' + prodi + '/' + lulusan,

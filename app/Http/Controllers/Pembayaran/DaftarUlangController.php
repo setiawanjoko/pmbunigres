@@ -13,6 +13,7 @@ class DaftarUlangController extends Controller
 {
     public function __construct()
     {
+        // todo: cek nilai tes kesehatan jika ada
         $this->middleware(function ($request, $next) {
             $user = auth()->user();
             if(!is_null($user->moodleAccount->nilai_tpa)) {
@@ -28,9 +29,11 @@ class DaftarUlangController extends Controller
                 }
 
                 return $next($request);
+            } else if(!$user->tes_kesehatan && $user->prodi->tes_kesehatan) {
+                // tampilkan pesan tes kesehatan
+            } else {
+                return response()->redirectToRoute('moodle');
             }
-
-            return response()->redirectToRoute('moodle');
         });
     }
 

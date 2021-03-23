@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -108,6 +109,21 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function berkas() {
         return $this->hasOne(Berkas::class, 'user_id', 'id');
+    }
+
+    public function kelas() {
+        $jamMasuk = $this->jam_masuk_id;
+        $jalurMasuk = $this->jalur_masuk_id;
+        $gelombang = $this->gelombang_id;
+        $kelas = Kelas::where([
+            ['prodi_id', $this->prodi_id],
+            ['lulusan_unigres', $this->lulusan_unigres]
+        ])
+            ->whereHas('jamMasuk', function ($query) use($jamMasuk){
+                return $query->where('jam_masuks.id', $jamMasuk);
+            })->first();
+
+        return $kelas;
     }
 
     public function biayaRegistrasi() {

@@ -32,7 +32,7 @@
 @section('content')    
 <div class="konfirmasi-pembayaran">
     <div class="container">
-        <h4 class="title-konfirm1">Tes Potensi Akademik</h4>
+        <h4 class="title-konfirm1">Informasi Tes Kesehatan dan Potensi Akademik</h4>
         <p class="title-konfirm2">Informasi tes kesehatan kelanjutan dari tes potensi akademik</p>
         <div class="row gx-5">
             <div class="col-md-6 left">
@@ -41,9 +41,9 @@
                 <p class="catatan">Catatan :</p>
                 <p>
                     <ol>
-                        <li class="catatan2">Silahkan klik link diatas untuk masuk ke halaman tes potensi akademik</li>
-                        <li class="catatan2">Lalu login menggunakan informasi akun yang telah diberikan</li>
-                        <li class="catatan2">Jika ada informasi yang kurang jelas, silahkan tanyakan ke pihak terkait.</li>
+                        <li class="catatan2">Batas akhir tes kesehatan terhitung dari halaman ini muncul 2x24 jam.</li>
+                        <li class="catatan2">Silahkan untuk segera menghubungi pihak yang terkait.</li>
+                        <li class="catatan2">Keterlambatan dalam menghubungi pihak yg terkait akan terbatalnya proses kelanjutan penerimaan mahasiswa.</li>
                     </ol>
                 </p>
                 <p class="catatan2">Jika link tidak merespon lakukan refresh website, atau tunggu hingga sampai link sudah aktif. Lalu segera lakukan tes potensi akademik.</p>
@@ -76,23 +76,6 @@
                     </div>
                 </div>
                 {{-- akhir --}}
-                      <div class="card mb-3">
-                        <div class="card-header">
-                            <h5 class="mb-0">Informasi user dan password Anda.</h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="form-group mb-3">
-                                    <label for="username">Username</label>
-                                    <input type="text" class="form-control form-control-sm" value="-" disabled readonly>
-                                </div>
-                                <div class="form-group">
-                                    <label for="password">Password</label>
-                                    <input type="text" class="form-control form-control-sm" value="-" disabled readonly>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
             </div>
         </div>
     </div>

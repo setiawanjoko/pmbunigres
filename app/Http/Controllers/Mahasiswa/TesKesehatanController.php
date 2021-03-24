@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Mahasiswa;
 
 use App\Http\Controllers\Controller;
+use App\Models\MoodleAccount;
 use Illuminate\Http\Request;
 
 class TesKesehatanController extends Controller
@@ -23,7 +24,8 @@ class TesKesehatanController extends Controller
     public function index(){
         $user = auth()->user();
         $prodi = $user->prodi;
+        $dataMoodle = MoodleAccount::where('user_id', auth()->user()->id)->first();
 
-        return response()->view('mahasiswa.tes-kesehatan', compact('prodi'));
+        return response()->view('mahasiswa.tes-kesehatan', compact('prodi', 'dataMoodle'));
     }
 }

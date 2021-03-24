@@ -26,10 +26,10 @@
         </div>
         <span>Informasi dan Pengumuman</span>
     </a>
-</li>  
+</li>
 @endsection
 
-@section('content')    
+@section('content')
 <div class="konfirmasi-pembayaran">
     <div class="container">
         <h4 class="title-konfirm1">Informasi Tes Kesehatan dan Potensi Akademik</h4>
@@ -47,7 +47,7 @@
                     </ol>
                 </p>
                 <p class="catatan2">Jika link tidak merespon lakukan refresh website, atau tunggu hingga sampai link sudah aktif. Lalu segera lakukan tes potensi akademik.</p>
-            </div>                    
+            </div>
             <div class="col-md-6 right">
                 {{-- awal - muncul saat nilai sudah masuk dan hasil tes kesehatan sudah masuk --}}
                 <div class="mb-3">
@@ -75,7 +75,7 @@
                         <h2>{{ $dataMoodle->nilai_tpa }}</h2>
                     </div>
                 </div>
-                {{-- akhir --}}
+                kesehatan
             </div>
         </div>
     </div>

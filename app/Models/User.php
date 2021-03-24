@@ -195,4 +195,12 @@ class User extends Authenticatable implements MustVerifyEmail
     public function pengumuman() {
         return $this->hasMany(Pengumuman::class, 'petugas_id', 'id');
     }
+
+    public function isTesKesehatan() {
+        $prodi = Prodi::where('id', $this->prodi_id)->first();
+
+        if($prodi->tes_kesehatan && !$this->tes_kesehatan) {
+            return true;
+        } else return false;
+    }
 }

@@ -18,7 +18,7 @@ class MoodleAccountController extends Controller
                 return response()->redirectToRoute('keluarga.create');
             }else if(empty(auth()->user()->berkas)){
                 return response()->redirectToRoute('berkas.create');
-            }else if('cek apa ya'){
+            }else if(auth()->user()->isTesKesehatan()){
                 return response()->redirectToRoute('tes-kesehatan');
             }else{
                 return $next($request);

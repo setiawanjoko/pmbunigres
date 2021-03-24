@@ -203,4 +203,10 @@ class User extends Authenticatable implements MustVerifyEmail
             return true;
         } else return false;
     }
+
+    public function isProdiTes(){
+        $prodi = Prodi::where('id', $this->prodi_id)->first();
+        
+        return (($prodi->tes_kesehatan && $this->tes_kesehatan) || (!$prodi->tes_kesehatan));
+    }
 }

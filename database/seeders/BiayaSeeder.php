@@ -390,34 +390,6 @@ class BiayaSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
-//registrasi mesin kelas A gelombang 1
-            [
-                'gelombang_id' => 1,
-                'jalur_masuk_id' => 1,
-                'kelas_id' => 5,
-                'kategori' => 'registrasi',
-                'nominal' => 200000,
-                'created_at'    => Carbon::now(),
-                'updated_at'    => Carbon::now(),
-            ],
-            [
-                'gelombang_id' => 1,
-                'jalur_masuk_id' => 2,
-                'kelas_id' => 5,
-                'kategori' => 'registrasi',
-                'nominal' => 200000,
-                'created_at'    => Carbon::now(),
-                'updated_at'    => Carbon::now(),
-            ],
-            [
-                'gelombang_id' => 1,
-                'jalur_masuk_id' => 3,
-                'kelas_id' => 5,
-                'kategori' => 'registrasi',
-                'nominal' => 200000,
-                'created_at'    => Carbon::now(),
-                'updated_at'    => Carbon::now(),
-            ],
             //registrasi mesin kelas A gelombang 2
             [
                 'gelombang_id' => 2,
@@ -1071,15 +1043,6 @@ class BiayaSeeder extends Seeder
             //registrasi Ners kelas 1 gelombang 1
             [
                 'gelombang_id' => 1,
-                'jalur_masuk_id' => 1,
-                'kelas_id' => 13,
-                'kategori' => 'registrasi',
-                'nominal' => 200000,
-                'created_at'    => Carbon::now(),
-                'updated_at'    => Carbon::now(),
-            ],
-            [
-                'gelombang_id' => 1,
                 'jalur_masuk_id' => 4,
                 'kelas_id' => 13,
                 'kategori' => 'registrasi',
@@ -1090,15 +1053,6 @@ class BiayaSeeder extends Seeder
             //registrasi Ners kelas 1 gelombang 2
             [
                 'gelombang_id' => 2,
-                'jalur_masuk_id' => 1,
-                'kelas_id' => 13,
-                'kategori' => 'registrasi',
-                'nominal' => 200000,
-                'created_at'    => Carbon::now(),
-                'updated_at'    => Carbon::now(),
-            ],
-            [
-                'gelombang_id' => 2,
                 'jalur_masuk_id' => 4,
                 'kelas_id' => 13,
                 'kategori' => 'registrasi',
@@ -1107,15 +1061,6 @@ class BiayaSeeder extends Seeder
                 'updated_at'    => Carbon::now(),
             ],
             //registrasi Ners kelas 1 gelombang 3
-            [
-                'gelombang_id' => 3,
-                'jalur_masuk_id' => 1,
-                'kelas_id' => 13,
-                'kategori' => 'registrasi',
-                'nominal' => 200000,
-                'created_at'    => Carbon::now(),
-                'updated_at'    => Carbon::now(),
-            ],
             [
                 'gelombang_id' => 3,
                 'jalur_masuk_id' => 4,
@@ -1129,15 +1074,6 @@ class BiayaSeeder extends Seeder
             //registrasi Ners kelas 2 gelombang 1
             [
                 'gelombang_id' => 1,
-                'jalur_masuk_id' => 1,
-                'kelas_id' => 14,
-                'kategori' => 'registrasi',
-                'nominal' => 200000,
-                'created_at'    => Carbon::now(),
-                'updated_at'    => Carbon::now(),
-            ],
-            [
-                'gelombang_id' => 1,
                 'jalur_masuk_id' => 4,
                 'kelas_id' => 14,
                 'kategori' => 'registrasi',
@@ -1148,15 +1084,6 @@ class BiayaSeeder extends Seeder
             //registrasi Ners kelas 2 gelombang 2
             [
                 'gelombang_id' => 2,
-                'jalur_masuk_id' => 1,
-                'kelas_id' => 14,
-                'kategori' => 'registrasi',
-                'nominal' => 200000,
-                'created_at'    => Carbon::now(),
-                'updated_at'    => Carbon::now(),
-            ],
-            [
-                'gelombang_id' => 2,
                 'jalur_masuk_id' => 4,
                 'kelas_id' => 14,
                 'kategori' => 'registrasi',
@@ -1165,15 +1092,6 @@ class BiayaSeeder extends Seeder
                 'updated_at'    => Carbon::now(),
             ],
             //registrasi Ners kelas 2 gelombang 3
-            [
-                'gelombang_id' => 3,
-                'jalur_masuk_id' => 1,
-                'kelas_id' => 14,
-                'kategori' => 'registrasi',
-                'nominal' => 200000,
-                'created_at'    => Carbon::now(),
-                'updated_at'    => Carbon::now(),
-            ],
             [
                 'gelombang_id' => 3,
                 'jalur_masuk_id' => 4,
@@ -1194,15 +1112,6 @@ class BiayaSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
-            [
-                'gelombang_id' => 1,
-                'jalur_masuk_id' => 4,
-                'kelas_id' => 15,
-                'kategori' => 'registrasi',
-                'nominal' => 200000,
-                'created_at'    => Carbon::now(),
-                'updated_at'    => Carbon::now(),
-            ],
             //registrasi Ners kelas 3 gelombang 2
             [
                 'gelombang_id' => 2,
@@ -1213,28 +1122,10 @@ class BiayaSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
-            [
-                'gelombang_id' => 2,
-                'jalur_masuk_id' => 4,
-                'kelas_id' => 15,
-                'kategori' => 'registrasi',
-                'nominal' => 200000,
-                'created_at'    => Carbon::now(),
-                'updated_at'    => Carbon::now(),
-            ],
             //registrasi Ners kelas 3 gelombang 3
             [
                 'gelombang_id' => 3,
                 'jalur_masuk_id' => 1,
-                'kelas_id' => 15,
-                'kategori' => 'registrasi',
-                'nominal' => 200000,
-                'created_at'    => Carbon::now(),
-                'updated_at'    => Carbon::now(),
-            ],
-            [
-                'gelombang_id' => 3,
-                'jalur_masuk_id' => 4,
                 'kelas_id' => 15,
                 'kategori' => 'registrasi',
                 'nominal' => 200000,
@@ -1707,34 +1598,6 @@ class BiayaSeeder extends Seeder
                 'updated_at'    => Carbon::now(),
             ],
 
-            //daftar_ulang mesin kelas A gelombang 1
-            [
-                'gelombang_id' => 1,
-                'jalur_masuk_id' => 1,
-                'kelas_id' => 5,
-                'kategori' => 'daftar_ulang',
-                'nominal' => 200000,
-                'created_at'    => Carbon::now(),
-                'updated_at'    => Carbon::now(),
-            ],
-            [
-                'gelombang_id' => 1,
-                'jalur_masuk_id' => 2,
-                'kelas_id' => 5,
-                'kategori' => 'daftar_ulang',
-                'nominal' => 200000,
-                'created_at'    => Carbon::now(),
-                'updated_at'    => Carbon::now(),
-            ],
-            [
-                'gelombang_id' => 1,
-                'jalur_masuk_id' => 3,
-                'kelas_id' => 5,
-                'kategori' => 'daftar_ulang',
-                'nominal' => 200000,
-                'created_at'    => Carbon::now(),
-                'updated_at'    => Carbon::now(),
-            ],
             //daftar_ulang mesin kelas A gelombang 1
             [
                 'gelombang_id' => 1,

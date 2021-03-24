@@ -164,19 +164,19 @@ class JamMasukKelasSeeder extends Seeder
             // NERS
             [
                 'kelas_id' => 13,
-                'jam_masuk_id' => 1, // pagi
+                'jam_masuk_id' => 1, // pagi A
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
             [
                 'kelas_id' => 14,
-                'jam_masuk_id' => 1, // pagi
+                'jam_masuk_id' => 1, // pagi B
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
             [
                 'kelas_id' => 15,
-                'jam_masuk_id' => 1, // pagi
+                'jam_masuk_id' => 1, // pagi C
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],

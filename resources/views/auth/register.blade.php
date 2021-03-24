@@ -157,7 +157,7 @@
         $("#prodi").change(function () {
             var prodi = $("#prodi option:selected" ).val();
             var lulusan = $('input[name="lulusan_unigres"]:checked').val();
-
+            console.log(prodi);
             $.ajax({
                 type:'GET',
                 url:'getjammasuk/' + prodi + '/' + lulusan,
@@ -169,9 +169,9 @@
                     }
                     $.each(data, function(){
                         if (this.prodi_id == 9 || this.prodi_id == 10) {
-                            $("#kelas").append('<option  value="'+ this.id +'">Kelas '+ this.kelas +'</option>')                            
+                            $("#kelas").append('<option  value="'+ this.jam_masuk_id +'">Kelas '+ this.kelas +'</option>')                            
                         }else{
-                            $("#kelas").append('<option value="'+ this.id +'">Kelas '+ this.jam_masuk +'</option>')
+                            $("#kelas").append('<option value="'+ this.jam_masuk_id +'">Kelas '+ this.jam_masuk +'</option>')
                         }
                     });
                 }
@@ -197,7 +197,7 @@
         $("#lulusan_unigres").change(function () {
             var prodi = $("#prodi option:selected" ).val();
             var lulusan = $('input[name="lulusan_unigres"]:checked').val();
-
+            
             $.ajax({
                 type:'GET',
                 url:'getjammasuk/' + prodi + '/' + lulusan,
@@ -209,9 +209,9 @@
                     }
                     $.each(data, function(){
                         if (this.prodi_id == 9 || this.prodi_id == 10) {
-                            $("#kelas").append('<option  value="'+ this.id +'">Kelas '+ this.kelas +'</option>')                            
+                            $("#kelas").append('<option  value="'+ this.jam_masuk_id +'">Kelas '+ this.kelas +'</option>')                            
                         }else{
-                            $("#kelas").append('<option value="'+ this.id +'">Kelas '+ this.jam_masuk +'</option>')
+                            $("#kelas").append('<option value="'+ this.jam_masuk_id +'">Kelas '+ this.jam_masuk +'</option>')
                         }
                     });
                 }

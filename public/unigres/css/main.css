@@ -534,8 +534,9 @@ section.form-registration .wrapper-registration .form-control {
   line-height: 17px;
   letter-spacing: 0.02em;
   color: #000000;
-  border: none;
   margin-bottom: 18px;
+  border-color: #f0f0f0;
+  /* border: none; */
 }
 section.form-registration .wrapper-registration .wrap-input {
   margin-bottom: 18px;

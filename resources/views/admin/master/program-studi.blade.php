@@ -12,10 +12,10 @@
                     <a class="nav-link" href="{{ route('admin.gelombang.index') }}" type="button">Fakultas</a>
                 </li>
                 <li class="nav-item nav-jenjang_id">
-                    <a class="nav-link" href="#" type="button">Program Studi</a>
+                    <a class="nav-link active" href="{{ route('admin.prodi.index') }}" type="button">Program Studi</a>
                 </li>
                 <li class="nav-item nav-jenjang_id">
-                    <a class="nav-link active" href="{{ route('admin.gelombang.index') }}" type="button">Gelombang</a>
+                    <a class="nav-link" href="{{ route('admin.gelombang.index') }}" type="button">Gelombang</a>
                 </li>
                 <li class="nav-item nav-jenjang_id">
                     <a class="nav-link" href="{{ route('admin.pengaturan-gelombang.index') }}" type="button">Pengaturan Gelombang</a>
@@ -230,11 +230,11 @@
                                         @foreach ($data as $prodi)
                                         <tr>
                                             <td class="text-center">{{ $loop->iteration . '.' }}</td>
-                                            <td>{{ $prodi->kode_prodi_siakad . ' / ' . $prodi->kode_prodi_nim }}</td>
+                                            <td>{{ $prodi->kode }}</td>
                                             <td>
-                                                {{ $prodi->nama }}<br>
-                                                <small class="text-sm">Jenjang: {{ $prodi->jenjang->nama }}</small><br>
-                                                <small class="text-sm">Fakultas: {{ $prodi->fakultas['nama'] }}</small>
+                                                {{ $prodi->prodi }}<br>
+                                                <small class="text-sm">Jenjang: {{ $prodi->jenjang }}</small><br>
+                                                <small class="text-sm">Fakultas: {{ $prodi->fakultas }}</small>
                                             </td>
                                             <td class="text-center">
                                                 <form action="{{ route('admin.prodi.destroy',$prodi->id) }}" method="POST">

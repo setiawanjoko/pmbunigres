@@ -134,7 +134,7 @@ class KelasSeeder extends Seeder
             ],
             [
                 'prodi_id' => 9,
-                'kelas' => 'C (Reguler)',
+                'kelas' => 'C',
                 'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),

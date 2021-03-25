@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
+use function PHPUnit\Framework\isNan;
+use function PHPUnit\Framework\isNull;
+
 class RegisterController extends Controller
 {
     /*
@@ -49,6 +52,15 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    public function get_prodi(){
+        $data = DB::select('SELECT p.id,p.nama AS prodi,j.nama AS jenjang,f.fakultas, IF((SELECT COUNT(k.lulusan_unigres) FROM kelas k WHERE k.prodi_id = p.id AND k.lulusan_unigres = 1) > 0,1,0) AS lulusan_unigres
+                            FROM prodi p
+                            LEFT OUTER JOIN jenjang j ON p.jenjang_id = j.id
+                            LEFT OUTER JOIN fakultas f ON p.fakultas_id = f.id
+                            ORDER BY p.id');
+        return $data;
+    }
+
     public function get_jam_masuk($id, $lulusan_unigres){        
         $data = DB::select('SELECT k.id,j.jam_masuk_id,m.jam_masuk,k.kelas,k.prodi_id,p.nama
                             FROM jam_masuk_kelas j
@@ -75,11 +87,11 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
-        $dataProdi = Jenjang::with('prodi')->get();
-        $dataJalurMasuk = JalurMasuk::all();
-        $dataJamMasuk = JamMasuk::all();
+        // $dataProdi = Jenjang::with('prodi')->get();
+        // $dataJalurMasuk = JalurMasuk::all();
+        // $dataJamMasuk = JamMasuk::all();
 
-        return view('auth.register', compact('dataProdi', 'dataJalurMasuk', 'dataJamMasuk'));
+        return view('auth.register');//, compact('dataProdi', 'dataJalurMasuk', 'dataJamMasuk'));
     }
 
     /**
@@ -101,7 +113,7 @@ class RegisterController extends Controller
         // foreach($jalurMasuk as $jalur){
         //     array_push($jalurMasukValidation, $jalur->id);
         // }
-
+        
         return Validator::make($data, [
             'nama' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -111,19 +123,18 @@ class RegisterController extends Controller
             'kelas' => ['required', 'integer'],//Rule::in($jamMasukValidation)],
             'prodi' => ['required', 'exists:prodi,id'],
             'jalur_masuk' => ['required', 'integer'],//Rule::in($jalurMasukValidation)],
-            'lulusan_unigres' => ['required', 'boolean'],
-            'lulusan_unigres' => ['required', 'boolean'],
-        ]);
-    }
-
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\User
-     */
-    protected function create(array $data)
-    {
+            'lulusan_unigres' => ['nullable', 'boolean'],
+            ]);
+        }
+        
+        /**
+         * Create a new user instance after a valid registration.
+         *
+         * @param  array  $data
+         * @return \App\Models\User
+         */
+    protected function create(array $data) {
+        //dd($data);
         $gelombang = Gelombang::where([
             ['tgl_mulai', '<=', Carbon::today()],
             ['tgl_selesai', '>=', Carbon::today()]
@@ -139,7 +150,7 @@ class RegisterController extends Controller
             'prodi_id' => $data['prodi'],
             'jalur_masuk_id' => $data['jalur_masuk'],
             'gelombang_id' => $gelombang->id,
-            'lulusan_unigres' => $data['lulusan_unigres']
+            'lulusan_unigres' => (empty($data['lulusan_unigres'])) ? 0 : $data['lulusan_unigres'] ,
         ]);
     }
 }

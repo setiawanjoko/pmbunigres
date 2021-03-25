@@ -37,6 +37,7 @@
         <div class="row gx-5">
             <div class="col-md-6 left">
                 <h5>Untuk tes kesehatan silahkan menghubungi nomor dibawah ini atau klik link dibawah</h5>
+                <h5>{{$prodi->keterangan_tes_kesehatan}}</h5>
                 <a href="#" type="submit" class="btn btn-submit mb-5" target="_blank">Klik Disini!</a>
                 <p class="catatan">Catatan :</p>
                 <p>
@@ -50,6 +51,8 @@
             </div>
             <div class="col-md-6 right">
                 {{-- awal - muncul saat nilai sudah masuk dan hasil tes kesehatan sudah masuk --}}
+                @if (auth()->user()->tes_kesehatan)
+                    
                 <div class="mb-3">
                     <p class="h5 mb-4" style="font-family: 'Helvetica Neue', sans-serif;
                     font-style: normal;
@@ -75,7 +78,8 @@
                         <h2>{{ $dataMoodle->nilai_tpa }}</h2>
                     </div>
                 </div>
-                kesehatan
+                
+                @endif
             </div>
         </div>
     </div>

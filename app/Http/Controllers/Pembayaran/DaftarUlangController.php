@@ -93,14 +93,14 @@ class DaftarUlangController extends Controller
                 }
             } else {
                 if (!is_null($response->data)) {
-                    $data = Pembayaran::updateOrCreate(
-                        ['user_id' => auth()->user()->id], [
+                    $data = Pembayaran::create([
+                        'user_id' => auth()->user()->id,
+                        'kategori' => 'daftar_ulang',
                         'custCode' => $response->data->custCode,
                         'amount' => $response->data->amount,
                         'keterangan' => 'Daftar Ulang PMB Unigres',
                         'expiredDate' => $response->data->expiredDate,
                         'status' => false,
-                        'kategori' => 'daftar_ulang'
                     ]);
                     return response()->view('instruksi-pembayaran', compact('data'));
                 } else {

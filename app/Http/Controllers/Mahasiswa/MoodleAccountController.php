@@ -81,7 +81,7 @@ class MoodleAccountController extends Controller
 
                     return $data;
                 } else return false;
-            } else dd($response->warnings);
+            } else abort(503);
         } catch (\Exception $e) {
             abort(500);
         }

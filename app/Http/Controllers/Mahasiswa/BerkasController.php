@@ -21,7 +21,7 @@ class BerkasController extends Controller
             }
         });
     }
-    
+
     public function create()
     {
         $user = auth()->user();
@@ -33,10 +33,10 @@ class BerkasController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'ijazah' => 'file|nullable|max:250|mimes:png,jpg,jpeg,pdf',
-            'ktp' => 'file|nullable|max:250|mimes:png,jpg,jpeg,pdf',
-            'skhun' => 'file|nullable|max:250|mimes:png,jpg,jpeg,pdf',
-            'kartu_keluarga' => 'file|nullable|max:250|mimes:png,jpg,jpeg,pdf'
+            'ijazah' => 'file|nullable|max:500|mimes:png,jpg,jpeg,pdf',
+            'ktp' => 'file|nullable|max:500|mimes:png,jpg,jpeg,pdf',
+            'skhun' => 'file|nullable|max:500|mimes:png,jpg,jpeg,pdf',
+            'kartu_keluarga' => 'file|nullable|max:500|mimes:png,jpg,jpeg,pdf'
         ]);
 
         $user = auth()->user();

@@ -19,6 +19,7 @@ class PengaturanGelombangController extends Controller
         $dataJam = JamMasuk::all();
         $dataJenjang = Jenjang::with('prodi')->get();
         return response()->view('admin.master.pengaturan-gelombang', compact('dataGelombang', 'dataJalur', 'dataJam','dataJenjang'));
+    
     }
 
     public function store(Request $request) {

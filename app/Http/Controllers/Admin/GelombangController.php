@@ -29,7 +29,7 @@ class GelombangController extends Controller
                 'tgl_selesai' => $data['tgl_selesai']
             ]);
             
-            return response()->redirectTo('admin.gelombang.index');
+            return response()->redirectToRoute('admin.gelombang.index');
         } catch (\Exception $e) {
             dd($e->getMessage());
         }

@@ -11,17 +11,12 @@ class Prodi extends Model
 
     protected $table = 'prodi';
 
-<<<<<<< Updated upstream
     protected $fillable = ['jenjang_id', 'fakultas_id', 'nama', 'kode_prodi_nim', 'kode_prodi_siakad', 'tes_kesehatan', 'keterangan_tes_kesehatan', 'link_grup'];
-=======
-    protected $fillable = ['jenjang_id','fakultas_id', 'nama'];
->>>>>>> Stashed changes
 
     public function jenjang() {
          return $this->belongsTo(Jenjang::class, 'jenjang_id', 'id');
     }
 
-<<<<<<< Updated upstream
     public function fakultas() {
         return $this->belongsTo(Fakultas::class, 'fakultas_id', 'id');
     }
@@ -46,13 +41,5 @@ class Prodi extends Model
         })->get();
 
         return $data;
-=======
-    public function fakultas(){
-        return $this->belongsTo(Fakultas::class,'fakultas_id','id');
-    }
-
-    public function pendaftar() {
-        return $this->hasMany(Biodata::class, 'prodi_id', 'id');
->>>>>>> Stashed changes
     }
 }

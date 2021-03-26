@@ -1,6 +1,5 @@
 <?php
 
-<<<<<<< Updated upstream
 use App\Http\Controllers\Admin\GelombangController;
 use App\Http\Controllers\Admin\JenjangController;
 use App\Http\Controllers\Admin\FakultasController;
@@ -21,10 +20,6 @@ use App\Http\Controllers\Mahasiswa\TesKesehatanController;
 use App\Http\Controllers\Pembayaran\DaftarUlangController;
 use App\Http\Controllers\Pembayaran\RegistrasiController;
 use App\Http\Controllers\RegisNersController;
-=======
-use App\Http\Controllers\Mahasiswa\RegisterController;
-use App\Http\Controllers\JenjangController;
->>>>>>> Stashed changes
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\RegisterController;
@@ -82,7 +77,6 @@ Route::middleware(['auth', 'verify', 'can:camaba'])->group(function(){
         Route::get('/daftar-ulang', [DaftarUlangController::class, 'index'])->name('daftar-ulang');
     });
 });
-<<<<<<< Updated upstream
 
 Route::middleware(['auth', 'can:admin'])->prefix('/admin')->name('admin.')->group(function(){
     Route::resource('/gelombang', GelombangController::class)->only(['index', 'create', 'store','destroy']);
@@ -94,12 +88,6 @@ Route::middleware(['auth', 'can:admin'])->prefix('/admin')->name('admin.')->grou
     Route::resource('/tes-tpa', TesTPAController::class)->only(['index', 'store']);
     Route::resource('/pendaftar', PendaftarController::class)->only(['index']);
 });
-=======
-    
-Route::get('/jenjang', [JenjangController::class, 'index']);
-Route::get('/register', [RegisterController::class, 'index'])->name('mahasiswa.register');
-    Route::post('/register', [RegisterController::class, 'store'])->name('mahasiswa.register.store');
->>>>>>> Stashed changes
 
 Route::middleware(['auth', 'can:keuangan'])->prefix('/keuangan')->name('keuangan.')->group(function(){
     Route::get('/check-status', [CheckStatusController::class, 'index'])->name('check-status');

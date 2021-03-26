@@ -9,17 +9,18 @@ use App\Models\JalurMasuk;
 use App\Models\JamMasuk;
 use App\Models\Jenjang;
 use App\Models\Prodi;
+use App\Models\Kelas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PengaturanGelombangController extends Controller
 {
-    public function index($id = null) {
+    public function index(Prodi $data = null, $gelombangPilihan = null) {
         $dataGelombang = Gelombang::all();
         $dataJalur = JalurMasuk::all();
         $dataJam = JamMasuk::all();
         $dataJenjang = Jenjang::with('prodi')->get();
-        return response()->view('admin.master.pengaturan-gelombang', compact('dataGelombang', 'dataJalur', 'dataJam','dataJenjang'));
-    
+        return response()->view('admin.master.pengaturan-gelombang', compact('data', 'dataGelombang', 'dataJalur', 'dataJam','dataJenjang', 'gelombangPilihan'));
     }
 
     public function store(Request $request) {
@@ -69,13 +70,11 @@ class PengaturanGelombangController extends Controller
                 return $query->where([
                     ['prodi_id', $prodiId]
                 ])->with(['jalurMasuk' => function($query) use($gelombangId){
-                    return $query->with(['biaya' => function($query) use($gelombangId){
-                        return $query->where('gelombang_id', $gelombangId);
-                    }])->wherePivot('gelombang_id', $gelombangId)->distinct('id');
+                    return $query->wherePivot('gelombang_id', $gelombangId)->distinct('id');
                 }]);
             }])->where('id', $prodiId)->first();
 
-            dd($data);
+            return $this->index($data, $gelombangId);
         }catch(\Exception $e){
             dd($e->getMessage());
         }

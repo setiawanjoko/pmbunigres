@@ -182,35 +182,29 @@
                                 <thead>
                                 <tr>
                                     <th style="width:40px;">No</th>
-                                    <th>Gelombang</th>
-                                    <th>Program Studi</th>
                                     <th>Kelas</th>
                                     <th>Jam</th>
                                     <th>Jalur Masuk</th>
-                                    <th>Kategori</th>
-                                    <th>Biaya</th>
+                                    <th>Registrasi</th>
+                                    <th>Daftar Ulang</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {{-- @foreach($data as $biaya)
-                                    <tr>
-                                        <td class="text-center">{{ $loop->iteration }}</td>
-                                        <td>{{ $biaya->gelombang->gelombang }}</td>
-                                        <td>{{ $biaya->prodi->jenjang->nama . ' ' . $biaya->prodi->nama }}</td>
-                                        <td>@if($biaya->jenis_biaya == 'kelas') kelas @elseif($biaya->jenis_biaya == 'jam') Daftar ulang @endif</td>
-                                        <td>Rp. {{ number_format($biaya->nominal, 0, '', '.')  }},-</td>
-                                        <td class="text-center">
-                                            <form action="{{ route('admin.pengaturan-gelombang.destroy', $biaya->id) }}"
-                                                  method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm"
-                                                        onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach --}}
+                                @isset($data)
+                                    @foreach($data->kelas as $kelas)
+                                        @foreach($kelas->jalurMasuk as $jalurMasuk)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $kelas->kelas }}</td>
+                                                <td>{{ $jalurMasuk->jalur_masuk }}</td>
+                                                <td>{{ $jalurMasuk->biaya->where([['kelas_id', $kelas->id],['gelombang_id', $gelombangPilihan],['kategori', 'registrasi']])->nominal }}</td>
+                                                <td>{{ $jalurMasuk->biaya->where([['kelas_id', $kelas->id],['gelombang_id', $gelombangPilihan],['kategori', 'daftar_ulang']])->nominal }}</td>
+                                                <td>//</td>
+                                            </tr>
+                                        @endforeach
+                                    @endforeach
+                                @endisset
                                 </tbody>
                             </table>
                         </div>

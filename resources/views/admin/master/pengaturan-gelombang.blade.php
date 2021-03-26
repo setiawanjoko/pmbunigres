@@ -63,7 +63,7 @@
                                             <div class="col-lg-6">
                                                 <label for="prodi">Program Studi</label>
                                                 <select name="prodi" id="prodi" class="form-control @if($errors->has('jam')) is-invalid @endif">
-                                                     @foreach($dataJenjang as $jenjangKey => $jenjang)
+                                                    @foreach($dataJenjang as $jenjangKey => $jenjang)
                                                         @foreach($jenjang->prodi as $prodiKey => $prodi)
                                                             <option value="{{ $prodi->id }}">{{ $jenjang->nama . ' ' . $prodi->nama }}</option>
                                                         @endforeach
@@ -148,6 +148,36 @@
                             </form>
                         </div>
                         <div class="col-md-12 right dashboard-right">
+                            <form action="{{ route('admin.biaya.filter') }}" method="get">
+                                @csrf
+                                <div class="form-group row">
+                                    <label for="prodi" class="col col-form-label">Filter Program Studi</label>
+                                    <select name="prodi" id="prodi" class="col form-control @error('prodi')) is-invalid @enderror">
+                                        @foreach($dataJenjang as $jenjangKey => $jenjang)
+                                            @foreach($jenjang->prodi as $prodiKey => $prodi)
+                                                <option value="{{ $prodi->id }}">{{ $jenjang->nama . ' ' . $prodi->nama }}</option>
+                                            @endforeach
+                                        @endforeach 
+                                    </select>
+                                    <label for="gelombang" class="col col-form-label">Filter Program Studi</label>
+                                    <select name="gelombang" id="gelombang" class="col form-control @error('gelombang')) is-invalid @enderror">
+                                        @foreach($dataGelombang as $gelombang)
+                                            <option value="{{ $gelombang->id }}">{{ $gelombang->gelombang }}</option>
+                                        @endforeach
+                                    </select>
+                                    <button type="submit" class="col-2 ml-3 btn btn-sm btn-primary">Filter</button>
+                                    @error('prodi')
+                                        <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                        </div>
+                                    @enderror
+                                    @error('gelombang')
+                                        <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                        </div>
+                                    @enderror
+                                </div>
+                            </form>
                             <table id="tabel-data" class="table table-striped table-bordered" style="width:100%">
                                 <thead>
                                 <tr>

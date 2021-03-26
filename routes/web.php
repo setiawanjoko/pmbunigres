@@ -74,11 +74,13 @@ Route::middleware(['auth', 'can:admin'])->prefix('/admin')->name('admin.')->grou
     Route::resource('/fakultas', FakultasController::class)->only(['index', 'create', 'store','destroy']);
     Route::resource('/jenjang', JenjangController::class)->only(['index', 'create', 'store','destroy']);
     Route::resource('/prodi', ProdiController::class)->only(['index', 'create', 'store','destroy']);
-    Route::resource('/pengaturan-gelombang', PengaturanGelombangController::class)->only(['index', 'store', 'destroy']);
     Route::resource('/pengumuman', PengumumanController::class)->only(['index','create','store','destroy']);
     Route::resource('/tes-kesehatan', AdminTesKesehatanController::class)->only(['index', 'store', 'edit']);
     Route::resource('/tes-tpa', TesTPAController::class)->only(['index', 'store']);
     Route::resource('/pendaftar', PendaftarController::class)->only(['index']);
+
+    Route::resource('/pengaturan-gelombang', PengaturanGelombangController::class)->only(['index', 'store', 'destroy']);
+    Route::get('/biaya', [PengaturanGelombangController::class, 'biayaFilter'])->name('biaya.filter');
 });
 
 Route::middleware(['auth', 'can:keuangan'])->prefix('/keuangan')->name('keuangan.')->group(function(){

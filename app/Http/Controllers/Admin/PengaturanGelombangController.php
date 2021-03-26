@@ -55,4 +55,29 @@ class PengaturanGelombangController extends Controller
             dd($e->getMessage());
         }
     }
+
+    public function biayaFilter(Request $request) {
+        $data = $request->validate([
+            'prodi' => 'required|exists:prodi,id',
+            'gelombang' => 'required|exists:gelombang,id',
+        ]);
+        $prodiId = $data['prodi'];
+        $gelombangId = $data['gelombang'];
+
+        try{
+            $data = Prodi::with(['kelas' => function($query) use($prodiId, $gelombangId){
+                return $query->where([
+                    ['prodi_id', $prodiId]
+                ])->with(['jalurMasuk' => function($query) use($gelombangId){
+                    return $query->with(['biaya' => function($query) use($gelombangId){
+                        return $query->where('gelombang_id', $gelombangId);
+                    }])->wherePivot('gelombang_id', $gelombangId)->distinct('id');
+                }]);
+            }])->where('id', $prodiId)->first();
+
+            dd($data);
+        }catch(\Exception $e){
+            dd($e->getMessage());
+        }
+    }
 }

@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Pengumuman;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class PengumumanController extends Controller
 {
     public function index() {
-        $data = DB::select('SELECT p.id,p.judul,p.deskripsi,CONCAT(u.nama,\' | \',p.created_at) AS publish
+        $data = DB::select('SELECT p.id,p.judul,p.deskripsi,CONCAT(u.nama,\' | \',date(p.created_at)) AS publish
                             FROM pengumuman p
                             LEFT OUTER JOIN users u ON p.petugas_id = u.id
                             ORDER BY p.created_at desc');

@@ -24,6 +24,8 @@ use App\Http\Controllers\RegisNersController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\PengumumanPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,25 +37,13 @@ use App\Http\Controllers\Auth\RegisterController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-})->name('homepage');
-
-Route::get('pengumuman', function () {
-    return view('pengumuman');
-})->name('pengumuman');
+Route::get('/', [LandingPageController::class, 'index'])->name('homepage');
+Route::get('pengumuman', [PengumumanPageController::class, 'index'])->name('pengumuman');
 
 Route::get('kontak', function () {
     return view('contact');
 })->name('kontak');
 
-// Route::get('regisners', function () {
-//     return view('/auth/regis-ners');
-// })->name('regisners');
-
-Route::get('regisners', [RegisNersController::class, 'index'])->name('regisners');
-Route::post('regisners', [RegisNersController::class, 'store'])->name('regisners.store');
 Route::get('getprodi', [RegisterController::class, 'get_prodi']);
 Route::get('getjalurmasuk/{id}', [RegisterController::class, 'get_jalur_masuk']);
 Route::get('getjammasuk/{id}/{lulusan_unigres}', [RegisterController::class, 'get_jam_masuk']);

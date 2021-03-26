@@ -1,6 +1,5 @@
 @extends('admin.master.master')
-@section('gelombang')
-
+@section('content')
     <div class="content">
         <div class="container-fluid dashboard-user">
             <h4>Data Master</h4>

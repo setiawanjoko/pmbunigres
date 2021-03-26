@@ -65,7 +65,7 @@
                         font-size: 14px;
                         line-height: 28px;
                         letter-spacing: 0.02em;
-                        color: #000000;">Untuk langkah selanjutnya, silahkan menuju halaman informasi dan pengumuman untuk informasi Daftar Ulang.</p>
+                        color: #000000;">Untuk langkah selanjutnya, silahkan menuju halaman <strong>Informasi dan Pengumuman </strong> untuk informasi Daftar Ulang atau <a href="{{ route('home') }}">Klik Disini!</a>.</p>
                     </div>
                     <div class="card mb-3">
                         <div class="card-header">

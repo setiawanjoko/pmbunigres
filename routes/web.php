@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\PendaftarController;
 use App\Http\Controllers\Admin\PengaturanGelombangController;
 use App\Http\Controllers\Admin\PengumumanController;
 use App\Http\Controllers\Admin\ProdiController;
+use App\Http\Controllers\Admin\TesKesehatanController as AdminTesKesehatanController;
 use App\Http\Controllers\Admin\TesTPAController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\HomeController;
@@ -85,6 +86,7 @@ Route::middleware(['auth', 'can:admin'])->prefix('/admin')->name('admin.')->grou
     Route::resource('/prodi', ProdiController::class)->only(['index', 'create', 'store','destroy']);
     Route::resource('/pengaturan-gelombang', PengaturanGelombangController::class)->only(['index', 'store', 'destroy']);
     Route::resource('/pengumuman', PengumumanController::class)->only(['index','create','store','destroy']);
+    Route::resource('/tes-kesehatan', AdminTesKesehatanController::class)->only(['index', 'store', 'edit']);
     Route::resource('/tes-tpa', TesTPAController::class)->only(['index', 'store']);
     Route::resource('/pendaftar', PendaftarController::class)->only(['index']);
 });

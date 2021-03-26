@@ -42,4 +42,8 @@ class Prodi extends Model
 
         return $data;
     }
+
+    public function pendaftar() {
+        return $this->hasMany(User::class, 'prodi_id', 'id');
+    }
 }

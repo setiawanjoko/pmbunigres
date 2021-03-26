@@ -36,6 +36,7 @@ class FakultasController extends Controller
             dd($e->getMessage());
         }
     }
+    
     public function destroy($id)
     {
         // $count = Prodi::where('fakultas_id', $id)->whereHas('pendaftar')->count();

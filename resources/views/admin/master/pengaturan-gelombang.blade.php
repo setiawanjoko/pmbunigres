@@ -20,7 +20,7 @@
                     <a class="nav-link active" href="{{ route('admin.pengaturan-gelombang.index') }}" type="button">Pengaturan Gelombang</a>
                 </li>
                 <li class="nav-item nav-prodi">
-                    <a class="nav-link" href="#" type="button">Pengumuman</a>
+                    <a class="nav-link" href="{{ route('admin.pengumuman.index') }}" type="button">Pengumuman</a>
                 </li>
             </ul>
             <div class="tab-content">

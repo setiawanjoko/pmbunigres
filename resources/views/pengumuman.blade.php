@@ -23,6 +23,17 @@
 <section class="announcement">
   <div class="second-container">
     <div class="row gx-3 gy-3">
+      @foreach ($data as $key=>$data)
+            <div class="col-lg-6">
+                <a class="link-item-ann" href="#">
+                    <div class="wrappe-item-ann">
+                        <p class="#"><small>{{ $data->judul }}</small></p>
+                        <p class="item-ann-title-1">{{ $data->deskripsi }}</p>
+                        <p class="item-ann-title-2">Publised by : <span>{{ $data->publish }}</span></p>
+                    </div>
+                </a>
+            </div>
+      @endforeach
       {{-- <div class="col-lg-6">
         <a class="link-item-ann" href="#">
           <div class="wrappe-item-ann">

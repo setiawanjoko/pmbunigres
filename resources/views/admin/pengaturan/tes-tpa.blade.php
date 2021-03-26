@@ -1,5 +1,5 @@
 @extends('admin.master.master')
-@section('tes-tpa')
+@section('content')
 <div class="content">
     <div class="container-fluid dashboard-user">
         <h4>Pengaturan</h4>

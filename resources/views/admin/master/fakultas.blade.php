@@ -9,7 +9,7 @@
                     <a class="nav-link" href="{{ route('admin.jenjang.index') }}" type="button">Jenjang</a>
                 </li>
                 <li class="nav-item nav-data-ortu">
-                    <a class="nav-link active" type="button">Fakultas</a>
+                    <a class="nav-link active" href="{{ route('admin.falkultas.index') }}" type="button">Fakultas</a>
                 </li>
                 <li class="nav-item nav-prodi">
                     <a class="nav-link" href="{{ route('admin.prodi.index') }}" type="button">Program Studi</a>

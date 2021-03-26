@@ -18,12 +18,12 @@ class DatabaseSeeder extends Seeder
     {
         // ToDo: Tambahkan semua class seeder ke fungsi di bawah ini
         $this->call([
+            BiayaSeeder::class,
             PermissionSeeder::class,
             JenjangSeeder::class,
             FakultasSeeder::class,
             ProdiSeeder::class,
             GelombangSeeder::class,
-            BiayaSeeder::class,
             AdminSeeder::class,
             KelasSeeder::class,
             JalurMasukSeeder::class,

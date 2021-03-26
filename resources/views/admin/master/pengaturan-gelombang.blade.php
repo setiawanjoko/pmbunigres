@@ -64,11 +64,11 @@
                                             <div class="col-lg-6">
                                                 <label for="prodi">Program Studi</label>
                                                 <select name="prodi" id="prodi" class="form-control @if($errors->has('jam')) is-invalid @endif">
-                                                    {{-- @foreach($dataJenjang as $jenjangKey => $jenjang)
+                                                    @foreach($dataJenjang as $jenjangKey => $jenjang)
                                                         @foreach($jenjang->prodi as $prodiKey => $prodi)
                                                             <option value="{{ $prodi->id }}">{{ $jenjang->nama . ' ' . $prodi->nama }}</option>
                                                         @endforeach
-                                                    @endforeach --}}
+                                                    @endforeach
                                                 </select>
                                                 @if ($errors->has('prodi'))
                                                     <div class="invalid-feedback">

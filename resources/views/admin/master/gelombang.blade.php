@@ -49,13 +49,13 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-lg-12">
-                                                <label for="nama">Nama Gelombang</label>
-                                                <input type="text" name="nama" id="nama"
-                                                    class="form-control form-control-sm @if ($errors->has('nama')) is-invalid @endif"
-                                                value="{{ old('nama') }}" placeholder="Contoh: Gelombang 1, Gelombang 2">
-                                                @if ($errors->has('nama'))
+                                                <label for="gelombang">gelombang Gelombang</label>
+                                                <input type="text" name="gelombang" id="gelombang"
+                                                    class="form-control form-control-sm @if ($errors->has('gelombang')) is-invalid @endif"
+                                                value="{{ old('gelombang') }}" placeholder="Contoh: Gelombang 1, Gelombang 2">
+                                                @if ($errors->has('gelombang'))
                                                     <div class="invalid-feedback">
-                                                        <strong>{{ $errors->first('nama') }}</strong>
+                                                        <strong>{{ $errors->first('gelombang') }}</strong>
                                                     </div>
                                                 @endif
                                                 <label for="tgl_mulai">Tanggal Mulai</label>

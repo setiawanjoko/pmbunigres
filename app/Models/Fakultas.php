@@ -13,11 +13,16 @@ class Fakultas extends Model
 
     protected $fillable = ['fakultas'];
 
+<<<<<<< Updated upstream
     public function prodi() {
         return $this->hasMany(Prodi::class, 'fakultas_id', 'id');
     }
 
     public function getNamaAttribute() {
         return $this->fakultas;
+=======
+    public function prodi(){
+        return $this->hasMany(Prodi::class,'fakultas_id','id');
+>>>>>>> Stashed changes
     }
 }

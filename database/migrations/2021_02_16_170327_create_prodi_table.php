@@ -16,9 +16,13 @@ class CreateProdiTable extends Migration
         Schema::create('prodi', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('jenjang_id');
+<<<<<<< Updated upstream
             $table->unsignedBigInteger('fakultas_id')->nullable(true);
             $table->string('kode_prodi_nim');
             $table->string('kode_prodi_siakad');
+=======
+            $table->unsignedBigInteger('fakultas_id');
+>>>>>>> Stashed changes
             $table->string('nama');
             $table->boolean('tes_kesehatan')->default(false);
             $table->string('keterangan_tes_kesehatan')->nullable(true);

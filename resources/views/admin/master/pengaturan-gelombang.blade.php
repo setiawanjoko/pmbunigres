@@ -37,7 +37,7 @@
                                 </div>
                             </div>
                         @endif
-                        <div class="col-md-12 left dashboard-left">
+                        {{--<div class="col-md-12 left dashboard-left">
                             <form action="{{ route('admin.pengaturan-gelombang.store') }}" method="POST">
                                 @csrf
                                 @method('POST')
@@ -63,11 +63,11 @@
                                             <div class="col-lg-6">
                                                 <label for="prodi">Program Studi</label>
                                                 <select name="prodi" id="prodi" class="form-control @if($errors->has('jam')) is-invalid @endif">
-                                                     @foreach($dataJenjang as $jenjangKey => $jenjang)
+                                                    @foreach($dataJenjang as $jenjangKey => $jenjang)
                                                         @foreach($jenjang->prodi as $prodiKey => $prodi)
                                                             <option value="{{ $prodi->id }}">{{ $jenjang->nama . ' ' . $prodi->nama }}</option>
                                                         @endforeach
-                                                    @endforeach 
+                                                    @endforeach
                                                 </select>
                                                 @if ($errors->has('prodi'))
                                                     <div class="invalid-feedback">
@@ -76,7 +76,7 @@
                                                 @endif
                                             </div>
                                         </div>
-                                        <div class="row">                                     
+                                        <div class="row">
                                             <div class="col-lg-12">
                                                 <label for="kelas">Nama Kelas</label>
                                                 <input type="text" name="kelas" id="kelas" class="form-control @if($errors->has('kelas')) is-invalid @endif">
@@ -146,43 +146,40 @@
                                     </p>
                                 </div>
                             </form>
-                        </div>
+                        </div>--}}
                         <div class="col-md-12 right dashboard-right">
-                            <table id="tabel-data" class="table table-striped table-bordered" style="width:100%">
-                                <thead>
-                                <tr>
-                                    <th style="width:40px;">No</th>
-                                    <th>Gelombang</th>
-                                    <th>Program Studi</th>
-                                    <th>Kelas</th>
-                                    <th>Jam</th>
-                                    <th>Jalur Masuk</th>
-                                    <th>Kategori</th>
-                                    <th>Biaya</th>
-                                    <th>Action</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {{-- @foreach($data as $biaya)
-                                    <tr>
-                                        <td class="text-center">{{ $loop->iteration }}</td>
-                                        <td>{{ $biaya->gelombang->gelombang }}</td>
-                                        <td>{{ $biaya->prodi->jenjang->nama . ' ' . $biaya->prodi->nama }}</td>
-                                        <td>@if($biaya->jenis_biaya == 'kelas') kelas @elseif($biaya->jenis_biaya == 'jam') Daftar ulang @endif</td>
-                                        <td>Rp. {{ number_format($biaya->nominal, 0, '', '.')  }},-</td>
-                                        <td class="text-center">
-                                            <form action="{{ route('admin.pengaturan-gelombang.destroy', $biaya->id) }}"
-                                                  method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm"
-                                                        onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach --}}
-                                </tbody>
-                            </table>
+                            <div class="card">
+                                <div class="card-body">
+                                    <table id="tabel-data" class="table table-striped table-bordered" style="width:100%">
+                                        <thead>
+                                        <tr>
+                                            <th>Program Studi</th>
+                                            <th>Kelas</th>
+                                            <th>Gelombang</th>
+                                            <th>Jalur Masuk</th>
+                                            <th>Jam</th>
+                                            <th>Registrasi</th>
+                                            <th>Daftar Ulang</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @isset($data)
+                                            @foreach($data as $biaya)
+                                                <tr>
+                                                    <td>{{ $biaya->nama }}</td>
+                                                    <td>{{ $biaya->kelas }}</td>
+                                                    <td>{{ $biaya->gelombang }}</td>
+                                                    <td>{{ $biaya->jalur_masuk }}</td>
+                                                    <td>{{ $biaya->jam_masuk }}</td>
+                                                    <td>Rp. {{ number_format($biaya->registrasi, 0, '', '.') }},-</td>
+                                                    <td>Rp. {{ number_format($biaya->daftar_ulang, 0, '', '.') }},-</td>
+                                                </tr>
+                                            @endforeach
+                                        @endisset
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -37,7 +37,7 @@
                                 </div>
                             </div>
                         @endif
-                        <div class="col-md-12 left dashboard-left">
+                        {{--<div class="col-md-12 left dashboard-left">
                             <form action="{{ route('admin.pengaturan-gelombang.store') }}" method="POST">
                                 @csrf
                                 @method('POST')
@@ -67,7 +67,7 @@
                                                         @foreach($jenjang->prodi as $prodiKey => $prodi)
                                                             <option value="{{ $prodi->id }}">{{ $jenjang->nama . ' ' . $prodi->nama }}</option>
                                                         @endforeach
-                                                    @endforeach 
+                                                    @endforeach
                                                 </select>
                                                 @if ($errors->has('prodi'))
                                                     <div class="invalid-feedback">
@@ -76,7 +76,7 @@
                                                 @endif
                                             </div>
                                         </div>
-                                        <div class="row">                                     
+                                        <div class="row">
                                             <div class="col-lg-12">
                                                 <label for="kelas">Nama Kelas</label>
                                                 <input type="text" name="kelas" id="kelas" class="form-control @if($errors->has('kelas')) is-invalid @endif">
@@ -146,67 +146,40 @@
                                     </p>
                                 </div>
                             </form>
-                        </div>
+                        </div>--}}
                         <div class="col-md-12 right dashboard-right">
-                            <form action="{{ route('admin.biaya.filter') }}" method="get">
-                                @csrf
-                                <div class="form-group row">
-                                    <label for="prodi" class="col col-form-label">Filter Program Studi</label>
-                                    <select name="prodi" id="prodi" class="col form-control @error('prodi')) is-invalid @enderror">
-                                        @foreach($dataJenjang as $jenjangKey => $jenjang)
-                                            @foreach($jenjang->prodi as $prodiKey => $prodi)
-                                                <option value="{{ $prodi->id }}">{{ $jenjang->nama . ' ' . $prodi->nama }}</option>
+                            <div class="card">
+                                <div class="card-body">
+                                    <table id="tabel-data" class="table table-striped table-bordered" style="width:100%">
+                                        <thead>
+                                        <tr>
+                                            <th>Program Studi</th>
+                                            <th>Kelas</th>
+                                            <th>Gelombang</th>
+                                            <th>Jalur Masuk</th>
+                                            <th>Jam</th>
+                                            <th>Registrasi</th>
+                                            <th>Daftar Ulang</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @isset($data)
+                                            @foreach($data as $biaya)
+                                                <tr>
+                                                    <td>{{ $biaya->nama }}</td>
+                                                    <td>{{ $biaya->kelas }}</td>
+                                                    <td>{{ $biaya->gelombang }}</td>
+                                                    <td>{{ $biaya->jalur_masuk }}</td>
+                                                    <td>{{ $biaya->jam_masuk }}</td>
+                                                    <td>Rp. {{ number_format($biaya->registrasi, 0, '', '.') }},-</td>
+                                                    <td>Rp. {{ number_format($biaya->daftar_ulang, 0, '', '.') }},-</td>
+                                                </tr>
                                             @endforeach
-                                        @endforeach 
-                                    </select>
-                                    <label for="gelombang" class="col col-form-label">Filter Program Studi</label>
-                                    <select name="gelombang" id="gelombang" class="col form-control @error('gelombang')) is-invalid @enderror">
-                                        @foreach($dataGelombang as $gelombang)
-                                            <option value="{{ $gelombang->id }}">{{ $gelombang->gelombang }}</option>
-                                        @endforeach
-                                    </select>
-                                    <button type="submit" class="col-2 ml-3 btn btn-sm btn-primary">Filter</button>
-                                    @error('prodi')
-                                        <div class="invalid-feedback">
-                                            <strong>{{ $message }}</strong>
-                                        </div>
-                                    @enderror
-                                    @error('gelombang')
-                                        <div class="invalid-feedback">
-                                            <strong>{{ $message }}</strong>
-                                        </div>
-                                    @enderror
+                                        @endisset
+                                        </tbody>
+                                    </table>
                                 </div>
-                            </form>
-                            <table id="tabel-data" class="table table-striped table-bordered" style="width:100%">
-                                <thead>
-                                <tr>
-                                    <th style="width:40px;">No</th>
-                                    <th>Kelas</th>
-                                    <th>Jam</th>
-                                    <th>Jalur Masuk</th>
-                                    <th>Registrasi</th>
-                                    <th>Daftar Ulang</th>
-                                    <th>Action</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @isset($data)
-                                    @foreach($data->kelas as $kelas)
-                                        @foreach($kelas->jalurMasuk as $jalurMasuk)
-                                            <tr>
-                                                <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $kelas->kelas }}</td>
-                                                <td>{{ $jalurMasuk->jalur_masuk }}</td>
-                                                <td>{{ $jalurMasuk->biaya->where([['kelas_id', $kelas->id],['gelombang_id', $gelombangPilihan],['kategori', 'registrasi']])->nominal }}</td>
-                                                <td>{{ $jalurMasuk->biaya->where([['kelas_id', $kelas->id],['gelombang_id', $gelombangPilihan],['kategori', 'daftar_ulang']])->nominal }}</td>
-                                                <td>//</td>
-                                            </tr>
-                                        @endforeach
-                                    @endforeach
-                                @endisset
-                                </tbody>
-                            </table>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -44,14 +44,14 @@
             </a>
                 @elseif(!is_null(auth()->user()->pembayaranDaftarUlang()) && !is_null(auth()->user()->biodata->nim))
                 <div class="col-12">
-                    <p class="h4 text-center mb-3" style="color:#0078ba;">Selamat Anda menyelesaikan pembayaran daftar ulang</p>
+                    <p class="h4 text-center mb-3" style="color:#0078ba;">Selamat Pembayaran Daftar Ulang Anda, Berhasil!</p>
 
                     <div class="alert alert-primary" role="alert">
                         <h5 class="text-center mt-2">Nomor Induk Mahasiswa.</h5>
                         <h5 class="text-center mt-2">{{ auth()->user()->biodata->nim ?? '' }}</h5>
                     </div>
                     <p class="text-center"><small>Gunakan NIM sebagai user dan password untuk login ke</small></p>
-                    <p class="text-center"><small><a href="http://siakad.unigres.ac.id/" class="text-bold">Sistem Informasi Akademik</a>.</small></p>
+                    <p class="text-center"><small><a href="http://siakad.unigres.ac.id/" class="text-bold">Sistem Informasi Akademik</a></small></p>
                 </div>
                 <!-- <a class="link-item-ann" href="#">
                     <p class="h5 text-center">Selamat Anda menyelesaikan pembayaran daftar ulang</p>

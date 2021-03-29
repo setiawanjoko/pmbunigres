@@ -26,10 +26,10 @@
         </div>
         <span>Informasi dan Pengumuman</span>
     </a>
-</li>  
+</li>
 @endsection
 
-@section('content')    
+@section('content')
 <div class="konfirmasi-pembayaran">
     <div class="container">
         <h4 class="title-konfirm1">Tes Potensi Akademik</h4>
@@ -47,7 +47,7 @@
                     </ol>
                 </p>
                 <p class="catatan2">Jika link tidak merespon lakukan refresh website, atau tunggu hingga sampai link sudah aktif. Lalu segera lakukan tes potensi akademik.</p>
-            </div>                    
+            </div>
             <div class="col-md-6 right">
                 @if(!is_null($dataMoodle->nilai_tpa))
                     <div class="mb-3">
@@ -72,7 +72,7 @@
                             <h5 class="mb-0">Nilai Tes Potensi Akademik.</h5>
                         </div>
                         <div class="card-body">
-                            <h2>{{ $dataMoodle->nilai_tpa }}</h2>
+                            <h2>{{ number_format($dataMoodle->nilai_tpa, 0, '', '') }}</h2>
                         </div>
                     </div>
                 @endif

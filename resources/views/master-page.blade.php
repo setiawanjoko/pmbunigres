@@ -25,13 +25,13 @@
     <div class="main-container">
         <a class="navbar-brand" href="{{ route('homepage') }}">
             <img class="logo-brand" src="{{ asset('unigres/images/logo.png') }}">
-            <p>USM.<span>Unigres</span></p>
+            <p>PMB.<span>Unigres</span></p>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto">      
+            <ul class="navbar-nav ms-auto">
                 @section('nav-bar')
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{ route('homepage') }}">Beranda</a>
@@ -41,7 +41,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page"  href="{{ route('kontak') }}">Kontak</a>
-                </li> 
+                </li>
                 @show
                 @if (!Auth::check())
                 <li class="nav-item">
@@ -49,19 +49,19 @@
                 </li>
                 <li class="nav-item btn-nav">
                     <a class="nav-link" href="{{ route('login') }}">Login</a>
-                </li>                    
+                </li>
                 @else
                 <li class="nav-item">
                     <div class="dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">{{ auth()->user()->nama }}</a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                @can('admin') 
+                                @can('admin')
                                     <a class="dropdown-item" href="{{ route('admin.tes-tpa.index')}}">Halaman Admin</a>
                                 @endcan
                                 <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{__('logout')}}</a>
                             </div>
                     </div>
-                </li>                    
+                </li>
                 @endif
             </ul>
         </div>

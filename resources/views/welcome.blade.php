@@ -3,7 +3,7 @@
 @section('title', 'Halaman Utama')
 
 @section('content-title')
-    <p class="banner-title">Ujian Seleksi Masuk</p>
+    <p class="banner-title">Penerimaan Mahasiswa Baru</p>
     <h5 class="banner-caption">Universitas Gresik</h5>
 @endsection
 
@@ -17,7 +17,7 @@
         <div class="wrapper-head-ann">
             <div class="left">
                 <p class="ann-title">Pengumuman</p>
-                <p class="ann-desc">Pusat informasi seputar Ujiam Seleksi Masuk Universitas Gresik.</p>
+                <p class="ann-desc">Pusat informasi seputar Penerimaan Mahasiswa Baru Universitas Gresik.</p>
             </div>
             <a class="link-vm" href="{{ route('pengumuman') }}">
                 View More <i class="fa fa-arrow-right"></i>

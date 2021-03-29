@@ -57,7 +57,7 @@ function generateNIM($prodi_id){
     $prodi = Prodi::find($prodi_id);
 
     $date = Carbon::today()->year;
-    $nim = $date . $prodi->kode_prodi . substr(str_repeat(0, 4).$count, - 4);
+    $nim = $date . $prodi->kode_prodi_nim . substr(str_repeat(0, 4).$count, - 4);
 
     return $nim;
 }

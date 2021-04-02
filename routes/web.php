@@ -80,7 +80,8 @@ Route::middleware(['auth', 'can:admin'])->prefix('/admin')->name('admin.')->grou
     Route::resource('/pendaftar', PendaftarController::class)->only(['index']);
 
     Route::resource('/pengaturan-gelombang', PengaturanGelombangController::class)->only(['index', 'store', 'destroy']);
-    Route::get('/biaya', [PengaturanGelombangController::class, 'biayaFilter'])->name('biaya.filter');
+    Route::get('/biaya/sunting', [PengaturanGelombangController::class, 'sunting'])->name('biaya.sunting');
+    Route::post('/biaya/sunting', [PengaturanGelombangController::class, 'suntingSimpan'])->name('biaya.sunting.update');
 });
 
 Route::middleware(['auth', 'can:keuangan'])->prefix('/keuangan')->name('keuangan.')->group(function(){

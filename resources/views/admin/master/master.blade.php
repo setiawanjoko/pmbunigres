@@ -18,6 +18,8 @@
     <link href="{{ asset('unigres/css/main.css') }}" rel="stylesheet" />
     <link href="{{ asset('unigres/css/responsive.css') }}" rel="stylesheet" />
 
+    @yield('css')
+
     <title>Unigres</title>
 </head>
 
@@ -100,5 +102,6 @@
            $('#tabel-data').DataTable();
        } );
     </script>
+@yield('js')
 </body>
 </html>

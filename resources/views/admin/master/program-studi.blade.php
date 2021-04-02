@@ -17,7 +17,7 @@
                     <a class="nav-link" href="{{ route('admin.gelombang.index') }}" type="button">Gelombang</a>
                 </li>
                 <li class="nav-item nav-jenjang_id">
-                    <a class="nav-link" href="{{ route('admin.pengaturan-gelombang.index') }}" type="button">Pengaturan Gelombang</a>
+                    <a class="nav-link" href="{{ route('admin.pengaturan-gelombang.index') }}" type="button">Biaya</a>
                 </li>
                 <li class="nav-item nav-jenjang_id">
                     <a class="nav-link" href="{{ route('admin.pengumuman.index') }}" type="button">Pengumuman</a>

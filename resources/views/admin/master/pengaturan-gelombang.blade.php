@@ -17,7 +17,7 @@
                     <a class="nav-link" href="{{ route('admin.gelombang.index') }}" type="button">Gelombang</a>
                 </li>
                 <li class="nav-item nav-prodi">
-                    <a class="nav-link active" href="{{ route('admin.pengaturan-gelombang.index') }}" type="button">Pengaturan Gelombang</a>
+                    <a class="nav-link active" href="{{ route('admin.pengaturan-gelombang.index') }}" type="button">Biaya</a>
                 </li>
                 <li class="nav-item nav-prodi">
                     <a class="nav-link" href="{{ route('admin.pengumuman.index') }}" type="button">Pengumuman</a>
@@ -178,6 +178,9 @@
                                         @endisset
                                         </tbody>
                                     </table>
+                                </div>
+                                <div class="card-footer">
+                                    <a href="{{ route('admin.biaya.sunting') }}" class="btn btn-sm btn-primary float-right">Sunting Biaya</a>
                                 </div>
                             </div>
                         </div>

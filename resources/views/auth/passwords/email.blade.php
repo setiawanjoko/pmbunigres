@@ -61,13 +61,18 @@
     </section>
     <section class="form-login">
         <div class="second-container">
-            <form action="{{ route('login') }}" method="POST">
+            <form action="{{ route('password.email') }}" method="POST">
                 @csrf
                 @method('POST')
                 <div class="wrapper-login">
                     <img class="login-logo" src="{{ asset('unigres/images/logo.png') }}">
                     <p class="login-title">Ujian Seleksi Masuk. <span>Universitas Negeri Gresik</span></p>
-                    <p class="login-info">Masukkan email dan password terdaftar !</p>
+                    @if(session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                    <p class="login-info">Masukkan email terdaftar !</p>
                     <input class="form-control @if($errors->has('email')) is-invalid @endif" type="email" name="email" placeholder="Email address" value="{{ old('email') }}" required>
                     @if($errors->has('email'))
                         <div class="invalid-feedback text-center">

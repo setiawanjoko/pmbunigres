@@ -61,20 +61,27 @@
     </section>
     <section class="form-login">
         <div class="second-container">
-            <form action="{{ route('login') }}" method="POST">
+            <form action="{{ route('password.update') }}" method="POST">
                 @csrf
                 @method('POST')
+                <input type="hidden" name="token" value="{{ $token }}">
                 <div class="wrapper-login">
                     <img class="login-logo" src="{{ asset('unigres/images/logo.png') }}">
                     <p class="login-title">Ujian Seleksi Masuk. <span>Universitas Negeri Gresik</span></p>
-                    <p class="login-info">Masukkan password baru Anda !</p>
+                    <p class="login-info">Masukkan email dan password baru Anda !</p>
+                    <input class="form-control @if($errors->has('email')) is-invalid @endif" type="email" name="email" placeholder="Email" required>
+                    @if($errors->has('email'))
+                        <div class="invalid-feedback text-center">
+                            {{ $errors->first('email') }}
+                        </div>
+                    @endif
                     <input class="form-control @if($errors->has('password')) is-invalid @endif" type="password" name="password" placeholder="New Password" required>
                     @if($errors->has('password'))
                         <div class="invalid-feedback text-center">
                             {{ $errors->first('password') }}
                         </div>
                     @endif
-                    <input class="form-control mb-4" type="password"  name="repassword" placeholder="Confirm New Password" required>
+                    <input class="form-control mb-4" type="password"  name="password_confirmation" placeholder="Confirm New Password" required>
                     <button class="btn btn-login">Submit</button>
                     <p class="regist-here">Belum terdaftar? <a href="{{ route('register') }}">Daftar disini</a></p>
                 </div>

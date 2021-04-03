@@ -35,6 +35,11 @@
         <h4 class="title-info-pengumuman">Informasi dan Pengumuman</h4>
         <p class="title-info-pengumuman2">Informasi seputar seleksi ujian masuk Universitas Gresik</p>
         <div class="wp-info-pengumuman">
+            @if(session('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
+            @endif
             @if(!empty(auth()->user()->moodleAccount->nilai_tpa) && is_null(auth()->user()->pembayaranDaftarUlang()) && auth()->user()->isProdiTes())
             <a class="link-item-ann" href="{{ route('daftar-ulang') }}">
                 <div class="wrappe-item-ann">

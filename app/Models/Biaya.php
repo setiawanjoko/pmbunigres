@@ -12,7 +12,9 @@ class Biaya extends Model
     protected $table = 'biayas';
 
     protected $fillable = [
-        'gelombang_id', 'jalur_masuk_id', 'kelas_id', 'kategori', 'nominal'
+        'gelombang_id', 'jalur_masuk_id', 'kelas_id', 'biaya_registrasi',
+        'dana_pengembangan', 'dana_kemahasiswaan', 'heregistrasi', 'spp_semester',
+        'seragam','konversi','total_daftar_ulang'
     ];
 
     public function gelombang() {

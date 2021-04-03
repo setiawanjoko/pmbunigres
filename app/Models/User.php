@@ -140,8 +140,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
         return Biaya::where([
             ['kelas_id', $kelas->id],
-            ['gelombang_id', $gelombang],
-            ['kategori', 'registrasi']
+            ['gelombang_id', $gelombang]
         ])
             ->whereHas('jalurMasuk', function($query) use($jalurMasuk){
                 return $query->where('jalur_masuk.id', $jalurMasuk);
@@ -162,8 +161,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
         return Biaya::where([
             ['kelas_id', $kelas->id],
-            ['gelombang_id', $gelombang],
-            ['kategori', 'daftar_ulang']
+            ['gelombang_id', $gelombang]
         ])
             ->whereHas('jalurMasuk', function($query) use($jalurMasuk){
                 return $query->where('jalur_masuk.id', $jalurMasuk);

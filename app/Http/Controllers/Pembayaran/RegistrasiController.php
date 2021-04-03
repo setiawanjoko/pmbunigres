@@ -54,7 +54,7 @@ class RegistrasiController extends Controller
                 'brivaNo' => env('BRIVA_NO'),
                 'custCode' => $custCode,
                 'nama' => auth()->user()->nama,
-                'amount' => $biaya->nominal,
+                'amount' => $biaya->biaya_registrasi,
                 'keterangan' => 'Pendaftaran PMB Unigres',
                 'expiredDate' => $expDate
             ];
@@ -76,7 +76,7 @@ class RegistrasiController extends Controller
                     $data = Pembayaran::create([
                         'user_id' => auth()->user()->id,
                         'custCode' => $custCode,
-                        'amount' => $biaya->nominal,
+                        'amount' => $biaya->biaya_registrasi,
                         'keterangan' => 'Pendaftaran PMB Unigres',
                         'expiredDate' => $expDate,
                         'status' => false,

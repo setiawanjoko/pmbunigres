@@ -59,7 +59,7 @@ class DaftarUlangController extends Controller
                 'brivaNo' => env('BRIVA_NO'),
                 'custCode' => $custCode,
                 'nama' => auth()->user()->nama,
-                'amount' => $biaya->nominal,
+                'amount' => $biaya->total_daftar_ulang,
                 'keterangan' => 'Daftar Ulang PMB Unigres',
                 'expiredDate' => $expDate
             ];
@@ -80,7 +80,7 @@ class DaftarUlangController extends Controller
                     $data = Pembayaran::create([
                         'user_id' => auth()->user()->id,
                         'custCode' => $custCode,
-                        'amount' => $biaya->nominal,
+                        'amount' => $biaya->total_daftar_ulang,
                         'keterangan' => 'Daftar Ulang PMB Unigres',
                         'expiredDate' => $expDate,
                         'status' => false,

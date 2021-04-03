@@ -1278,9 +1278,14 @@ main.dashboard {
   font-size: 14px;
   letter-spacing: 0.02em;
 }
+
+.dashboard-user .tab-content .data-calon-mhs .row .left .card .card-body input[type=radio]{
+  margin-bottom: 0;
+}
 .dashboard-user .tab-content .data-calon-mhs .row .left .card .card-body input {
   margin-bottom: 20px;
 }
+
 .dashboard-user
   .tab-content
   .data-calon-mhs

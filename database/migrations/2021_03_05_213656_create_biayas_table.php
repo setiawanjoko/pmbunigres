@@ -20,7 +20,7 @@ class CreateBiayasTable extends Migration
             $table->unsignedBigInteger('kelas_id');
             $table->double('biaya_registrasi')->default(0);
             $table->double('dana_pengembangan')->default(0);
-            $table->double('dana_kemahasiswaaan')->default(0);
+            $table->double('dana_kemahasiswaan')->default(0);
             $table->double('heregistrasi')->default(0);
             $table->double('spp_semester')->default(0);
             $table->double('seragam')->default(0);

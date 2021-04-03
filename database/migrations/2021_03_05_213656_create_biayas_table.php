@@ -18,8 +18,14 @@ class CreateBiayasTable extends Migration
             $table->unsignedBigInteger('gelombang_id');
             $table->unsignedBigInteger('jalur_masuk_id');
             $table->unsignedBigInteger('kelas_id');
-            $table->enum('kategori', ['registrasi', 'daftar_ulang']);
-            $table->double('nominal')->default(0);
+            $table->double('biaya_registrasi')->default(0);
+            $table->double('dana_pengembangan')->default(0);
+            $table->double('dana_kemahasiswaaan')->default(0);
+            $table->double('heregistrasi')->default(0);
+            $table->double('spp_semester')->default(0);
+            $table->double('seragam')->default(0);
+            $table->double('konversi')->default(0);
+            $table->double('total_daftar_ulang')->default(0);
             $table->timestamps();
         });
     }

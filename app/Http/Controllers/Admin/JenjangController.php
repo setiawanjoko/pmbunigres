@@ -32,6 +32,30 @@ class JenjangController extends Controller
         }
     }
 
+    public function edit($id){
+        $data = Jenjang::all();
+        $dataSelected = Jenjang::find($id);
+
+        return response()->view('admin.master.jenjang',compact('data', 'dataSelected'));
+    }
+
+    public function update(Request $request, $id){
+        $validatedData = $request->validate([
+            'nama' => 'required|string'
+        ]);
+
+        try {
+            $data = Jenjang::find($id);
+
+            $data->nama = $validatedData['nama'];
+            $data->save();
+
+            return $this->index();
+        } catch (\Exception $e){
+            dd($e->getMessage());
+        }
+    }
+
     public function destroy($id)
     {
         $count = Prodi::where('jenjang_id', $id)->whereHas('pendaftar')->count();

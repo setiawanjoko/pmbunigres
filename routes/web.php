@@ -72,7 +72,7 @@ Route::middleware(['auth', 'verify', 'can:camaba'])->group(function(){
 Route::middleware(['auth', 'can:admin'])->prefix('/admin')->name('admin.')->group(function(){
     Route::resource('/gelombang', GelombangController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
     Route::resource('/fakultas', FakultasController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
-    Route::resource('/jenjang', JenjangController::class)->only(['index', 'create', 'store','destroy']);
+    Route::resource('/jenjang', JenjangController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
     Route::resource('/prodi', ProdiController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
     Route::resource('/pengumuman', PengumumanController::class)->only(['index','create','store','destroy']);
     Route::resource('/tes-kesehatan', AdminTesKesehatanController::class)->only(['index', 'store', 'edit']);

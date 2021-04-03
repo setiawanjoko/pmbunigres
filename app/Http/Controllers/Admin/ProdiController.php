@@ -30,10 +30,6 @@ class ProdiController extends Controller
             'fakultas_id' => 'integer',
             'k_prodi' => 'required|string',
             's_prodi' => 'required|string',
-            'pagi' => 'required',
-            'siang' => 'required',
-            'sore' => 'required',
-            'malam' => 'required',
         ]);
 
         try {
@@ -43,10 +39,6 @@ class ProdiController extends Controller
                 'fakultas_id' => $data['fakultas_id'],
                 'kode_prodi_nim' => $data['k_prodi'],
                 'kode_prodi_siakad' => $data['s_prodi'],
-                'pagi' => $data['pagi'],
-                'siang' => $data['siang'],
-                'sore' => $data['sore'],
-                'malam' => $data['malam'],
             ]);
 
             return response()->redirectToRoute('admin.prodi.store');
@@ -54,6 +46,20 @@ class ProdiController extends Controller
             dd($e->getMessage());
         }
     }
+
+    public function edit($id){
+        $dataSelected = Prodi::find($id);
+        $data = DB::select('SELECT p.id,CONCAT(\'Kode SIAKAD : \',p.kode_prodi_siakad,\' Kode NIM : \',p.kode_prodi_nim) AS kode,p.nama AS prodi,j.nama AS jenjang,IF(f.fakultas is NULL, \'-\',f.fakultas) AS fakultas, IF((SELECT COUNT(k.lulusan_unigres) FROM kelas k WHERE k.prodi_id = p.id AND k.lulusan_unigres = 1) > 0,1,0) AS lulusan_unigres
+                            FROM prodi p
+                            LEFT OUTER JOIN jenjang j ON p.jenjang_id = j.id
+                            LEFT OUTER JOIN fakultas f ON p.fakultas_id = f.id
+                            ORDER BY p.id');
+        $dataJenjang = Jenjang::all();
+        $dataFakultas = Fakultas::all();
+
+        return response()->view('admin.master.program-studi', compact('data','dataJenjang','dataFakultas', 'dataSelected'));
+    }
+
     public function destroy($id)
     {
         $prodi = Prodi::find($id);

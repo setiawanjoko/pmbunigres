@@ -36,7 +36,31 @@ class FakultasController extends Controller
             dd($e->getMessage());
         }
     }
-    
+
+    public function edit($id){
+        $data = Fakultas::all();
+        $dataSelected = Fakultas::find($id);
+
+        return view('admin.master.fakultas',compact('data', 'dataSelected'));
+    }
+
+    public function update(Request $request, $id){
+        $validatedData = $request->validate([
+            'fakultas' => 'required|string'
+        ]);
+
+        try {
+            $data = Fakultas::find($id);
+
+            $data->fakultas = $validatedData['fakultas'];
+            $data->save();
+
+            return $this->index();
+        } catch (\Exception $e){
+            dd($e->getMessage());
+        }
+    }
+
     public function destroy($id)
     {
         // $count = Prodi::where('fakultas_id', $id)->whereHas('pendaftar')->count();

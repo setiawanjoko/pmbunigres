@@ -44,7 +44,6 @@ class GelombangController extends Controller
 
     public function update(Request $request, $id){
         $validatedData = $request->validate([
-            'id' => 'required|exists:gelombang,id',
             'gelombang' => 'required|string',
             'tgl_mulai' => 'required|date',
             'tgl_selesai' => 'required|date'

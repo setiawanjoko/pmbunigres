@@ -43,9 +43,6 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-lg-12">
-                                                @isset($dataSelected)
-                                                    <input type="hidden" name="id" value="{{ $dataSelected->id }}">
-                                                @endisset
                                                 <label for="gelombang">Gelombang</label>
                                                 <input type="text" name="gelombang" id="gelombang"
                                                     class="form-control form-control-sm @if ($errors->has('gelombang')) is-invalid @endif"

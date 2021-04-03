@@ -5,22 +5,13 @@
             <h4>Data Master</h4>
             <ul class="nav nav-pills mb-5 mx-auto">
                 <li class="nav-item ">
-                    <a class="nav-link" href="{{ route('admin.jenjang.index') }}" type="button">Jenjang</a>
-                </li>
-                <li class="nav-item nav-data-ortu">
-                    <a class="nav-link" href="{{ route('admin.fakultas.index') }}" type="button">Fakultas</a>
+                    <a class="nav-link" href="{{ route('admin.tes-tpa.index') }}" type="button">Tes TPA</a>
                 </li>
                 <li class="nav-item nav-prodi">
-                    <a class="nav-link" href="{{ route('admin.prodi.index') }}" type="button">Program Studi</a>
-                </li>
-                <li class="nav-item nav-prodi">
-                    <a class="nav-link active" href="{{ route('admin.gelombang.index') }}" type="button">Gelombang</a>
+                    <a class="nav-link gelombang" href="{{ route('admin.gelombang.index') }}" type="button">Gelombang</a>
                 </li>
                 <li class="nav-item nav-prodi">
                     <a class="nav-link" href="{{ route('admin.pengaturan-gelombang.index') }}" type="button">Biaya</a>
-                </li>
-                <li class="nav-item nav-prodi">
-                    <a class="nav-link" href="{{ route('admin.pengumuman.index') }}" type="button">Pengumuman</a>
                 </li>
             </ul>
             <div class="tab-content">

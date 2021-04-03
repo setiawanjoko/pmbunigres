@@ -14,12 +14,6 @@
                     <a class="nav-link" href="{{ route('admin.prodi.index') }}" type="button">Program Studi</a>
                 </li>
                 <li class="nav-item nav-prodi">
-                    <a class="nav-link" href="{{ route('admin.gelombang.index') }}" type="button">Gelombang</a>
-                </li>
-                <li class="nav-item nav-prodi">
-                    <a class="nav-link" href="{{ route('admin.pengaturan-gelombang.index') }}" type="button">Biaya</a>
-                </li>
-                <li class="nav-item nav-prodi">
                     <a class="nav-link" href="{{ route('admin.pengumuman.index') }}" type="button">Pengumuman</a>
                 </li>
             </ul>

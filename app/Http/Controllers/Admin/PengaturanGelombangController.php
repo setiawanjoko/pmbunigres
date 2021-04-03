@@ -34,7 +34,7 @@ class PengaturanGelombangController extends Controller
             WHERE b.kategori = 'registrasi'
             ORDER BY p.id,k.id,b.gelombang_id,b.jalur_masuk_id,m.id");
 
-        return response()->view('admin.master.pengaturan-gelombang', compact('data', 'dataGelombang', 'dataJalur', 'dataJam','dataJenjang'));
+        return response()->view('admin.pengaturan.pengaturan-gelombang', compact('data', 'dataGelombang', 'dataJalur', 'dataJam','dataJenjang'));
     }
 
     public function store(Request $request) {
@@ -75,7 +75,7 @@ class PengaturanGelombangController extends Controller
         $dataProdi = Prodi::all();
         $dataGelombang = Gelombang::all();
 
-        return response()->view('admin.master.biaya.edit', compact('dataProdi', 'dataGelombang'));
+        return response()->view('admin.pengaturan.biaya.edit', compact('dataProdi', 'dataGelombang'));
     }
 
     public function suntingSimpan(Request $request){

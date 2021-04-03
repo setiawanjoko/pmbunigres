@@ -35,6 +35,35 @@ class GelombangController extends Controller
         }
     }
 
+    public function edit($id){
+        $data =  Gelombang::all();
+        $dataSelected = Gelombang::find($id);
+
+        return view('admin.pengaturan.gelombang',compact('data', 'dataSelected'));
+    }
+
+    public function update(Request $request, $id){
+        $validatedData = $request->validate([
+            'id' => 'required|exists:gelombang,id',
+            'gelombang' => 'required|string',
+            'tgl_mulai' => 'required|date',
+            'tgl_selesai' => 'required|date'
+        ]);
+
+        try {
+            $data = Gelombang::find($id);
+
+            $data->gelombang = $validatedData['gelombang'];
+            $data->tgl_mulai = $validatedData['tgl_mulai'];
+            $data->tgl_selesai = $validatedData['tgl_selesai'];
+            $data->save();
+
+            return response()->redirectToRoute('admin.gelombang.index');
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+        }
+    }
+
     public function destroy($id)
     {
         // $count = Prodi::where('fakultas_id', $id)->whereHas('pendaftar')->count();

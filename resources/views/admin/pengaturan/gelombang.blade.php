@@ -29,9 +29,13 @@
                             </div>
                         @endif
                         <div class="col-md-5 left dashboard-left">
-                            <form action="{{ route('admin.gelombang.store') }}" method="POST">
+                            <form action="@isset($dataSelected){{ route('admin.gelombang.update', $dataSelected->id) }} @else {{ route('admin.gelombang.store') }} @endisset" method="POST">
                                 @csrf
-                                @method('POST')
+                                @isset($dataSelected)
+                                    @method('PUT')
+                                @else
+                                    @method('POST')
+                                @endisset
                                 <div class="card">
                                     <div class="card-header">
                                         Data Gelombang
@@ -39,10 +43,13 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-lg-12">
-                                                <label for="gelombang">gelombang Gelombang</label>
+                                                @isset($dataSelected)
+                                                    <input type="hidden" name="id" value="{{ $dataSelected->id }}">
+                                                @endisset
+                                                <label for="gelombang">Gelombang</label>
                                                 <input type="text" name="gelombang" id="gelombang"
                                                     class="form-control form-control-sm @if ($errors->has('gelombang')) is-invalid @endif"
-                                                value="{{ old('gelombang') }}" placeholder="Contoh: Gelombang 1, Gelombang 2">
+                                                value="{{ $dataSelected->gelombang ?? old('gelombang') }}" placeholder="Contoh: Gelombang 1, Gelombang 2">
                                                 @if ($errors->has('gelombang'))
                                                     <div class="invalid-feedback">
                                                         <strong>{{ $errors->first('gelombang') }}</strong>
@@ -51,7 +58,7 @@
                                                 <label for="tgl_mulai">Tanggal Mulai</label>
                                                 <input type="date" name="tgl_mulai" id="tgl_mulai"
                                                     class="form-control form-control-sm @if ($errors->has('tgl_mulai')) is-invalid @endif"
-                                                value="{{ old('tgl_mulai') }}"
+                                                value="@isset($dataSelected) {{ date_format($dataSelected->tgl_mulai, 'Y-m-d') }} @else {{ old('tgl_mulai') }} @endisset"
                                                 required>
                                                 @if ($errors->has('tgl_mulai'))
                                                     <div class="invalid-feedback">
@@ -61,7 +68,7 @@
                                                 <label for="tgl_selesai">Tanggal Selesai</label>
                                                 <input type="date" name="tgl_selesai" id="tgl_selesai"
                                                     class="form-control form-control-sm @if ($errors->has('tgl_selesai')) is-invalid @endif"
-                                                value="{{ old('tgl_selesai') }}"
+                                                value="@isset($dataSelected) {{ date_format($dataSelected->tgl_selesai, 'Y-m-d') }} @else {{ old('tgl_selesai') }} @endisset"
                                                 required>
                                                 @if ($errors->has('tgl_selesai'))
                                                     <div class="invalid-feedback">
@@ -99,10 +106,11 @@
                                             <td>{{ date_format($data->tgl_mulai,"d M Y") }}</td>
                                             <td>{{ date_format($data->tgl_selesai,"d M Y") }}</td>
                                             <td class="text-center">
-                                                <form action="{{ route('admin.gelombang.destroy',$data->id) }}" method="POST">
+                                                <a href="{{ route('admin.gelombang.edit', $data->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt text-white"></i></a>
+                                                <form action="{{ route('admin.gelombang.destroy',$data->id) }}" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class="fas fa-trash"></i></button>
                                                 </form>
                                             </td>
                                         </tr>

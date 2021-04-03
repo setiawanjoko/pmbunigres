@@ -8,6 +8,7 @@ use App\Models\Jenjang;
 use App\Models\Prodi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 class ProdiController extends Controller
 {
@@ -58,6 +59,31 @@ class ProdiController extends Controller
         $dataFakultas = Fakultas::all();
 
         return response()->view('admin.master.program-studi', compact('data','dataJenjang','dataFakultas', 'dataSelected'));
+    }
+
+    public function update(Request $request, $id){
+        $validatedData = $request->validate([
+            's_prodi' => ['required',Rule::unique('prodi', 'kode_prodi_siakad')->ignore($id, 'id')],
+            'k_prodi' => ['required',Rule::unique('prodi', 'kode_prodi_nim')->ignore($id, 'id')],
+            'nama' => 'required',
+            'jenjang_id' => 'required|exists:jenjang,id',
+            'fakultas_id' => 'nullable|exists:fakultas,id'
+        ]);
+
+        try {
+            $data = Prodi::find($id);
+
+            $data->nama = $validatedData['nama'];
+            $data->kode_prodi_siakad = $validatedData['s_prodi'];
+            $data->kode_prodi_nim = $validatedData['k_prodi'];
+            $data->jenjang_id = $validatedData['jenjang_id'];
+            $data->fakultas_id = $validatedData['fakultas_id'];
+            $data->save();
+
+            return response()->redirectToRoute('admin.prodi.index');
+        }catch (\Exception $e){
+            dd($e->getMessage());
+        }
     }
 
     public function destroy($id)

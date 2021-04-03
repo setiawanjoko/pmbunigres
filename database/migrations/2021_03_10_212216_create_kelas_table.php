@@ -18,6 +18,8 @@ class CreateKelasTable extends Migration
             $table->unsignedBigInteger('prodi_id');
             $table->string('kelas');
             $table->boolean('lulusan_unigres')->default(false);
+            $table->boolean('biaya_registrasi')->default(true);
+            $table->boolean('biaya_daftar_ulang')->default(true);
             $table->timestamps();
         });
     }

@@ -96,6 +96,7 @@
                                                 <label for="fakultas_id">Fakultas</label>
                                                 <select name="fakultas_id" id="fakultas_id" class="form-control @if($errors->has('fakultas_id')) is-invalid @endif" required>
                                                     <option selected disabled>-- Silahkan Pilih Fakultas --</option>
+                                                    <option value="" @if(isset($dataSelected) && is_null($dataSelected->fakultas_id)) selected @endif>-- Tanpa Fakultas --</option>
                                                     @foreach($dataFakultas as $fakultas)
                                                         <option value="{{ $fakultas->id }}" @if(isset($dataSelected) && $dataSelected->fakultas_id == $fakultas->id) selected @endif>{{ $fakultas->fakultas }}</option>
                                                     @endforeach

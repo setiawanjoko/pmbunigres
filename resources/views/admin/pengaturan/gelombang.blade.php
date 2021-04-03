@@ -8,7 +8,7 @@
                     <a class="nav-link" href="{{ route('admin.tes-tpa.index') }}" type="button">Tes TPA</a>
                 </li>
                 <li class="nav-item nav-prodi">
-                    <a class="nav-link gelombang" href="{{ route('admin.gelombang.index') }}" type="button">Gelombang</a>
+                    <a class="nav-link active" href="{{ route('admin.gelombang.index') }}" type="button">Gelombang</a>
                 </li>
                 <li class="nav-item nav-prodi">
                     <a class="nav-link" href="{{ route('admin.pengaturan-gelombang.index') }}" type="button">Biaya</a>

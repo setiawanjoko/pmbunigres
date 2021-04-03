@@ -12,7 +12,7 @@ class GelombangController extends Controller
     public function index() {
         $data =  Gelombang::all();
 
-        return view('admin.master.gelombang',compact('data'));
+        return view('admin.pengaturan.gelombang',compact('data'));
     }
 
     public function store(Request $request) {
@@ -28,7 +28,7 @@ class GelombangController extends Controller
                 'tgl_mulai' => $data['tgl_mulai'],
                 'tgl_selesai' => $data['tgl_selesai']
             ]);
-            
+
             return response()->redirectToRoute('admin.gelombang.index');
         } catch (\Exception $e) {
             dd($e->getMessage());

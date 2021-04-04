@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Biaya;
 use App\Models\Pembayaran;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -89,7 +90,7 @@ class DaftarUlangController extends Controller
                     ]);
 
                     return response()->view('instruksi-pembayaran', compact('data'));
-                } catch (\Exception $e) {
+                } catch (Exception $e) {
                     dd($e->getMessage());
                 }
             } else {
@@ -119,8 +120,10 @@ class DaftarUlangController extends Controller
         $prodi = auth()->user()->prodi;
         $gelombang = auth()->user()->gelombang;
         $biaya = auth()->user()->biayaDaftarUlang;
+        Carbon::setLocale('id');
+        $tanggal = Carbon::now()->format('d F Y');
 
-        return response()->view('print-sk', compact('biodata', 'prodi', 'gelombang', 'biaya'));
+        return response()->view('print-sk', compact('biodata', 'prodi', 'gelombang', 'biaya', 'tanggal'));
     }
 
     public function nomorSurat(){

@@ -114,13 +114,13 @@ class DaftarUlangController extends Controller
     }
 
     public function printSKL(){
-        // nama, no registrasi, prodi, gelombang
+        //nama, no registrasi, prodi, gelombang
         $biodata = auth()->user()->biodata;
         $prodi = auth()->user()->prodi;
         $gelombang = auth()->user()->gelombang;
         $biaya = auth()->user()->biayaDaftarUlang;
 
-        return response()->view('printSkl', compact('biodata', 'prodi', 'gelombang', 'biaya'));
+        return response()->view('print-sk', compact('biodata', 'prodi', 'gelombang', 'biaya'));
     }
 
     public function nomorSurat(){

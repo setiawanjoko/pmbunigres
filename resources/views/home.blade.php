@@ -47,6 +47,12 @@
                     <span class="badge badge-item">Penting</span>
                 </div>
             </a>
+            <a class="link-item-ann" href="{{ route('print-sk') }}">
+                <div class="wrappe-item-ann">
+                    <p class="item-ann-title-1">Surat Keterangan Lolos PMB</p>
+                    <span class="badge badge-item">Penting</span>
+                </div>
+            </a>
                 @elseif(!is_null(auth()->user()->pembayaranDaftarUlang()) && !is_null(auth()->user()->biodata->nim))
                 <div class="col-12">
                     <p class="h4 text-center mb-3" style="color:#0078ba;">Selamat Pembayaran Daftar Ulang Anda, Berhasil!</p>

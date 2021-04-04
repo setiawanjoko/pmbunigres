@@ -197,10 +197,16 @@ class User extends Authenticatable implements MustVerifyEmail
     public function isTesKesehatan() {
         $prodi = Prodi::where('id', $this->prodi_id)->first();
 
-        return ($prodi->tes_kesehatan && !$this->tes_kesehatan);
+        return ($prodi->tes_kesehatan && $this->tes_kesehatan);
     }
 
     public function isProdiTes(){
+        $prodi = Prodi::where('id', $this->prodi_id)->first();
+        
+        return (($prodi->tes_kesehatan && !$this->tes_kesehatan) || (!$prodi->tes_kesehatan));
+    }
+
+    public function isaProdiTes(){
         $prodi = Prodi::where('id', $this->prodi_id)->first();
         
         return (($prodi->tes_kesehatan && $this->tes_kesehatan) || (!$prodi->tes_kesehatan));

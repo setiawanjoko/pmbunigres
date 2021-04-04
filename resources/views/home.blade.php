@@ -40,19 +40,19 @@
                     {{ session('status') }}
                 </div>
             @endif
-            @if(!empty(auth()->user()->moodleAccount->nilai_tpa) && is_null(auth()->user()->pembayaranDaftarUlang()) && auth()->user()->isProdiTes())
+            @if(!empty(auth()->user()->moodleAccount->nilai_tpa) && is_null(auth()->user()->pembayaranDaftarUlang()) && auth()->user()->isaProdiTes())
             <a class="link-item-ann" href="{{ route('daftar-ulang') }}">
                 <div class="wrappe-item-ann">
                     <p class="item-ann-title-1">Instruksi Pembayaran Daftar Ulang</p>
                     <span class="badge badge-item">Penting</span>
                 </div>
             </a>
-            <a class="link-item-ann" href="{{ route('print-sk') }}">
+            {{-- <a class="link-item-ann" href="{{ route('print-sk') }}">
                 <div class="wrappe-item-ann">
                     <p class="item-ann-title-1">Surat Keterangan Lolos PMB</p>
                     <span class="badge badge-item">Penting</span>
                 </div>
-            </a>
+            </a> --}}
                 @elseif(!is_null(auth()->user()->pembayaranDaftarUlang()) && !is_null(auth()->user()->biodata->nim))
                 <div class="col-12">
                     <p class="h4 text-center mb-3" style="color:#0078ba;">Selamat Pembayaran Daftar Ulang Anda, Berhasil!</p>

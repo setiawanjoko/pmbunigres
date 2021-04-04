@@ -111,6 +111,16 @@ class DaftarUlangController extends Controller
         } else return response()->view('instruksi-pembayaran', compact('data'));
     }
 
+    public function printSKL(){
+        // nama, no registrasi, prodi, gelombang
+        $biodata = auth()->user()->biodata;
+        $prodi = auth()->user()->prodi;
+        $gelombang = auth()->user()->gelombang;
+        $biaya = auth()->user()->biayaDaftarUlang;
+
+        return response()->view('printSkl', compact('biodata', 'prodi', 'gelombang', 'biaya'));
+    }
+
     public function generateCustCode(): string
     {
         $count = Pembayaran::whereDate('created_at', Carbon::today())->where('kategori', 'daftar_ulang')->count();

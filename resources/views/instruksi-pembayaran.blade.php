@@ -14,7 +14,11 @@
     <div class="wrapper-verif">
       <div class="wrap-content">
         <img class="verif-ic" src="{{asset('unigres/images/ic-check.svg')}}" style="width: 58px;">
-        <h5 class="verif-title mb-2">Selamat, Pendaftaran anda berhasil !</h5>
+          @if(auth()->user()->pembayaranRegistrasi()->status)
+              <h5 class="verif-title mb-2">Lakukan daftar ulang untuk mendapatkan NIM</h5>
+          @else
+              <h5 class="verif-title mb-2">Selamat, Pendaftaran anda berhasil !</h5>
+          @endif
         <p class="step2-title">Segera selesaikan pembayaran anda.</p>
         <div class="card card-payment">
           <div class="card-header">
@@ -35,6 +39,9 @@
           </ul>
         </div>
 
+        <div class="wrap-button-verif wp-step-1" id="btn1">
+          <a class="btn btn-login" href="{{ route('print-sk') }}">Surat Keterangan Lolos PMB</a>
+      </div>
         <h5 class="verif-title mb-4">Panduan Pembayaran</h5>
         <div class="accordion accordion-payment" id="accordionExample">
           <div class="accordion-item">
@@ -82,5 +89,5 @@
         </div>
     </div>
   </div>
-</section>    
+</section>
 @endsection

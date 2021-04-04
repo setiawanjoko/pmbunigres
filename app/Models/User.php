@@ -140,8 +140,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
         return Biaya::where([
             ['kelas_id', $kelas->id],
-            ['gelombang_id', $gelombang],
-            ['kategori', 'registrasi']
+            ['gelombang_id', $gelombang]
         ])
             ->whereHas('jalurMasuk', function($query) use($jalurMasuk){
                 return $query->where('jalur_masuk.id', $jalurMasuk);
@@ -162,8 +161,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
         return Biaya::where([
             ['kelas_id', $kelas->id],
-            ['gelombang_id', $gelombang],
-            ['kategori', 'daftar_ulang']
+            ['gelombang_id', $gelombang]
         ])
             ->whereHas('jalurMasuk', function($query) use($jalurMasuk){
                 return $query->where('jalur_masuk.id', $jalurMasuk);
@@ -199,10 +197,16 @@ class User extends Authenticatable implements MustVerifyEmail
     public function isTesKesehatan() {
         $prodi = Prodi::where('id', $this->prodi_id)->first();
 
-        return ($prodi->tes_kesehatan && !$this->tes_kesehatan);
+        return ($prodi->tes_kesehatan && $this->tes_kesehatan);
     }
 
     public function isProdiTes(){
+        $prodi = Prodi::where('id', $this->prodi_id)->first();
+        
+        return (($prodi->tes_kesehatan && !$this->tes_kesehatan) || (!$prodi->tes_kesehatan));
+    }
+
+    public function isaProdiTes(){
         $prodi = Prodi::where('id', $this->prodi_id)->first();
         
         return (($prodi->tes_kesehatan && $this->tes_kesehatan) || (!$prodi->tes_kesehatan));

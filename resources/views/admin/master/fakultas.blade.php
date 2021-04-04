@@ -14,12 +14,6 @@
                     <a class="nav-link" href="{{ route('admin.prodi.index') }}" type="button">Program Studi</a>
                 </li>
                 <li class="nav-item nav-prodi">
-                    <a class="nav-link" href="{{ route('admin.gelombang.index') }}" type="button">Gelombang</a>
-                </li>
-                <li class="nav-item nav-prodi">
-                    <a class="nav-link" href="{{ route('admin.pengaturan-gelombang.index') }}" type="button">Pengaturan Gelombang</a>
-                </li>
-                <li class="nav-item nav-prodi">
                     <a class="nav-link" href="{{ route('admin.pengumuman.index') }}" type="button">Pengumuman</a>
                 </li>
             </ul>
@@ -38,9 +32,13 @@
                             </div>
                         @endif
                         <div class="col-md-5 left dashboard-left">
-                            <form action="{{ route('admin.fakultas.store') }}" method="POST">
+                            <form action="@isset($dataSelected){{ route('admin.fakultas.update', $dataSelected->id) }} @else {{ route('admin.fakultas.store') }} @endisset" method="POST">
                                 @csrf
-                                @method('POST')
+                                @isset($dataSelected)
+                                    @method('PUT')
+                                @else
+                                    @method('POST')
+                                @endisset
                                 <div class="card">
                                     <div class="card-header">
                                         Data Fakultas
@@ -51,7 +49,7 @@
                                                 <label for="fakultas">Nama Fakultas</label>
                                                 <input type="text" name="fakultas" id="fakultas"
                                                     class="form-control form-control-sm @if ($errors->has('fakultas')) is-invalid @endif"
-                                                placeholder="Contoh: S1, S2">
+                                                placeholder="Contoh: S1, S2" value="{{ $dataSelected->fakultas ?? old('fakultas') }}">
                                                 @if ($errors->has('fakultas'))
                                                     <div class="invalid-feedback">
                                                         <strong>{{ $errors->first('fakultas') }}</strong>
@@ -84,12 +82,13 @@
                                             <td class="text-center">{{ ++$key . '.' }}</td>
                                             <td>{{ $data->fakultas }}</td>
                                             <td class="text-center">
+                                                <a href="{{ route('admin.fakultas.edit', $data->id) }}" class="btn btn-sm btn-warning text-white"><i class="fas fa-pencil-alt"></i></a>
                                                 <form action="{{ route('admin.fakultas.destroy', $data->id) }}"
-                                                    method="POST">
+                                                    method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"
-                                                        onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
+                                                        onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class="fa fa-trash"></i></button>
                                                 </form>
                                             </td>
                                         </tr>

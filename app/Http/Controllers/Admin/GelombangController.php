@@ -12,7 +12,7 @@ class GelombangController extends Controller
     public function index() {
         $data =  Gelombang::all();
 
-        return view('admin.master.gelombang',compact('data'));
+        return view('admin.pengaturan.gelombang',compact('data'));
     }
 
     public function store(Request $request) {
@@ -28,7 +28,35 @@ class GelombangController extends Controller
                 'tgl_mulai' => $data['tgl_mulai'],
                 'tgl_selesai' => $data['tgl_selesai']
             ]);
-            
+
+            return response()->redirectToRoute('admin.gelombang.index');
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+        }
+    }
+
+    public function edit($id){
+        $data =  Gelombang::all();
+        $dataSelected = Gelombang::find($id);
+
+        return view('admin.pengaturan.gelombang',compact('data', 'dataSelected'));
+    }
+
+    public function update(Request $request, $id){
+        $validatedData = $request->validate([
+            'gelombang' => 'required|string',
+            'tgl_mulai' => 'required|date',
+            'tgl_selesai' => 'required|date'
+        ]);
+
+        try {
+            $data = Gelombang::find($id);
+
+            $data->gelombang = $validatedData['gelombang'];
+            $data->tgl_mulai = $validatedData['tgl_mulai'];
+            $data->tgl_selesai = $validatedData['tgl_selesai'];
+            $data->save();
+
             return response()->redirectToRoute('admin.gelombang.index');
         } catch (\Exception $e) {
             dd($e->getMessage());

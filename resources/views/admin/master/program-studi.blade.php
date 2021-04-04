@@ -14,12 +14,6 @@
                     <a class="nav-link active" href="{{ route('admin.prodi.index') }}" type="button">Program Studi</a>
                 </li>
                 <li class="nav-item nav-jenjang_id">
-                    <a class="nav-link" href="{{ route('admin.gelombang.index') }}" type="button">Gelombang</a>
-                </li>
-                <li class="nav-item nav-jenjang_id">
-                    <a class="nav-link" href="{{ route('admin.pengaturan-gelombang.index') }}" type="button">Pengaturan Gelombang</a>
-                </li>
-                <li class="nav-item nav-jenjang_id">
                     <a class="nav-link" href="{{ route('admin.pengumuman.index') }}" type="button">Pengumuman</a>
                 </li>
             </ul>
@@ -38,9 +32,13 @@
                             </div>
                         @endif
                         <div class="col-md-5 left dashboard-left">
-                            <form action="{{ route('admin.prodi.store') }}" method="POST">
+                            <form action="@isset($dataSelected){{ route('admin.prodi.update', $dataSelected->id) }} @else {{ route('admin.prodi.store') }} @endisset" method="POST">
                                 @csrf
-                                @method('POST')
+                                @isset($dataSelected)
+                                    @method('PUT')
+                                @else
+                                    @method('POST')
+                                @endisset
                                 <div class="card">
                                     <div class="card-header">
                                         Data Prodi
@@ -51,7 +49,7 @@
                                                 <label for="s_prodi">Kode Prodi SIAKAD</label>
                                                 <input type="text" name="s_prodi" id="s_prodi"
                                                 class="form-control form-control-sm @if ($errors->has('s_prodi')) is-invalid @endif"
-                                                value="{{ old('s_prodi') }}" placeholder="Kode Prodi. Contoh : 61201, 14202">
+                                                value="{{ $dataSelected->kode_prodi_siakad ?? old('s_prodi') }}" placeholder="Kode Prodi. Contoh : 61201, 14202">
                                                 @if ($errors->has('s_prodi'))
                                                 <div class="invalid-feedback">
                                                     <strong>{{ $errors->first('s_prodi') }}</strong>
@@ -62,7 +60,7 @@
                                                 <label for="k_prodi">Kode Prodi NIM</label>
                                                 <input type="text" name="k_prodi" id="k_prodi"
                                                 class="form-control form-control-sm @if ($errors->has('k_prodi')) is-invalid @endif"
-                                                value="{{ old('k_prodi') }}" placeholder="Kode Prodi. Contoh : 01, 02">
+                                                value="{{ $dataSelected->kode_prodi_nim ?? old('k_prodi') }}" placeholder="Kode Prodi. Contoh : 01, 02">
                                                 @if ($errors->has('k_prodi'))
                                                 <div class="invalid-feedback">
                                                     <strong>{{ $errors->first('k_prodi') }}</strong>
@@ -73,7 +71,7 @@
                                                 <label for="nama">Nama Prodi</label>
                                                 <input type="text" name="nama" id="nama"
                                                 class="form-control form-control-sm @if ($errors->has('nama')) is-invalid @endif"
-                                                value="{{ old('nama') }}" placeholder="Nama Prodi">
+                                                value="{{ $dataSelected->nama ?? old('nama') }}" placeholder="Nama Prodi">
                                                 @if ($errors->has('nama'))
                                                 <div class="invalid-feedback">
                                                     <strong>{{ $errors->first('nama') }}</strong>
@@ -85,7 +83,7 @@
                                                 <select name="jenjang_id" id="jenjang_id" class="form-control @if($errors->has('jenjang_id')) is-invalid @endif" required>
                                                     <option selected disabled>-- Silahkan Pilih Jenjang --</option>
                                                     @foreach($dataJenjang as $jenjang)
-                                                        <option value="{{ $jenjang->id }}">{{ $jenjang->nama }}</option>
+                                                        <option value="{{ $jenjang->id }}" @if(isset($dataSelected) && $dataSelected->jenjang_id == $jenjang->id) selected @endif>{{ $jenjang->nama }}</option>
                                                     @endforeach
                                                 </select>
                                                 @if($errors->has('jenjang_id'))
@@ -98,8 +96,9 @@
                                                 <label for="fakultas_id">Fakultas</label>
                                                 <select name="fakultas_id" id="fakultas_id" class="form-control @if($errors->has('fakultas_id')) is-invalid @endif" required>
                                                     <option selected disabled>-- Silahkan Pilih Fakultas --</option>
+                                                    <option value="" @if(isset($dataSelected) && is_null($dataSelected->fakultas_id)) selected @endif>-- Tanpa Fakultas --</option>
                                                     @foreach($dataFakultas as $fakultas)
-                                                        <option value="{{ $fakultas->id }}">{{ $fakultas->fakultas }}</option>
+                                                        <option value="{{ $fakultas->id }}" @if(isset($dataSelected) && $dataSelected->fakultas_id == $fakultas->id) selected @endif>{{ $fakultas->fakultas }}</option>
                                                     @endforeach
                                                 </select>
                                                 @if($errors->has('fakultas_id'))
@@ -108,7 +107,7 @@
                                                     </div>
                                                 @endif
                                             </div>
-                                            <div class="col-lg-12">
+                                            {{--<div class="col-lg-12">
                                                 <label for="pagi">Kelas Pagi</label>
                                                 <div class="wrap-input">
                                                     <div class="form-check form-check-inline">
@@ -203,7 +202,7 @@
                                                         <strong>{{ $errors->first('malam') }}</strong>
                                                     </div>
                                                 @endif
-                                            </div>
+                                            </div>--}}
                                         </div>
                                     </div>
                                 </div>
@@ -236,10 +235,11 @@
                                                 <small class="text-sm">Fakultas: {{ $prodi->fakultas }}</small>
                                             </td>
                                             <td class="text-center">
-                                                <form action="{{ route('admin.prodi.destroy',$prodi->id) }}" method="POST">
+                                                <a href="{{ route('admin.prodi.edit', $prodi->id) }}" class="btn btn-sm btn-warning text-white"><i class="fas fa-pencil-alt"></i></a>
+                                                <form action="{{ route('admin.prodi.destroy',$prodi->id) }}" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class="fas fa-trash"></i></button>
                                                 </form>
                                             </td>
                                         </tr>

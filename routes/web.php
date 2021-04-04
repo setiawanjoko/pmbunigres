@@ -14,13 +14,11 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Keuangan\CheckStatusController;
 use App\Http\Controllers\Mahasiswa\BiodataController;
 use App\Http\Controllers\Mahasiswa\KeluargaController;
-use App\Http\Controllers\Mahasiswa\LinkTesTPAController;
 use App\Http\Controllers\Mahasiswa\MoodleAccountController;
 use App\Http\Controllers\Mahasiswa\BerkasController;
 use App\Http\Controllers\Mahasiswa\TesKesehatanController;
 use App\Http\Controllers\Pembayaran\DaftarUlangController;
 use App\Http\Controllers\Pembayaran\RegistrasiController;
-use App\Http\Controllers\RegisNersController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\RegisterController;
@@ -66,21 +64,23 @@ Route::middleware(['auth', 'verify', 'can:camaba'])->group(function(){
             Route::get('/tes-kesehatan', [TesKesehatanController::class, 'index'])->name('tes-kesehatan');
         });
         Route::get('/daftar-ulang', [DaftarUlangController::class, 'index'])->name('daftar-ulang');
+        Route::get('/print-sk', [DaftarUlangController::class, 'printSKL'])->name('print-sk');
     });
 });
 
 Route::middleware(['auth', 'can:admin'])->prefix('/admin')->name('admin.')->group(function(){
-    Route::resource('/gelombang', GelombangController::class)->only(['index', 'create', 'store','destroy']);
-    Route::resource('/fakultas', FakultasController::class)->only(['index', 'create', 'store','destroy']);
-    Route::resource('/jenjang', JenjangController::class)->only(['index', 'create', 'store','destroy']);
-    Route::resource('/prodi', ProdiController::class)->only(['index', 'create', 'store','destroy']);
+    Route::resource('/gelombang', GelombangController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
+    Route::resource('/fakultas', FakultasController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
+    Route::resource('/jenjang', JenjangController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
+    Route::resource('/prodi', ProdiController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
     Route::resource('/pengumuman', PengumumanController::class)->only(['index','create','store','destroy']);
     Route::resource('/tes-kesehatan', AdminTesKesehatanController::class)->only(['index', 'store', 'edit']);
     Route::resource('/tes-tpa', TesTPAController::class)->only(['index', 'store']);
     Route::resource('/pendaftar', PendaftarController::class)->only(['index']);
 
     Route::resource('/pengaturan-gelombang', PengaturanGelombangController::class)->only(['index', 'store', 'destroy']);
-    Route::get('/biaya', [PengaturanGelombangController::class, 'biayaFilter'])->name('biaya.filter');
+    Route::get('/biaya/sunting', [PengaturanGelombangController::class, 'sunting'])->name('biaya.sunting');
+    Route::post('/biaya/sunting', [PengaturanGelombangController::class, 'suntingSimpan'])->name('biaya.sunting.update');
 });
 
 Route::middleware(['auth', 'can:keuangan'])->prefix('/keuangan')->name('keuangan.')->group(function(){

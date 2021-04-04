@@ -4,7 +4,7 @@
 
 @section('content-title')
 <h5 class="banner-caption">Pengumuman</h5>
-<p class="banner-title">Pusat informasi seputar Ujian Seleksi Masuk Universitas Gresik.</p>
+<p class="banner-title">Pusat informasi seputar Penerimaan Mahasiswa Baru Universitas Gresik.</p>
 @endsection
 
 @section('nav-bar')

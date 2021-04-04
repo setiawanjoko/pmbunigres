@@ -36,9 +36,8 @@
         <p class="title-konfirm2">Informasi tes kesehatan kelanjutan dari tes potensi akademik</p>
         <div class="row gx-5">
             <div class="col-md-6 left">
-                <h5>Untuk tes kesehatan silahkan menghubungi nomor dibawah ini atau klik link dibawah</h5>
-                <h5>{{$prodi->keterangan_tes_kesehatan}}</h5>
-                <a href="#" type="submit" class="btn btn-submit mb-5" target="_blank">Klik Disini!</a>
+                <h5>Untuk tes kesehatan silahkan menghubungi nomor dibawah ini.</h5>
+                <h4>{{$prodi->keterangan_tes_kesehatan}}</h4>
                 <p class="catatan">Catatan :</p>
                 <p>
                     <ol>
@@ -47,7 +46,6 @@
                         <li class="catatan2">Keterlambatan dalam menghubungi pihak yg terkait akan terbatalnya proses kelanjutan penerimaan mahasiswa.</li>
                     </ol>
                 </p>
-                <p class="catatan2">Jika link tidak merespon lakukan refresh website, atau tunggu hingga sampai link sudah aktif. Lalu segera lakukan tes potensi akademik.</p>
             </div>
             <div class="col-md-6 right">
                 {{-- awal - muncul saat nilai sudah masuk dan hasil tes kesehatan sudah masuk --}}
@@ -68,7 +66,7 @@
                     font-size: 14px;
                     line-height: 28px;
                     letter-spacing: 0.02em;
-                    color: #000000;">Untuk langkah selanjutnya, silahkan menuju halaman informasi dan pengumuman untuk informasi Daftar Ulang.</p>
+                    color: #000000;">Untuk langkah selanjutnya, silahkan menuju halaman <strong>Informasi dan Pengumuman </strong> untuk informasi Daftar Ulang atau <a href="{{ route('home') }}">Klik Disini!</a>.</p>
                 </div>
                 <div class="card mb-3">
                     <div class="card-header">

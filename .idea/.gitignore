@@ -6,3 +6,9 @@
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
+/misc.xml
+/webServers.xml
+/deployment.xml
+/modules.xml
+/php.xml
+/pmbunigres.iml

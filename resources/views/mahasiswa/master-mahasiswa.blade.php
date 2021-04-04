@@ -28,7 +28,7 @@
         <div class="main-container">
             <a class="navbar-brand" href="{{ route('homepage') }}">
                 <img class="logo-brand" src="{{ asset('unigres/images/logo.png') }}">
-                <p>USM.<span>Unigres</span></p>
+                <p>PMB.<span>Unigres</span></p>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -57,7 +57,7 @@
     <main class="dashboard">
         <div class="wrapper-dashboard-nav">
             <ul class="dashboard-top nav nav-pill" id="pills-tab1" role="tablist">
-                @section('nav-item')                
+                @section('nav-item')
                 <li class="nav-item" role="presentation">
                     <a href="{{ route('biodata.create') }}" class="nav-link active" type="button" aria-controls="pills-home1" aria-selected="true">
                         <div class="wp-ic">
@@ -81,7 +81,7 @@
                         </div>
                         <span>Informasi dan Pengumuman</span>
                     </a>
-                </li>           
+                </li>
                 @show
             </ul>
         </div>

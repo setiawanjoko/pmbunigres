@@ -84,7 +84,8 @@ class DaftarUlangController extends Controller
                         'keterangan' => 'Daftar Ulang PMB Unigres',
                         'expiredDate' => $expDate,
                         'status' => false,
-                        'kategori' => 'daftar_ulang'
+                        'kategori' => 'daftar_ulang',
+                        'no_surat' => $this->nomorSurat()
                     ]);
 
                     return response()->view('instruksi-pembayaran', compact('data'));
@@ -101,6 +102,7 @@ class DaftarUlangController extends Controller
                         'keterangan' => 'Daftar Ulang PMB Unigres',
                         'expiredDate' => $response->data->expiredDate,
                         'status' => false,
+                        'no_surat' => $this->nomorSurat()
                     ]);
                     return response()->view('instruksi-pembayaran', compact('data'));
                 } else {
@@ -119,6 +121,14 @@ class DaftarUlangController extends Controller
         $biaya = auth()->user()->biayaDaftarUlang;
 
         return response()->view('printSkl', compact('biodata', 'prodi', 'gelombang', 'biaya'));
+    }
+
+    public function nomorSurat(){
+        $tahun = Carbon::today()->year;
+        $count = Pembayaran::where('kategori', 'daftar_ulang')->whereYear('created_at', $tahun)->count();
+        $seq = substr(str_repeat(0, 3).$count, - 3);
+
+        return $seq . '/PAN-PMB/' . $tahun;
     }
 
     public function generateCustCode(): string

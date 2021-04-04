@@ -14,13 +14,11 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Keuangan\CheckStatusController;
 use App\Http\Controllers\Mahasiswa\BiodataController;
 use App\Http\Controllers\Mahasiswa\KeluargaController;
-use App\Http\Controllers\Mahasiswa\LinkTesTPAController;
 use App\Http\Controllers\Mahasiswa\MoodleAccountController;
 use App\Http\Controllers\Mahasiswa\BerkasController;
 use App\Http\Controllers\Mahasiswa\TesKesehatanController;
 use App\Http\Controllers\Pembayaran\DaftarUlangController;
 use App\Http\Controllers\Pembayaran\RegistrasiController;
-use App\Http\Controllers\RegisNersController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\RegisterController;
@@ -66,6 +64,7 @@ Route::middleware(['auth', 'verify', 'can:camaba'])->group(function(){
             Route::get('/tes-kesehatan', [TesKesehatanController::class, 'index'])->name('tes-kesehatan');
         });
         Route::get('/daftar-ulang', [DaftarUlangController::class, 'index'])->name('daftar-ulang');
+        Route::get('/print-sk', [DaftarUlangController::class, 'printSKL'])->name('print-sk');
     });
 });
 

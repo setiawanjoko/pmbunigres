@@ -26,7 +26,31 @@ Gelombang	:	{{ $gelombang->gelombang }}
 <br>
 <br>
 Dinyatakan DITERIMA, sebagai mahasiswa Universitas Gresik, Tahun Akademik 2021/2022, Selanjutnya agar melakukan heregistrasi dengan rincian pembayaran sebagai berikut :
-{{ $biaya->total_daftar_ulang }}
+<br>
+<table class="table">
+    <thead>
+      <tr>
+        <th>Heregistrasi</th>
+        <th>Dana Kemahasiswaan</th>
+        <th>Dana Pengembangan (Pembayaran ke -1)</th>
+        <th>SPP Semester I (3 Bulan)</th>
+        <th>Seragam</th>
+        <th>Konversi</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ $biaya->heregistrasi }}</td>
+            <td>{{ $biaya->dana_kemahasiswaan }}</td>
+            <td>{{ $biaya->dana_pengembangan }}</td>
+            <td>{{ $biaya->spp_semester }}</td>
+            <td>{{ $biaya->seragam }}</td>
+            <td>{{ $biaya->konversi }}</td>
+            <td>{{ $biaya->total_daftar_ulang }}</td>
+        </tr>
+    </tbody>
+</table>
 </p>
 <br>
 <br>

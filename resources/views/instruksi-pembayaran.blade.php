@@ -38,7 +38,11 @@
             </li>
           </ul>
         </div>
-
+        @if ($data->kategori == 'daftar_ulang')
+        <div class="wrap-button-verif wp-step-1" id="btn1">
+          <a class="btn btn-login" href="{{ route('print-sk') }}">Surat Keterangan Lolos PMB</a>
+        </div>            
+        @endif
         <h5 class="verif-title mb-4">Panduan Pembayaran</h5>
         <div class="accordion accordion-payment" id="accordionExample">
           <div class="accordion-item">

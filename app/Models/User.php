@@ -202,7 +202,17 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function isProdiTes(){
         $prodi = Prodi::where('id', $this->prodi_id)->first();
-        
+
         return (($prodi->tes_kesehatan && $this->tes_kesehatan) || (!$prodi->tes_kesehatan));
+    }
+
+    public function getProgresAttribute(){
+        if(is_null($this->pembayaranRegistrasi()) || !$this->pembayaranRegistrasi()->status) return 'registrasi';
+        else if(is_null($this->biodata)) return 'registrasi';
+        else if(is_null($this->ayah())) return 'biodata';
+        else if(is_null($this->berkas)) return 'keluarga';
+        else if(!is_null($this->moodleAccount) && (is_null($this->moodleAccount->nilai_tpa) || $this->moodleAccount->nilai_tpa != 0)) return 'berkas';
+        else if(is_null($this->pembayaranDaftarUlang())) return 'tes online';
+        else return 'daftar ulang';
     }
 }

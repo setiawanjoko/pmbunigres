@@ -119,17 +119,18 @@ class DaftarUlangController extends Controller
         $biodata = auth()->user()->biodata;
         $prodi = auth()->user()->prodi;
         $gelombang = auth()->user()->gelombang;
-        $biaya = auth()->user()->biayaDaftarUlang;
+        $biaya = auth()->user()->biayaDaftarUlang();
         Carbon::setLocale('id');
         $tanggal = Carbon::now()->format('d F Y');
+        $pembayaran = auth()->user()->pembayaranDaftarUlang();
 
-        return response()->view('print-sk', compact('biodata', 'prodi', 'gelombang', 'biaya', 'tanggal'));
+        return response()->view('print-sk', compact('biodata', 'prodi', 'gelombang', 'biaya', 'tanggal', 'pembayaran'));
     }
 
     public function nomorSurat(){
         $tahun = Carbon::today()->year;
         $count = Pembayaran::where('kategori', 'daftar_ulang')->whereYear('created_at', $tahun)->count();
-        $seq = substr(str_repeat(0, 3).$count, - 3);
+        $seq = substr(str_repeat(0, 3).$count + 1, - 3);
 
         return $seq . '/PAN-PMB/' . $tahun;
     }

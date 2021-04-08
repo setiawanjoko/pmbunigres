@@ -80,7 +80,7 @@ class RegisterController extends Controller
         $data = DB::select('SELECT b.gelombang_id,b.kelas_id,b.id,b.jalur_masuk_id,j.jalur_masuk
                             FROM biayas b
                             LEFT OUTER JOIN jalur_masuk j ON b.jalur_masuk_id = j.id
-                            WHERE b.kategori = \'registrasi\' and b.kelas_id = ? and b.gelombang_id = ?', [$id,$gelombang->id]);
+                            WHERE b.kelas_id = ? and b.gelombang_id = ?', [$id,$gelombang->id]);
         return $data;
     }
 

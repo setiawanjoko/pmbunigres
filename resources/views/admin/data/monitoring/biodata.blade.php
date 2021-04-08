@@ -59,7 +59,7 @@
     <div class="wrapper-dashboard-nav">
         <ul class="dashboard-top nav nav-pill" id="pills-tab1" role="tablist">
             <li class="nav-item" role="presentation">
-                <a href="#" class="nav-link active" type="button" aria-controls="pills-home1" aria-selected="true">
+                <a href="{{ route('admin.tes-kesehatan.index') }}" class="nav-link active" type="button" aria-controls="pills-home1" aria-selected="true">
                     <div class="wp-ic">
                         <img src="{{ asset('unigres/images/data.svg') }}">
                     </div>
@@ -67,7 +67,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link" type="button" aria-controls="pills-home1" aria-selected="true">
+                <a href="{{ route('admin.jenjang.index') }}" class="nav-link" type="button" aria-controls="pills-home1" aria-selected="true">
                     <div class="wp-ic">
                         <img src="{{ asset('unigres/images/data.svg') }}">
                     </div>
@@ -75,9 +75,9 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link" type="button" aria-controls="pills-home1" aria-selected="true">
+                <a href="{{ route('admin.tes-tpa.index') }}" class="nav-link" type="button" aria-controls="pills-home1" aria-selected="true">
                     <div class="wp-ic">
-                        <span>i</span>
+                        <span>P</span>
                     </div>
                     <span>Pengaturan</span>
                 </a>

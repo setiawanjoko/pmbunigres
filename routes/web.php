@@ -17,6 +17,7 @@ use App\Http\Controllers\Mahasiswa\KeluargaController;
 use App\Http\Controllers\Mahasiswa\MoodleAccountController;
 use App\Http\Controllers\Mahasiswa\BerkasController;
 use App\Http\Controllers\Mahasiswa\TesKesehatanController;
+use App\Http\Controllers\Monitoring\PendaftarController as MonitoringPendaftarController;
 use App\Http\Controllers\Pembayaran\DaftarUlangController;
 use App\Http\Controllers\Pembayaran\RegistrasiController;
 use Illuminate\Support\Facades\Route;
@@ -69,6 +70,20 @@ Route::middleware(['auth', 'verify', 'can:camaba'])->group(function(){
 });
 
 Route::middleware(['auth', 'can:admin'])->prefix('/admin')->name('admin.')->group(function(){
+    Route::name('monitoring.')->prefix('/monitoring')->group(function(){
+        Route::name('pendaftar.')->prefix('/pendaftar')->group(function(){
+            Route::get('/', [MonitoringPendaftarController::class, 'index'])->name('index');
+            Route::get('/biodata/{id}', [MonitoringPendaftarController::class, 'biodata'])->name('biodata.index');
+            Route::get('/biodata/{id}/edit', [MonitoringPendaftarController::class, 'editBiodata'])->name('biodata.edit');
+            Route::put('/biodata/{id}', [MonitoringPendaftarController::class, 'updateBiodata'])->name('biodata.update');
+            Route::get('/keluarga/{id}', [MonitoringPendaftarController::class, 'keluarga'])->name('keluarga.index');
+            Route::get('/keluarga/{id}/edit', [MonitoringPendaftarController::class, 'editKeluarga'])->name('keluarga.edit');
+            Route::put('/keluarga/{id}', [MonitoringPendaftarController::class, 'updateKeluarga'])->name('keluarga.update');
+            Route::get('/berkas/{id}', [MonitoringPendaftarController::class, 'berkas'])->name('berkas.index');
+            Route::get('/berkas/{id}/edit', [MonitoringPendaftarController::class, 'editBerkas'])->name('berkas.edit');
+            Route::put('/berkas/{id}', [MonitoringPendaftarController::class, 'updateBerkas'])->name('berkas.update');
+        });
+    });
     Route::resource('/gelombang', GelombangController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
     Route::resource('/fakultas', FakultasController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
     Route::resource('/jenjang', JenjangController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);

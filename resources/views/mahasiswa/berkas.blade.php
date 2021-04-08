@@ -3,7 +3,7 @@
 @section('title', 'berkas')
 
 @section('content')
-    
+
 <div class="container-fluid dashboard-user">
     <h4>Form Pendaftaran</h4>
     <p>Isi form berikut dengan menggunakan data yang valid (Benar).</p>
@@ -22,7 +22,7 @@
     <div class="wrapper-info alert-{{ session('status') }}">
         <img src="{{ asset('unigres/images/ic-i.svg') }}">
         <p class="info1" style="margin-bottom: 0px;">{{ session('message') }}</p>
-    </div>        
+    </div>
     @endif
     <div class="tab-content">
         <div class="container data-orang-tua tab-pane fade active show" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
@@ -40,7 +40,7 @@
                                     <div class="form-group">
                                         <label for="ijazah">Ijazah
                                             @if(!empty($data) && !is_null($data->ijazah))
-                                                <a href="{{ asset('storage/' . $data->ijazah) }}" target="_blank">Lihat ijazah</a>
+                                                <a href="{{ asset('storage/' . $data->ijazah) }}" target="_blank">Lihat Ijazah</a>
                                             @endif</label>
                                         <input type="file" class="form-control input-file" name="ijazah" id="ijazah">
                                             @if($errors->has('ijazah'))
@@ -54,7 +54,7 @@
                                     <div class="form-group">
                                         <label for="skhun">SKHUN
                                             @if(!empty($data) && !is_null($data->skhun))
-                                                <a href="{{ asset('storage/' . $data->skhun) }}" target="_blank">Lihat ijazah</a>
+                                                <a href="{{ asset('storage/' . $data->skhun) }}" target="_blank">Lihat SKHUN</a>
                                             @endif</label>
                                         <input type="file" class="form-control input-file" name="skhun" id="skhun">
                                             @if($errors->has('skhun'))
@@ -68,7 +68,7 @@
                                     <div class="form-group">
                                         <label for="ktp">KTP
                                             @if(!empty($data) && !is_null($data->ktp))
-                                                <a href="{{ asset('storage/' . $data->ktp) }}" target="_blank">Lihat ijazah</a>
+                                                <a href="{{ asset('storage/' . $data->ktp) }}" target="_blank">Lihat KTP</a>
                                             @endif</label>
                                         <input type="file" class="form-control input-file" name="ktp" id="ktp">
                                             @if($errors->has('ktp'))
@@ -82,7 +82,7 @@
                                     <div class="form-group">
                                         <label for="kartu_keluarga">Kartu Keluarga
                                             @if(!empty($data) && !is_null($data->kartu_keluarga))
-                                                <a href="{{ asset('storage/' . $data->kartu_keluarga) }}" target="_blank">Lihat ijazah</a>
+                                                <a href="{{ asset('storage/' . $data->kartu_keluarga) }}" target="_blank">Lihat Kartu Keluarga</a>
                                             @endif</label>
                                         <input type="file" class="form-control input-file" name="kartu_keluarga" id="kartu_keluarga">
                                             @if($errors->has('kartu_keluarga'))

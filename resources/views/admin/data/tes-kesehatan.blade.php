@@ -86,10 +86,9 @@
     <div class="content">
         <div class="container-fluid dashboard-user">
             <h4>Data PMB</h4>
-            <p>//</p>
             <ul class="nav nav-pills mb-5 mx-auto">
                 <li class="nav-item ">
-                    <a class="nav-link" href="#" type="button">Pendaftar</a>
+                    <a class="nav-link" href="{{ route('admin.monitoring.pendaftar.index') }}" type="button">Pendaftar</a>
                 </li>
                 {{--<li class="nav-item nav-data-ortu">
                     <a class="nav-link" href="#" type="button">Data Orang Tua/Wali</a>

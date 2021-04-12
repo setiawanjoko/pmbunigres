@@ -64,7 +64,7 @@ class PendaftarController extends Controller
             'tanggal_lahir' => 'required|date', // apakah ada batasan usia
             'agama' => 'required|in:islam,kristen,katholik,budha,hindu,konghucu',
             'jenis_kelamin' => 'required|in:laki-laki,perempuan',
-            'ukuran_almamater' => 'required|in:S,M,L,XL',
+            'ukuran_almamater' => 'required|in:S,M,L,XL,XXL',
             'alamat' => 'required|string',
             'no_telepon' => 'numeric|unique:biodata,no_telepon,' . $id . ',user_id', // no telepon dibuat tidak wajib diisi untuk memberikan opsi bagi yang tidak memiliki telepon
             'asal_sekolah' => 'required|string',

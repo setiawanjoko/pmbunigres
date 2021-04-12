@@ -246,6 +246,12 @@
                                                            value="XL" @if((!empty($data) && $data->ukuran_almamater == 'XL')) checked @endif disabled>
                                                     <label class="form-check-label" for="size_xl">XL</label>
                                                 </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input type="radio" name="ukuran_almamater" id="size_xxl"
+                                                           class="form-check-input"
+                                                           value="XXL" @if((!empty($data) && $data->ukuran_almamater == 'XXL')) checked @endif disabled>
+                                                    <label class="form-check-label" for="size_xxl">XL</label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

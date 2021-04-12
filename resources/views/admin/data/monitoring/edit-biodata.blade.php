@@ -322,6 +322,13 @@
                                                     'XL') || old('ukuran_almamater') == 'XL') checked @endif>
                                                         <label class="form-check-label" for="size_xl">XL</label>
                                                     </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input type="radio" name="ukuran_almamater" id="size_xxl"
+                                                               class="form-check-input @if($errors->has('ukuran_almamater')) is-invalid @endif"
+                                                               value="XXL" @if((!empty($data) && $data->ukuran_almamater ==
+                                                    'XXL') || old('ukuran_almamater') == 'XXL') checked @endif>
+                                                        <label class="form-check-label" for="size_xxl">XXL</label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

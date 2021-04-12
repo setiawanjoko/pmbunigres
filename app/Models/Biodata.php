@@ -15,7 +15,7 @@ class Biodata extends Model
     protected $table = 'biodata';
 
     protected $fillable = [
-        'user_id', 'no_pendaftaran', 'nik', 'nama_depan', 'nama_belakang', 'tempat_lahir', 'tanggal_lahir', 'agama', 'jenis_kelamin', 'alamat', 'no_telepon', 'jalur_masuk', 'asal_sekolah', 'asal_jurusan', 'tahun_lulus', 'foto', 'ukuran_almamater'
+        'user_id', 'no_pendaftaran', 'nik', 'nama_depan', 'nama_belakang', 'tempat_lahir', 'tanggal_lahir', 'agama', 'jenis_kelamin', 'alamat', 'no_telepon', 'jalur_masuk', 'asal_sekolah', 'asal_jurusan', 'tahun_lulus', 'foto', 'ukuran_almamater', 'informasi', 'asal_informasi'
     ];
 
     public function user(): BelongsTo

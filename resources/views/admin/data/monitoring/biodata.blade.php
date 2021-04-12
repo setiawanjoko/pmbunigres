@@ -198,10 +198,17 @@
                                         <input name="alamat" id="alamat" cols="30" class="form-control"
                                                value="{{ $data->alamat }}" required disabled>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="telepon" class="ml-2">No. Telepon</label>
-                                        <input type="text" name="no_telepon" id="no_telepon"
-                                               class="form-control" value="{{ $data->no_telepon }}" required disabled>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <label for="telepon">No. Telepon</label>
+                                            <input type="text" name="no_telepon" id="no_telepon"
+                                                   class="form-control" value="{{ $data->no_telepon }}" required disabled>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label for="asal_informasi">Asal Informasi Pendaftaran</label>
+                                            <input type="text" name="asal_informasi" id="asal_informasi"
+                                                   class="form-control form-control-sm" value="{{ $data->user->informasi }}">
+                                        </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-6">

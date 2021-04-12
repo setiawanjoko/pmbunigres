@@ -38,7 +38,7 @@
                             <div class="card-body">
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="ijazah">Ijazah
+                                        <label for="ijazah">Ijazah/SKL/Surat Keterangan Aktif
                                             @if(!empty($data) && !is_null($data->ijazah))
                                                 <a href="{{ asset('storage/' . $data->ijazah) }}" target="_blank">Lihat Ijazah</a>
                                             @endif</label>
@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="skhun">SKHUN
+                                        <label for="skhun">SKHUN/Transkrip Nilai
                                             @if(!empty($data) && !is_null($data->skhun))
                                                 <a href="{{ asset('storage/' . $data->skhun) }}" target="_blank">Lihat SKHUN</a>
                                             @endif</label>

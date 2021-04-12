@@ -38,10 +38,15 @@
                             <div class="card-body">
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="ijazah">Ijazah/SKL/Surat Keterangan Aktif
-                                            @if(!empty($data) && !is_null($data->ijazah))
-                                                <a href="{{ asset('storage/' . $data->ijazah) }}" target="_blank">Lihat Ijazah</a>
-                                            @endif</label>
+                                        <label for="ijazah" class="row">
+                                            <span class="col">Ijazah/SKL/Surat Keterangan Aktif</span>
+                                            <span class="col-md-auto"></span>
+                                            <span class="col col-lg-3 ">
+                                                @if(!empty($data) && !is_null($data->ijazah))
+                                                    <a href="{{ asset('storage/' . $data->ijazah) }}" target="_blank" class="float-end"><i class="fas fa-eye"></i> Lihat</a>
+                                                @endif
+                                            </span>
+                                        </label>
                                         <input type="file" class="form-control input-file" name="ijazah" id="ijazah">
                                             @if($errors->has('ijazah'))
                                             <div class="invalid-feedback">
@@ -52,10 +57,15 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="skhun">SKHUN/Transkrip Nilai
-                                            @if(!empty($data) && !is_null($data->skhun))
-                                                <a href="{{ asset('storage/' . $data->skhun) }}" target="_blank">Lihat SKHUN</a>
-                                            @endif</label>
+                                        <label for="skhun" class="row">
+                                            <span class="col">SKHUN/Transkrip Nilai</span>
+                                            <span class="col-md-auto"></span>
+                                            <span class="col col-lg-3 ">
+                                                @if(!empty($data) && !is_null($data->skhun))
+                                                    <a href="{{ asset('storage/' . $data->skhun) }}" target="_blank" class="float-end"><i class="fas fa-eye"></i> Lihat</a>
+                                                @endif
+                                            </span>
+                                        </label>
                                         <input type="file" class="form-control input-file" name="skhun" id="skhun">
                                             @if($errors->has('skhun'))
                                             <div class="invalid-feedback">
@@ -66,10 +76,15 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="ktp">KTP
-                                            @if(!empty($data) && !is_null($data->ktp))
-                                                <a href="{{ asset('storage/' . $data->ktp) }}" target="_blank">Lihat KTP</a>
-                                            @endif</label>
+                                        <label for="ktp" class="row">
+                                            <span class="col">KTP</span>
+                                            <span class="col-md-auto"></span>
+                                            <span class="col col-lg-3 ">
+                                                @if(!empty($data) && !is_null($data->ktp))
+                                                    <a href="{{ asset('storage/' . $data->ktp) }}" target="_blank" class="float-end"><i class="fas fa-eye"></i> Lihat</a>
+                                                @endif
+                                            </span>
+                                        </label>
                                         <input type="file" class="form-control input-file" name="ktp" id="ktp">
                                             @if($errors->has('ktp'))
                                             <div class="invalid-feedback">
@@ -80,10 +95,15 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="kartu_keluarga">Kartu Keluarga
-                                            @if(!empty($data) && !is_null($data->kartu_keluarga))
-                                                <a href="{{ asset('storage/' . $data->kartu_keluarga) }}" target="_blank">Lihat Kartu Keluarga</a>
-                                            @endif</label>
+                                        <label for="kartu_keluarga" class="row">
+                                            <span class="col">Kartu Keluarga</span>
+                                            <span class="col-md-auto"></span>
+                                            <span class="col col-lg-3 ">
+                                                @if(!empty($data) && !is_null($data->kartu_keluarga))
+                                                    <a href="{{ asset('storage/' . $data->kartu_keluarga) }}" target="_blank" class="float-end"><i class="fas fa-eye"></i> Lihat</a>
+                                                @endif
+                                            </span>
+                                        </label>
                                         <input type="file" class="form-control input-file" name="kartu_keluarga" id="kartu_keluarga">
                                             @if($errors->has('kartu_keluarga'))
                                             <div class="invalid-feedback">
@@ -94,8 +114,8 @@
                                 </div>
                                 <div class="mt-4">
                                     <span class="text-left">
-                                        <small>Format file: JPEG, JPG, PNG, atau PDF</small>
-                                        <small>Ukuran file maksimal: 250kb</small>
+                                        <small>Format file: JPEG, JPG, PNG, atau PDF</small><br>
+                                        <small>Ukuran file maksimal: 250kb</small><br>
                                         <small>Kosongkan jika tidak ingin menambahkan atau mengubah berkas tertentu.</small>
                                     </span>
                                 </div>

@@ -41,7 +41,9 @@ class BiodataController extends Controller
             'asal_jurusan' => 'required|string',
             'tahun_lulus' => 'required', // tanyakan batasan yang bisa daftar lulusan berapa tahun sebelum pembukaan dibuka?
             'foto' => 'required_without:current_foto|file|max:250|mimes:png,jpg,jpeg', // maks ukuran dalam KB
-            'current_foto' => 'present'
+            'current_foto' => 'present',
+            'informasi' => 'required|in:sosial_media,teman_saudara,lainnya',
+            'asal_informasi' => 'required|string'
         ]);
         try {
             $berkas = $request->file('foto');
@@ -75,6 +77,8 @@ class BiodataController extends Controller
                 'tahun_lulus' => $data['tahun_lulus'],
                 'ukuran_almamater' => $data['ukuran_almamater'],
                 'foto' => $berkasName,
+                'informasi' => $data['informasi'],
+                'asal_informasi' => $data['asal_informasi']
             ]);
 
             return response()->redirectToRoute('keluarga.create')->with(['status' => 'success', 'message' => 'Data biodata berhasil disimpan.']);

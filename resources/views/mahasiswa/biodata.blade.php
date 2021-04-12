@@ -214,37 +214,58 @@
                                         @endif
                                     </div>
                                     <div class="col-lg-6">
-                                        <label class="form-label lable-radio mb-3">Ukuran Jas</label>
-                                        <div class="wrap-input">
-                                            <div class="form-check form-check-inline">
-                                                <input type="radio" name="ukuran_almamater" id="size_s"
-                                                    class="form-check-input @if($errors->has('ukuran_almamater')) is-invalid @endif"
-                                                    value="S" @if((!empty($data) && $data->ukuran_almamater ==
-                                                    'S') || old('ukuran_almamater') == 'S') checked @endif>
-                                                <label class="form-check-label" for="size_s">S</label>
+                                        <label for="ukuran_almamater">Ukuran Jas</label>
+                                        <select name="ukuran_almamater" id="ukuran_almamater"
+                                                class="form-control @if($errors->has('ukuran_almamater')) is-invalid @endif"
+                                                required>
+                                            <option value="S" @if(empty($data) || $data->ukuran_almamater ==
+                                                'S' || old('ukuran_almamater') == 'S') selected @endif>S
+                                            </option>
+                                            <option value="M" @if((!empty($data) && $data->ukuran_almamater ==
+                                                'M') || old('ukuran_almamater') == 'M') selected
+                                                @endif>M</option>
+                                            <option value="L" @if((!empty($data) && $data->ukuran_almamater ==
+                                                'L') || old('ukuran_almamater') == 'L') selected
+                                                @endif>L</option>
+                                            <option value="XL" @if((!empty($data) && $data->ukuran_almamater ==
+                                                'XL') || old('ukuran_almamater') == 'XL') selected @endif>XL
+                                            </option>
+                                            <option value="XXL" @if((!empty($data) && $data->ukuran_almamater ==
+                                                'XXL') || old('ukuran_almamater') == 'XXL') selected @endif>XXL
+                                            </option>
+                                        </select>
+                                        @error('ukuran_almamater')
+                                            <div class="invalid-feedback">
+                                                <strong>{{ $message }}</strong>
                                             </div>
-                                            <div class="form-check form-check-inline">
-                                                <input type="radio" name="ukuran_almamater" id="size_m"
-                                                    class="form-check-input @if($errors->has('ukuran_almamater')) is-invalid @endif"
-                                                    value="M" @if((!empty($data) && $data->ukuran_almamater ==
-                                                    'M') || old('ukuran_almamater') == 'M') checked @endif>
-                                                <label class="form-check-label" for="size_m">M</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input type="radio" name="ukuran_almamater" id="size_l"
-                                                    class="form-check-input @if($errors->has('ukuran_almamater')) is-invalid @endif"
-                                                    value="L" @if((!empty($data) && $data->ukuran_almamater ==
-                                                    'L') || old('ukuran_almamater') == 'L') checked @endif>
-                                                <label class="form-check-label" for="size_l">L</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input type="radio" name="ukuran_almamater" id="size_xl"
-                                                    class="form-check-input @if($errors->has('ukuran_almamater')) is-invalid @endif"
-                                                    value="XL" @if((!empty($data) && $data->ukuran_almamater ==
-                                                    'XL') || old('ukuran_almamater') == 'XL') checked @endif>
-                                                <label class="form-check-label" for="size_xl">XL</label>
-                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <label for="informasi">Informasi PMB dari</label>
+                                        <select name="informasi" id="informasi" class="form-control @if($errors->has('informasi')) is-invalid @endif" required>
+                                            <option value="sosial_media" @if((!empty($data) && $data->informasi ==
+                                                'sosial_media') || old('informasi') == 'sosial_media') selected @endif>Sosial Media</option>
+                                            <option value="teman_saudara" @if((!empty($data) && $data->informasi ==
+                                                'teman_saudara') || old('informasi') == 'teman_saudara') selected @endif>Teman/Saudara</option>
+                                            <option value="lainnya" @if((!empty($data) && $data->informasi ==
+                                                'lainnya') || old('informasi') == 'lainnya') selected @endif>Lainnya</option>
+                                        </select>
+                                        @error('informasi')
+                                        <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
                                         </div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for="asal_informasi" id="asal_informasi_label">Sosial Media Asal Informasi</label>
+                                        <input type="text" name="asal_informasi" id="asal_informasi" class="form-control @error('asal_informasi') is-invalid @enderror" value="{{ $data->asal_informasi ?? old('asal_informasi') }}" required>
+                                        @error('asal_informasi')
+                                        <div class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                        </div>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>

@@ -198,17 +198,10 @@
                                         <input name="alamat" id="alamat" cols="30" class="form-control"
                                                value="{{ $data->alamat }}" required disabled>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <label for="telepon">No. Telepon</label>
-                                            <input type="text" name="no_telepon" id="no_telepon"
-                                                   class="form-control" value="{{ $data->no_telepon }}" required disabled>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <label for="asal_informasi">Asal Informasi Pendaftaran</label>
-                                            <input type="text" name="asal_informasi" id="asal_informasi"
-                                                   class="form-control form-control-sm" value="{{ $data->user->informasi }}">
-                                        </div>
+                                    <div class="form-group">
+                                        <label for="telepon">No. Telepon</label>
+                                        <input type="text" name="no_telepon" id="no_telepon"
+                                               class="form-control" value="{{ $data->no_telepon }}" required disabled>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-6">
@@ -227,39 +220,21 @@
                                                    class="form-control form-control-sm" value="{{ $data->asal_jurusan }}" required disabled>
                                         </div>
                                         <div class="col-lg-6">
-                                            <label class="form-label lable-radio mb-3">Ukuran Jas</label>
-                                            <div class="wrap-input">
-                                                <div class="form-check form-check-inline">
-                                                    <input type="radio" name="ukuran_almamater" id="size_s"
-                                                           class="form-check-input"
-                                                           value="S" @if((!empty($data) && $data->ukuran_almamater == 'S')) checked @endif disabled>
-                                                    <label class="form-check-label" for="size_s">S</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input type="radio" name="ukuran_almamater" id="size_m"
-                                                           class="form-check-input"
-                                                           value="M" @if((!empty($data) && $data->ukuran_almamater == 'M')) checked @endif disabled>
-                                                    <label class="form-check-label" for="size_m">M</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input type="radio" name="ukuran_almamater" id="size_l"
-                                                           class="form-check-input"
-                                                           value="L" @if((!empty($data) && $data->ukuran_almamater == 'L')) checked @endif disabled>
-                                                    <label class="form-check-label" for="size_l">L</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input type="radio" name="ukuran_almamater" id="size_xl"
-                                                           class="form-check-input"
-                                                           value="XL" @if((!empty($data) && $data->ukuran_almamater == 'XL')) checked @endif disabled>
-                                                    <label class="form-check-label" for="size_xl">XL</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input type="radio" name="ukuran_almamater" id="size_xxl"
-                                                           class="form-check-input"
-                                                           value="XXL" @if((!empty($data) && $data->ukuran_almamater == 'XXL')) checked @endif disabled>
-                                                    <label class="form-check-label" for="size_xxl">XXL</label>
-                                                </div>
-                                            </div>
+                                            <label for="ukuran_almamater">Ukuran Jas</label>
+                                            <input type="text" name="ukuran_almamater" id="ukuran_almamater"
+                                                   class="form-control form-control-sm" value="{{ $data->ukuran_almamater }}" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <label for="informasi">Asal Informasi PMB</label>
+                                            <input type="text" name="informasi" id="informasi"
+                                                   class="form-control form-control-sm" value="{{ $data->informasi }}" disabled>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label for="asal_informasi">Keterangan Asal Informasi</label>
+                                            <input type="text" name="asal_informasi" id="asal_informasi"
+                                                   class="form-control form-control-sm" value="{{ $data->asal_informasi }}" disabled>
                                         </div>
                                     </div>
                                 </div>

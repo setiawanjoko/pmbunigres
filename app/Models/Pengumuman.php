@@ -12,7 +12,7 @@ class Pengumuman extends Model
     protected $table = 'pengumuman';
 
     protected $fillable = [
-        'petugas_id', 'judul', 'deskripsi'
+        'petugas_id', 'judul', 'deskripsi', 'file_url'
     ];
 
     public function petugas() {

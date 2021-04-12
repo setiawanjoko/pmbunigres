@@ -23,7 +23,7 @@
                                 {{ $errors->first('nama') }}
                             </div>
                         @endif
-                    </div>       
+                    </div>
                     <div class="col-lg-6">
                         <input type="tel" id="no_telepon" name="no_telepon" class="form-control @if($errors->has('no_telepon')) is-invalid @endif" placeholder="No. Telf" value="{{ old('no_telepon') }}">
                         @if($errors->has('no_telepon'))
@@ -31,8 +31,8 @@
                                 {{ $errors->first('no_telepon') }}
                             </div>
                         @endif
-                    </div>                        
-                    <div class="col-lg-6">
+                    </div>
+                    {{--<div class="col-lg-6">
                         <label class="form-label lable-radio">Dapat Informasi PMB dari :</label>
                         <div class="wrap-input" id="informasi">
                             <div class="form-check form-check-inline">
@@ -53,7 +53,7 @@
                                 {{ $errors->first('informasi') }}
                             </div>
                         @endif
-                    </div>         
+                    </div>--}}
                     <div class="col-lg-6">
                         <select name="prodi" id="prodi" class="form-control @if($errors->has('prodi')) is-invalid @endif" required>
                             <option selected disabled>-- Silahkan Pilih Program Studi --</option>
@@ -63,7 +63,7 @@
                                 <strong>{{ $errors->first('prodi') }}</strong>
                             </div>
                         @endif
-                    </div>                    
+                    </div>
                     <div class="col-lg-6">
                         <label class="form-label lable-radio">Khusus Pascasarjana dan Profesi</label>
                         <div class="wrap-input" id="lulusan_unigres">
@@ -76,9 +76,9 @@
                                 <label class="form-check-label" for="inlineRadio2">Bukan Lulusan Unigres</label>
                             </div>
                         </div>
-                        @if($errors->has('informasi'))
+                        @if($errors->has('lulusan_unigres'))
                             <div class="invalid-feedback">
-                                {{ $errors->first('informasi') }}
+                                {{ $errors->first('lulusan_unigres') }}
                             </div>
                         @endif
                     </div>
@@ -159,10 +159,10 @@
             success:function(data){
                 $("#prodi").find('option').remove().end().append('<option selected disabled>-- Silahkan Pilih Program Studi --</option>');
                 $.each(data, function(){
-                    $("#prodi").append('<option  value="'+ this.id +'" data-lulusan-unigres="'+ this.lulusan_unigres +'">'+ this.jenjang + ' ' + this.prodi +'</option>')                            
+                    $("#prodi").append('<option  value="'+ this.id +'" data-lulusan-unigres="'+ this.lulusan_unigres +'">'+ this.jenjang + ' ' + this.prodi +'</option>')
                 });
             }
-        });        
+        });
     }
 
     $( document ).ready(function() {
@@ -180,20 +180,20 @@
             console.log(prodi);
 
             if (checked_lulusan == 1) {
-                $('input[name="lulusan_unigres"]').attr("disabled",false);                
+                $('input[name="lulusan_unigres"]').attr("disabled",false);
             } else {
                 //$('#lulusan_unigres1').attr("disabled",true);
                 $('input[name="lulusan_unigres"]').attr("disabled",true);
                 $('#lulusan_unigres2').prop( "checked", true );
             }
-            
+
             $.ajax({
                 type:'GET',
                 url:'getjammasuk/' + prodi + '/' + lulusan,
                 success:function(data){
                     $("#kelas").find('option').remove().end().append('<option selected disabled>-- Silahkan Pilih Kelas --</option>');
                     $.each(data, function(){
-                        $("#kelas").append('<option  value="'+ this.jam_masuk_id +'" data-kelas="'+ this.id +'">Kelas '+ this.kelas + ' ' + ucwords(this.jam_masuk) +'</option>')                            
+                        $("#kelas").append('<option  value="'+ this.jam_masuk_id +'" data-kelas="'+ this.id +'">Kelas '+ this.kelas + ' ' + ucwords(this.jam_masuk) +'</option>')
                     });
                 }
             });
@@ -202,19 +202,19 @@
         $("#lulusan_unigres").change(function () {
             var prodi = $("#prodi option:selected" ).val();
             var lulusan = $('input[name="lulusan_unigres"]:checked').val();
-            
+
             $.ajax({
                 type:'GET',
                 url:'getjammasuk/' + prodi + '/' + lulusan,
                 success:function(data){
                     $("#kelas").find('option').remove().end().append('<option selected disabled>-- Silahkan Pilih Kelas --</option>');
                     $.each(data, function(){
-                        $("#kelas").append('<option  value="'+ this.jam_masuk_id +'" data-kelas="'+ this.id +'">Kelas '+ this.kelas + ' ' + this.jam_masuk +'</option>')                            
+                        $("#kelas").append('<option  value="'+ this.jam_masuk_id +'" data-kelas="'+ this.id +'">Kelas '+ this.kelas + ' ' + this.jam_masuk +'</option>')
                     });
                 }
             });
         });
-        
+
         $("#kelas").change(function () {
             var kls = $("#kelas option:selected" ).attr('data-kelas');
             var jam = $("#kelas option:selected" ).val();
@@ -228,7 +228,7 @@
                 success:function(data){
                     $("#jalur_masuk").find('option').remove().end().append('<option selected disabled>-- Silahkan Pilih Jalur Masuk --</option>');
                     $.each(data, function(){
-                        $("#jalur_masuk").append('<option  value="'+ this.jalur_masuk_id +'">'+ this.jalur_masuk +'</option>')                            
+                        $("#jalur_masuk").append('<option  value="'+ this.jalur_masuk_id +'">'+ this.jalur_masuk +'</option>')
                     });
                 }
             });

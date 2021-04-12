@@ -61,10 +61,10 @@ class RegisterController extends Controller
         return $data;
     }
 
-    public function get_jam_masuk($id, $lulusan_unigres){        
+    public function get_jam_masuk($id, $lulusan_unigres){
         $data = DB::select('SELECT k.id,j.jam_masuk_id,m.jam_masuk,k.kelas,k.prodi_id,p.nama
                             FROM jam_masuk_kelas j
-                            LEFT OUTER JOIN kelas k ON j.kelas_id = k.id 
+                            LEFT OUTER JOIN kelas k ON j.kelas_id = k.id
                             LEFT OUTER JOIN jam_masuks m ON j.jam_masuk_id = m.id
                             LEFT OUTER JOIN prodi p ON k.prodi_id = p.id
                             where p.id = ? and k.lulusan_unigres = ?', [$id,$lulusan_unigres]);
@@ -113,12 +113,12 @@ class RegisterController extends Controller
         // foreach($jalurMasuk as $jalur){
         //     array_push($jalurMasukValidation, $jalur->id);
         // }
-        
+
         return Validator::make($data, [
             'nama' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'informasi' => ['required', 'in:sosial_media,teman_saudara,lainnya'],
+//            'informasi' => ['required', 'in:sosial_media,teman_saudara,lainnya'],
             'no_telepon' => ['required', 'string'],
             'kelas' => ['required', 'integer'],//Rule::in($jamMasukValidation)],
             'prodi' => ['required', 'exists:prodi,id'],
@@ -126,7 +126,7 @@ class RegisterController extends Controller
             'lulusan_unigres' => ['nullable', 'boolean'],
             ]);
         }
-        
+
         /**
          * Create a new user instance after a valid registration.
          *
@@ -144,7 +144,7 @@ class RegisterController extends Controller
             'nama' => $data['nama'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'informasi' => $data['informasi'],
+//            'informasi' => $data['informasi'],
             'no_telepon' => $data['no_telepon'],
             'jam_masuk_id' => $data['kelas'],
             'prodi_id' => $data['prodi'],

@@ -250,7 +250,7 @@
                                                     <input type="radio" name="ukuran_almamater" id="size_xxl"
                                                            class="form-check-input"
                                                            value="XXL" @if((!empty($data) && $data->ukuran_almamater == 'XXL')) checked @endif disabled>
-                                                    <label class="form-check-label" for="size_xxl">XL</label>
+                                                    <label class="form-check-label" for="size_xxl">XXL</label>
                                                 </div>
                                             </div>
                                         </div>

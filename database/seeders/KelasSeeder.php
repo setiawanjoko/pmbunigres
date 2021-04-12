@@ -24,6 +24,8 @@ class KelasSeeder extends Seeder
                 'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
+                'tes_kesehatan' => 0,
+                'keterangan_tes_kesehatan' => null
             ],
             [ // #2
                 'prodi_id' => 1,
@@ -31,6 +33,8 @@ class KelasSeeder extends Seeder
                 'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
+                'tes_kesehatan' => 0,
+                'keterangan_tes_kesehatan' => null
             ],
 
             // Manajemen
@@ -40,6 +44,8 @@ class KelasSeeder extends Seeder
                 'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
+                'tes_kesehatan' => 0,
+                'keterangan_tes_kesehatan' => null
             ],
 
             // Akuntansi
@@ -49,6 +55,8 @@ class KelasSeeder extends Seeder
                 'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
+                'tes_kesehatan' => 0,
+                'keterangan_tes_kesehatan' => null
             ],
 
             // Teknik Mesin
@@ -58,6 +66,8 @@ class KelasSeeder extends Seeder
                 'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
+                'tes_kesehatan' => 0,
+                'keterangan_tes_kesehatan' => null
             ],
             [ // #6
                 'prodi_id' => 4,
@@ -65,6 +75,8 @@ class KelasSeeder extends Seeder
                 'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
+                'tes_kesehatan' => 0,
+                'keterangan_tes_kesehatan' => null
             ],
 
             // Teknik Sipil
@@ -74,6 +86,8 @@ class KelasSeeder extends Seeder
                 'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
+                'tes_kesehatan' => 0,
+                'keterangan_tes_kesehatan' => null
             ],
             [ // #8
                 'prodi_id' => 5,
@@ -81,6 +95,8 @@ class KelasSeeder extends Seeder
                 'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
+                'tes_kesehatan' => 0,
+                'keterangan_tes_kesehatan' => null
             ],
 
             // Administrasi Pendidikan
@@ -90,6 +106,8 @@ class KelasSeeder extends Seeder
                 'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
+                'tes_kesehatan' => 0,
+                'keterangan_tes_kesehatan' => null
             ],
 
             // Sastra Inggris
@@ -99,6 +117,8 @@ class KelasSeeder extends Seeder
                 'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
+                'tes_kesehatan' => 0,
+                'keterangan_tes_kesehatan' => null
             ],
 
             // Ilmu Keperawatan
@@ -108,6 +128,8 @@ class KelasSeeder extends Seeder
                 'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
+                'tes_kesehatan' => 1,
+                'keterangan_tes_kesehatan' => 'No WA 085648570837 Ibu Umah'
             ],
             [ // #12
                 'prodi_id' => 8,
@@ -115,6 +137,8 @@ class KelasSeeder extends Seeder
                 'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
+                'tes_kesehatan' => 0,
+                'keterangan_tes_kesehatan' => null
             ],
 
             // Profesi NERS
@@ -124,6 +148,8 @@ class KelasSeeder extends Seeder
                 'lulusan_unigres' => 1,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
+                'tes_kesehatan' => 0,
+                'keterangan_tes_kesehatan' => null
             ],
             [ // #14
                 'prodi_id' => 9,
@@ -131,6 +157,8 @@ class KelasSeeder extends Seeder
                 'lulusan_unigres' => 1,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
+                'tes_kesehatan' => 0,
+                'keterangan_tes_kesehatan' => null
             ],
             [ // #15
                 'prodi_id' => 9,
@@ -138,6 +166,8 @@ class KelasSeeder extends Seeder
                 'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
+                'tes_kesehatan' => 0,
+                'keterangan_tes_kesehatan' => null
             ],
 
             // Manajemen Pendidikan
@@ -147,6 +177,8 @@ class KelasSeeder extends Seeder
                 'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
+                'tes_kesehatan' => 0,
+                'keterangan_tes_kesehatan' => null
             ],
             [ // #17
                 'prodi_id' => 10,
@@ -154,6 +186,8 @@ class KelasSeeder extends Seeder
                 'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
+                'tes_kesehatan' => 0,
+                'keterangan_tes_kesehatan' => null
             ],
         ];
 

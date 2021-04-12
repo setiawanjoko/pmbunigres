@@ -25,7 +25,6 @@ class ProdiSeeder extends Seeder
                 'nama' => 'Ilmu Hukum',
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
-                'tes_kesehatan' => 0,
             ],
             [
                 'jenjang_id' => 1,
@@ -35,7 +34,6 @@ class ProdiSeeder extends Seeder
                 'nama' => 'Manajemen',
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
-                'tes_kesehatan' => 0,
             ],
             [
                 'jenjang_id' => 1,
@@ -45,7 +43,6 @@ class ProdiSeeder extends Seeder
                 'nama' => 'Akuntansi',
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
-                'tes_kesehatan' => 0,
             ],
             [
                 'jenjang_id' => 1,
@@ -55,7 +52,6 @@ class ProdiSeeder extends Seeder
                 'nama' => 'Teknik Mesin',
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
-                'tes_kesehatan' => 0,
             ],
             [
                 'jenjang_id' => 1,
@@ -65,7 +61,6 @@ class ProdiSeeder extends Seeder
                 'nama' => 'Teknik Sipil',
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
-                'tes_kesehatan' => 0,
             ],
             [
                 'jenjang_id' => 1,
@@ -75,7 +70,6 @@ class ProdiSeeder extends Seeder
                 'nama' => 'Administrasi Pendidikan',
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
-                'tes_kesehatan' => 0,
             ],
             [
                 'jenjang_id' => 1,
@@ -85,7 +79,6 @@ class ProdiSeeder extends Seeder
                 'nama' => 'Sastra Inggris',
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
-                'tes_kesehatan' => 0,
             ],
             [
                 'jenjang_id' => 1,
@@ -95,7 +88,6 @@ class ProdiSeeder extends Seeder
                 'nama' => 'Ilmu Keperawatan',
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
-                'tes_kesehatan' => 1,
             ],
             [
                 'jenjang_id' => 3,
@@ -105,7 +97,6 @@ class ProdiSeeder extends Seeder
                 'nama' => 'Ners',
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
-                'tes_kesehatan' => 1,
             ],
             [
                 'jenjang_id' => 2,
@@ -115,7 +106,6 @@ class ProdiSeeder extends Seeder
                 'nama' => 'Manajemen Pendidikan',
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
-                'tes_kesehatan' => 0,
             ]
         ];
 

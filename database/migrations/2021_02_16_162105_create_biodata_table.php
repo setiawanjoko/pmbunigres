@@ -32,6 +32,8 @@ class CreateBiodataTable extends Migration
             $table->year('tahun_lulus');
             $table->string('foto')->nullable(true);
             $table->enum('ukuran_almamater', ['S', 'M', 'L', 'XL', 'XXL']);
+            $table->enum('informasi', ['sosial_media', 'teman_saudara', 'lainnya'])->default('sosial_media');
+            $table->string('asal_informasi');
             $table->softDeletes();
             $table->timestamps();
         });

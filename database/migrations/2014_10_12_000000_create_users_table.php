@@ -25,7 +25,6 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('no_telepon')->nullable();
-            $table->enum('informasi', ['sosial_media', 'teman_saudara', 'lainnya'])->default('sosial_media');
             $table->boolean('tes_kesehatan')->default(false);
             $table->boolean('lulusan_unigres')->default(false);
             $table->rememberToken();

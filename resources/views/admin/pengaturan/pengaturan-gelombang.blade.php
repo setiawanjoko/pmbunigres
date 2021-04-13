@@ -149,24 +149,39 @@
                                             <th>Gelombang</th>
                                             <th>Jalur Masuk</th>
                                             <th>Jam</th>
-                                            <th>Registrasi</th>
-                                            <th>Daftar Ulang</th>
+                                            <th>Biaya</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @isset($data)
-                                            @foreach($data as $biaya)
-                                                <tr>
-                                                    <td>{{ $biaya->nama }}</td>
-                                                    <td>{{ $biaya->kelas }}</td>
-                                                    <td>{{ $biaya->gelombang }}</td>
-                                                    <td>{{ $biaya->jalur_masuk }}</td>
-                                                    <td>{{ $biaya->jam_masuk }}</td>
-                                                    <td>Rp. {{ number_format($biaya->registrasi, 0, '', '.') }},-</td>
-                                                    <td>Rp. {{ number_format($biaya->daftar_ulang, 0, '', '.') }},-</td>
-                                                </tr>
-                                            @endforeach
-                                        @endisset
+                                        @forelse($data as $biaya)
+                                            <tr>
+                                                <td>{{ $biaya->kelas->prodi->nama }}</td>
+                                                <td>{{ $biaya->kelas->kelas }}</td>
+                                                <td>{{ $biaya->gelombang->gelombang }}</td>
+                                                <td>{{ $biaya->jalurMasuk->jalur_masuk }}</td>
+                                                <td>
+                                                    @forelse($biaya->kelas->jamMasuk as $jamMasuk)
+                                                        <span class="badge badge-primary">{{ $jamMasuk->jam_masuk }}</span>
+                                                    @empty
+                                                        Tidak ada jam masuk terpilih.
+                                                    @endforelse
+                                                </td>
+                                                <td>
+                                                    <span>Registrasi: Rp. {{ number_format($biaya->biaya_registrasi, 0, '', '.') }},-</span><br>
+                                                    <span>Pengembangan: Rp. {{ number_format($biaya->dana_pengembangan, 0, '', '.') }},-</span><br>
+                                                    <span>Kemahasiswaan: Rp. {{ number_format($biaya->dana_kemahasiswaan, 0, '', '.') }},-</span><br>
+                                                    <span>Heregistrasi: Rp. {{ number_format($biaya->heregistrasi, 0, '', '.') }},-</span><br>
+                                                    <span>SPP Semester 1: Rp. {{ number_format($biaya->spp_semester, 0, '', '.') }},-</span><br>
+                                                    <span>Seragam: Rp. {{ number_format($biaya->seragam, 0, '', '.') }},-</span><br>
+                                                    <span>Konversi: Rp. {{ number_format($biaya->konversi, 0, '', '.') }},-</span><br>
+                                                    <span>Total Daftar Ulang: Rp. {{ number_format($biaya->total_daftar_ulang, 0, '', '.') }},-</span><br>
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="6">Tidak ada data tersedia.</td>
+                                            </tr>
+                                        @endforelse
                                         </tbody>
                                     </table>
                                 </div>

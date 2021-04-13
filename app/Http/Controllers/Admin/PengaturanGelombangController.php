@@ -21,18 +21,7 @@ class PengaturanGelombangController extends Controller
         $dataJalur = JalurMasuk::all();
         $dataJam = JamMasuk::all();
         $dataJenjang = Jenjang::with('prodi')->get();
-        $data = DB::select("SELECT k.id,p.nama,k.kelas,m.jam_masuk,g.gelombang,jm.jalur_masuk,
-            (SELECT bb.nominal FROM biayas bb WHERE bb.kelas_id = k.id and bb.gelombang_id = b.gelombang_id AND bb.jalur_masuk_id = b.jalur_masuk_id AND bb.kategori = 'registrasi' ) AS registrasi,
-            (SELECT bb.nominal FROM biayas bb WHERE bb.kelas_id = k.id and bb.gelombang_id = b.gelombang_id AND bb.jalur_masuk_id = b.jalur_masuk_id AND bb.kategori = 'daftar_ulang' ) AS daftar_ulang
-            FROM kelas k
-            RIGHT OUTER JOIN jam_masuk_kelas jmk ON k.id = jmk.kelas_id
-            RIGHT OUTER JOIN jam_masuks m ON jmk.jam_masuk_id = m.id
-            LEFT OUTER JOIN prodi p ON k.prodi_id = p.id
-            inner JOIN biayas b ON k.id = b.kelas_id
-            inner JOIN gelombang g ON b.gelombang_id = g.id
-            RIGHT OUTER JOIN jalur_masuk jm ON b.jalur_masuk_id = jm.id
-            WHERE b.kategori = 'registrasi'
-            ORDER BY p.id,k.id,b.gelombang_id,b.jalur_masuk_id,m.id");
+        $data = Biaya::with(['gelombang', 'jalurMasuk', 'kelas', 'kelas.prodi', 'kelas.jamMasuk'])->get();
 
         return response()->view('admin.pengaturan.pengaturan-gelombang', compact('data', 'dataGelombang', 'dataJalur', 'dataJam','dataJenjang'));
     }

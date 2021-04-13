@@ -32,7 +32,7 @@
                             </div>
                         @endif
                         <div class="col-md-5 left dashboard-left">
-                            <form action="{{ route('admin.pengumuman.store') }}" method="POST">
+                            <form action="{{ route('admin.pengumuman.store') }}" method="POST"  enctype="multipart/form-data">
                                 @csrf
                                 @method('POST')
                                 <div class="card">
@@ -62,6 +62,17 @@
                                                         <strong>{{ $errors->first('deskripsi') }}</strong>
                                                     </div>
                                                 @endif
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <label for="file_url">Berkas</label>
+                                                    <input type="file" class="input-file form-control-sm @if ($errors->has('deskripsi')) is-invalid @endif" name="file_url" id="file_url">
+                                                    @if($errors->has('file_url'))
+                                                        <div class="invalid-feedback">
+                                                            <strong>{{ $errors->first('file_url') }}</strong>
+                                                        </div>
+                                                    @endif
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

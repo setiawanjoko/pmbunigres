@@ -6,6 +6,7 @@ use App\Models\Pengumuman;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class PengumumanController extends Controller
 {
@@ -19,20 +20,33 @@ class PengumumanController extends Controller
     }
 
     public function store(Request $request) {
+        
         $data = $request->validate([
             'judul' => 'required|string',
             'deskripsi' => 'required|string',
+            'file_url' => 'file|nullable|max:500|mimes:png,jpg,jpeg,pdf',
         ]);
+            
+        $file = $request->file('file_url');
+        $fileName = pathinfo($file->getClientOriginalName(),PATHINFO_FILENAME);
+        if (!is_null($file)){
+            $file_urlname = $fileName . "_pengumuman." . $file->extension();
+            $request->file('file_url')->storeAs('public/', $file_urlname);
+        } else $file_urlname = null;
+
 
         try {
+            
             Pengumuman::create([
                 'petugas_id' => auth()->user()->id,
                 'judul' => $data['judul'],
                 'deskripsi' => $data['deskripsi'],
+                'file_url' => $file_urlname,
             ]);
 
             return response()->redirectToRoute('admin.pengumuman.index');
         } catch(\Exception $e) {
+            if(Storage::exists('public/' . $file_urlname)) Storage::delete('public/' . $file_urlname);
             dd($e->getMessage());
         }
     }

@@ -17,7 +17,7 @@ class LandingPageController extends Controller
      */
     public function index()
     {
-        $data = DB::select('SELECT p.id,p.judul,p.deskripsi,CONCAT(u.nama,\' | \',date(p.created_at)) AS publish
+        $data = DB::select('SELECT p.id,p.judul,p.deskripsi,p.file_url,CONCAT(u.nama,\' | \',date(p.created_at)) AS publish
                             FROM pengumuman p
                             LEFT OUTER JOIN users u ON p.petugas_id = u.id
                             ORDER BY p.created_at desc

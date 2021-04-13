@@ -43,6 +43,7 @@
                     <ol>
                         <li class="catatan2">Silahkan klik link diatas untuk masuk ke halaman tes potensi akademik</li>
                         <li class="catatan2">Lalu login menggunakan informasi akun yang telah diberikan</li>
+                        <li class="catatan2">Setelah masuk kedalam halaman TPA silahkan lakukan konfirmasi email dan lakukan enroll</li>
                         <li class="catatan2">Jika ada informasi yang kurang jelas, silahkan tanyakan ke pihak terkait.</li>
                     </ol>
                 </p>

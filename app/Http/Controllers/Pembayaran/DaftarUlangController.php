@@ -25,7 +25,7 @@ class DaftarUlangController extends Controller
                         $pembayaran->status = true;
                         $pembayaran->save();
 
-                        return response()->redirectToRoute('biodata.create');
+                        return response()->redirectToRoute('home');
                     }
                 }
 

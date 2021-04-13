@@ -16,7 +16,7 @@
                 <h5 class="form-title">Registrasi</h5>
                 <p class="form-info">Isi form berikut dengan menggunakan data yang valid (Benar).</p>
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-6">
                         <input type="text" id="nama" name="nama" class="form-control @if($errors->has('nama')) is-invalid @endif" placeholder="Nama lengkap" value="{{ old('nama') }}" required>
                         @if($errors->has('nama'))
                             <div class="invalid-feedback">
@@ -32,6 +32,8 @@
                             </div>
                         @endif
                     </div>
+                </div>
+                <div class="row">
                     {{--<div class="col-lg-6">
                         <label class="form-label lable-radio">Dapat Informasi PMB dari :</label>
                         <div class="wrap-input" id="informasi">
@@ -53,7 +55,7 @@
                                 {{ $errors->first('informasi') }}
                             </div>
                         @endif
-                    </div>--}}
+                    </div>--}}                    
                     <div class="col-lg-6">
                         <select name="prodi" id="prodi" class="form-control @if($errors->has('prodi')) is-invalid @endif" required>
                             <option selected disabled>-- Silahkan Pilih Program Studi --</option>
@@ -64,8 +66,8 @@
                             </div>
                         @endif
                     </div>
-                    <div class="col-lg-6">
-                        <label class="form-label lable-radio">Khusus Pascasarjana dan Profesi</label>
+                    <div class="col-lg-6" id="lulusan">
+                        <label class="form-label lable-radio">Khusus Profesi</label>
                         <div class="wrap-input" id="lulusan_unigres">
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" @if(old('lulusan_unigres') == 1) checked @endif type="radio" name="lulusan_unigres" id="lulusan_unigres1" value="1" required>
@@ -105,6 +107,8 @@
                             </div>
                         @endif
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-lg-12">
                         <input type="email" id="email" name="email" class="mb-0 form-control @if($errors->has('email')) is-invalid @endif" placeholder="Email" value="{{ old('email') }}" required>
                         @if($errors->has('email'))
@@ -167,8 +171,9 @@
 
     $( document ).ready(function() {
         var p = prodi();
+        $("#lulusan").hide();
         $('#lulusan_unigres2').prop( "checked", true );
-        $('input[name="lulusan_unigres"]').attr("disabled",true);
+        //$('input[name="lulusan_unigres"]').attr("disabled",true);
         //$('#lulusan_unigres1').attr("disabled",true);
 
         $("#prodi").change(function () {
@@ -180,10 +185,12 @@
             console.log(prodi);
 
             if (checked_lulusan == 1) {
-                $('input[name="lulusan_unigres"]').attr("disabled",false);
+                $("#lulusan").show();
+                //$('input[name="lulusan_unigres"]').attr("disabled",false);
             } else {
+                $("#lulusan").hide();
                 //$('#lulusan_unigres1').attr("disabled",true);
-                $('input[name="lulusan_unigres"]').attr("disabled",true);
+                // $('input[name="lulusan_unigres"]').attr("disabled",true);
                 $('#lulusan_unigres2').prop( "checked", true );
             }
 
@@ -193,7 +200,7 @@
                 success:function(data){
                     $("#kelas").find('option').remove().end().append('<option selected disabled>-- Silahkan Pilih Kelas --</option>');
                     $.each(data, function(){
-                        $("#kelas").append('<option  value="'+ this.jam_masuk_id +'" data-kelas="'+ this.id +'">Kelas '+ this.kelas + ' ' + ucwords(this.jam_masuk) +'</option>')
+                        $("#kelas").append('<option  value="'+ this.jam_masuk_id +'" data-kelas="'+ this.id +'">'+ this.kelas + ' ' + ucwords(this.jam_masuk) +'</option>')
                     });
                 }
             });
@@ -209,7 +216,7 @@
                 success:function(data){
                     $("#kelas").find('option').remove().end().append('<option selected disabled>-- Silahkan Pilih Kelas --</option>');
                     $.each(data, function(){
-                        $("#kelas").append('<option  value="'+ this.jam_masuk_id +'" data-kelas="'+ this.id +'">Kelas '+ this.kelas + ' ' + this.jam_masuk +'</option>')
+                        $("#kelas").append('<option  value="'+ this.jam_masuk_id +'" data-kelas="'+ this.id +'">'+ this.kelas + ' ' + this.jam_masuk +'</option>')
                     });
                 }
             });

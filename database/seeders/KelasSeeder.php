@@ -20,7 +20,7 @@ class KelasSeeder extends Seeder
             // Ilmu Hukum
             [ // #1
                 'prodi_id' => 1,
-                'kelas' => 'A',
+                'kelas' => 'Kelas A',
                 'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
@@ -29,7 +29,7 @@ class KelasSeeder extends Seeder
             ],
             [ // #2
                 'prodi_id' => 1,
-                'kelas' => 'B',
+                'kelas' => 'Kelas B',
                 'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
@@ -40,7 +40,7 @@ class KelasSeeder extends Seeder
             // Manajemen
             [ // #3
                 'prodi_id' => 2,
-                'kelas' => 'A',
+                'kelas' => 'Kelas A',
                 'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
@@ -51,7 +51,7 @@ class KelasSeeder extends Seeder
             // Akuntansi
             [ // #4
                 'prodi_id' => 3,
-                'kelas' => 'A',
+                'kelas' => 'Kelas A',
                 'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
@@ -62,7 +62,7 @@ class KelasSeeder extends Seeder
             // Teknik Mesin
             [ // #5
                 'prodi_id' => 4,
-                'kelas' => 'A',
+                'kelas' => 'Kelas A',
                 'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
@@ -71,7 +71,7 @@ class KelasSeeder extends Seeder
             ],
             [ // #6
                 'prodi_id' => 4,
-                'kelas' => 'B',
+                'kelas' => 'Kelas B',
                 'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
@@ -82,7 +82,7 @@ class KelasSeeder extends Seeder
             // Teknik Sipil
             [ // #7
                 'prodi_id' => 5,
-                'kelas' => 'A',
+                'kelas' => 'Kelas A',
                 'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
@@ -91,7 +91,7 @@ class KelasSeeder extends Seeder
             ],
             [ // #8
                 'prodi_id' => 5,
-                'kelas' => 'B',
+                'kelas' => 'Kelas B',
                 'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
@@ -102,7 +102,7 @@ class KelasSeeder extends Seeder
             // Administrasi Pendidikan
             [ // #9
                 'prodi_id' => 6,
-                'kelas' => 'A',
+                'kelas' => 'Kelas A',
                 'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
@@ -113,7 +113,7 @@ class KelasSeeder extends Seeder
             // Sastra Inggris
             [ // #10
                 'prodi_id' => 7,
-                'kelas' => 'A',
+                'kelas' => 'Kelas A',
                 'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
@@ -124,7 +124,7 @@ class KelasSeeder extends Seeder
             // Ilmu Keperawatan
             [ // #11
                 'prodi_id' => 8,
-                'kelas' => 'A',
+                'kelas' => 'Kelas A',
                 'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
@@ -133,7 +133,7 @@ class KelasSeeder extends Seeder
             ],
             [ // #12
                 'prodi_id' => 8,
-                'kelas' => 'B',
+                'kelas' => 'Kelas B',
                 'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
@@ -144,7 +144,7 @@ class KelasSeeder extends Seeder
             // Profesi NERS
             [ // #13
                 'prodi_id' => 9,
-                'kelas' => 'A',
+                'kelas' => 'Programs A (Reguler)',
                 'lulusan_unigres' => 1,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
@@ -153,7 +153,7 @@ class KelasSeeder extends Seeder
             ],
             [ // #14
                 'prodi_id' => 9,
-                'kelas' => 'B',
+                'kelas' => 'Programs B (Non Reguler)',
                 'lulusan_unigres' => 1,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
@@ -162,7 +162,7 @@ class KelasSeeder extends Seeder
             ],
             [ // #15
                 'prodi_id' => 9,
-                'kelas' => 'C',
+                'kelas' => 'Programs C',
                 'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
@@ -173,7 +173,7 @@ class KelasSeeder extends Seeder
             // Manajemen Pendidikan
             [ // #16
                 'prodi_id' => 10,
-                'kelas' => 'A',
+                'kelas' => 'Kelas A',
                 'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
@@ -182,7 +182,7 @@ class KelasSeeder extends Seeder
             ],
             [ // #17
                 'prodi_id' => 10,
-                'kelas' => 'B',
+                'kelas' => 'Kelas B',
                 'lulusan_unigres' => 0,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),

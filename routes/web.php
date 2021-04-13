@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\PengumumanPageController;
+use App\Http\Controllers\Pembayaran\SklController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,7 +66,7 @@ Route::middleware(['auth', 'verify', 'can:camaba'])->group(function(){
             Route::get('/tes-kesehatan', [TesKesehatanController::class, 'index'])->name('tes-kesehatan');
         });
         Route::get('/daftar-ulang', [DaftarUlangController::class, 'index'])->name('daftar-ulang');
-        Route::get('/print-sk', [DaftarUlangController::class, 'printSKL'])->name('print-sk');
+        Route::get('/print-sk', [SklController::class, 'printSKL'])->name('print-sk');
     });
 });
 

@@ -12,7 +12,7 @@
     </a>
 </li>
 <li class="nav-item">
-    <a href="{{ route('moodle') }}" class="nav-link" type="button" aria-controls="pills-home1" aria-selected="true">
+    <a href="{{ route('tes-online.akademik') }}" class="nav-link" type="button" aria-controls="pills-home1" aria-selected="true">
         <div class="wp-ic">
             <img src="{{ asset('unigres/images/data.svg') }}">
         </div>
@@ -58,8 +58,8 @@
                     <p class="h4 text-center mb-3" style="color:#0078ba;">Selamat Pembayaran Daftar Ulang Anda, Berhasil!<br><br>
                         <a class="btn btn-primary mb-3" type="button" href="{{ route('print-sk') }}" target="_blank">Surat Keterangan Lolos PMB</a>
                     </p>
-                    
-                    
+
+
                     <div class="alert alert-primary" role="alert">
                         <h5 class="text-center mt-2">Nomor Induk Mahasiswa.</h5>
                         <h5 class="text-center mt-2">{{ auth()->user()->biodata->nim ?? '' }}</h5>

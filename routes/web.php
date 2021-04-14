@@ -16,6 +16,7 @@ use App\Http\Controllers\Mahasiswa\BiodataController;
 use App\Http\Controllers\Mahasiswa\KeluargaController;
 use App\Http\Controllers\Mahasiswa\MoodleAccountController;
 use App\Http\Controllers\Mahasiswa\BerkasController;
+use App\Http\Controllers\Mahasiswa\TesAkademikController;
 use App\Http\Controllers\Mahasiswa\TesKesehatanController;
 use App\Http\Controllers\Monitoring\PendaftarController as MonitoringPendaftarController;
 use App\Http\Controllers\Pembayaran\DaftarUlangController;
@@ -64,6 +65,11 @@ Route::middleware(['auth', 'verify', 'can:camaba'])->group(function(){
             Route::post('/berkas', [BerkasController::class, 'store'])->name('berkas.store');
             Route::get('/informasi-tpa', [MoodleAccountController::class, 'index'])->name('moodle');
             Route::get('/tes-kesehatan', [TesKesehatanController::class, 'index'])->name('tes-kesehatan');
+
+            Route::name('tes-online.')->group(function(){
+                Route::get('/tes-akademik', [TesAkademikController::class, 'index'])->name('akademik');
+                Route::get('/tes-kesehatan', [TesKesehatanController::class, 'index'])->name('kesehatan');
+            });
         });
         Route::get('/daftar-ulang', [DaftarUlangController::class, 'index'])->name('daftar-ulang');
         Route::get('/print-sk', [SklController::class, 'printSKL'])->name('print-sk');

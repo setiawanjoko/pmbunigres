@@ -11,10 +11,9 @@ class TesKesehatanController extends Controller
     public function __construct(){
         $this->middleware(function ($request, $next) {
             $user = auth()->user();
-            $prodi = $user->prodi;
 
-            if(!$prodi->tes_kesehatan) {
-                return response()->redirectToRoute('daftar-ulang');
+            if(!$user->tes_kesehatan_kelas) {
+                return response()->redirectToRoute('tes-online.akademik');
             }else{
                 return $next($request);
             }

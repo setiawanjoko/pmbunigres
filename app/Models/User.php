@@ -220,4 +220,10 @@ class User extends Authenticatable implements MustVerifyEmail
         else if(is_null($this->pembayaranDaftarUlang())) return 'tes online';
         else return 'daftar ulang';
     }
+
+    public function getTesKesehatanKelasAttribute(){
+        $kelas = $this->kelas();
+
+        return $kelas->tes_kesehatan;
+    }
 }

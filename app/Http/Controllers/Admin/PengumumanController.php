@@ -20,13 +20,13 @@ class PengumumanController extends Controller
     }
 
     public function store(Request $request) {
-        
+
         $data = $request->validate([
             'judul' => 'required|string',
             'deskripsi' => 'required|string',
-            'file_url' => 'file|nullable|max:500|mimes:png,jpg,jpeg,pdf',
+            'file_url' => 'file|nullable|max:2000|mimes:png,jpg,jpeg,pdf',
         ]);
-            
+
         $file = $request->file('file_url');
         $fileName = pathinfo($file->getClientOriginalName(),PATHINFO_FILENAME);
         if (!is_null($file)){
@@ -36,7 +36,7 @@ class PengumumanController extends Controller
 
 
         try {
-            
+
             Pengumuman::create([
                 'petugas_id' => auth()->user()->id,
                 'judul' => $data['judul'],

@@ -18,7 +18,7 @@ class CreatePengumumanTable extends Migration
             $table->unsignedBigInteger('petugas_id');
             $table->string('judul');
             $table->string('deskripsi');
-            $table->string('file_url');
+            $table->string('file_url')->nullable(true);
             $table->timestamps();
         });
     }

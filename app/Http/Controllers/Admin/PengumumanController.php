@@ -28,8 +28,9 @@ class PengumumanController extends Controller
         ]);
 
         $file = $request->file('file_url');
-        $fileName = pathinfo($file->getClientOriginalName(),PATHINFO_FILENAME);
+        $file_urlname = null;
         if (!is_null($file)){
+            $fileName = pathinfo($file->getClientOriginalName(),PATHINFO_FILENAME);
             $file_urlname = $fileName . "_pengumuman." . $file->extension();
             $request->file('file_url')->storeAs('public/', $file_urlname);
         } else $file_urlname = null;

@@ -65,6 +65,7 @@
                         <th>Nama Pendaftar</th>
                         <th>Tanggal Pendaftaran</th>
                         <th>Program Studi</th>
+                        <th>Kontak</th>
                         <th>Status</th>
                         <th>Aksi</th>
                     </thead>
@@ -75,6 +76,10 @@
                             <td>{{ $row->nama }}</td>
                             <td>{{ $row->created_at }}</td>
                             <td>{{ $row->prodi->nama }}</td>
+                            <td>
+                                {{ $row->email }}<br>
+                                {{ $row->no_telepon }}
+                            </td>
                             <td>{{ $row->progres }}</td>
                             <td>
                                 @if($row->progres != 'registrasi')

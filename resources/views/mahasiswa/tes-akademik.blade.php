@@ -40,7 +40,7 @@
                         <p class="catatan2">Jika link tidak merespon lakukan refresh website, atau tunggu hingga sampai link sudah aktif. Lalu segera lakukan tes potensi akademik.</p>
                     </div>
                     <div class="col-md-6 right">
-                        @if(!is_null($dataMoodle->nilai_tpa))
+                        @if(!is_null($dataMoodle->nilai_tpa) && (auth()->user()->tes_kesehatan_kelas && auth()->user()->tes_kesehatan))
                             <div class="mb-3">
                                 <p class="h5 mb-4" style="font-family: 'Helvetica Neue', sans-serif;
                         font-style: normal;
@@ -58,6 +58,19 @@
                         letter-spacing: 0.02em;
                         color: #000000;">Untuk langkah selanjutnya, silahkan menuju halaman <strong>Informasi dan Pengumuman </strong> untuk informasi Daftar Ulang atau <a href="{{ route('home') }}">Klik Disini!</a>.</p>
                             </div>
+                        @elseif(!is_null($dataMoodle->nilai_tpa) && (auth()->user()->tes_kesehatan_kelas && !auth()->user()->tes_kesehatan))
+                            <div class="mb-3">
+                                <p class="h5 mb-4" style="font-family: 'Helvetica Neue', sans-serif;
+                        font-style: normal;
+                        font-weight: bold;
+                        font-size: 18px;
+                        line-height: 22px;
+                        letter-spacing: 0.02em;
+                        color: #251462;
+                        margin-bottom: 38px;">Lakukan tes kesehatan untuk melanjutkan proses pendaftaran.</p>
+                            </div>
+                        @endif
+                        @if(!is_null($dataMoodle->nilai_tpa))
                             <div class="card mb-3">
                                 <div class="card-header">
                                     <h5 class="mb-0">Nilai Tes Potensi Akademik.</h5>

@@ -174,7 +174,7 @@ class JamMasukKelasSeeder extends Seeder
             // Manajemen Pendidikan B
             [ // #22
                 'kelas_id' => 17,
-                'jam_masuk_id' => 2, // siang
+                'jam_masuk_id' => 5, // siang
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],

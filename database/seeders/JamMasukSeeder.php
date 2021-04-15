@@ -36,6 +36,11 @@ class JamMasukSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ],
+            [
+                'jam_masuk' => 'siang',
+                'created_at'    => Carbon::now(),
+                'updated_at'    => Carbon::now(),
+            ],
         ];
         JamMasuk::insert($data);
     }

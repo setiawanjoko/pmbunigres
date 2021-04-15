@@ -16,7 +16,7 @@
         <div class="wp-ic">
             <img src="{{ asset('unigres/images/data.svg') }}">
         </div>
-        <span>Tes Potensi Akademik</span>
+        <span>Tes Online</span>
     </a>
 </li>
 <li class="nav-item">

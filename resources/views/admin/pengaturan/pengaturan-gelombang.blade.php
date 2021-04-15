@@ -2,6 +2,7 @@
 @section('content')
     <div class="content">
         <div class="container-fluid dashboard-user">
+            @can('admin')
             <h4>Data Master</h4>
             <ul class="nav nav-pills mb-5 mx-auto">
                 <li class="nav-item ">
@@ -13,7 +14,10 @@
                 <li class="nav-item nav-prodi">
                     <a class="nav-link active" href="{{ route('admin.pengaturan-gelombang.index') }}" type="button">Biaya</a>
                 </li>
-            </ul>
+            </ul>               
+            @else
+            <h4>Data Biaya</h4>
+            @endcan
             <div class="tab-content">
                 <div class="container data-calon-mhs tab-pane fade show active" id="pills-home" role="tabpanel"
                      aria-labelledby="pills-home-tab">
@@ -161,7 +165,7 @@
                                                 <td>{{ $biaya->jalurMasuk->jalur_masuk }}</td>
                                                 <td>
                                                     @forelse($biaya->kelas->jamMasuk as $jamMasuk)
-                                                        <span class="badge badge-primary">{{ $jamMasuk->jam_masuk }}</span>
+                                                        <span class="badge bg-primary">{{ $jamMasuk->jam_masuk }}</span>
                                                     @empty
                                                         Tidak ada jam masuk terpilih.
                                                     @endforelse

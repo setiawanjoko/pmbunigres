@@ -21,13 +21,16 @@ class DaftarUlangController extends Controller
 
                 $pembayaran = $user->pembayaranDaftarUlang();
 
-                if (!is_null($pembayaran)) {
-                    if (checkBrivaStatus($pembayaran) || !$user->kelas->biaya_daftar_ulang) {
+                if( !is_null($pembayaran)) {
+                    if(checkBrivaStatus($pembayaran)) {
                         $pembayaran->status = true;
                         $pembayaran->save();
 
-                        return response()->redirectToRoute('home');
+                        return response()->redirectToRoute('biodata.create');
                     }
+                }
+                if(!$user->kelas->biaya_registrasi && bypassPembayaran($user->id, true)) {
+                    return response()->redirectToRoute('biodata.create');
                 }
 
                 return $next($request);

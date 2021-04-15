@@ -73,7 +73,7 @@ function nomorSurat(){
 
 function bypassPembayaran($userId, $kategori = false){
     // kategori false = registrasi, true = daftar ulang
-    $kategori = ($kategori) ? 'daftar_ulang' : 'kategori';
+    $kategori = ($kategori) ? 'daftar_ulang' : 'registrasi';
 
     $pembayaran = Pembayaran::where([
         ['user_id', $userId],
@@ -87,7 +87,7 @@ function bypassPembayaran($userId, $kategori = false){
                 'kategori' => $kategori,
                 'custCode' => '000000',
                 'amount' => '0',
-                'expired_date' => Carbon::today(),
+                'expiredDate' => Carbon::now(),
                 'status' => 1
             ]);
         } else{
@@ -97,6 +97,6 @@ function bypassPembayaran($userId, $kategori = false){
 
         return true;
     }catch (\Exception $e){
-        return false;
+        dd($e->getMessage());
     }
 }

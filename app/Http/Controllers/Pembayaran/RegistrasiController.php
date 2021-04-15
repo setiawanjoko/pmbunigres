@@ -21,12 +21,15 @@ class RegistrasiController extends Controller
             $pembayaran = $user->pembayaranRegistrasi();
 
             if( !is_null($pembayaran)) {
-                if(checkBrivaStatus($pembayaran) || !$user->kelas->biaya_registrasi) {
+                if(checkBrivaStatus($pembayaran)) {
                     $pembayaran->status = true;
                     $pembayaran->save();
 
                     return response()->redirectToRoute('biodata.create');
                 }
+            }
+            if(!$user->kelas->biaya_registrasi && bypassPembayaran($user->id, false)) {
+                return response()->redirectToRoute('biodata.create');
             }
 
             return $next($request);

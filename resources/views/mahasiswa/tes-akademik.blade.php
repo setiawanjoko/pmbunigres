@@ -60,7 +60,7 @@
                         color: #000000;">Untuk langkah selanjutnya, silahkan menuju halaman <strong>Informasi dan Pengumuman </strong> untuk informasi Daftar Ulang atau <a href="{{ route('home') }}">Klik Disini!</a>.</p>
                             </div>
                         {{-- jika nilai tpa sudah masuk dan (kelasnya butuh tes kesehatan dan dia belum tes) --}}
-                        @elseif(!is_null($dataMoodle->nilai_tpa) && (auth()->user()->tes_kesehatan_kelas && !auth()->user()->tes_kesehatan))
+                        @elseif(!is_null($dataMoodle->nilai_tpa) && (auth()->user()->tes_kesehatan_kelas && is_null(auth()->user()->tes_kesehatan_at)))
                             <div class="mb-3">
                                 <p class="h5 mb-4" style="font-family: 'Helvetica Neue', sans-serif;
                         font-style: normal;

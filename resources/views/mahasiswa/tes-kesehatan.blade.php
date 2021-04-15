@@ -26,20 +26,24 @@
             <div class="container">
                 <div class="row gx-5">
                     <div class="col-md-3"></div>
-                    @if(auth()->user()->tes_kesehatan)
+                    @if(auth()->user()->tes_kesehatan && !is_null(auth()->user()->tes_kesehatan_at))
                         <div class="col-md-6 center">
                             <h5>Hasil tes kesehatan anda telah direkam. Lakukan daftar ulang untuk menyelesaikan proses pendaftaran.</h5>
                             <a href="{{ route('daftar-ulang') }}" class="btn btn-primary center">Lanjutkan ke daftar ulang</a>
+                        </div>
+                    @elseif(!auth()->user()->tes_kesehatan && !is_null(auth()->user()->tes_kesehatan_at))
+                        <div class="col-md-6 center">
+                            <h5>Mohon maaf anda tidak lolos sebagai calon camaba unigres, karena anda tidak memenuhi kriteria.</h5>
                         </div>
                     @elseif(is_null(auth()->user()->moodleAccount->nilai_tpa))
                         <div class="col-md-6 center text-center">
                             <h5>Lakukan tes potensi akademik terlebih dahulu.</h5>
                             <a href="{{ route('tes-online.akademik') }}" class="center btn btn-primary">Tes Potensi Akademik</a>
                         </div>
-                    @else
+                    @elseif(is_null(auth()->user()->tes_kesehatan_at))
                         <div class="col-md-6 center">
                             <h5>Untuk tes kesehatan silahkan menghubungi nomor dibawah ini.</h5>
-                            <h4>{{auth()->user()->kelas()->keterangan_tes_kesehatan}}</h4>
+                            <h4>{{auth()->user()->kelas->keterangan_tes_kesehatan}}</h4>
                             <p class="catatan">Catatan :</p>
                             <p>
                             <ol>

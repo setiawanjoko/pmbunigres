@@ -34,4 +34,8 @@ class Kelas extends Model
     public function jalurMasuk(){
         return $this->belongsToMany(JalurMasuk::class, 'biayas', 'kelas_id', 'jalur_masuk_id');
     }
+
+    public function camaba(){
+        return $this->hasMany(User::class, 'kelas_id', 'id');
+    }
 }

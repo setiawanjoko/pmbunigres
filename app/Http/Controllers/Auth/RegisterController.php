@@ -11,7 +11,10 @@ use App\Models\Prodi;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -77,48 +80,30 @@ class RegisterController extends Controller
             ['tgl_selesai', '>=', Carbon::today()]
         ])->first();
 
-        $data = DB::select('SELECT b.gelombang_id,b.kelas_id,b.id,b.jalur_masuk_id,j.jalur_masuk
+        $data = (!is_null($gelombang)) ? DB::select('SELECT b.gelombang_id,b.kelas_id,b.id,b.jalur_masuk_id,j.jalur_masuk
                             FROM biayas b
                             LEFT OUTER JOIN jalur_masuk j ON b.jalur_masuk_id = j.id
-                            WHERE b.kelas_id = ? and b.gelombang_id = ?', [$id,$gelombang->id]);
+                            WHERE b.kelas_id = ? and b.gelombang_id = ?', [$id,$gelombang->id]) : null;
         return $data;
     }
 
-
     public function showRegistrationForm()
     {
-        // $dataProdi = Jenjang::with('prodi')->get();
-        // $dataJalurMasuk = JalurMasuk::all();
-        // $dataJamMasuk = JamMasuk::all();
-
-        return view('auth.register');//, compact('dataProdi', 'dataJalurMasuk', 'dataJamMasuk'));
+        return view('auth.register');
     }
 
     /**
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
+     * @return \Illuminate\Contracts\Validation\Validator|\Illuminate\Http\RedirectResponse
      */
     protected function validator(array $data)
     {
-        // $prodi = Prodi::find($data['prodi']);
-        // $jamMasuk = $prodi->jamMasuk();
-        // $jamMasukValidation = array();
-        // foreach($jamMasuk as $jam){
-        //     array_push($jamMasukValidation, $jam->id);
-        // }
-        // $jalurMasuk = $prodi->jalurMasuk();
-        // $jalurMasukValidation = array();
-        // foreach($jalurMasuk as $jalur){
-        //     array_push($jalurMasukValidation, $jalur->id);
-        // }
-
         return Validator::make($data, [
             'nama' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-//            'informasi' => ['required', 'in:sosial_media,teman_saudara,lainnya'],
             'no_telepon' => ['required', 'string'],
             'kelas' => ['required', 'integer'],//Rule::in($jamMasukValidation)],
             'prodi' => ['required', 'exists:prodi,id'],
@@ -134,17 +119,19 @@ class RegisterController extends Controller
          * @return \App\Models\User
          */
     protected function create(array $data) {
-        //dd($data);
         $gelombang = Gelombang::where([
             ['tgl_mulai', '<=', Carbon::today()],
             ['tgl_selesai', '>=', Carbon::today()]
         ])->first();
+        if(is_null($gelombang)) return response()->redirectToRoute('register')->with([
+            'status' => 'danger',
+            'message' => 'Saat ini tidak ada gelombang pendaftaran yang dibuka.'
+        ]);
 
         return User::create([
             'nama' => $data['nama'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-//            'informasi' => $data['informasi'],
             'no_telepon' => $data['no_telepon'],
             'jam_masuk_id' => $data['kelas'],
             'prodi_id' => $data['prodi'],
@@ -152,5 +139,38 @@ class RegisterController extends Controller
             'gelombang_id' => $gelombang->id,
             'lulusan_unigres' => (empty($data['lulusan_unigres'])) ? 0 : $data['lulusan_unigres'] ,
         ]);
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     */
+    public function register(Request $request)
+    {
+        $gelombang = Gelombang::where([
+            ['tgl_mulai', '<=', Carbon::today()],
+            ['tgl_selesai', '>=', Carbon::today()]
+        ])->first();
+
+        if(is_null($gelombang)) return response()->redirectToRoute('register')->with([
+            'status' => 'danger',
+            'message' => 'Saat ini tidak ada gelombang pendaftaran yang dibuka.'
+        ]);
+
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
+
+        if ($response = $this->registered($request, $user)) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+            ? new JsonResponse([], 201)
+            : redirect($this->redirectPath());
     }
 }

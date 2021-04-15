@@ -15,6 +15,11 @@
             <div class="wrapper-registration">
                 <h5 class="form-title">Registrasi</h5>
                 <p class="form-info">Isi form berikut dengan menggunakan data yang valid (Benar).</p>
+                @if(session()->has('status'))
+                    <div class="alert alert-{{ session()->get('status') }}">
+                        {{ session()->get('message') }}
+                    </div>
+                @endif
                 <div class="row">
                     <div class="col-lg-6">
                         <input type="text" id="nama" name="nama" class="form-control @if($errors->has('nama')) is-invalid @endif" placeholder="Nama lengkap" value="{{ old('nama') }}" required>
@@ -34,28 +39,6 @@
                     </div>
                 </div>
                 <div class="row">
-                    {{--<div class="col-lg-6">
-                        <label class="form-label lable-radio">Dapat Informasi PMB dari :</label>
-                        <div class="wrap-input" id="informasi">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" @if(old('informasi') == 'sosial_media') checked @endif type="radio" name="informasi" id="informasi1" value="sosial_media" required>
-                                <label class="form-check-label" for="inlineRadio1">Social Media</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" @if(old('informasi') == 'teman_saudara') checked @endif type="radio" name="informasi" id="informasi2" value="teman_saudara" required>
-                                <label class="form-check-label" for="inlineRadio2">Teman/Saudara</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" @if(old('informasi') == 'lainnya') checked @endif type="radio" name="informasi" id="informasi3" value="lainnya" required>
-                                <label class="form-check-label" for="inlineRadio3">lain-lain</label>
-                            </div>
-                        </div>
-                        @if($errors->has('informasi'))
-                            <div class="invalid-feedback">
-                                {{ $errors->first('informasi') }}
-                            </div>
-                        @endif
-                    </div>--}}                    
                     <div class="col-lg-6">
                         <select name="prodi" id="prodi" class="form-control @if($errors->has('prodi')) is-invalid @endif" required>
                             <option selected disabled>-- Silahkan Pilih Program Studi --</option>
@@ -237,6 +220,9 @@
                     $.each(data, function(){
                         $("#jalur_masuk").append('<option  value="'+ this.jalur_masuk_id +'">'+ this.jalur_masuk +'</option>')
                     });
+                    if(!data) {
+                        $("#jalur_masuk").append('<option disabled>Tidak ada gelombang pendaftaran yang terbuka.</option>')
+                    }
                 }
             });
         });

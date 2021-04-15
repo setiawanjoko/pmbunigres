@@ -76,34 +76,40 @@ Route::middleware(['auth', 'verify', 'can:camaba'])->group(function(){
     });
 });
 
-Route::middleware(['auth', 'can:admin'])->prefix('/admin')->name('admin.')->group(function(){
-    Route::name('monitoring.')->prefix('/monitoring')->group(function(){
+Route::middleware(['auth', 'can:monitor,keuangan,kesehatan'])->prefix('/admin')->name('admin.')->group(function(){
+    Route::middleware(['can:monitor'])->name('monitoring.')->prefix('/monitoring')->group(function(){
         Route::name('pendaftar.')->prefix('/pendaftar')->group(function(){
             Route::get('/', [MonitoringPendaftarController::class, 'index'])->name('index');
             Route::get('/biodata/{id}', [MonitoringPendaftarController::class, 'biodata'])->name('biodata.index');
-            Route::get('/biodata/{id}/edit', [MonitoringPendaftarController::class, 'editBiodata'])->name('biodata.edit');
-            Route::put('/biodata/{id}', [MonitoringPendaftarController::class, 'updateBiodata'])->name('biodata.update');
             Route::get('/keluarga/{id}', [MonitoringPendaftarController::class, 'keluarga'])->name('keluarga.index');
-            Route::get('/keluarga/{id}/edit', [MonitoringPendaftarController::class, 'editKeluarga'])->name('keluarga.edit');
-            Route::put('/keluarga/{id}', [MonitoringPendaftarController::class, 'updateKeluarga'])->name('keluarga.update');
             Route::get('/berkas/{id}', [MonitoringPendaftarController::class, 'berkas'])->name('berkas.index');
-            Route::get('/berkas/{id}/edit', [MonitoringPendaftarController::class, 'editBerkas'])->name('berkas.edit');
-            Route::put('/berkas/{id}', [MonitoringPendaftarController::class, 'updateBerkas'])->name('berkas.update');
+
+            Route::middleware(['can:admin'])->group(function(){
+                Route::get('/biodata/{id}/edit', [MonitoringPendaftarController::class, 'editBiodata'])->name('biodata.edit');
+                Route::put('/biodata/{id}', [MonitoringPendaftarController::class, 'updateBiodata'])->name('biodata.update');
+                Route::get('/keluarga/{id}/edit', [MonitoringPendaftarController::class, 'editKeluarga'])->name('keluarga.edit');
+                Route::put('/keluarga/{id}', [MonitoringPendaftarController::class, 'updateKeluarga'])->name('keluarga.update');
+                Route::get('/berkas/{id}/edit', [MonitoringPendaftarController::class, 'editBerkas'])->name('berkas.edit');
+                Route::put('/berkas/{id}', [MonitoringPendaftarController::class, 'updateBerkas'])->name('berkas.update');
+            });
         });
     });
-    Route::resource('/gelombang', GelombangController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
-    Route::resource('/fakultas', FakultasController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
-    Route::resource('/jenjang', JenjangController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
-    Route::resource('/prodi', ProdiController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
-    Route::resource('/pengumuman', PengumumanController::class)->only(['index','create','store','destroy']);
-    Route::resource('/tes-kesehatan', AdminTesKesehatanController::class)->only(['index', 'store']);
-    Route::get('/tes-kesehatan/edit/{id}/{aksi}', [AdminTesKesehatanController::class, 'edit'])->name('tes-kesehatan.edit');
-    Route::resource('/tes-tpa', TesTPAController::class)->only(['index', 'store']);
-    Route::resource('/pendaftar', PendaftarController::class)->only(['index']);
+    Route::middleware(['can:kesehatan,monitor'])->name('tes-kesehatan.')->group(function(){
+        Route::get('/tes-kesehatan', [AdminTesKesehatanController::class, 'index'])->name('index');
+        Route::get('/tes-kesehatan/edit/{id}/{aksi}', [AdminTesKesehatanController::class, 'edit'])->name('edit')->middleware(['can:kesehatan']);
+    });
+    Route::middleware(['can:admin'])->group(function(){
+        Route::resource('/gelombang', GelombangController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
+        Route::resource('/fakultas', FakultasController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
+        Route::resource('/jenjang', JenjangController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
+        Route::resource('/prodi', ProdiController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
+        Route::resource('/pengumuman', PengumumanController::class)->only(['index','create','store','destroy']);
+        Route::resource('/tes-tpa', TesTPAController::class)->only(['index', 'store']);
 
-    Route::resource('/pengaturan-gelombang', PengaturanGelombangController::class)->only(['index', 'store', 'destroy']);
-    Route::get('/biaya/sunting', [PengaturanGelombangController::class, 'sunting'])->name('biaya.sunting');
-    Route::post('/biaya/sunting', [PengaturanGelombangController::class, 'suntingSimpan'])->name('biaya.sunting.update');
+        Route::resource('/pengaturan-gelombang', PengaturanGelombangController::class)->only(['index', 'store', 'destroy']);
+        Route::get('/biaya/sunting', [PengaturanGelombangController::class, 'sunting'])->name('biaya.sunting');
+        Route::post('/biaya/sunting', [PengaturanGelombangController::class, 'suntingSimpan'])->name('biaya.sunting.update');
+    });
 });
 
 Route::middleware(['auth', 'can:keuangan'])->prefix('/keuangan')->name('keuangan.')->group(function(){

@@ -239,7 +239,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-light btn-daftar">Sunting</button>
+
+                            @can('admin')
+                            <a href="{{ route('admin.monitoring.pendaftar.biodata.edit', $data->user_id) }}" class="btn btn-light btn-daftar">Sunting</a>
+                            @endcan
 
                             <div class="catatan">
                                 <strong>Catatan :</strong>

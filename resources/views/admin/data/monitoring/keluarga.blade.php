@@ -221,7 +221,9 @@
                                     </div>
                                 </div>
                             </div>
+                            @can('admin')
                             <a href="{{ route('admin.monitoring.pendaftar.keluarga.edit', $dataAyah->biodata->user_id) }}" class="btn btn-light btn-daftar">Sunting</a>
+                            @endcan
 
                             <div class="catatan">
                                 <strong>Catatan :</strong>

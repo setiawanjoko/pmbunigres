@@ -162,9 +162,12 @@
                                     </div>
                                 </div>
                             </div>
+
+                            @can('admin')
                             <div class="text-center m-3">
                                     <a href="{{ route('admin.monitoring.pendaftar.berkas.edit', $data->user_id) }}" class="btn btn-light btn-daftar">Sunting</a>
                             </div>
+                            @endcan
 
                             <div class="catatan">
                                 <strong>Catatan :</strong>

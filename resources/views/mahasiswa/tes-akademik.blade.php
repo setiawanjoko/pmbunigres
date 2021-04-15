@@ -41,7 +41,7 @@
                     </div>
                     <div class="col-md-6 right">
                         {{-- jika nilai tpa sudah masuk dan ((kelasnya butuh tes kesehatan dan dia sudah tes) atau (kelasnya gak butuh tes kesehatan)) --}}
-                        @if(!is_null($dataMoodle->nilai_tpa) && ((auth()->user()->tes_kesehatan_kelas && !auth()->user()->tes_kesehatan) || (!auth()->user()->tes_kesehatan_kelas)))
+                        @if(!is_null($dataMoodle->nilai_tpa) && ((auth()->user()->tes_kesehatan_kelas && auth()->user()->tes_kesehatan) || (!auth()->user()->tes_kesehatan_kelas)))
                             <div class="mb-3">
                                 <p class="h5 mb-4" style="font-family: 'Helvetica Neue', sans-serif;
                         font-style: normal;

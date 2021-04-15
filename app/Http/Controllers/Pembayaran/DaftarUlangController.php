@@ -131,7 +131,7 @@ class DaftarUlangController extends Controller
 
     public function nomorSurat(){
         $tahun = Carbon::today()->year;
-        $count = Pembayaran::where('kategori', 'daftar_ulang')->whereYear('created_at', $tahun)->count();
+        $count = Pembayaran::where('kategori', 'daftar_ulang')->whereNotNull('no_surat')->whereYear('created_at', $tahun)->count();
         $seq = substr(str_repeat(0, 3).$count + 1, - 3);
 
         return $seq . '/PAN-PMB/' . $tahun;

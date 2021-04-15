@@ -115,24 +115,12 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(Kelas::class, 'kelas_id', 'id');
     }
 
-    public function biayaRegistrasi() {
-        $biaya = Biaya::where([
-            ['kelas_id', $this->kelas_id],
-            ['gelombang_id', $this->gelombang_id],
-            ['jalur_masuk_id', $this->jalur_masuk_id],
-        ])->first();
-
-        return $biaya->biaya_registrasi;
-    }
-
-    public function biayaDaftarUlang() {
-        $biaya = Biaya::where([
-            ['kelas_id', $this->kelas_id],
-            ['gelombang_id', $this->gelombang_id],
-            ['jalur_masuk_id', $this->jalur_masuk_id],
-        ])->first();
-
-        return $biaya->total_daftar_ulang;
+    public function biaya() {
+        return $biaya = Biaya::where([
+                ['kelas_id', $this->kelas_id],
+                ['gelombang_id', $this->gelombang_id],
+                ['jalur_masuk_id', $this->jalur_masuk_id],
+            ])->first();
     }
 
     public function pembayaran() {

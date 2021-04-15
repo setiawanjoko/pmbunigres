@@ -41,7 +41,7 @@ class RegistrasiController extends Controller
             ['kategori', 'registrasi']
         ])->first();
         if(is_null($data)) {
-            $biaya = $user->biayaRegistrasi();
+            $biaya = $user->biaya();
             $token = getToken();
             $timestamp = gmdate("Y-m-d\TH:i:s.000\Z");
 

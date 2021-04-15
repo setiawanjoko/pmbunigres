@@ -87,17 +87,7 @@
     <section class="akademis-group">
         <div class="second-container">
                 <div class="wrapper-ak-group">
-                    @if (!Auth::check())
-                    <a class="link-item" href="{{ route('register') }}">
-                        <div class="ak-item">
-                            <img src="{{ asset('unigres/images/ic-document.svg') }}">
-                            <div class="ak-body">
-                                <p class="title-1">Pendaftaran</p>
-                                <p class="title-2">Mahasiswa Baru 2021</p>
-                            </div>
-                        </div>
-                    </a>
-                    @else
+                    @if (Auth::check())
                     <a class="link-item" href="{{ route('biodata.create') }}">
                         <div class="ak-item">
                             <img src="{{ asset('unigres/images/ic-document.svg') }}">

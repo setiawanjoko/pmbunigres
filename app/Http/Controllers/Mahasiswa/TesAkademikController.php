@@ -12,7 +12,7 @@ class TesAkademikController extends Controller
 {
     public function __construct(){
         $this->middleware(function ($request, $next) {
-            if(auth()->user()->progres != 'keluarga') {
+            if(auth()->user()->progres == 'registrasi' || auth()->user()->progres == 'biodata') {
                 return response()->redirectToRoute('berkas.create');
             }else{
                 return $next($request);

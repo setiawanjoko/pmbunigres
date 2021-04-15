@@ -42,10 +42,19 @@
                                 <td class="text-center">{{ ++$key . '.' }}</td>
                                 <td>{{ $pendaftar->prodi->jenjang->nama . ' ' . $pendaftar->prodi->nama }}</td>
                                 <td>{{ $pendaftar->nama }}</td>
-                                <td>@if($pendaftar->tes_kesehatan) Sudah @else Belum @endif</td>
+                                <td>
+                                    @if(is_null($pendaftar->tes_kesehatan_at))
+                                        <span class="badge bg-primary">Belum</span>
+                                    @elseif(!is_null($pendaftar->tes_kesehatan_at) && $pendaftar->tes_kesehatan)
+                                        <span class="badge bg-success">Lulus pada {{ date_format($pendaftar->tes_kesehatan_at, 'd-m-Y') }}</span>
+                                    @elseif(!is_null($pendaftar->tes_kesehatan_at) && !$pendaftar->tes_kesehatan)
+                                        <span class="badge bg-danger">Ditolak pada {{ date_format($pendaftar->tes_kesehatan_at, 'd-m-Y') }}</span>
+                                    @endif
+                                </td>
                                 <td class="text-center">
-                                    @if(!$pendaftar->tes_kesehatan)
-                                    <a href="{{ route('admin.tes-kesehatan.edit', $pendaftar->id) }}" class="btn btn-sm btn-warning"> Luluskan</a>
+                                    @if(is_null($pendaftar->tes_kesehatan_at))
+                                    <a href="{{ route('admin.tes-kesehatan.edit', [$pendaftar->id, 'terima']) }}" class="btn btn-sm btn-primary"> Luluskan</a>
+                                    <a href="{{ route('admin.tes-kesehatan.edit', [$pendaftar->id, 'tolak']) }}" class="btn btn-sm btn-warning"> Tolak</a>
                                     @endif
                                 </td>
                             </tr>

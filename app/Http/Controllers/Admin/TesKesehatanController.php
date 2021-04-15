@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class TesKesehatanController extends Controller
@@ -16,14 +17,15 @@ class TesKesehatanController extends Controller
         return response()->view('admin.data.tes-kesehatan', compact('data'));
     }
 
-    public function store(){
-        //
-    }
-
-    public function edit($id){
+    public function edit($id, $aksi){
         $data = User::find($id);
 
-        $data->tes_kesehatan = true;
+        $data->tes_kesehatan_at = Carbon::now('Asia/Jakarta');
+        if($aksi == 'tolak'){
+            $data->tes_kesehatan = false;
+        } else if($aksi == 'terima'){
+            $data->tes_kesehatan = true;
+        }
         $data->save();
 
         return $this->index();

@@ -30,6 +30,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'no_telepon',
         'tes_kesehatan',
+        'tes_kesehatan_at',
         'lulusan_unigres',
     ];
 
@@ -50,6 +51,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'tes_kesehatan_at' => 'datetime'
     ];
 
     public function prodi() {

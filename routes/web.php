@@ -96,7 +96,8 @@ Route::middleware(['auth', 'can:admin'])->prefix('/admin')->name('admin.')->grou
     Route::resource('/jenjang', JenjangController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
     Route::resource('/prodi', ProdiController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
     Route::resource('/pengumuman', PengumumanController::class)->only(['index','create','store','destroy']);
-    Route::resource('/tes-kesehatan', AdminTesKesehatanController::class)->only(['index', 'store', 'edit']);
+    Route::resource('/tes-kesehatan', AdminTesKesehatanController::class)->only(['index', 'store']);
+    Route::get('/tes-kesehatan/edit/{id}/{aksi}', [AdminTesKesehatanController::class, 'edit'])->name('tes-kesehatan.edit');
     Route::resource('/tes-tpa', TesTPAController::class)->only(['index', 'store']);
     Route::resource('/pendaftar', PendaftarController::class)->only(['index']);
 

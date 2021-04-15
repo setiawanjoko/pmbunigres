@@ -2,20 +2,50 @@
 
 @section('title', 'Tes Kesehatan')
 
+@section('nav-item')
+<li class="nav-item" role="presentation">
+    <a href="{{ route('biodata.create') }}" class="nav-link" type="button" aria-controls="pills-home1" aria-selected="true">
+        <div class="wp-ic">
+            <img src="{{ asset('unigres/images/data.svg') }}">
+        </div>
+        <span>Data Calon Mahasiswa</span>
+    </a>
+</li>
+<li class="nav-item">
+    <a href="{{ route('moodle') }}" class="nav-link active" type="button" aria-controls="pills-home1" aria-selected="true">
+        <div class="wp-ic">
+            <img src="{{ asset('unigres/images/data.svg') }}">
+        </div>
+        <span>Tes Online</span>
+    </a>
+</li>
+<li class="nav-item">
+    <a href="{{ route('home') }}" class="nav-link" type="button" aria-controls="pills-home1" aria-selected="true">
+        <div class="wp-ic">
+            <span>i</span>
+        </div>
+        <span>Informasi dan Pengumuman</span>
+    </a>
+</li>
+@endsection
+
 @section('content')
-    <div class="container-fluid dashboard-user">
-        <h4>Tes Online</h4>
-        <p>Anda perlu melakukan tes online berikut.</p>
-        <ul class="nav nav-pills mb-5 mx-auto">
-            <li class="nav-item " role="presentation">
-                <a class="nav-link" href="{{route('tes-online.akademik')}}" type="button">Tes Potensi Akademik</a>
-            </li>
-            @if(auth()->user()->tes_kesehatan_kelas)
+<div class="konfirmasi-pembayaran">
+    <div class="container">
+        <h4 class="title-konfirm1">Tes Online</h4>
+        <p class="title-konfirm2">Anda perlu melakukan tes online berikut.</p>
+        <div class="dashboard-user">
+            <ul class="nav nav-pills mb-5 mx-auto">
                 <li class="nav-item " role="presentation">
-                    <a class="nav-link active" href="{{route('tes-online.kesehatan')}}" type="button">Tes Kesehatan</a>
+                    <a class="nav-link" href="{{route('tes-online.akademik')}}" type="button">Tes Potensi Akademik</a>
                 </li>
-            @endif
-        </ul>
+                @if(auth()->user()->tes_kesehatan_kelas)
+                    <li class="nav-item " role="presentation">
+                        <a class="nav-link active" href="{{route('tes-online.kesehatan')}}" type="button">Tes Kesehatan</a>
+                    </li>
+                @endif
+            </ul>
+        </div>
         @if(session('status'))
             <div class="wrapper-info alert-{{ session('status') }}">
                 <img src="{{ asset('unigres/images/ic-i.svg') }}">
@@ -59,4 +89,5 @@
             </div>
         </div>
     </div>
+</div>
 @endsection

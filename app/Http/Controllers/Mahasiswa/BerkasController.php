@@ -86,7 +86,7 @@ class BerkasController extends Controller
                 ]);
             }
 
-            return response()->redirectToRoute('moodle');
+            return response()->redirectToRoute('tes-online.akademik');
         } catch (\Exception $e) {
             if(Storage::exists('public/' . $ijazahname)) Storage::delete('public/' . $ijazahname);
             if(Storage::exists('public/' . $ktpname)) Storage::delete('public/' . $ktpname);

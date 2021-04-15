@@ -18,7 +18,8 @@ class Pembayaran extends Model
         'keterangan',
         'expiredDate',
         'status',
-        'kategori'
+        'kategori',
+        'no_surat'
     ];
 
     protected $casts = [

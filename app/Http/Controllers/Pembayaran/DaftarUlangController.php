@@ -26,18 +26,16 @@ class DaftarUlangController extends Controller
                         $pembayaran->status = true;
                         $pembayaran->save();
 
-                        return response()->redirectToRoute('biodata.create');
+                        return response()->redirectToRoute('home');
                     }
                 }
-                if(!$user->kelas->biaya_registrasi && bypassPembayaran($user->id, true)) {
-                    return response()->redirectToRoute('biodata.create');
+                if(!$user->kelas->biaya_daftar_ulang && bypassPembayaran($user->id, true)) {
+                    return response()->redirectToRoute('home');
                 }
 
                 return $next($request);
-            } else if(!$user->tes_kesehatan && $user->prodi->tes_kesehatan) {
-                // tampilkan pesan tes kesehatan
             } else {
-                return response()->redirectToRoute('moodle');
+                return response()->redirectToRoute('tes-online.akademik');
             }
         });
     }

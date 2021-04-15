@@ -12,7 +12,7 @@
     </a>
 </li>
 <li class="nav-item">
-    <a href="{{ route('moodle') }}" class="nav-link active" type="button" aria-controls="pills-home1" aria-selected="true">
+    <a href="{{ route('tes-online.akademik') }}" class="nav-link active" type="button" aria-controls="pills-home1" aria-selected="true">
         <div class="wp-ic">
             <img src="{{ asset('unigres/images/data.svg') }}">
         </div>
@@ -34,18 +34,18 @@
     <div class="container">
         <h4 class="title-konfirm1">Tes Online</h4>
         <p class="title-konfirm2">Anda perlu melakukan tes online berikut.</p>
+        @if(auth()->user()->tes_kesehatan_kelas)
         <div class="dashboard-user">
             <ul class="nav nav-pills mb-5 mx-auto">
                 <li class="nav-item " role="presentation">
                     <a class="nav-link active" href="{{route('tes-online.akademik')}}" type="button">Tes Potensi Akademik</a>
                 </li>
-                @if(auth()->user()->tes_kesehatan_kelas)
                 <li class="nav-item " role="presentation">
                     <a class="nav-link" href="{{route('tes-online.kesehatan')}}" type="button">Tes Kesehatan</a>
                 </li>
-                @endif
             </ul>
         </div>
+        @endif
         @if(session('status'))
             <div class="wrapper-info alert-{{ session('status') }}">
                 <img src="{{ asset('unigres/images/ic-i.svg') }}">

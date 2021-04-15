@@ -12,7 +12,7 @@
     </a>
 </li>
 <li class="nav-item">
-    <a href="{{ route('moodle') }}" class="nav-link active" type="button" aria-controls="pills-home1" aria-selected="true">
+    <a href="{{ route('tes-online.akademik') }}" class="nav-link active" type="button" aria-controls="pills-home1" aria-selected="true">
         <div class="wp-ic">
             <img src="{{ asset('unigres/images/data.svg') }}">
         </div>

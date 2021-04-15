@@ -21,7 +21,7 @@ class RegistrasiController extends Controller
             $pembayaran = $user->pembayaranRegistrasi();
 
             if( !is_null($pembayaran)) {
-                if(checkBrivaStatus($pembayaran) || !$user->kelas()->biaya_registrasi) {
+                if(checkBrivaStatus($pembayaran) || !$user->kelas->biaya_registrasi) {
                     $pembayaran->status = true;
                     $pembayaran->save();
 

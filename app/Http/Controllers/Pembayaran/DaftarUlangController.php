@@ -22,7 +22,7 @@ class DaftarUlangController extends Controller
                 $pembayaran = $user->pembayaranDaftarUlang();
 
                 if (!is_null($pembayaran)) {
-                    if (checkBrivaStatus($pembayaran) || !$user->kelas()->biaya_daftar_ulang) {
+                    if (checkBrivaStatus($pembayaran) || !$user->kelas->biaya_daftar_ulang) {
                         $pembayaran->status = true;
                         $pembayaran->save();
 

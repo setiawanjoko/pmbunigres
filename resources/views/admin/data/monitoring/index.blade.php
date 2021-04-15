@@ -4,12 +4,16 @@
     <div class="container-fluid dashboard-user">
         <h4>Data Pendaftar</h4>
         <ul class="nav nav-pills mb-5 mx-auto">
-            <li class="nav-item ">
-                <a class="nav-link active" type="button">Pendaftar</a>
-            </li>
-            <li class="nav-item nav-prodi">
-                <a class="nav-link" href="{{ route('admin.tes-kesehatan.index') }}" type="button">Tes Kesehatan</a>
-            </li>
+            @can('monitor')
+                <li class="nav-item ">
+                    <a class="nav-link @if(strpos(Route::currentRouteName(), 'admin.monitoring') == 0 ) active @endif" href="{{ route('admin.monitoring.pendaftar.index') }}" type="button">Pendaftar</a>
+                </li>
+            @endcan
+            @can('kesehatan')
+                <li class="nav-item nav-prodi">
+                    <a class="nav-link @if(strpos(Route::currentRouteName(), 'admin.tes-kesehatan') == 0) active @endif" href="{{ route('admin.tes-kesehatan.index') }}" type="button">Tes Kesehatan</a>
+                </li>
+            @endcan
         </ul>
         @if(session('status'))
             <div class="col-12">

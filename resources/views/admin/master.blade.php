@@ -5,18 +5,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    
+
     {{-- <link href="http://fonts.cdnfonts.com/css/helvetica-neue-9" rel="stylesheet"> --}}
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
-    
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap5.min.css" rel="stylesheet">
-    
+
     <link href="{{ asset('unigres/css/main.css') }}" rel="stylesheet" />
     <link href="{{ asset('unigres/css/responsive.css') }}" rel="stylesheet" />
-    
+
     @yield('css')
 
     <title>Unigres</title>
@@ -56,30 +56,34 @@
 <main class="dashboard">
     <div class="wrapper-dashboard-nav">
         <ul class="dashboard-top nav nav-pill" id="pills-tab1" role="tablist">
-            <li class="nav-item" role="presentation">
-                <a href="{{ route('admin.tes-kesehatan.index') }}" class="nav-link" type="button" aria-controls="pills-home1" aria-selected="true">
-                    <div class="wp-ic">
-                        <img src="{{ asset('unigres/images/data.svg') }}">
-                    </div>
-                    <span>Data PMB</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('admin.jenjang.index') }}" class="nav-link" type="button" aria-controls="pills-home1" aria-selected="true">
-                    <div class="wp-ic">
-                        <img src="{{ asset('unigres/images/data.svg') }}">
-                    </div>
-                    <span>Data Master</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('admin.tes-tpa.index') }}" class="nav-link" type="button" aria-controls="pills-home1" aria-selected="true">
-                    <div class="wp-ic">
-                        <span>P</span>
-                    </div>
-                    <span>Pengaturan</span>
-                </a>
-            </li>
+            @canany(['monitor', 'kesehatan'])
+                <li class="nav-item" role="presentation">
+                    <a href="@can('monitor') {{ route('admin.monitoring.pendaftar.index') }} @elsecan('kesehatan') {{ route('admin.tes-kesehatan.index') }} @endcan" class="nav-link @if(strpos(Route::currentRouteName(), 'admin.monitoring') == 0 || strpos(Route::currentRouteName(), 'admin.tes-kesehatan') == 0) active @endif" type="button" aria-controls="pills-home1" aria-selected="true">
+                        <div class="wp-ic">
+                            <img src="{{ asset('unigres/images/data.svg') }}">
+                        </div>
+                        <span>Data PMB</span>
+                    </a>
+                </li>
+            @endcan
+            @can('admin')
+                <li class="nav-item">
+                    <a href="{{ route('admin.jenjang.index') }}" class="nav-link" type="button" aria-controls="pills-home1" aria-selected="true">
+                        <div class="wp-ic">
+                            <img src="{{ asset('unigres/images/data.svg') }}">
+                        </div>
+                        <span>Data Master</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.tes-tpa.index') }}" class="nav-link" type="button" aria-controls="pills-home1" aria-selected="true">
+                        <div class="wp-ic">
+                            <span>P</span>
+                        </div>
+                        <span>Pengaturan</span>
+                    </a>
+                </li>
+            @endcan
         </ul>
     </div>
     @yield('content')

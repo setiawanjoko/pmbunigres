@@ -83,20 +83,11 @@
         </div>
     </section>
     @section('fill-content')
+    @can('camaba')
     <section class="akademis-group">
         <div class="second-container">
                 <div class="wrapper-ak-group">
-                    @if (!Auth::check())
-                    <a class="link-item" href="{{ route('register') }}">
-                        <div class="ak-item">
-                            <img src="{{ asset('unigres/images/ic-document.svg') }}">
-                            <div class="ak-body">
-                                <p class="title-1">Pendaftaran</p>
-                                <p class="title-2">Mahasiswa Baru 2021</p>
-                            </div>
-                        </div>
-                    </a>
-                    @else
+                    @if (Auth::check())
                     <a class="link-item" href="{{ route('biodata.create') }}">
                         <div class="ak-item">
                             <img src="{{ asset('unigres/images/ic-document.svg') }}">
@@ -127,7 +118,127 @@
                     </a>
                 </div>
             </div>
-        </section>
+        </section>    
+    @endcan
+    @if (!Auth::check())
+        <section class="akademis-group">
+            <div class="second-container">
+                <div class="wrapper-ak-group">
+                    <a class="link-item" href="{{ route('register') }}">
+                        <div class="ak-item">
+                            <img src="{{ asset('unigres/images/ic-document.svg') }}">
+                            <div class="ak-body">
+                                <p class="title-1">Pendaftaran</p>
+                                <p class="title-2">Mahasiswa Baru 2021</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a class="link-item" href="{{ route('home') }}">
+                        <div class="ak-item">
+                            <img src="{{ asset('unigres/images/ic-document.svg') }}">
+                            <div class="ak-body">
+                                <p class="title-1">Daftar Ulang</p>
+                                <p class="title-2">Mahasiswa Baru 2021</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a class="link-item" href="{{ route('moodle') }}">
+                        <div class="ak-item">
+                            <img src="{{ asset('unigres/images/ic-book.svg') }}">
+                            <div class="ak-body">
+                                <p class="title-1">Test Potensi Akademik</p>
+                                <p class="title-2">Mahasiswa Baru 2021</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>  
+    @else
+        @if (auth()->user()->permission_id == 1)
+        <section class="akademis-group">
+            <div class="second-container">
+                    <div class="wrapper-ak-group">
+                        <a class="link-item" href="{{ route('admin.monitoring.pendaftar.index') }}">
+                            <div class="ak-item">
+                                <img src="{{ asset('unigres/images/ic-document.svg') }}">
+                                <div class="ak-body">
+                                    <p class="title-1">Data Pendaftar</p>
+                                    <p class="title-2">Halaman Data Pendaftar PMB Unigres</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="link-item" href="{{ route('admin.jenjang.index') }}">
+                            <div class="ak-item">
+                                <img src="{{ asset('unigres/images/ic-document.svg') }}">
+                                <div class="ak-body">
+                                    <p class="title-1">Master</p>
+                                    <p class="title-2">Halaman Master</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="link-item" href="{{ route('admin.pengaturan-gelombang.index') }}">
+                            <div class="ak-item">
+                                <img src="{{ asset('unigres/images/ic-document.svg') }}">
+                                <div class="ak-body">
+                                    <p class="title-1">Data Biaya</p>
+                                    <p class="title-2">Halaman Data Biaya Registrasi & Daftar Ulang</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+        </section> 
+        @elseif (auth()->user()->permission_id == 3)
+        <section class="akademis-group">
+            <div class="second-container">
+                    <div class="wrapper-ak-group">
+                        <a class="link-item" href="{{ route('admin.monitoring.pendaftar.index') }}">
+                            <div class="ak-item">
+                                <img src="{{ asset('unigres/images/ic-document.svg') }}">
+                                <div class="ak-body">
+                                    <p class="title-1">Data Pendaftar</p>
+                                    <p class="title-2">Halaman Data Pendaftar PMB Unigres</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+        </section> 
+        @elseif (auth()->user()->permission_id == 4)
+        <section class="akademis-group">
+            <div class="second-container">
+                    <div class="wrapper-ak-group">
+                        <a class="link-item" href="{{ route('admin.pengaturan-gelombang.index') }}">
+                            <div class="ak-item">
+                                <img src="{{ asset('unigres/images/ic-document.svg') }}">
+                                <div class="ak-body">
+                                    <p class="title-1">Data Biaya</p>
+                                    <p class="title-2">Halaman Data Biaya Registrasi & Daftar Ulang</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+        </section> 
+        @elseif (auth()->user()->permission_id == 5)
+        <section class="akademis-group">
+            <div class="second-container">
+                    <div class="wrapper-ak-group">
+                        <a class="link-item" href="{{ route('admin.tes-kesehatan.index') }}">
+                            <div class="ak-item">
+                                <img src="{{ asset('unigres/images/ic-document.svg') }}">
+                                <div class="ak-body">
+                                    <p class="title-1">Data Tes Kesehatan</p>
+                                    <p class="title-2">Halaman Data Calon Mahasiswa dan Mahasiswi</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+        </section> 
+        @endif
+    @endif
     @show
 
     @yield('content')

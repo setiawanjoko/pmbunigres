@@ -9,9 +9,13 @@ use Illuminate\Http\Request;
 class TesKesehatanController extends Controller
 {
     public function index() {
-        $data = User::whereHas('prodi', function($query){
+        /*$data = User::whereHas('prodi', function($query){
             return $query->where('tes_kesehatan', true);
-        })->get();
+        })->get();*/
+
+        $data = User::all()->filter(function($user){
+            return $user->tes_kesehatan_kelas;
+        });
 
         return response()->view('admin.data.tes-kesehatan', compact('data'));
     }

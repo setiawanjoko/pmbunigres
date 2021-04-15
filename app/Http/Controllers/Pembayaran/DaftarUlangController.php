@@ -18,10 +18,11 @@ class DaftarUlangController extends Controller
         $this->middleware(function ($request, $next) {
             $user = auth()->user();
             if(!is_null($user->moodleAccount->nilai_tpa)) {
+
                 $pembayaran = $user->pembayaranDaftarUlang();
 
                 if (!is_null($pembayaran)) {
-                    if (checkBrivaStatus($pembayaran)) {
+                    if (checkBrivaStatus($pembayaran) || !$user->kelas()->biaya_daftar_ulang) {
                         $pembayaran->status = true;
                         $pembayaran->save();
 

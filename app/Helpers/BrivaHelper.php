@@ -70,3 +70,33 @@ function nomorSurat(){
 
     return $seq . '/PAN-PMB/' . $tahun;
 }
+
+function bypassPembayaran($userId, $kategori = false){
+    // kategori false = registrasi, true = daftar ulang
+    $kategori = ($kategori) ? 'daftar_ulang' : 'kategori';
+
+    $pembayaran = Pembayaran::where([
+        ['user_id', $userId],
+        ['kategori', $kategori]
+    ])->first();
+
+    try {
+        if(is_null($pembayaran)){
+            Pembayaran::create([
+                'user_id' => $userId,
+                'kategori' => $kategori,
+                'custCode' => '000000',
+                'amount' => '0',
+                'expired_date' => Carbon::today(),
+                'status' => 1
+            ]);
+        } else{
+            $pembayaran->status = 1;
+            $pembayaran->save();
+        }
+
+        return true;
+    }catch (\Exception $e){
+        return false;
+    }
+}

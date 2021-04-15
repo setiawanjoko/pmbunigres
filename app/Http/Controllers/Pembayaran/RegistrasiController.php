@@ -17,10 +17,11 @@ class RegistrasiController extends Controller
     {
         $this->middleware(function ($request, $next) {
             $user = auth()->user();
+
             $pembayaran = $user->pembayaranRegistrasi();
 
-            if( !is_null($pembayaran) ) {
-                if(checkBrivaStatus($pembayaran)) {
+            if( !is_null($pembayaran)) {
+                if(checkBrivaStatus($pembayaran) || !$user->kelas()->biaya_registrasi) {
                     $pembayaran->status = true;
                     $pembayaran->save();
 

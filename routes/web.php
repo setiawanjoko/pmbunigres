@@ -76,7 +76,7 @@ Route::middleware(['auth', 'verify', 'can:camaba'])->group(function(){
     });
 });
 
-Route::middleware(['auth', 'can:monitor,keuangan,kesehatan'])->prefix('/admin')->name('admin.')->group(function(){
+Route::prefix('/admin')->name('admin.')->group(function(){
     Route::middleware(['can:monitor'])->name('monitoring.')->prefix('/monitoring')->group(function(){
         Route::name('pendaftar.')->prefix('/pendaftar')->group(function(){
             Route::get('/', [MonitoringPendaftarController::class, 'index'])->name('index');
@@ -94,9 +94,9 @@ Route::middleware(['auth', 'can:monitor,keuangan,kesehatan'])->prefix('/admin')-
             });
         });
     });
-    Route::middleware(['can:kesehatan,monitor'])->name('tes-kesehatan.')->group(function(){
+    Route::middleware(['can:kesehatan'])->name('tes-kesehatan.')->group(function(){
         Route::get('/tes-kesehatan', [AdminTesKesehatanController::class, 'index'])->name('index');
-        Route::get('/tes-kesehatan/edit/{id}/{aksi}', [AdminTesKesehatanController::class, 'edit'])->name('edit')->middleware(['can:kesehatan']);
+        Route::get('/tes-kesehatan/edit/{id}/{aksi}', [AdminTesKesehatanController::class, 'edit'])->name('edit');
     });
     Route::middleware(['can:admin'])->group(function(){
         Route::resource('/gelombang', GelombangController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);

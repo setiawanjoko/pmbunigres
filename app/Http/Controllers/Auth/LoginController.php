@@ -32,9 +32,11 @@ class LoginController extends Controller
     public function redirectPath(): string
     {
         $user = Auth::user();
-        if($user->can('admin')) return '/admin/tes-tpa';
+        if($user->can('admin')) return '/admin/monitoring/pendaftar/';
         else if($user->can('camaba')) return '/biodata';
         else if($user->can('keuangan')) return '/keuangan/check-status';
+        else if($user->can('monitor')) return '/admin/monitoring/pendaftar/';
+        else if($user->can('kesehatan')) return '/admin/tes-kesehatan';
     }
 
     /**

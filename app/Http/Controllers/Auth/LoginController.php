@@ -34,7 +34,7 @@ class LoginController extends Controller
         $user = Auth::user();
         if($user->can('admin')) return '/admin/monitoring/pendaftar/';
         else if($user->can('camaba')) return '/biodata';
-        else if($user->can('keuangan')) return '/keuangan/check-status';
+        else if($user->can('keuangan')) return '/admin/pengaturan-gelombang';
         else if($user->can('monitor')) return '/admin/monitoring/pendaftar/';
         else if($user->can('kesehatan')) return '/admin/tes-kesehatan';
     }

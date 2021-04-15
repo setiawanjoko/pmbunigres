@@ -40,7 +40,8 @@
                         <p class="catatan2">Jika link tidak merespon lakukan refresh website, atau tunggu hingga sampai link sudah aktif. Lalu segera lakukan tes potensi akademik.</p>
                     </div>
                     <div class="col-md-6 right">
-                        @if(!is_null($dataMoodle->nilai_tpa) && (auth()->user()->tes_kesehatan_kelas && auth()->user()->tes_kesehatan))
+                        {{-- jika nilai tpa sudah masuk dan ((kelasnya butuh tes kesehatan dan dia sudah tes) atau (kelasnya gak butuh tes kesehatan)) --}}
+                        @if(!is_null($dataMoodle->nilai_tpa) && ((auth()->user()->tes_kesehatan_kelas && !auth()->user()->tes_kesehatan) || (!auth()->user()->tes_kesehatan_kelas)))
                             <div class="mb-3">
                                 <p class="h5 mb-4" style="font-family: 'Helvetica Neue', sans-serif;
                         font-style: normal;
@@ -58,6 +59,7 @@
                         letter-spacing: 0.02em;
                         color: #000000;">Untuk langkah selanjutnya, silahkan menuju halaman <strong>Informasi dan Pengumuman </strong> untuk informasi Daftar Ulang atau <a href="{{ route('home') }}">Klik Disini!</a>.</p>
                             </div>
+                        {{-- jika nilai tpa sudah masuk dan (kelasnya butuh tes kesehatan dan dia belum tes) --}}
                         @elseif(!is_null($dataMoodle->nilai_tpa) && (auth()->user()->tes_kesehatan_kelas && !auth()->user()->tes_kesehatan))
                             <div class="mb-3">
                                 <p class="h5 mb-4" style="font-family: 'Helvetica Neue', sans-serif;

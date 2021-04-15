@@ -25,7 +25,9 @@ class KelasSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
                 'tes_kesehatan' => 0,
-                'keterangan_tes_kesehatan' => null
+                'keterangan_tes_kesehatan' => null,
+                'biaya_registrasi' => 1,
+                'biaya_daftar_ulang' => 1
             ],
             [ // #2
                 'prodi_id' => 1,
@@ -34,7 +36,9 @@ class KelasSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
                 'tes_kesehatan' => 0,
-                'keterangan_tes_kesehatan' => null
+                'keterangan_tes_kesehatan' => null,
+                'biaya_registrasi' => 1,
+                'biaya_daftar_ulang' => 1
             ],
 
             // Manajemen
@@ -45,7 +49,9 @@ class KelasSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
                 'tes_kesehatan' => 0,
-                'keterangan_tes_kesehatan' => null
+                'keterangan_tes_kesehatan' => null,
+                'biaya_registrasi' => 1,
+                'biaya_daftar_ulang' => 1
             ],
 
             // Akuntansi
@@ -56,7 +62,9 @@ class KelasSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
                 'tes_kesehatan' => 0,
-                'keterangan_tes_kesehatan' => null
+                'keterangan_tes_kesehatan' => null,
+                'biaya_registrasi' => 1,
+                'biaya_daftar_ulang' => 1
             ],
 
             // Teknik Mesin
@@ -67,7 +75,9 @@ class KelasSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
                 'tes_kesehatan' => 0,
-                'keterangan_tes_kesehatan' => null
+                'keterangan_tes_kesehatan' => null,
+                'biaya_registrasi' => 1,
+                'biaya_daftar_ulang' => 1
             ],
             [ // #6
                 'prodi_id' => 4,
@@ -76,7 +86,9 @@ class KelasSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
                 'tes_kesehatan' => 0,
-                'keterangan_tes_kesehatan' => null
+                'keterangan_tes_kesehatan' => null,
+                'biaya_registrasi' => 1,
+                'biaya_daftar_ulang' => 1
             ],
 
             // Teknik Sipil
@@ -87,7 +99,9 @@ class KelasSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
                 'tes_kesehatan' => 0,
-                'keterangan_tes_kesehatan' => null
+                'keterangan_tes_kesehatan' => null,
+                'biaya_registrasi' => 1,
+                'biaya_daftar_ulang' => 1
             ],
             [ // #8
                 'prodi_id' => 5,
@@ -96,7 +110,9 @@ class KelasSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
                 'tes_kesehatan' => 0,
-                'keterangan_tes_kesehatan' => null
+                'keterangan_tes_kesehatan' => null,
+                'biaya_registrasi' => 1,
+                'biaya_daftar_ulang' => 1
             ],
 
             // Administrasi Pendidikan
@@ -107,7 +123,9 @@ class KelasSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
                 'tes_kesehatan' => 0,
-                'keterangan_tes_kesehatan' => null
+                'keterangan_tes_kesehatan' => null,
+                'biaya_registrasi' => 1,
+                'biaya_daftar_ulang' => 1
             ],
 
             // Sastra Inggris
@@ -118,7 +136,9 @@ class KelasSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
                 'tes_kesehatan' => 0,
-                'keterangan_tes_kesehatan' => null
+                'keterangan_tes_kesehatan' => null,
+                'biaya_registrasi' => 1,
+                'biaya_daftar_ulang' => 1
             ],
 
             // Ilmu Keperawatan
@@ -129,7 +149,9 @@ class KelasSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
                 'tes_kesehatan' => 1,
-                'keterangan_tes_kesehatan' => 'No WA 085648570837 Ibu Umah'
+                'keterangan_tes_kesehatan' => 'No WA 085648570837 Ibu Umah',
+                'biaya_registrasi' => 1,
+                'biaya_daftar_ulang' => 1
             ],
             [ // #12
                 'prodi_id' => 8,
@@ -138,7 +160,9 @@ class KelasSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
                 'tes_kesehatan' => 0,
-                'keterangan_tes_kesehatan' => null
+                'keterangan_tes_kesehatan' => null,
+                'biaya_registrasi' => 1,
+                'biaya_daftar_ulang' => 1
             ],
 
             // Profesi NERS
@@ -149,7 +173,9 @@ class KelasSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
                 'tes_kesehatan' => 0,
-                'keterangan_tes_kesehatan' => null
+                'keterangan_tes_kesehatan' => null,
+                'biaya_registrasi' => 1,
+                'biaya_daftar_ulang' => 1
             ],
             [ // #14
                 'prodi_id' => 9,
@@ -158,7 +184,9 @@ class KelasSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
                 'tes_kesehatan' => 0,
-                'keterangan_tes_kesehatan' => null
+                'keterangan_tes_kesehatan' => null,
+                'biaya_registrasi' => 1,
+                'biaya_daftar_ulang' => 1
             ],
             [ // #15
                 'prodi_id' => 9,
@@ -167,7 +195,9 @@ class KelasSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
                 'tes_kesehatan' => 0,
-                'keterangan_tes_kesehatan' => null
+                'keterangan_tes_kesehatan' => null,
+                'biaya_registrasi' => 1,
+                'biaya_daftar_ulang' => 1
             ],
 
             // Manajemen Pendidikan
@@ -178,7 +208,9 @@ class KelasSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
                 'tes_kesehatan' => 0,
-                'keterangan_tes_kesehatan' => null
+                'keterangan_tes_kesehatan' => null,
+                'biaya_registrasi' => 1,
+                'biaya_daftar_ulang' => 1
             ],
             [ // #17
                 'prodi_id' => 10,
@@ -187,7 +219,9 @@ class KelasSeeder extends Seeder
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
                 'tes_kesehatan' => 0,
-                'keterangan_tes_kesehatan' => null
+                'keterangan_tes_kesehatan' => null,
+                'biaya_registrasi' => 0,
+                'biaya_daftar_ulang' => 0
             ],
         ];
 

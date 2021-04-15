@@ -12,7 +12,7 @@ class SklController extends Controller
         $biodata = auth()->user()->biodata;
         $prodi = auth()->user()->prodi;
         $gelombang = auth()->user()->gelombang;
-        $biaya = auth()->user()->biayaDaftarUlang();
+        $biaya = auth()->user()->biaya();
         Carbon::setLocale('id');
         $tanggal = Carbon::now()->format('d F Y');
         $pembayaran = auth()->user()->pembayaranDaftarUlang();

@@ -15,11 +15,35 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
-            'permission_id'=>1,
-            'nama'=>'admin',
-            'email'=>'admin@localhost',
-            'email_verified_at'=>Carbon::now(),
-            'password'=>bcrypt('password')]);
+        User::create(
+            [
+                'permission_id'=>1,
+                'nama'=>'admin',
+                'email'=>'admin@localhost',
+                'email_verified_at'=>Carbon::now(),
+                'password'=>bcrypt('password')
+            ],
+            [
+                'permission_id'=>3,
+                'nama'=>'Monitor',
+                'email'=>'monitor@localhost',
+                'email_verified_at'=>Carbon::now(),
+                'password'=>bcrypt('password')
+            ],
+            [
+                'permission_id'=>4,
+                'nama'=>'Keuangan',
+                'email'=>'keuangan@localhost',
+                'email_verified_at'=>Carbon::now(),
+                'password'=>bcrypt('password')
+            ],
+            [
+                'permission_id'=>5,
+                'nama'=>'Kesehatan',
+                'email'=>'kesehatan@localhost',
+                'email_verified_at'=>Carbon::now(),
+                'password'=>bcrypt('password')
+            ]
+        );
     }
 }

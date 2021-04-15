@@ -22,6 +22,9 @@ class PaidRegistration
         $pembayaran = $user->pembayaranRegistrasi();
 
         if(is_null($pembayaran) ) {
+            if(!$user->kelas->biaya_registrasi && bypassPembayaran($user->id, false)) {
+                return response()->redirectToRoute('biodata.create');
+            }
             return response()->redirectToRoute('instruksi-bayar');
         } else if(!$pembayaran->status) {
             if(checkBrivaStatus($pembayaran)) {

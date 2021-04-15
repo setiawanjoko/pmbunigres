@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Monitoring;
 use App\Http\Controllers\Controller;
 use App\Models\Berkas;
 use App\Models\Biodata;
+use App\Models\Prodi;
 use App\Models\User;
 use App\Models\Wali;
 use Carbon\Carbon;
@@ -17,9 +18,16 @@ use Illuminate\Validation\Rule;
 
 class PendaftarController extends Controller
 {
-    public function index(): Response
+    public function index($filter = null): Response
     {
-        $data = User::with(['prodi'])->where('permission_id', 2)->get();
+        if(is_null($filter)){
+            $data = User::with(['prodi'])->where('permission_id', 2)->get();
+        } else {
+            $data = User::with(['prodi'])->where([
+                ['permission_id', 2],
+                ['prodi_id', $filter]
+            ])->get();
+        }
         $pendaftarHariIni = User::with(['prodi'])->where('permission_id', 2)->whereDate('created_at', Carbon::today()->toDateString())->count();
         $tesOnline = User::with(['prodi'])->where('permission_id', 2)->get()
             ->filter(function($item) {
@@ -29,8 +37,17 @@ class PendaftarController extends Controller
             ->filter(function($item) {
                 return $item->progres === 'daftar ulang';
             })->count();
+        $dataProdi = Prodi::all();
 
-        return response()->view('admin.data.monitoring.index', compact('data', 'pendaftarHariIni', 'tesOnline', 'daftarUlang'));
+        return response()->view('admin.data.monitoring.index', compact('data', 'pendaftarHariIni', 'tesOnline', 'daftarUlang', 'dataProdi'));
+    }
+
+    public function filter(Request $request){
+        $data = $request->validate([
+            'prodi' => 'required|exists:prodi,id'
+        ]);
+
+        return $this->index($data['prodi']);
     }
 
     public function biodata($id): Response

@@ -80,6 +80,7 @@ Route::prefix('/admin')->name('admin.')->group(function(){
     Route::middleware(['can:monitor'])->name('monitoring.')->prefix('/monitoring')->group(function(){
         Route::name('pendaftar.')->prefix('/pendaftar')->group(function(){
             Route::get('/', [MonitoringPendaftarController::class, 'index'])->name('index');
+            Route::post('/', [MonitoringPendaftarController::class, 'filter'])->name('filter');
             Route::get('/biodata/{id}', [MonitoringPendaftarController::class, 'biodata'])->name('biodata.index');
             Route::get('/keluarga/{id}', [MonitoringPendaftarController::class, 'keluarga'])->name('keluarga.index');
             Route::get('/berkas/{id}', [MonitoringPendaftarController::class, 'berkas'])->name('berkas.index');

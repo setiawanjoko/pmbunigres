@@ -6,12 +6,12 @@
         <ul class="nav nav-pills mb-5 mx-auto">
             @can('monitor')
                 <li class="nav-item ">
-                    <a class="nav-link @if(strpos(Route::currentRouteName(), 'admin.monitoring') == 0 ) active @endif" href="{{ route('admin.monitoring.pendaftar.index') }}" type="button">Pendaftar</a>
+                    <a class="nav-link @if(str_contains(Route::currentRouteName(), 'admin.monitoring.pendaftar')) active @endif" href="{{ route('admin.monitoring.pendaftar.index') }}" type="button">Pendaftar</a>
                 </li>
             @endcan
             @can('kesehatan')
                 <li class="nav-item nav-prodi">
-                    <a class="nav-link @if(strpos(Route::currentRouteName(), 'admin.tes-kesehatan') == 0) active @endif" href="{{ route('admin.tes-kesehatan.index') }}" type="button">Tes Kesehatan</a>
+                    <a class="nav-link @if(str_contains(Route::currentRouteName(), 'admin.tes-kesehatan')) active @endif" href="{{ route('admin.tes-kesehatan.index') }}" type="button">Tes Kesehatan</a>
                 </li>
             @endcan
         </ul>
@@ -63,6 +63,29 @@
                     </div>
                 </div>
                 <h4>Data Pendaftar</h4>
+                <div class="row mb-2">
+                    <div class="col">
+                        <form method="post" action="{{ route('admin.monitoring.pendaftar.filter') }}">
+                            @csrf
+                            <div class="row g-3">
+                                <div class="col-3">
+                                    <label for="prodi" class="col-form-label-sm">Program Studi</label>
+                                </div>
+                                <div class="col-6">
+                                    <select name="prodi" id="prodi" class="col form-control form-control-sm @error('prodi') is-invalid @enderror" required>
+                                        @foreach($dataProdi as $key => $prodi)
+                                            <option value="{{ $prodi->id }}">{{ $prodi->jenjang->nama . ' ' . $prodi->nama }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-3">
+                                    <button type="submit" class="btn btn-sm btn-primary">Filter</button>
+                                    <a href="{{ route('admin.monitoring.pendaftar.index') }}" class="btn btn-sm btn-warning">Hapus Filter</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
                 <table id="tabel-data" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <th>#</th>

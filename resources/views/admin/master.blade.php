@@ -66,6 +66,16 @@
                     </a>
                 </li>
             @endcan
+            @can('keuangan')
+            <li class="nav-item" role="presentation">
+                <a href="@can('monitor') {{ route('admin.monitoring.pendaftar.index') }} @elsecan('kesehatan') {{ route('admin.tes-kesehatan.index') }} @endcan" class="nav-link @if(strpos(Route::currentRouteName(), 'admin.monitoring') == 0 || strpos(Route::currentRouteName(), 'admin.tes-kesehatan') == 0) active @endif" type="button" aria-controls="pills-home1" aria-selected="true">
+                    <div class="wp-ic">
+                        <img src="{{ asset('unigres/images/data.svg') }}">
+                    </div>
+                    <span>Data Biaya</span>
+                </a>
+            </li>
+            @endcan
             @can('admin')
                 <li class="nav-item">
                     <a href="{{ route('admin.jenjang.index') }}" class="nav-link" type="button" aria-controls="pills-home1" aria-selected="true">

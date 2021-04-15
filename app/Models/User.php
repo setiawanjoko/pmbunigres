@@ -24,6 +24,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'jalur_masuk_id',
         'jam_masuk_id',
         'gelombang_id',
+        'kelas_id',
         'nama',
         'email',
         'password',
@@ -111,60 +112,27 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function kelas() {
-        $jamMasuk = $this->jam_masuk_id;
-        $jalurMasuk = $this->jalur_masuk_id;
-        $gelombang = $this->gelombang_id;
-        $kelas = Kelas::where([
-            ['prodi_id', $this->prodi_id],
-            ['lulusan_unigres', $this->lulusan_unigres]
-        ])
-            ->whereHas('jamMasuk', function ($query) use($jamMasuk){
-                return $query->where('jam_masuks.id', $jamMasuk);
-            })->first();
-
-        return $kelas;
+        return $this->belongsTo(Kelas::class, 'kelas_id', 'id');
     }
 
     public function biayaRegistrasi() {
-        $jamMasuk = $this->jam_masuk_id;
-        $jalurMasuk = $this->jalur_masuk_id;
-        $gelombang = $this->gelombang_id;
-        $kelas = Kelas::where([
-            ['prodi_id', $this->prodi_id],
-            ['lulusan_unigres', $this->lulusan_unigres]
-        ])
-            ->whereHas('jamMasuk', function ($query) use($jamMasuk){
-                return $query->where('jam_masuks.id', $jamMasuk);
-            })->first();
+        $biaya = Biaya::where([
+            ['kelas_id', $this->kelas_id],
+            ['gelombang_id', $this->gelombang_id],
+            ['jalur_masuk_id', $this->jalur_masuk_id],
+        ])->first();
 
-        return Biaya::where([
-            ['kelas_id', $kelas->id],
-            ['gelombang_id', $gelombang]
-        ])
-            ->whereHas('jalurMasuk', function($query) use($jalurMasuk){
-                return $query->where('jalur_masuk.id', $jalurMasuk);
-            })->first();
+        return $biaya->biaya_registrasi;
     }
 
     public function biayaDaftarUlang() {
-        $jamMasuk = $this->jam_masuk_id;
-        $jalurMasuk = $this->jalur_masuk_id;
-        $gelombang = $this->gelombang_id;
-        $kelas = Kelas::where([
-            ['prodi_id', $this->prodi_id],
-            ['lulusan_unigres', $this->lulusan_unigres]
-        ])
-            ->whereHas('jamMasuk', function ($query) use($jamMasuk){
-                return $query->where('jam_masuks.id', $jamMasuk);
-            })->first();
+        $biaya = Biaya::where([
+            ['kelas_id', $this->kelas_id],
+            ['gelombang_id', $this->gelombang_id],
+            ['jalur_masuk_id', $this->jalur_masuk_id],
+        ])->first();
 
-        return Biaya::where([
-            ['kelas_id', $kelas->id],
-            ['gelombang_id', $gelombang]
-        ])
-            ->whereHas('jalurMasuk', function($query) use($jalurMasuk){
-                return $query->where('jalur_masuk.id', $jalurMasuk);
-            })->first();
+        return $biaya->total_daftar_ulang;
     }
 
     public function pembayaran() {
@@ -222,8 +190,6 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function getTesKesehatanKelasAttribute(){
-        $kelas = $this->kelas();
-
-        return $kelas->tes_kesehatan;
+        return $this->kelas->tes_kesehatan;
     }
 }

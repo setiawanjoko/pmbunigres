@@ -68,12 +68,13 @@
                         @endif
                     </div>
                     <div class="col-lg-6">
-                        <select name="kelas" id="kelas" class="form-control @if($errors->has('kelas')) is-invalid @endif" required>
+                        <select name="jamMasuk" id="jamMasuk" class="form-control @if($errors->has('jamMasuk')) is-invalid @endif" required>
                             <option selected disabled>-- Silahkan Pilih Kelas --</option>
                         </select>
-                        @if($errors->has('kelas'))
+                        <input type="hidden" name="kelas" id="kelas">
+                        @if($errors->has('jamMasuk'))
                         <div class="invalid-feedback">
-                            {{ $errors->first('kelas') }}
+                            {{ $errors->first('jamMasuk') }}
                         </div>
                         @endif
                     </div>
@@ -181,9 +182,9 @@
                 type:'GET',
                 url:'getjammasuk/' + prodi + '/' + lulusan,
                 success:function(data){
-                    $("#kelas").find('option').remove().end().append('<option selected disabled>-- Silahkan Pilih Kelas --</option>');
+                    $("#jamMasuk").find('option').remove().end().append('<option selected disabled>-- Silahkan Pilih Kelas --</option>');
                     $.each(data, function(){
-                        $("#kelas").append('<option  value="'+ this.jam_masuk_id +'" data-kelas="'+ this.id +'">'+ this.kelas + ' ' + ucwords(this.jam_masuk) +'</option>')
+                        $("#jamMasuk").append('<option  value="'+ this.jam_masuk_id +'" data-kelas="'+ this.id +'">'+ this.kelas + ' ' + ucwords(this.jam_masuk) +'</option>')
                     });
                 }
             });
@@ -197,24 +198,22 @@
                 type:'GET',
                 url:'getjammasuk/' + prodi + '/' + lulusan,
                 success:function(data){
-                    $("#kelas").find('option').remove().end().append('<option selected disabled>-- Silahkan Pilih Kelas --</option>');
+                    $("#jamMasuk").find('option').remove().end().append('<option selected disabled>-- Silahkan Pilih Kelas --</option>');
                     $.each(data, function(){
-                        $("#kelas").append('<option  value="'+ this.jam_masuk_id +'" data-kelas="'+ this.id +'">'+ this.kelas + ' ' + this.jam_masuk +'</option>')
+                        $("#jamMasuk").append('<option  value="'+ this.jam_masuk_id +'" data-kelas="'+ this.id +'">'+ this.kelas + ' ' + this.jam_masuk +'</option>')
                     });
                 }
             });
         });
 
-        $("#kelas").change(function () {
-            var kls = $("#kelas option:selected" ).attr('data-kelas');
-            var jam = $("#kelas option:selected" ).val();
-
-            console.log(kls);
-            console.log(jam);
+        $("#jamMasuk").change(function () {
+            var jam = $("#jamMasuk option:selected" );
+            let kls = $('#kelas');
+            kls.val(jam.attr('data-kelas'));
 
             $.ajax({
                 type:'GET',
-                url:'getjalurmasuk/' + kls,
+                url:'getjalurmasuk/' + kls.val(),
                 success:function(data){
                     $("#jalur_masuk").find('option').remove().end().append('<option selected disabled>-- Silahkan Pilih Jalur Masuk --</option>');
                     $.each(data, function(){

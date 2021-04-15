@@ -105,10 +105,11 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'no_telepon' => ['required', 'string'],
-            'kelas' => ['required', 'integer'],//Rule::in($jamMasukValidation)],
+            'jamMasuk' => ['required', 'exists:jam_masuk_kelas,id'],//Rule::in($jamMasukValidation)],
             'prodi' => ['required', 'exists:prodi,id'],
             'jalur_masuk' => ['required', 'integer'],//Rule::in($jalurMasukValidation)],
             'lulusan_unigres' => ['nullable', 'boolean'],
+            'kelas' => 'required|exists:kelas,id'
             ]);
         }
 
@@ -133,10 +134,11 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'no_telepon' => $data['no_telepon'],
-            'jam_masuk_id' => $data['kelas'],
+            'jam_masuk_id' => $data['jamMasuk'],
             'prodi_id' => $data['prodi'],
             'jalur_masuk_id' => $data['jalur_masuk'],
             'gelombang_id' => $gelombang->id,
+            'kelas_id' => $data['kelas'],
             'lulusan_unigres' => (empty($data['lulusan_unigres'])) ? 0 : $data['lulusan_unigres'] ,
         ]);
     }

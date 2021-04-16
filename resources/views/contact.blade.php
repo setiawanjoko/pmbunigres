@@ -19,7 +19,7 @@
 </li>
 @endsection
 
-@section('fill-content')    
+@section('fill-content')
 @endsection
 
 @section('content')
@@ -32,7 +32,7 @@
             <p><a style="font-weight: bold;
               text-decoration: solid;" href="https://www.google.com/search?safe=strict&amp;q=universitas+gresik+provinsi&amp;stick=H4sIAAAAAAAAAOPgE-LRT9c3zMg1zkrPTSnRkstOttLPyU9OLMnMz4MzrAqK8ssy85JTF7FKl-ZllqUWFWeWJBYrpBelFmdmK0BkizMBLzaNCU4AAAA&amp;sa=X&amp;ved=2ahUKEwjb64XP86nhAhUo73MBHZUmAUwQ6BMoADAVegQIFBAC">Provinsi</a>&nbsp;:&nbsp;Jawa Timur</p>
             <p><a style="font-weight: bold;
-              text-decoration: solid;" href="https://www.google.com/search?safe=strict&amp;q=universitas+gresik+telepon&amp;ludocid=1432422069902166228&amp;sa=X&amp;ved=2ahUKEwjb64XP86nhAhUo73MBHZUmAUwQ6BMwFnoECBMQAg">Telepon</a>&nbsp;:&nbsp;(031) 3981918</p>
+              text-decoration: solid;" href="https://www.google.com/search?safe=strict&amp;q=universitas+gresik+telepon&amp;ludocid=1432422069902166228&amp;sa=X&amp;ved=2ahUKEwjb64XP86nhAhUo73MBHZUmAUwQ6BMwFnoECBMQAg">Telepon</a>&nbsp;:&nbsp;081 230 798 700</p>
             <figure><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.648924589624!2d112.65056281477428!3d-7.1665213948256!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd8004662a078c7%3A0x13e0fc4884f2c8d4!2sUniversitas+Gresik!5e0!3m2!1sid!2sid!4v1521516613522" allowfullscreen="" width="100%" height="300"></iframe></figure>
         </div>
     </div>

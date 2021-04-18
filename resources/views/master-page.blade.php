@@ -118,7 +118,7 @@
                     </a>
                 </div>
             </div>
-        </section>    
+        </section>
     @endcan
     @if (!Auth::check())
         <section class="akademis-group">
@@ -153,7 +153,7 @@
                     </a>
                 </div>
             </div>
-        </section>  
+        </section>
     @else
         @if (auth()->user()->permission_id == 1)
         <section class="akademis-group">
@@ -188,7 +188,7 @@
                         </a>
                     </div>
                 </div>
-        </section> 
+        </section>
         @elseif (auth()->user()->permission_id == 3)
         <section class="akademis-group">
             <div class="second-container">
@@ -204,7 +204,7 @@
                         </a>
                     </div>
                 </div>
-        </section> 
+        </section>
         @elseif (auth()->user()->permission_id == 4)
         <section class="akademis-group">
             <div class="second-container">
@@ -220,7 +220,7 @@
                         </a>
                     </div>
                 </div>
-        </section> 
+        </section>
         @elseif (auth()->user()->permission_id == 5)
         <section class="akademis-group">
             <div class="second-container">
@@ -236,7 +236,7 @@
                         </a>
                     </div>
                 </div>
-        </section> 
+        </section>
         @endif
     @endif
     @show
@@ -247,6 +247,7 @@
             <li>Copyright © 2019 Universitas Gresik</li>
             <li>Jl. Arif Rahman Hakim 2B, Gresik</li>
             <li>Telp.(031) 3981918, 3978628</li>
+            <li>WA. 081 230 798 700</li>
         </ul>
     </footer>
 </main>

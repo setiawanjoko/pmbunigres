@@ -33,8 +33,7 @@ class KeuanganController extends Controller
 
             $res = Http::withHeaders([
                 'BRI-Signature' => $signature,
-                'BRI-Timestamp' => $timestamp,
-                'Content-Type' => 'application/json'
+                'BRI-Timestamp' => $timestamp
             ])->withToken($token)->get($url);
             $response = json_decode($res->body());
             if ($response->status && (isset($response->data) && $response->responseCode == '00')) {

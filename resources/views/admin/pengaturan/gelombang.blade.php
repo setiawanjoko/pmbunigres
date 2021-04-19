@@ -10,9 +10,9 @@
                 <li class="nav-item nav-prodi">
                     <a class="nav-link active" href="{{ route('admin.gelombang.index') }}" type="button">Gelombang</a>
                 </li>
-                <li class="nav-item nav-prodi">
+                {{--<li class="nav-item nav-prodi">
                     <a class="nav-link" href="{{ route('admin.pengaturan-gelombang.index') }}" type="button">Biaya</a>
-                </li>
+                </li>--}}
             </ul>
             <div class="tab-content">
                 <div class="container data-calon-mhs tab-pane fade show active" id="pills-home" role="tabpanel"

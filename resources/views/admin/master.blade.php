@@ -58,7 +58,7 @@
         <ul class="dashboard-top nav nav-pill" id="pills-tab1" role="tablist">
             @canany(['monitor', 'kesehatan'])
                 <li class="nav-item" role="presentation">
-                    <a href="@can('monitor') {{ route('admin.monitoring.pendaftar.index') }} @elsecan('kesehatan') {{ route('admin.tes-kesehatan.index') }} @endcan" class="nav-link @if(strpos(Route::currentRouteName(), 'admin.monitoring') == 0 || strpos(Route::currentRouteName(), 'admin.tes-kesehatan') == 0) active @endif" type="button" aria-controls="pills-home1" aria-selected="true">
+                    <a href="@can('monitor') {{ route('admin.monitoring.pendaftar.index') }} @elsecan('kesehatan') {{ route('admin.tes-kesehatan.index') }} @endcan" class="nav-link @if(strpos(Route::currentRouteName(), 'admin.monitoring')|| strpos(Route::currentRouteName(), 'admin.tes-kesehatan')) active @endif" type="button" aria-controls="pills-home1" aria-selected="true">
                         <div class="wp-ic">
                             <img src="{{ asset('unigres/images/data.svg') }}">
                         </div>
@@ -68,7 +68,7 @@
             @endcan
             @can('keuangan')
             <li class="nav-item" role="presentation">
-                <a href="@can('monitor') {{ route('admin.monitoring.pendaftar.index') }} @elsecan('kesehatan') {{ route('admin.tes-kesehatan.index') }} @endcan" class="nav-link @if(strpos(Route::currentRouteName(), 'admin.monitoring') == 0 || strpos(Route::currentRouteName(), 'admin.tes-kesehatan') == 0) active @endif" type="button" aria-controls="pills-home1" aria-selected="true">
+                <a href="{{ route('admin.pengaturan-gelombang.index') }}" class="nav-link @if(strpos(Route::currentRouteName(), 'admin.peraturan-gelombang') ) active @endif" type="button" aria-controls="pills-home1" aria-selected="true">
                     <div class="wp-ic">
                         <img src="{{ asset('unigres/images/data.svg') }}">
                     </div>

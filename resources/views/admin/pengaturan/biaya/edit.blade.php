@@ -9,12 +9,12 @@
         <div class="container-fluid dashboard-user">
             <h4>Data Master</h4>
             <ul class="nav nav-pills mb-5 mx-auto">
-                <li class="nav-item ">
+                {{--<li class="nav-item ">
                     <a class="nav-link" href="{{ route('admin.tes-tpa.index') }}" type="button">Tes TPA</a>
                 </li>
                 <li class="nav-item nav-prodi">
                     <a class="nav-link" href="{{ route('admin.gelombang.index') }}" type="button">Gelombang</a>
-                </li>
+                </li>--}}
                 <li class="nav-item nav-prodi">
                     <a class="nav-link active" href="{{ route('admin.pengaturan-gelombang.index') }}" type="button">Biaya</a>
                 </li>

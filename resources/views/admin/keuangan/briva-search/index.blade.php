@@ -72,6 +72,16 @@
                                             </dd>
                                         </dl>
                                     </div>
+                                    @if($data->statusBayar == 'N')
+                                        <div class="card-footer">
+                                            <form action="{{ route('admin.keuangan.briva-search.confirm') }}" onsubmit="return confirm('Dengan menekan tombol OK, saya menyatakan pendaftar yang bersangkutan telah melakukan pembayaran atau mendapatkan pengecualian pembayaran.')" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <input type="hidden" name="briva" value="{{ $data->CustCode }}">
+                                                <button type="submit" class="btn btn-primary">Loloskan</button>
+                                            </form>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         @endisset

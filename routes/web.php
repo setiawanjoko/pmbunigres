@@ -120,6 +120,7 @@ Route::prefix('/admin')->name('admin.')->group(function(){
             Route::prefix('/briva')->name('briva-search.')->group(function(){
                 Route::get('/', [KeuanganController::class, 'brivaSearchIndex'])->name('index');
                 Route::post('/', [KeuanganController::class, 'brivaSearchShow'])->name('show');
+                Route::put('/', [KeuanganController::class, 'brivaConfirm'])->name('confirm');
             });
         });
     });

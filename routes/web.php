@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\GelombangController;
 use App\Http\Controllers\Admin\JenjangController;
 use App\Http\Controllers\Admin\FakultasController;
+use App\Http\Controllers\Admin\KeuanganController;
 use App\Http\Controllers\Admin\PendaftarController;
 use App\Http\Controllers\Admin\PengaturanGelombangController;
 use App\Http\Controllers\Admin\PengumumanController;
@@ -115,6 +116,12 @@ Route::prefix('/admin')->name('admin.')->group(function(){
         Route::resource('/pengaturan-gelombang', PengaturanGelombangController::class)->only(['index', 'store', 'destroy']);
         Route::get('/biaya/sunting', [PengaturanGelombangController::class, 'sunting'])->name('biaya.sunting');
         Route::post('/biaya/sunting', [PengaturanGelombangController::class, 'suntingSimpan'])->name('biaya.sunting.update');
+        Route::name('keuangan.')->group(function(){
+            Route::prefix('/briva')->name('briva-search.')->group(function(){
+                Route::get('/', [KeuanganController::class, 'brivaSearchIndex'])->name('index');
+                Route::post('/', [KeuanganController::class, 'brivaSearchShow'])->name('show');
+            });
+        });
     });
 });
 

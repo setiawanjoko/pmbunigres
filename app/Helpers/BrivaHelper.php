@@ -6,6 +6,26 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
 
+CONST ERRORMESSAGE = [
+    '01' => 'Nomor BRIVA tidak boleh kosong.',
+    '02' => 'Customer Code tidak boleh kosong.',
+    '03' => 'Institution Code tidak boleh kosong.',
+    '05' => 'Institution Code tidak diijinkan mengakses nomor BRIVA.',
+    '10' => 'Nama tidak boleh kosong.',
+    '11' => 'Amount tidak boleh kosong.',
+    '13' => 'Data customer sudah ada.',
+    '14' => 'Data customer tidak ditemukan.',
+    '15' => 'Gagal menyimpan data customer.',
+    '16' => 'Gagal mengubah data BRIVA.',
+    '17' => 'Gagal menghapus data BRIVA.',
+    '20' => 'Gagal mengubah status bayar.',
+    '21' => 'Gagal mendapatkan data status bayar.',
+    '30' => 'Gagal mendapatkan data BRIVA.',
+    '40' => 'Gagal memproses request report BRIVA.',
+    '99' => 'Kegagalan umum.',
+    '0109' => 'Parameter request tidak valid.'
+];
+
 function getToken(){
     $params = [
         'client_id' => env('BRIVA_CONSUMER_KEY'),
@@ -99,4 +119,8 @@ function bypassPembayaran($userId, $kategori = false){
     }catch (\Exception $e){
         dd($e->getMessage());
     }
+}
+
+function getBrivaErrorMessage($code) {
+    return ERRORMESSAGE[$code];
 }

@@ -24,7 +24,7 @@
     <div class="main-container">
         <a class="navbar-brand" href="{{ route('homepage') }}">
             <img class="logo-brand" src="{{ asset('unigres/images/logo.png') }}">
-            <p>USM.<span>Unigres</span></p>
+            <p>PMB.<span>Unigres</span></p>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -66,7 +66,7 @@
                 @method('POST')
                 <div class="wrapper-login">
                     <img class="login-logo" src="{{ asset('unigres/images/logo.png') }}">
-                    <p class="login-title">Ujian Seleksi Masuk. <span>Universitas Negeri Gresik</span></p>
+                    <p class="login-title">Penerimaan Mahasiswa Baru. <span>Universitas Gresik</span></p>
                     @if(session('status'))
                         <div class="alert alert-success">
                             {{ session('status') }}

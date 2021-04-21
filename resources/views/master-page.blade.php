@@ -163,7 +163,7 @@
                                 <img src="{{ asset('unigres/images/ic-document.svg') }}">
                                 <div class="ak-body">
                                     <p class="title-1">Data Pendaftar</p>
-                                    <p class="title-2">Halaman Data Pendaftar PMB Unigres</p>
+                                    <p class="title-2">Data Pendaftar PMB Unigres</p>
                                 </div>
                             </div>
                         </a>
@@ -172,7 +172,7 @@
                                 <img src="{{ asset('unigres/images/ic-document.svg') }}">
                                 <div class="ak-body">
                                     <p class="title-1">Master</p>
-                                    <p class="title-2">Halaman Master</p>
+                                    <p class="title-2">Data Master</p>
                                 </div>
                             </div>
                         </a>
@@ -181,7 +181,7 @@
                                 <img src="{{ asset('unigres/images/ic-document.svg') }}">
                                 <div class="ak-body">
                                     <p class="title-1">Data Biaya</p>
-                                    <p class="title-2">Halaman Data Biaya Registrasi & Daftar Ulang</p>
+                                    <p class="title-2">Data Biaya Registrasi & Daftar Ulang</p>
                                 </div>
                             </div>
                         </a>
@@ -197,7 +197,7 @@
                                 <img src="{{ asset('unigres/images/ic-document.svg') }}">
                                 <div class="ak-body">
                                     <p class="title-1">Data Pendaftar</p>
-                                    <p class="title-2">Halaman Data Pendaftar PMB Unigres</p>
+                                    <p class="title-2">Data Pendaftar PMB Unigres</p>
                                 </div>
                             </div>
                         </a>
@@ -213,7 +213,7 @@
                                 <img src="{{ asset('unigres/images/ic-document.svg') }}">
                                 <div class="ak-body">
                                     <p class="title-1">Data Biaya</p>
-                                    <p class="title-2">Halaman Data Biaya Registrasi & Daftar Ulang</p>
+                                    <p class="title-2">Data Biaya Registrasi & Daftar Ulang</p>
                                 </div>
                             </div>
                         </a>
@@ -229,7 +229,7 @@
                                 <img src="{{ asset('unigres/images/ic-document.svg') }}">
                                 <div class="ak-body">
                                     <p class="title-1">Data Tes Kesehatan</p>
-                                    <p class="title-2">Halaman Data Calon Mahasiswa dan Mahasiswi</p>
+                                    <p class="title-2">Data Calon Mahasiswa dan Mahasiswi</p>
                                 </div>
                             </div>
                         </a>

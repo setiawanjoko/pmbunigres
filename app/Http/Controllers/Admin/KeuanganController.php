@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pembayaran;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -142,6 +143,10 @@ class KeuanganController extends Controller
             ->whereHas('pendaftar', function($query){
                 return $query->whereNotNull('prodi_id');
             })
+            ->get();
+        $data = User::with(['prodi.jenjang', 'gelombang', 'kelas', 'pembayaran'])
+            ->has('pembayaran')
+            ->whereNotNull('prodi_id')
             ->get();
 
         return response()->view('admin.keuangan.pembayaran.index', compact('data'));

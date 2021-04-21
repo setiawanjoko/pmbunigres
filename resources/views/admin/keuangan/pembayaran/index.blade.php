@@ -39,37 +39,40 @@
                                             <th>Nama Pendaftar</th>
                                             <th>Program Studi</th>
                                             <th>No. BRIVA</th>
+                                            <th>Nominal</th>
                                             <th>Status Pembayaran</th>
-                                            <th>Aksi</th>
                                             </thead>
                                             <tbody>
                                             @foreach($data as $row)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $row->pendaftar->nama }}</td>
+                                                    <td>{{ $row->nama }}</td>
                                                     <td>
-                                                        <span class="badge bg-secondary">{{ $row->pendaftar->gelombang->gelombang }}</span>
-                                                        {{ $row->pendaftar->prodi->jenjang->nama . ' ' . $row->pendaftar->prodi->nama . ' ' . $row->pendaftar->kelas->kelas }}
+                                                        <span class="badge bg-secondary">{{ $row->gelombang->gelombang }}</span>
+                                                        {{ $row->prodi->jenjang->nama . ' ' . $row->prodi->nama . ' ' . $row->kelas->kelas }}
                                                     </td>
                                                     <td>
-                                                        <span class="badge bg-secondary">
-                                                            @if($row->kategori == 'registrasi') Registrasi
-                                                            @elseif($row->kategori == 'daftar_ulang') Daftar Ulang
+                                                        @foreach($row->pembayaran as $pembayaran)
+                                                            <span class="badge bg-secondary">
+                                                                @if($pembayaran->kategori == 'registrasi') Registrasi
+                                                                    @elseif($pembayaran->kategori == 'daftar_ulang') Daftar Ulang
+                                                                    @endif
+                                                            </span>
+                                                            {{ $pembayaran->custCode }}<br>
+                                                        @endforeach
+                                                    </td>
+                                                    <td>
+                                                        @foreach($row->pembayaran as $pembayaran)
+                                                            Rp. {{ number_format($pembayaran->amount, 0, '', '.') }},-<br>
+                                                        @endforeach
+                                                        </td>
+                                                    <td>
+                                                        @foreach($row->pembayaran as $pembayaran)
+                                                            @if($pembayaran->status) <span class="badge bg-success">Lunas</span>
+                                                            @else <span class="badge bg-danger">Belum</span>
                                                             @endif
-                                                        </span>
-                                                        {{ $row->custCode }}
-                                                    </td>
-                                                    <td>
-                                                        @if($row->status) <span class="badge bg-success">Telah dibayarkan.</span>
-                                                        @else <span class="badge bg-danger">Belum dibayarkan.</span>
-                                                        @endif
-                                                    </td>
-                                                    <td>
-                                                        @if($row->kategori != 'registrasi')
-                                                            <a href="{{ route('admin.monitoring.pendaftar.biodata.index', $row->id) }}" class="btn btn-light btn-sm">
-                                                                <i class="fas fa-eye"></i>
-                                                            </a>
-                                                        @endif
+                                                            <br>
+                                                        @endforeach
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -79,8 +82,8 @@
                                             <th>Nama Pendaftar</th>
                                             <th>Program Studi</th>
                                             <th>No. BRIVA</th>
+                                            <th>Nominal</th>
                                             <th>Status Pembayaran</th>
-                                            <th>Aksi</th>
                                             </tfoot>
                                         </table>
                                 </div>

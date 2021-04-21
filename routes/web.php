@@ -122,6 +122,9 @@ Route::prefix('/admin')->name('admin.')->group(function(){
                 Route::post('/', [KeuanganController::class, 'brivaSearchShow'])->name('show');
                 Route::put('/', [KeuanganController::class, 'brivaConfirm'])->name('confirm');
             });
+            Route::prefix('/pembayaran')->name('pembayaran.')->group(function(){
+                Route::get('/', [KeuanganController::class, 'pembayaranIndex'])->name('index');
+            });
         });
     });
 });

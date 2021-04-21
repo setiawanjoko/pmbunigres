@@ -136,4 +136,14 @@ class KeuanganController extends Controller
             return getBrivaErrorMessage($response->status->code);
         }
     }
+
+    public function pembayaranIndex(){
+        $data = Pembayaran::with(['pendaftar.prodi.jenjang', 'pendaftar.gelombang', 'pendaftar.kelas'])
+            ->whereHas('pendaftar', function($query){
+                return $query->whereNotNull('prodi_id');
+            })
+            ->get();
+
+        return response()->view('admin.keuangan.pembayaran.index', compact('data'));
+    }
 }

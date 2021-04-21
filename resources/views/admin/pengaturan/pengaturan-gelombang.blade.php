@@ -5,9 +5,9 @@
             @can('admin')
             <h4>Data Biaya</h4>
             <ul class="nav nav-pills mb-5 mx-auto">
-                {{--<li class="nav-item ">
-                    <a class="nav-link" href="{{ route('admin.tes-tpa.index') }}" type="button">Tes TPA</a>
-                </li>--}}
+                <li class="nav-item ">
+                    <a class="nav-link" href="{{ route('admin.keuangan.pembayaran.index') }}" type="button">Pembayaran</a>
+                </li>
                 <li class="nav-item nav-prodi">
                     <a class="nav-link" href="{{ route('admin.keuangan.briva-search.index') }}" type="button">BRIVA</a>
                 </li>

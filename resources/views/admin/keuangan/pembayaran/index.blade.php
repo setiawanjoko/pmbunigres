@@ -33,6 +33,7 @@
                             <div class="col-md-12 right dashboard-right">
                                 <div class="card">
                                     <div class="card-body">
+                                        <a href="{{ route('admin.keuangan.pembayaran.refresh') }}" class="btn btn-primary mb-3"><i class="fa fas-refresh"></i> Refresh</a>
                                         <table id="tabel-data" class="table table-striped table-bordered" style="width:100%">
                                             <thead>
                                             <th>#</th>

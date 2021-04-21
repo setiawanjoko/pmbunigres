@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Pembayaran;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -40,6 +41,16 @@ class KeuanganController extends Controller
             $response = json_decode($res->body());
             if ($response->status && (isset($response->data) && $response->responseCode == '00')) {
                 $data = $response->data;
+
+                if($data->statusBayar == 'Y') {
+                    $pembayaran = Pembayaran::where('custCode', $data->CustCode)->first();
+                    $res = $this->getBrivaStatus($pembayaran->custCode);
+
+                    if ($res->status && (isset($res->data) && $res->responseCode == '00')) {
+                        $pembayaran->status = true;
+                        $pembayaran->save();
+                    }
+                }
                 return response()->view('admin.keuangan.briva-search.index', compact('data'));
             } else if(!is_null($response->status)){
                 throw new \Exception(getBrivaErrorMessage($response->status->code));
@@ -62,22 +73,7 @@ class KeuanganController extends Controller
 
             if($pembayaran->status) throw new \Exception('Pembayaran telah dibayarkan.');
 
-            $token = getToken();
-            $timestamp = gmdate("Y-m-d\TH:i:s.000\Z");
-
-            $path = '/v1/briva/status/' . env('BRIVA_INSTITUTION_CODE') . '/' . env('BRIVA_NO') . '/' . $validatedData['briva'];
-            $verb = 'GET';
-
-            $payload = null;
-
-            $signature = generateSignature($path, $verb, $token, $timestamp, $payload);
-            $url = env('BRIVA_APP_URL') . $path;
-
-            $res = Http::withHeaders([
-                'BRI-Signature' => $signature,
-                'BRI-Timestamp' => $timestamp
-            ])->withToken($token)->get($url);
-            $response = json_decode($res->body());
+            $response = $this->getBrivaStatus($validatedData['briva']);
             if ($response->status && (isset($response->data) && $response->responseCode == '00')) {
                 $data = $response->data;
 
@@ -150,5 +146,41 @@ class KeuanganController extends Controller
             ->get();
 
         return response()->view('admin.keuangan.pembayaran.index', compact('data'));
+    }
+
+    public function getLatestBrivaStatus(){
+        $pembayaran = Pembayaran::where('status', 0)->get();
+        foreach ($pembayaran as $item) {
+            $response = $this->getBrivaStatus($item->custCode);
+
+            if ($response->status && (isset($response->data) && $response->responseCode == '00')) {
+                $item->status = 1;
+                $item->save();
+            } else if(!is_null($response->status)){
+                return response()->redirectToRoute('admin.keuangan.pembayaran.index')->getBrivaErrorMessage($response->status->code);
+            }
+        }
+
+        return response()->redirectToRoute('admin.keuangan.pembayaran.index');
+    }
+
+    private function getBrivaStatus($custCode){
+        $token = getToken();
+        $timestamp = gmdate("Y-m-d\TH:i:s.000\Z");
+
+        $path = '/v1/briva/status/' . env('BRIVA_INSTITUTION_CODE') . '/' . env('BRIVA_NO') . '/' . $custCode;
+        $verb = 'GET';
+
+        $payload = null;
+
+        $signature = generateSignature($path, $verb, $token, $timestamp, $payload);
+        $url = env('BRIVA_APP_URL') . $path;
+
+        $response = Http::withHeaders([
+            'BRI-Signature' => $signature,
+            'BRI-Timestamp' => $timestamp
+        ])->withToken($token)->get($url);
+
+        return json_decode($response->body());
     }
 }

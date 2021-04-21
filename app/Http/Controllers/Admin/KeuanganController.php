@@ -53,7 +53,8 @@ class KeuanganController extends Controller
                 }
                 return response()->view('admin.keuangan.briva-search.index', compact('data'));
             } else if(!is_null($response->status)){
-                throw new \Exception(getBrivaErrorMessage($response->status->code));
+                if(isset($response->status->code)) throw new \Exception(getBrivaErrorMessage($response->status->code));
+                else throw new \Exception($response);
             }
         }catch (\Exception $e){
             return response()->redirectToRoute('admin.keuangan.briva-search.index')->with([
@@ -154,8 +155,10 @@ class KeuanganController extends Controller
             $response = $this->getBrivaStatus($item->custCode);
 
             if ($response->status && (isset($response->data) && $response->responseCode == '00')) {
-                $item->status = 1;
-                $item->save();
+                if($response->data->statusBayar == 'Y') {
+                    $item->status = 1;
+                    $item->save();
+                }
             } else if(!is_null($response->status)){
                 return response()->redirectToRoute('admin.keuangan.pembayaran.index')->getBrivaErrorMessage($response->status->code);
             }

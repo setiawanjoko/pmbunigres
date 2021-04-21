@@ -219,16 +219,29 @@ class PendaftarController extends Controller
 
     public function berkas($id){
         $user = User::find($id);
-        $data = $user->berkas;
 
-        return response()->view('admin.data.monitoring.berkas', compact('data'));
+        if(!is_null($user)) {
+            $data = $user->berkas;
+            return response()->view('admin.data.monitoring.berkas', compact('data', 'user'));
+        } else {
+            $data = null;
+            return response()->view('admin.data.monitoring.berkas', compact('data', 'user'));
+        }
     }
 
     public function editBerkas($id){
         $user = User::find($id);
-        $data = $user->berkas;
 
-        return response()->view('admin.data.monitoring.edit-berkas', compact('data'));
+        if(!is_null($user)) {
+            $data = $user->berkas;
+            return response()->view('admin.data.monitoring.edit-berkas', compact('data', 'user'));
+        } else {
+            $data = null;
+            return response()->view('admin.data.monitoring.edit-berkas', compact('data', 'user'))->with([
+                'status' => 'danger',
+                'message' => 'Pendaftar belum mengunggah berkas.'
+            ]);
+        }
     }
 
     public function updateBerkas(Request $request, $id){

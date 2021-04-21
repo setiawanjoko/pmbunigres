@@ -90,93 +90,101 @@
             <p>Isi form berikut dengan menggunakan data yang valid (Benar).</p>
             <ul class="nav nav-pills mb-5 mx-auto">
                 <li class="nav-item " role="presentation">
-                    <a class="nav-link" href="{{route('admin.monitoring.pendaftar.biodata.index', $data->user_id)}}" type="button">Data Calon Mahasiswa</a>
+                    <a class="nav-link" href="{{route('admin.monitoring.pendaftar.biodata.index', $user->id)}}" type="button">Data Calon Mahasiswa</a>
                 </li>
                 <li class="nav-item nav-data-ortu" role="presentation">
-                    <a class="nav-link"  href="{{route('admin.monitoring.pendaftar.keluarga.index', $data->user_id)}}" type="button">Data Orang Tua/Wali</a>
+                    <a class="nav-link"  href="{{route('admin.monitoring.pendaftar.keluarga.index', $user->id)}}" type="button">Data Orang Tua/Wali</a>
                 </li>
                 <li class="nav-item nav-prodi" role="presentation">
-                    <a class="nav-link active" href="{{route('admin.monitoring.pendaftar.berkas.index', $data->user_id)}}" type="button">Berkas</a>
+                    <a class="nav-link active" href="{{route('admin.monitoring.pendaftar.berkas.index', $user->id)}}" type="button">Berkas</a>
                 </li>
             </ul>
-            @if(session('status'))
-                <div class="wrapper-info alert-{{ session('status') }}">
+            @if(session()->has('status'))
+                <div class="wrapper-info alert-{{ session()->get('status') }}">
                     <img src="{{ asset('unigres/images/ic-i.svg') }}">
-                    <p class="info1" style="margin-bottom: 0px;">{{ session('message') }}</p>
+                    <p class="info1" style="margin-bottom: 0px;">{{ session()->get('message') }}</p>
                 </div>
             @endif
-            <div class="tab-content">
-                <div class="container data-orang-tua tab-pane fade active show" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                    <div class="row ">
-                        <div class="col-md-6 left">
-                            <div class="card">
-                                <div class="card-header">
-                                    Data Berkas
-                                </div>
-                                <div class="card-body">
-                                    <div class="row justify-content-between p-1">
-                                        <div class="col-8">Ijazah</div>
-                                        <div class="col-4">
-                                            @if(!empty($data) && !is_null($data->ijazah))
-                                                <a href="{{ asset('storage/' . $data->ijazah) }}" class="btn btn-sm btn-primary" target="_blank"><i class="fas fa-eye"></i> Lihat</a>
-                                            @else
-                                                <span class="badge badge-danger">Berkas belum diupload</span>
-                                            @endif
-                                        </div>
+            @if(!isset($data))
+                <div class="wrapper-info alert-danger">
+                    <img src="{{ asset('unigres/images/ic-i.svg') }}">
+                    <p class="info1" style="margin-bottom: 0px;">Pendaftar belum mengunggah berkas.</p>
+                </div>
+            @endif
+            @isset($data)
+                <div class="tab-content">
+                    <div class="container data-orang-tua tab-pane fade active show" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                        <div class="row ">
+                            <div class="col-md-6 left">
+                                <div class="card">
+                                    <div class="card-header">
+                                        Data Berkas
                                     </div>
-                                    <div class="row justify-content-between p-1">
-                                        <div class="col-8">SKHUN</div>
-                                        <div class="col-4">
-                                            @if(!empty($data) && !is_null($data->skhun))
-                                                <a href="{{ asset('storage/' . $data->skhun) }}" class="btn btn-sm btn-primary" target="_blank"><i class="fas fa-eye"></i> Lihat</a>
-                                            @else
-                                                <span class="badge badge-danger">Berkas belum diupload</span>
-                                            @endif
+                                    <div class="card-body">
+                                        <div class="row justify-content-between p-1">
+                                            <div class="col-8">Ijazah</div>
+                                            <div class="col-4">
+                                                @if(isset($data->ijazah))
+                                                    <a href="{{ asset('storage/' . $data->ijazah) }}" class="btn btn-sm btn-primary" target="_blank"><i class="fas fa-eye"></i> Lihat</a>
+                                                @else
+                                                    <span class="badge badge-danger">Berkas belum diupload</span>
+                                                @endif
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row justify-content-between p-1">
-                                        <div class="col-8">KTP</div>
-                                        <div class="col-4">
-                                            @if(!empty($data) && !is_null($data->ktp))
-                                                <a href="{{ asset('storage/' . $data->ktp) }}" class="btn btn-sm btn-primary" target="_blank"><i class="fas fa-eye"></i> Lihat</a>
-                                            @else
-                                                <span class="badge badge-danger">Berkas belum diupload</span>
-                                            @endif
+                                        <div class="row justify-content-between p-1">
+                                            <div class="col-8">SKHUN</div>
+                                            <div class="col-4">
+                                                @if(isset($data->skhun))
+                                                    <a href="{{ asset('storage/' . $data->skhun) }}" class="btn btn-sm btn-primary" target="_blank"><i class="fas fa-eye"></i> Lihat</a>
+                                                @else
+                                                    <span class="badge badge-danger">Berkas belum diupload</span>
+                                                @endif
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row justify-content-between p-1">
-                                        <div class="col-8">Kartu Keluarga</div>
-                                        <div class="col-4">
-                                            @if(!empty($data) && !is_null($data->kartu_keluarga))
-                                                <a href="{{ asset('storage/' . $data->kartu_keluarga) }}" class="btn btn-sm btn-primary" target="_blank"><i class="fas fa-eye"></i> Lihat</a>
-                                            @else
-                                                <span class="badge badge-danger">Berkas belum diupload</span>
-                                            @endif
+                                        <div class="row justify-content-between p-1">
+                                            <div class="col-8">KTP</div>
+                                            <div class="col-4">
+                                                @if(isset($data->ktp))
+                                                    <a href="{{ asset('storage/' . $data->ktp) }}" class="btn btn-sm btn-primary" target="_blank"><i class="fas fa-eye"></i> Lihat</a>
+                                                @else
+                                                    <span class="badge badge-danger">Berkas belum diupload</span>
+                                                @endif
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="mt-4">
+                                        <div class="row justify-content-between p-1">
+                                            <div class="col-8">Kartu Keluarga</div>
+                                            <div class="col-4">
+                                                @if(isset($data->kartu_keluarga))
+                                                    <a href="{{ asset('storage/' . $data->kartu_keluarga) }}" class="btn btn-sm btn-primary" target="_blank"><i class="fas fa-eye"></i> Lihat</a>
+                                                @else
+                                                    <span class="badge badge-danger">Berkas belum diupload</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="mt-4">
                                     <span class="text-left">
                                         <small>Format file: JPEG, JPG, PNG, atau PDF</small><br>
                                         <small>Ukuran file maksimal: 250kb</small>
                                     </span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            @can('admin')
-                            <div class="text-center m-3">
-                                    <a href="{{ route('admin.monitoring.pendaftar.berkas.edit', $data->user_id) }}" class="btn btn-light btn-daftar">Sunting</a>
-                            </div>
-                            @endcan
+                                @can('admin')
+                                    <div class="text-center m-3">
+                                        <a href="{{ route('admin.monitoring.pendaftar.berkas.edit', $user->id) }}" class="btn btn-light btn-daftar">Sunting</a>
+                                    </div>
+                                @endcan
 
-                            <div class="catatan">
-                                <strong>Catatan :</strong>
-                                <p>Pastikan kembali data yang ada isi sudah benar<br>sebelum menekan tombol submit</p>
+                                <div class="catatan">
+                                    <strong>Catatan :</strong>
+                                    <p>Pastikan kembali data yang ada isi sudah benar<br>sebelum menekan tombol submit</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @endisset
         </div>
     </div>
 </main>

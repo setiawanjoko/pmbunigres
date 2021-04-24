@@ -1951,3 +1951,26 @@ color: #A2A2A2;
   background: #def3ef;
   border-radius: 4px;
 }
+.ct-wrapp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+h1.not-found {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 28px;
+  letter-spacing: 0.02em;
+  color: #6060D0;
+}
+p.desc-not-found {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: #000000;
+  max-width: 450px;
+}

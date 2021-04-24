@@ -48,8 +48,8 @@
     </div>
 </nav>
 <section class="content">
-    <div class="container ct-wrapp">
-        <img class="mb-4" src="{{ asset('unigres/images/500.png') }}">
+    <div class="container ct-wrapp mt-5">
+        <img class="img-fluid p-4" src="{{ asset('unigres/images/500.png') }}">
         <h1 class="not-found">Internal Server Error!</h1>
         <p class="desc-not-found">Terjadi gangguan internet atau halaman yang anda kunjungi tidak tersedia. Periksa kembali koneksi internet anda.</p>
     </div>

@@ -46,10 +46,6 @@ Route::get('kontak', function () {
     return view('contact');
 })->name('kontak');
 
-Route::get('getprodi', [RegisterController::class, 'get_prodi']);
-Route::get('getjalurmasuk/{id}', [RegisterController::class, 'get_jalur_masuk']);
-Route::get('getjammasuk/{id}/{lulusan_unigres}', [RegisterController::class, 'get_jam_masuk']);
-
 Auth::routes(['verify'=>true]);
 Route::get('/verify/failed', [VerificationController::class, 'warning'])->name('verification.failed');
 

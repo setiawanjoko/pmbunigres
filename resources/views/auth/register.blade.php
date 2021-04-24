@@ -143,7 +143,7 @@
     prodi = () => {
         $.ajax({
             type:'GET',
-            url:'getprodi',
+            url:'api/getprodi',
             success:function(data){
                 $("#prodi").find('option').remove().end().append('<option selected disabled>-- Silahkan Pilih Program Studi --</option>');
                 $.each(data, function(){
@@ -180,7 +180,7 @@
 
             $.ajax({
                 type:'GET',
-                url:'getjammasuk/' + prodi + '/' + lulusan,
+                url:'api/getjammasuk/' + prodi + '/' + lulusan,
                 success:function(data){
                     $("#jamMasuk").find('option').remove().end().append('<option selected disabled>-- Silahkan Pilih Kelas --</option>');
                     $.each(data, function(){
@@ -196,7 +196,7 @@
 
             $.ajax({
                 type:'GET',
-                url:'getjammasuk/' + prodi + '/' + lulusan,
+                url:'api/getjammasuk/' + prodi + '/' + lulusan,
                 success:function(data){
                     $("#jamMasuk").find('option').remove().end().append('<option selected disabled>-- Silahkan Pilih Kelas --</option>');
                     $.each(data, function(){
@@ -213,7 +213,7 @@
 
             $.ajax({
                 type:'GET',
-                url:'getjalurmasuk/' + kls.val(),
+                url:'api/getjalurmasuk/' + kls.val(),
                 success:function(data){
                     $("#jalur_masuk").find('option').remove().end().append('<option selected disabled>-- Silahkan Pilih Jalur Masuk --</option>');
                     $.each(data, function(){

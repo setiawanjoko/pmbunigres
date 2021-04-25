@@ -33,11 +33,13 @@
                             <div class="col-md-12 right dashboard-right">
                                 <div class="card">
                                     <div class="card-body">
-                                        <form method="post" action="{{ route('admin.keuangan.pembayaran.filter') }}">
+                                        <form method="post" action="{{ route('admin.keuangan.pembayaran.filter') }}" class="mb-3">
                                             @csrf
                                             <div class="row g-3">
-                                                <a href="{{ route('admin.keuangan.pembayaran.refresh') }}" class="btn btn-primary mb-3"><i class="fa fas-refresh"></i> Refresh</a>
-                                                <div class="col-3">
+                                                <div class="col-2">
+                                                    <a href="{{ route('admin.keuangan.pembayaran.refresh') }}" class="btn btn-sm btn-primary"><i class="fa fas-refresh"></i> Refresh Status</a>
+                                                </div>
+                                                <div class="col-2">
                                                     <label for="prodi" class="col-form-label-sm">Program Studi</label>
                                                 </div>
                                                 <div class="col-6">
@@ -47,7 +49,7 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                                <div class="col-3">
+                                                <div class="col-2">
                                                     <button type="submit" class="btn btn-sm btn-primary">Filter</button>
                                                     <a href="{{ route('admin.keuangan.pembayaran.index') }}" class="btn btn-sm btn-warning">Hapus Filter</a>
                                                 </div>

@@ -120,6 +120,7 @@ Route::prefix('/admin')->name('admin.')->group(function(){
             });
             Route::prefix('/pembayaran')->name('pembayaran.')->group(function(){
                 Route::get('/', [KeuanganController::class, 'pembayaranIndex'])->name('index');
+                Route::post('/', [KeuanganController::class, 'pembayaranFilter'])->name('filter');
                 Route::get('/refresh', [KeuanganController::class, 'getLatestBrivaStatus'])->name('refresh');
             });
         });

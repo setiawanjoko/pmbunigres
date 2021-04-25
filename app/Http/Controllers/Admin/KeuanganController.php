@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pembayaran;
+use App\Models\Prodi;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -135,18 +136,44 @@ class KeuanganController extends Controller
         }
     }
 
-    public function pembayaranIndex(){
+    public function pembayaranIndex($filter = null){
         $data = Pembayaran::with(['pendaftar.prodi.jenjang', 'pendaftar.gelombang', 'pendaftar.kelas'])
-            ->whereHas('pendaftar', function($query){
-                return $query->whereNotNull('prodi_id');
+            ->whereHas('pendaftar', function($query) use($filter){
+                if(is_null($filter)){
+                    return $query->whereNotNull('prodi_id');
+                } else {
+                    return $query->whereNotNull('prodi_id')->where('prodi_id', $filter);
+                }
             })
             ->get();
-        $data = User::with(['prodi.jenjang', 'gelombang', 'kelas', 'pembayaran'])
-            ->has('pembayaran')
-            ->whereNotNull('prodi_id')
-            ->get();
+        if(is_null($filter)){
+            $data = User::with(['prodi.jenjang', 'gelombang', 'kelas', 'pembayaran'])
+                ->has('pembayaran')
+                ->whereNotNull('prodi_id')
+                ->where('permission_id', 2)
+                ->get();
+        } else {
+            $data = User::with(['prodi.jenjang', 'gelombang', 'kelas', 'pembayaran'])
+                ->has('pembayaran')
+                ->whereNotNull('prodi_id')
+                ->where([
+                    ['permission_id', 2],
+                    ['prodi_id', $filter]
+                ])
+                ->get();
+        }
 
-        return response()->view('admin.keuangan.pembayaran.index', compact('data'));
+        $dataProdi = Prodi::all();
+
+        return response()->view('admin.keuangan.pembayaran.index', compact('data', 'dataProdi'));
+    }
+
+    public function pembayaranFilter(Request $request){
+        $data = $request->validate([
+            'prodi' => 'required|exists:prodi,id'
+        ]);
+
+        return $this->pembayaranIndex($data['prodi']);
     }
 
     public function getLatestBrivaStatus(){

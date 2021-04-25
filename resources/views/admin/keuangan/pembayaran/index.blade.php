@@ -33,7 +33,26 @@
                             <div class="col-md-12 right dashboard-right">
                                 <div class="card">
                                     <div class="card-body">
-                                        <a href="{{ route('admin.keuangan.pembayaran.refresh') }}" class="btn btn-primary mb-3"><i class="fa fas-refresh"></i> Refresh</a>
+                                        <form method="post" action="{{ route('admin.keuangan.pembayaran.filter') }}">
+                                            @csrf
+                                            <div class="row g-3">
+                                                <a href="{{ route('admin.keuangan.pembayaran.refresh') }}" class="btn btn-primary mb-3"><i class="fa fas-refresh"></i> Refresh</a>
+                                                <div class="col-3">
+                                                    <label for="prodi" class="col-form-label-sm">Program Studi</label>
+                                                </div>
+                                                <div class="col-6">
+                                                    <select name="prodi" id="prodi" class="col form-control form-control-sm @error('prodi') is-invalid @enderror" required>
+                                                        @foreach($dataProdi as $key => $prodi)
+                                                            <option value="{{ $prodi->id }}">{{ $prodi->jenjang->nama . ' ' . $prodi->nama }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="col-3">
+                                                    <button type="submit" class="btn btn-sm btn-primary">Filter</button>
+                                                    <a href="{{ route('admin.keuangan.pembayaran.index') }}" class="btn btn-sm btn-warning">Hapus Filter</a>
+                                                </div>
+                                            </div>
+                                        </form>
                                         <table id="tabel-data" class="table table-striped table-bordered" style="width:100%">
                                             <thead>
                                             <th>#</th>

@@ -50,7 +50,7 @@
                 <p class="text-center h4"><strong>SURAT KETERANGAN</strong></p>
                 <p class="text-center">NO : {{ $pembayaran->no_surat }}</p>
                 <p>
-                Berdasarkan hasil seleksi Penerimaan Mahasiswa Baru Universitas Gresik, dengan ini diputuskan bahwa calon mahasiswa :
+                Berdasarkan hasil seleksi Penerimaan Mahasiswa Baru AAK Delima Husada, dengan ini diputuskan bahwa calon mahasiswa :
                 </p>
                 <table width="100%" cellspacing="0" cellpadding="0">
                     <tbody>
@@ -77,7 +77,7 @@
                     </tbody>     
                 </table>
                 <br>
-                <p>Dinyatakan <strong>DITERIMA</strong>, sebagai mahasiswa Universitas Gresik, Tahun Akademik 2021/2022, Selanjutnya agar melakukan heregistrasi dengan rincian pembayaran sebagai berikut :</p>
+                <p>Dinyatakan <strong>DITERIMA</strong>, sebagai mahasiswa AAK Delima Husada, Tahun Akademik 2021/2022, Selanjutnya agar melakukan heregistrasi dengan rincian pembayaran sebagai berikut :</p>
                 <table class="myTable" width="100%" cellspacing="0" cellpadding="0">
                     <thead>
                     <tr>

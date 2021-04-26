@@ -4,7 +4,7 @@
 
 @section('content-title')
     <p class="banner-title">Penerimaan Mahasiswa Baru</p>
-    <h5 class="banner-caption">Universitas Gresik</h5>
+    <h5 class="banner-caption">AAK Delima Husada</h5>
 @endsection
 
 @section('nav-bar')
@@ -17,7 +17,7 @@
         <div class="wrapper-head-ann">
             <div class="left">
                 <p class="ann-title">Pengumuman</p>
-                <p class="ann-desc">Pusat informasi seputar Penerimaan Mahasiswa Baru Universitas Gresik.</p>
+                <p class="ann-desc">Pusat informasi seputar Penerimaan Mahasiswa Baru AAK Delima Husada.</p>
             </div>
             <a class="link-vm" href="{{ route('pengumuman') }}">
                 View More <i class="fa fa-arrow-right"></i>

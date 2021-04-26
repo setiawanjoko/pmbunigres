@@ -21,7 +21,7 @@
     <link href="{{ asset('unigres/css/main.css') }}" rel="stylesheet" />
     <link href="{{ asset('unigres/css/responsive.css') }}" rel="stylesheet" />
 
-    <title>Unigres</title>
+    <title>AAK Delima Husada</title>
 </head>
 
 <body>
@@ -29,7 +29,7 @@
     <div class="main-container">
         <a class="navbar-brand" href="{{ route('home') }}">
             <img class="logo-brand" src="{{ asset('unigres/images/logo.png') }}">
-            <p>PMB.<span>Unigres</span></p>
+            <p>PMB.<span>AAK Delima Husada</span></p>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"

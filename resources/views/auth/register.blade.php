@@ -3,7 +3,7 @@
 @section('title', 'Registrasi')
 
 @section('content-title')
-<h5 class="banner-caption">Universitas Gresik</h5>
+<h5 class="banner-caption">AAK Delima Husada</h5>
 @endsection
 
 @section('fill-content')

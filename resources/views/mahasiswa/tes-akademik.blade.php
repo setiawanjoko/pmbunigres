@@ -80,7 +80,7 @@
                         line-height: 22px;
                         letter-spacing: 0.02em;
                         color: #251462;
-                        margin-bottom: 38px;">Selamat Anda Telah Lulus, Sebagai calon Mahasiswa Universitas Gresik</p>
+                        margin-bottom: 38px;">Selamat Anda Telah Lulus, Sebagai calon Mahasiswa AAK Delima Husada</p>
                                 <p style="font-family: 'Helvetica 35 Thin', sans-serif;
                         font-style: normal;
                         font-weight: normal;

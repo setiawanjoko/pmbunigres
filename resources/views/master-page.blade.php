@@ -17,14 +17,14 @@
     <link href="{{ asset('unigres/css/main.css') }}" rel="stylesheet"/>
     <link href="{{ asset('unigres/css/responsive.css') }}" rel="stylesheet"/>
 
-    <title>Unigres - @yield('title')</title>
+    <title>AAK Delima Husada - @yield('title')</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light main-nav">
     <div class="main-container">
         <a class="navbar-brand" href="{{ route('homepage') }}">
             <img class="logo-brand" src="{{ asset('unigres/images/logo.png') }}">
-            <p>PMB.<span>Unigres</span></p>
+            <p>PMB.<span>AAK Delima Husada</span></p>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -163,7 +163,7 @@
                                 <img src="{{ asset('unigres/images/ic-document.svg') }}">
                                 <div class="ak-body">
                                     <p class="title-1">Data Pendaftar</p>
-                                    <p class="title-2">Data Pendaftar PMB Unigres</p>
+                                    <p class="title-2">Data Pendaftar PMB AAK Delima Husada</p>
                                 </div>
                             </div>
                         </a>
@@ -197,7 +197,7 @@
                                 <img src="{{ asset('unigres/images/ic-document.svg') }}">
                                 <div class="ak-body">
                                     <p class="title-1">Data Pendaftar</p>
-                                    <p class="title-2">Data Pendaftar PMB Unigres</p>
+                                    <p class="title-2">Data Pendaftar PMB AAK Delima Husada</p>
                                 </div>
                             </div>
                         </a>

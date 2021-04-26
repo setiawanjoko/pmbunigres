@@ -17,14 +17,14 @@
     <link href="{{ asset('unigres/css/main.css') }}" rel="stylesheet"/>
     <link href="{{ asset('unigres/css/responsive.css') }}" rel="stylesheet"/>
 
-    <title>Unigres</title>
+    <title>AAK Delima Husada</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light second-nav">
     <div class="main-container">
         <a class="navbar-brand" href="{{ route('homepage') }}">
             <img class="logo-brand" src="{{ asset('unigres/images/logo.png') }}">
-            <p>PMB.<span>Unigres</span></p>
+            <p>PMB.<span>AAK Delima Husada</span></p>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -66,7 +66,7 @@
                 @method('POST')
                 <div class="wrapper-login">
                     <img class="login-logo" src="{{ asset('unigres/images/logo.png') }}">
-                    <p class="login-title">Penerimaan Mahasiswa Baru. <span>Universitas Gresik</span></p>
+                    <p class="login-title">Penerimaan Mahasiswa Baru. <span>AAK Delima Husada</span></p>
                     <p class="login-info">Masukkan password baru !</p>
                     <input class="form-control @if($errors->has('password')) is-invalid @endif" type="password" name="password" placeholder="Password" required>
                     @if($errors->has('password'))

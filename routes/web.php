@@ -22,6 +22,7 @@ use App\Http\Controllers\Mahasiswa\TesKesehatanController;
 use App\Http\Controllers\Monitoring\PendaftarController as MonitoringPendaftarController;
 use App\Http\Controllers\Pembayaran\DaftarUlangController;
 use App\Http\Controllers\Pembayaran\RegistrasiController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\RegisterController;
@@ -81,6 +82,13 @@ Route::prefix('/admin')->name('admin.')->group(function(){
             Route::get('/biodata/{id}', [MonitoringPendaftarController::class, 'biodata'])->name('biodata.index');
             Route::get('/keluarga/{id}', [MonitoringPendaftarController::class, 'keluarga'])->name('keluarga.index');
             Route::get('/berkas/{id}', [MonitoringPendaftarController::class, 'berkas'])->name('berkas.index');
+            Route::get('/email/confirm/{id}', [MonitoringPendaftarController::class, 'emailConfirm'])->name('email.confirm');
+            Route::get('/email/resent/{id}', function ($id){
+               $data = User::find($id);
+               $data->sendEmailVerificationNotification();
+
+               return redirect()->back()->with(['status'=>'success', 'message'=>'Email berhasil dikirimkan.']);
+            })->name('email.resent');
 
             Route::middleware(['can:admin'])->group(function(){
                 Route::get('/biodata/{id}/edit', [MonitoringPendaftarController::class, 'editBiodata'])->name('biodata.edit');

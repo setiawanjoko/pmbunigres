@@ -101,7 +101,12 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $row->nama }}</td>
-                            <td>{{ $row->created_at }}</td>
+                            <td>
+                                {{ $row->created_at }}<br>
+                                @if(is_null($row->email_verified_at))
+                                    <span class="badge bg-danger">Email belum dikonfirmasi</span>
+                                @endif
+                            </td>
                             <td>{{ $row->prodi->nama }}</td>
                             <td>
                                 {{ $row->email }}<br>
@@ -109,6 +114,14 @@
                             </td>
                             <td>{{ $row->progres }}</td>
                             <td>
+                                @if(is_null($row->email_verified_at))
+                                    <a href="{{ route('admin.monitoring.pendaftar.email.confirm', $row->id) }}" class="btn btn-success btn-sm">
+                                        <i class="far fa-envelope"> Konfirmasi</i>
+                                    </a>
+                                    <a href="{{ route('admin.monitoring.pendaftar.email.resent', $row->id) }}" class="btn btn-warning btn-sm">
+                                        <i class="far fa-paper-plane"> Kirim ulang</i>
+                                    </a>
+                                @endif
                                 @if($row->progres != 'registrasi')
                                     <a href="{{ route('admin.monitoring.pendaftar.biodata.index', $row->id) }}" class="btn btn-light btn-sm">
                                         <i class="fas fa-eye"></i>

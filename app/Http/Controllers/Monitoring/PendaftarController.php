@@ -50,6 +50,19 @@ class PendaftarController extends Controller
         return $this->index($data['prodi']);
     }
 
+    public function emailConfirm($id){
+        $data = User::find($id);
+
+        if(!is_null($data)) {
+            $data->email_verified_at = Carbon::now();
+            $data->save();
+
+            return redirect()->back()->with(['status'=>'success', 'message'=>'Email berhasil dikonfirmasi.']);
+        }
+
+        return redirect()->back()->with(['status'=>'danger', 'message'=>'Email gagal dikonfirmasi.']);
+    }
+
     public function biodata($id): Response
     {
         $data = Biodata::where('user_id', $id)->first();

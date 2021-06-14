@@ -40,7 +40,7 @@ class BiodataController extends Controller
             'asal_sekolah' => 'required|string',
             'asal_jurusan' => 'required|string',
             'tahun_lulus' => 'required', // tanyakan batasan yang bisa daftar lulusan berapa tahun sebelum pembukaan dibuka?
-            'foto' => 'required_without:current_foto|file|max:250|mimes:png,jpg,jpeg', // maks ukuran dalam KB
+            'foto' => 'required_without:current_foto|file|max:500|mimes:png,jpg,jpeg', // maks ukuran dalam KB
             'current_foto' => 'present',
             'informasi' => 'required|in:sosial_media,teman_saudara,lainnya',
             'asal_informasi' => 'required|string'

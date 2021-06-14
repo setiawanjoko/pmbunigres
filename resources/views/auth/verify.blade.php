@@ -23,6 +23,11 @@
             </div>
             @else
             <div class="wrap-button-verif wp-step-1" id="btn1">
+                <form action="{{ route('verification.resend') }}" method="post">
+                    @csrf
+                    @method('post')
+                    <button type="submit" class="btn btn-login">Kirim Ulang</button>
+                </form>
                 <a class="btn btn-login" href="{{ route('homepage') }}">Kembali</a>
             </div>
             @endif

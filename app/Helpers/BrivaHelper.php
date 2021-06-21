@@ -1,10 +1,12 @@
 <?php
 
+use App\Mail\InvoiceMail;
 use App\Models\Pembayaran;
 use App\Models\Prodi;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 
 CONST ERRORMESSAGE = [
     '01' => 'Nomor BRIVA tidak boleh kosong.',
@@ -123,4 +125,14 @@ function bypassPembayaran($userId, $kategori = false){
 
 function getBrivaErrorMessage($code) {
     return ERRORMESSAGE[$code];
+}
+
+function kirimTagihan($user, $data){
+    try {
+        Mail::to($user)->send(new InvoiceMail($user, $data));
+
+        return true;
+    } catch (\Exception $e){
+        return false;
+    }
 }

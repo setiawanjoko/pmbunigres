@@ -90,6 +90,11 @@ Route::prefix('/admin')->name('admin.')->group(function(){
                return redirect()->back()->with(['status'=>'success', 'message'=>'Email berhasil dikirimkan.']);
             })->name('email.resent');
 
+
+            Route::get('/index-dev', [MonitoringPendaftarController::class, 'indexDev'])->name('index-dev');
+            Route::get('/tagihan/registrasi/{id}', [MonitoringPendaftarController::class, 'tagihanRegistrasi'])->name('tagihan.registrasi');
+            Route::get('/tagihan/daftar-ulang/{id}', [MonitoringPendaftarController::class, 'tagihanDaftarUlang'])->name('tagihan.daftar-ulang');
+
             Route::middleware(['can:admin'])->group(function(){
                 Route::get('/biodata/{id}/edit', [MonitoringPendaftarController::class, 'editBiodata'])->name('biodata.edit');
                 Route::put('/biodata/{id}', [MonitoringPendaftarController::class, 'updateBiodata'])->name('biodata.update');

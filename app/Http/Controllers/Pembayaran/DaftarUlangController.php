@@ -91,6 +91,7 @@ class DaftarUlangController extends Controller
                         'no_surat' => $this->nomorSurat()
                     ]);
 
+                    kirimTagihan($user, $data);
                     return response()->view('instruksi-pembayaran', compact('data'));
                 } catch (Exception $e) {
                     dd($e->getMessage());
@@ -107,13 +108,16 @@ class DaftarUlangController extends Controller
                         'status' => false,
                         'no_surat' => $this->nomorSurat()
                     ]);
+                    kirimTagihan($user, $data);
                     return response()->view('instruksi-pembayaran', compact('data'));
                 } else {
                     abort(500);
                 }
 
             }
-        } else return response()->view('instruksi-pembayaran', compact('data'));
+        } else {
+            return response()->view('instruksi-pembayaran', compact('data'));
+        }
     }
 
     public function printSKL(){

@@ -87,6 +87,7 @@ class RegistrasiController extends Controller
                         'kategori' => 'registrasi'
                     ]);
 
+                    kirimTagihan($user, $data);
                     return response()->view('instruksi-pembayaran', compact('data'));
                 } catch (\Exception $e) {
                     dd($e->getMessage());
@@ -102,6 +103,7 @@ class RegistrasiController extends Controller
                         'status' => false,
                         'kategori' => 'registrasi'
                     ]);
+                    kirimTagihan($user, $data);
                     return response()->view('instruksi-pembayaran', compact('data'));
                 } else {
                     abort(500);

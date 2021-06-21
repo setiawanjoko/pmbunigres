@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Monitoring;
 
 use App\Http\Controllers\Controller;
+use App\Mail\InvoiceMail;
 use App\Models\Berkas;
 use App\Models\Biodata;
 use App\Models\Prodi;
@@ -13,6 +14,7 @@ use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
@@ -40,6 +42,30 @@ class PendaftarController extends Controller
         $dataProdi = Prodi::all();
 
         return response()->view('admin.data.monitoring.index', compact('data', 'pendaftarHariIni', 'tesOnline', 'daftarUlang', 'dataProdi'));
+    }
+
+    public function indexDev($filter = null): Response
+    {
+        if(is_null($filter)){
+            $data = User::with(['prodi'])->where('permission_id', 2)->get();
+        } else {
+            $data = User::with(['prodi'])->where([
+                ['permission_id', 2],
+                ['prodi_id', $filter]
+            ])->get();
+        }
+        $pendaftarHariIni = User::with(['prodi'])->where('permission_id', 2)->whereDate('created_at', Carbon::today()->toDateString())->count();
+        $tesOnline = User::with(['prodi'])->where('permission_id', 2)->get()
+            ->filter(function($item) {
+                return $item->progres === 'tes online';
+            })->count();
+        $daftarUlang = User::with(['prodi'])->where('permission_id', 2)->get()
+            ->filter(function($item) {
+                return $item->progres === 'daftar ulang';
+            })->count();
+        $dataProdi = Prodi::all();
+
+        return response()->view('admin.data.monitoring.index-dev', compact('data', 'pendaftarHariIni', 'tesOnline', 'daftarUlang', 'dataProdi'));
     }
 
     public function filter(Request $request){
@@ -320,5 +346,31 @@ class PendaftarController extends Controller
             if(Storage::exists('public/' . $kartu_keluarganame)) Storage::delete('public/' . $kartu_keluarganame);
             return redirect()->back()->with(['status' => 'danger', 'message' => 'Berkas gagal disimpan.']);
         }
+    }
+
+    public function tagihanRegistrasi($id){
+        $user = User::find($id);
+        $data = $user->pembayaranRegistrasi();
+
+        if(is_null($data)) return redirect()->back()->with(['status'=>'danger', 'message'=>'Pendaftar belum pernah login. Pastikan pendaftar sudah login terlebih dahulu.']);
+        if($data->status) return redirect()->back()->with(['status'=>'danger', 'message'=>'Pembayaran telah dibayarkan.']);
+
+        return $this->sentTagihan($user, $data);
+    }
+
+    public function tagihanDaftarUlang($id){
+        $user = User::find($id);
+        $data = $user->pembayaranDaftarUlang();
+
+        if(is_null($data)) return redirect()->back()->with(['status'=>'danger', 'message'=>'Pendaftar belum update data tes online. Pastikan pendaftar sudah login terlebih dahulu setelah melakukan tes online.']);
+        if($data->status) return redirect()->back()->with(['status'=>'danger', 'message'=>'Pembayaran telah dibayarkan.']);
+
+        return $this->sentTagihan($user, $data);
+    }
+
+    private function sentTagihan($user, $data){
+        if(kirimTagihan($user, $data)) return redirect()->back()->with(['status'=>'success', 'message'=>'Email berhasil dikirimkan.']);
+
+        return redirect()->back()->with(['status'=>'danger', 'message'=>'Email gagal dikirimkan.']);
     }
 }

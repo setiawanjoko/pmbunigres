@@ -61,8 +61,8 @@ class BiodataController extends Controller
             $registrationNumber = $this->generateRegistrationNumber();
 
             Biodata::updateOrCreate(
-                ['user_id' => auth()->id()], [
-                'no_pendaftaran' => $registrationNumber,
+                ['user_id' => auth()->id(),
+                'no_pendaftaran' => $registrationNumber], [
                 'nik' => $data['nik'],
                 'nama_depan' => $data['nama_depan'],
                 'nama_belakang' => $data['nama_belakang'],
@@ -90,6 +90,9 @@ class BiodataController extends Controller
 
     public function generateRegistrationNumber(): string
     {
+        $user = auth()->user()->biodata;
+        if(!is_null($user)) return $user->no_pendaftaran;
+
         $count = Biodata::whereDate('created_at', Carbon::today())->count();
         $number = $count + 1;
         $date = date_format(Carbon::today(), 'ymd');

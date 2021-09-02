@@ -57,7 +57,8 @@
                 <div class="row gx-5">
                     <div class="col-md-6 left">
                         <h5>Link Tes Potensi Akademik</h5>
-                        <a href="{{ $dataLink->value ?? '#' }}" type="submit" class="btn btn-primary mb-5" target="_blank">Klik Disini!</a>
+                        <a href="http://bit.ly/SOAL_SELEKSI_PMB_ILMU_KEPERAWATAN_UNIGRES_2021" type="submit" class="btn btn-primary mb-5" target="_blank">Klik Disini untuk ilmu keperawatan!</a>
+                        <a href="http://bit.ly/SOAL_SELEKSI_PMB_UNIGRES_2021" type="submit" class="btn btn-primary mb-5" target="_blank">Klik Disini untuk jurusan lain!</a>
                         <p class="catatan">Catatan :</p>
                         <p>
                         <ol>

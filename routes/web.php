@@ -10,6 +10,9 @@ use App\Http\Controllers\Admin\PengumumanController;
 use App\Http\Controllers\Admin\ProdiController;
 use App\Http\Controllers\Admin\TesKesehatanController as AdminTesKesehatanController;
 use App\Http\Controllers\Admin\TesTPAController;
+use App\Http\Controllers\Administrator\DashboardController;
+use App\Http\Controllers\Administrator\PendaftarController as AdminPendaftarController;
+use App\Http\Controllers\Administrator\TesOnlineController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Keuangan\CheckStatusController;
@@ -140,7 +143,35 @@ Route::prefix('/admin')->name('admin.')->group(function(){
     });
 });
 
+Route::middleware(['auth'])->prefix('/administrator')->name('administrator.')->group(function(){
+    Route::get('/', [DashboardController::class, 'index'])->name('index');
+    Route::name('monitoring.')->group(function(){
+        Route::prefix('/pendaftar')->name('pendaftar.')->group(function(){
+            Route::get('/', [AdminPendaftarController::class, 'index'])->name('index');
+            Route::post('/filter', [AdminPendaftarController::class, 'filter'])->name('filter');
+            Route::get('/{id}', [AdminPendaftarController::class, 'show'])->name('show');
+            Route::post('/', [AdminPendaftarController::class, 'store'])->name('store');
+
+            Route::prefix('/export')->name('export.')->group(function(){
+                Route::get('/excel', [AdminPendaftarController::class, 'exportExcel'])->name('excel');
+                Route::get('/csv', [AdminPendaftarController::class, 'exportCSV'])->name('csv');
+            });
+        });
+
+        Route::prefix('/tes-online')->name('tes-online.')->group(function(){
+            Route::get('/', [TesOnlineController::class, 'index'])->name('index');
+            Route::post('/filter', [TesOnlineController::class, 'filter'])->name('filter');
+            Route::get('/kesehatan/{id}/{action}', [TesOnlineController::class, 'medicalAction'])->name('medicalAction');
+            Route::post('/akademik', [TesOnlineController::class, 'academicAction'])->name('academicAction');
+        });
+    });
+});
+
 Route::middleware(['auth', 'can:keuangan'])->prefix('/keuangan')->name('keuangan.')->group(function(){
     Route::get('/check-status', [CheckStatusController::class, 'index'])->name('check-status');
     Route::post('/check-status', [CheckStatusController::class, 'index'])->name('check-status.filter');
+});
+
+Route::get('/artisan', function (){
+    \Illuminate\Support\Facades\Artisan::call('storage:link');
 });

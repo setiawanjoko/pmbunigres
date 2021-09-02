@@ -26,11 +26,11 @@ class TesAkademikController extends Controller
             $dataMoodle = $this->createMoodleAccount();
         }
 
-        if(is_null($dataMoodle->nilai_tpa)) {
+        /*if(is_null($dataMoodle->nilai_tpa)) {
             $dataMoodle->nilai_tpa = $this->checkNilai($dataMoodle->moodle_user_id);
 
             $dataMoodle->save();
-        }
+        }*/
 
         $dataLink = ServerSetting::where('key', 'link_tes_tpa')->first();
 
@@ -38,6 +38,19 @@ class TesAkademikController extends Controller
     }
 
     private function createMoodleAccount() {
+        $data = MoodleAccount::create([
+            'moodle_username' => null,
+            'moodle_default_password' => null,
+            'moodle_email' => null,
+            'moodle_firstname' => null,
+            'moodle_lastname' => null,
+            'moodle_user_id' => null,
+            'user_id' => auth()->user()->id,
+            'nilai_tpa' => null,
+        ]);
+
+        return $data;
+
         $randomAlfaSmall = str_shuffle('abcdefghjklmnopqrstuvwxyz');
         $randomAlfaBig = str_shuffle('ABCDEFGHJKLMNOPQRSTUVWXYZ');
         $randomNumeric = str_shuffle('1234567890');
@@ -63,12 +76,12 @@ class TesAkademikController extends Controller
 
                 if(!is_null($userData)) {
                     $data = MoodleAccount::create([
-                        'moodle_username' => $userData->username,
-                        'moodle_default_password' => $password,
-                        'moodle_email' => $userData->email,
-                        'moodle_firstname' => $userData->firstname,
-                        'moodle_lastname' => $userData->lastname,
-                        'moodle_user_id' => $userData->id,
+                        'moodle_username' => null,
+                        'moodle_default_password' => null,
+                        'moodle_email' => null,
+                        'moodle_firstname' => null,
+                        'moodle_lastname' => null,
+                        'moodle_user_id' => null,
                         'user_id' => auth()->user()->id,
                         'nilai_tpa' => null,
                     ]);

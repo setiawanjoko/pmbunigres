@@ -10,6 +10,12 @@ use Carbon\Carbon;
 
 class RegisController extends Controller
 {
+    public function get_gelombang(){
+        $data = Gelombang::whereYear('tgl_mulai', Carbon::now()->year)->get();
+
+        return $data;
+    }
+
     public function get_prodi(){
         $data = DB::select('SELECT p.id,p.nama AS prodi,j.nama AS jenjang,f.fakultas, IF((SELECT COUNT(k.lulusan_unigres) FROM kelas k WHERE k.prodi_id = p.id AND k.lulusan_unigres = 1) > 0,1,0) AS lulusan_unigres
                             FROM prodi p

@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\ProdiController;
 use App\Http\Controllers\Admin\TesKesehatanController as AdminTesKesehatanController;
 use App\Http\Controllers\Admin\TesTPAController;
 use App\Http\Controllers\Administrator\DashboardController;
+use App\Http\Controllers\Administrator\Master\GelombangController as MasterGelombangController;
 use App\Http\Controllers\Administrator\PendaftarController as AdminPendaftarController;
 use App\Http\Controllers\Administrator\TesOnlineController;
 use App\Http\Controllers\Auth\VerificationController;
@@ -164,6 +165,10 @@ Route::middleware(['auth'])->prefix('/administrator')->name('administrator.')->g
             Route::get('/kesehatan/{id}/{action}', [TesOnlineController::class, 'medicalAction'])->name('medicalAction');
             Route::post('/akademik', [TesOnlineController::class, 'academicAction'])->name('academicAction');
         });
+    });
+
+    Route::name('master.')->group(function(){
+        Route::resource('gelombang', MasterGelombangController::class)->only(['index', 'store', 'destroy']);
     });
 });
 

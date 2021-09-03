@@ -245,6 +245,13 @@ return [
             'url'  => 'administrator/tes-online',
             'icon' => 'fas fa-fw fa-file-alt',
         ],
+        ['header' => 'DATA MASTER'],
+        [
+            'text' => 'Gelombang',
+            'url'  => 'administrator/gelombang',
+            'icon' => 'fas fa-fw fa-calendar-alt',
+        ],
+        ['header' => 'MENU LAINNYA'],
         [
             'text'       => 'Admin Panel Lama',
             'icon_color' => 'cyan',

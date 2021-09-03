@@ -1,10 +1,10 @@
 @extends('adminlte::page')
 
-@section('title', 'Monitoring Pendaftar')
+@section('title', 'Data Gelombang')
 @section('plugin.Datatables', true)
 
 @section('content_header')
-    <h1>Monitoring Pendaftar</h1>
+    <h1>Data Gelombang</h1>
 @stop
 
 @section('content_header_breadcrumbs')

@@ -134,5 +134,9 @@
             $('#startDate').val(startDate);
             $('#endDate').val(endDate);
         }
+
+        $(function() {
+            $('#data').DataTable();
+        });
     </script>
 @stop

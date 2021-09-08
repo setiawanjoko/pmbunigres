@@ -29,18 +29,9 @@ class PendaftarController extends Controller
             ])->get();
         }
 
-        $pendaftarHariIni = User::with(['prodi'])->where('permission_id', 2)->whereDate('created_at', Carbon::today()->toDateString())->count();
-        $tesOnline = User::with(['prodi'])->where('permission_id', 2)->get()
-            ->filter(function($item) {
-                return $item->progres === 'tes online';
-            })->count();
-        $daftarUlang = User::with(['prodi'])->where('permission_id', 2)->get()
-            ->filter(function($item) {
-                return $item->progres === 'daftar ulang';
-            })->count();
         $dataProdi = Prodi::all();
 
-        return response()->view('administrator.monitoring.pendaftar.index', compact('data', 'pendaftarHariIni', 'tesOnline', 'daftarUlang', 'dataProdi'));
+        return response()->view('administrator.monitoring.pendaftar.index', compact('data',  'dataProdi'));
     }
 
     public function filter(Request $request): Response

@@ -81,7 +81,7 @@
                             <select name="class" id="class" class="form-control form-control-sm">
                                 <option selected disabled>-- Silahkan Pilih Program Studi --</option>
                             </select>
-                            <input type="hidden" class="class_id" id="class_id">
+                            <input type="hidden" class="class_id" id="class_id" name="class_id">
                         </div>
                         <div class="form-group">
                             <label for="enrollment">Jalur Masuk</label>

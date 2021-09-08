@@ -71,7 +71,7 @@
                         <div class="form-group" id="graduateFrom">
                             <label for="graduate">Lulusan Unigres</label>
                             <select name="graduate" id="graduate" class="form-control form-control-sm">
-                                <option value="0">Bukan Lulusan Unigres</option>
+                                <option value="0" selected>Bukan Lulusan Unigres</option>
                                 <option value="1">Lulusan Unigres</option>
                             </select>
                             <span class="text-muted small">*Hanya tersedia untuk beberapa jurusan saja.</span>
@@ -341,14 +341,15 @@
             $("#class").change(function () {
                 var schedule = $("#class option:selected" );
                 let classes = $('#class_id');
+                let phase = $('#phase');
                 classes.val(schedule.attr('data-kelas'));
 
                 $.ajax({
                     type:'GET',
-                    url:'{{ env('APP_URL') }}api/getjalurmasuk/' + classes.val(),
+                    url:'{{ env('APP_URL') }}api/getenrollmentmethod/' + phase.val() + '/' + classes.val(),
                     success:function(data){
                         $("#enrollment").find('option').remove().end().append('<option selected disabled>-- Silahkan Pilih Jalur Masuk --</option>');
-                        $.each(data, function(){
+                        $.each(data.data, function(){
                             $("#enrollment").append('<option  value="'+ this.jalur_masuk_id +'">'+ this.jalur_masuk +'</option>')
                         });
                         if(!data) {

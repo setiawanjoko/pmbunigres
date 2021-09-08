@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Api;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Gelombang;
@@ -10,6 +11,12 @@ use Carbon\Carbon;
 
 class RegisController extends Controller
 {
+    private $not_found = [
+        'status' => 'failed',
+        'code' => 404,
+        'message' => 'Data tidak ditemukan.'
+    ];
+
     public function get_gelombang(){
         $data = Gelombang::whereYear('tgl_mulai', Carbon::now()->year)->get();
 
@@ -36,7 +43,7 @@ class RegisController extends Controller
     }
 
     public function get_jalur_masuk($id){
-        $gelombang = $gelombang = Gelombang::where([
+        $gelombang = Gelombang::where([
             ['tgl_mulai', '<=', Carbon::today()],
             ['tgl_selesai', '>=', Carbon::today()]
         ])->first();
@@ -46,5 +53,37 @@ class RegisController extends Controller
                             LEFT OUTER JOIN jalur_masuk j ON b.jalur_masuk_id = j.id
                             WHERE b.kelas_id = ? and b.gelombang_id = ?', [$id,$gelombang->id]) : null;
         return $data;
+    }
+
+    /**
+     * Retrieve enrollment method based on chosen phase and class
+     *
+     * @param $phaseId
+     * @param $classId
+     * @return JsonResponse
+     */
+    public function getJalurMasuk($phaseId, $classId): JsonResponse
+    {
+        $gelombang = (is_null($phaseId)) ? Gelombang::where([
+            ['tgl_mulai', '<=', Carbon::today()],
+            ['tgl_selesai', '>=', Carbon::today()]
+        ])->first() : Gelombang::find($phaseId);
+
+        $data = (!is_null($gelombang)) ? DB::select('SELECT b.gelombang_id,b.kelas_id,b.id,b.jalur_masuk_id,j.jalur_masuk
+                            FROM biayas b
+                            LEFT OUTER JOIN jalur_masuk j ON b.jalur_masuk_id = j.id
+                            WHERE b.kelas_id = ? and b.gelombang_id = ?', [$classId,$gelombang->id]) : null;
+
+        if(empty($data)) {
+            $response = $this->not_found;
+        } else {
+            $response = [
+                'status' => 'success',
+                'code' => 200,
+                'data' => $data
+            ];
+        }
+
+        return response()->json($response, $response['code']);
     }
 }

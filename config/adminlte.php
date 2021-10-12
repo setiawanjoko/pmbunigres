@@ -251,6 +251,11 @@ return [
             'url'  => 'administrator/gelombang',
             'icon' => 'fas fa-fw fa-calendar-alt',
         ],
+        [
+            'text' => 'Fakultas',
+            'url'  => 'administrator/fakultas',
+            'icon' => 'fas fa-fw fa-building',
+        ],
         ['header' => 'MENU LAINNYA'],
         [
             'text'       => 'Admin Panel Lama',

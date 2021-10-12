@@ -152,6 +152,7 @@ Route::middleware(['auth'])->prefix('/administrator')->name('administrator.')->g
             Route::post('/filter', [AdminPendaftarController::class, 'filter'])->name('filter');
             Route::get('/{id}', [AdminPendaftarController::class, 'show'])->name('show');
             Route::post('/', [AdminPendaftarController::class, 'store'])->name('store');
+            Route::delete('/{id}', [AdminPendaftarController::class, 'destroy'])->name('destroy');
 
             Route::prefix('/export')->name('export.')->group(function(){
                 Route::get('/excel', [AdminPendaftarController::class, 'exportExcel'])->name('excel');

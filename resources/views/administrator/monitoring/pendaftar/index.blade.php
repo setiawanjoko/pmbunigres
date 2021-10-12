@@ -201,6 +201,13 @@
                                     <i class="fas fa-eye"></i> Lihat
                                 </a>
                             @endif
+                            @if(empty($row->pembayaranRegistrasi()) && empty($row->pembayaranDaftarUlang()) && empty($row->biodata->nim))
+                                <form action="{{ route('administrator.monitoring.pendaftar.destroy', $row->id) }}" method="POST" class="d-inline-block">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                </form>
+                            @endif
                         </td>
                     </tr>
                 @endforeach

@@ -256,6 +256,16 @@ return [
             'url'  => 'administrator/fakultas',
             'icon' => 'fas fa-fw fa-building',
         ],
+        [
+            'text' => 'Jenjang',
+            'url'  => 'administrator/jenjang',
+            'icon' => 'fas fa-fw fa-graduation-cap',
+        ],
+        [
+            'text' => 'Program Studi',
+            'url'  => 'administrator/prodi',
+            'icon' => 'fas fa-fw fa-atom',
+        ],
         ['header' => 'MENU LAINNYA'],
         [
             'text'       => 'Admin Panel Lama',

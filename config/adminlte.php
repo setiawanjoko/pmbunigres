@@ -266,6 +266,11 @@ return [
             'url'  => 'administrator/prodi',
             'icon' => 'fas fa-fw fa-atom',
         ],
+        [
+            'text' => 'Pengumuman',
+            'url'  => 'administrator/pengumuman',
+            'icon' => 'fas fa-fw fa-bullhorn',
+        ],
         ['header' => 'MENU LAINNYA'],
         [
             'text'       => 'Admin Panel Lama',

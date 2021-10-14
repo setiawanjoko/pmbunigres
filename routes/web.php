@@ -14,6 +14,7 @@ use App\Http\Controllers\Administrator\DashboardController;
 use App\Http\Controllers\Administrator\Master\FakultasController as MasterFakultasController;
 use App\Http\Controllers\Administrator\Master\GelombangController as MasterGelombangController;
 use App\Http\Controllers\Administrator\Master\JenjangController as MasterJenjangController;
+use App\Http\Controllers\Administrator\Master\PengumumanController as MasterPengumumanController;
 use App\Http\Controllers\Administrator\Master\ProgramStudiController as MasterProgramStudiController;
 use App\Http\Controllers\Administrator\PendaftarController as AdminPendaftarController;
 use App\Http\Controllers\Administrator\TesOnlineController;
@@ -175,6 +176,7 @@ Route::middleware(['auth'])->prefix('/administrator')->name('administrator.')->g
         Route::resource('fakultas', MasterFakultasController::class)->only(['index', 'store', 'destroy']);
         Route::resource('gelombang', MasterGelombangController::class)->only(['index', 'store', 'destroy']);
         Route::resource('jenjang', MasterJenjangController::class)->only(['index', 'store', 'destroy']);
+        Route::resource('pengumuman', MasterPengumumanController::class)->only(['index', 'store', 'destroy']);
         Route::resource('prodi', MasterProgramStudiController::class)->only(['index', 'store', 'destroy']);
     });
 });

@@ -14,3 +14,6 @@ yarn-error.log
 /.idea/vcs.xml
 composer.json
 /.idea/
+/.idea/deployment.xml
+/.idea/php.xml
+/.idea/pmbunigres.iml

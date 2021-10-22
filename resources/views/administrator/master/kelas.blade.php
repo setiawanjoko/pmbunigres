@@ -171,7 +171,7 @@
 
             $('h4#addClassLabel').text('Sunting Kelas');
             $.ajax({
-                url: "{{ url('/api/getkelas') }}/" + classId,
+                url: "{{ url('/api/kelas') }}/" + classId,
                 method: "get",
                 success: function(data){
                     $('#major').val(data.prodi_id);

@@ -37,4 +37,4 @@ Route::name('regis.')->group(function () {
     Route::get('/getenrollmentmethod/{phaseId}/{classId}', [RegisController::class, 'getJalurMasuk'])->name('getEnrollmentMethod');
 });
 
-Route::get('/getkelas/{id}', [KelasController::class, 'getClassProperty']);
+Route::get('/kelas/{id}', [KelasController::class, 'getClassProperty']);

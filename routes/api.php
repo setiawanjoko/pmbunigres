@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Api\BiayaController;
 use App\Http\Controllers\Admin\Api\RegisController;
+use App\Http\Controllers\Administrator\Master\KelasController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -35,3 +36,5 @@ Route::name('regis.')->group(function () {
 
     Route::get('/getenrollmentmethod/{phaseId}/{classId}', [RegisController::class, 'getJalurMasuk'])->name('getEnrollmentMethod');
 });
+
+Route::get('/getkelas/{id}', [KelasController::class, 'getClassProperty']);

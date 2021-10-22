@@ -262,6 +262,11 @@ return [
             'icon' => 'fas fa-fw fa-graduation-cap',
         ],
         [
+            'text' => 'Kelas',
+            'url'  => 'administrator/kelas',
+            'icon' => 'fas fa-fw fa-user-friends',
+        ],
+        [
             'text' => 'Program Studi',
             'url'  => 'administrator/prodi',
             'icon' => 'fas fa-fw fa-atom',

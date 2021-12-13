@@ -19,12 +19,18 @@ class Pembayaran extends Model
         'expiredDate',
         'status',
         'kategori',
-        'no_surat'
+        'no_surat',
+        'bukti_kirim'
     ];
 
     protected $casts = [
         'expiredData' => 'datetime',
     ];
+
+    public function getUpdatedAtAttribute($timestamp)
+    {
+        return $timestamp;
+    }
 
     public function pendaftar() {
         return $this->belongsTo(User::class, 'user_id', 'id');

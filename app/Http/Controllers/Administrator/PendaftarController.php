@@ -4,14 +4,18 @@ namespace App\Http\Controllers\Administrator;
 
 use App\Http\Controllers\Controller;
 use App\Models\Prodi;
+use App\Models\ServerSetting;
 use App\Models\User;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Exports\StudentExport;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Validation\ValidationException;
 use Maatwebsite\Excel\Facades\Excel;
+use MongoDB\Driver\Server;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class PendaftarController extends Controller
@@ -166,5 +170,99 @@ class PendaftarController extends Controller
     public function exportCSV(): BinaryFileResponse
     {
         return Excel::download(new StudentExport(), 'export.csv');
+    }
+
+    public function exportAPI()
+    {
+        $data = [];
+        $raw = User::with(['prodi'])->where('permission_id', 2)->get()
+            ->filter(function ($item) {
+                return $item->progres === 'daftar ulang';
+            });
+
+        foreach ($raw as $row) {
+            array_push($data, [
+                'mhs_id' => $row->biodata->no_pendaftaran,
+                'mhs_nim' => $row->biodata->nim,
+                'mhs_password' => $row->password,
+                'mhs_no_ktp' => $row->biodata->nik,
+                'mhs_nama' => $row->nama,
+                'mhs_prodi' => $row->prodi->kode_prodi_siakad,
+                'mhs_jenjang' => $row->prodi->jenjang->id,
+                'mhs_kelas' => Carbon::now()->year . substr($row->kelas->kelas, -1),
+                'mhs_dosen_wali' => '-',
+                'mhs_tempat_lahir' => $row->biodata->tempat_lahir,
+                'mhs_tanggal_lahir' => $row->biodata->tanggal_lahir,
+                'mhs_jenis_kelamin' => $row->biodata->jenis_kelamin,
+                'mhs_agama' => $row->biodata->agama,
+                'mhs_alamat' => $row->biodata->alamat,
+                'mhs_no_telepon' => $row->biodata->no_telepon,
+                'mhs_tahun_masuk' => Carbon::now()->year,
+                'mhs_semester_awal_masuk' => Carbon::now()->year,
+                'mhs_asal_sma' => $row->biodata->asal_sekolah,
+                'mhs_nama_ayah' => (!is_null($row->ayah())) ? $row->ayah()->nama : '-',
+                'mhs_pekerjaan_ayah' => (!is_null($row->ayah())) ? $row->ayah()->pekerjaan : '-',
+                'mhs_nama_ibu' => (!is_null($row->ibu())) ? $row->ibu()->nama : '-',
+                'mhs_pekerjaan_ibu' => (!is_null($row->ibu())) ? $row->ibu()->pekerjaan : '-',
+                'mhs_nama_wali' => (!is_null($row->wali())) ? $row->wali()->nama : '-',
+                'mhs_alamat_wali' => (!is_null($row->wali())) ? $row->wali()->alamat : '-',
+                'mhs_no_telepon_wali' => (!is_null($row->wali())) ? $row->wali()->telepon : '-',
+                'mhs_penerima_beasiswa' => 0,
+                'mhs_gelombang' => 1,
+                'mhs_tinggal_kelas' => 0,
+                'mhs_status' => 1,
+                'mhs_bypass_kkn' => 0,
+                'mhs_foto' => 'nopic.png',
+                'mhs_level' => 6,
+                'mhs_aktif' => 1
+            ]);
+        }
+
+        $accessToken = ServerSetting::where('key', 'access_token_siakad')->first();
+
+        if($accessToken == null) $res = [
+            'status' => 'danger',
+            'message' => 'Access Token belum ada. Tambahkan Access Token pada Pengaturan SIAKAD.'
+        ];
+
+        if(is_null($data)) $res = [
+            'status' => 'warning',
+            'message' => 'Tidak ada data untuk diekspor.'
+        ];
+
+        if(isset($accessToken) && isset($data)){
+            $failed = [];
+            $success = [];
+            foreach ($data as $row){
+                $response = Http::withHeaders([
+                    'access-token' => $accessToken->value
+                ])->asForm()->post('http://siakad.unigres.ac.id/api/mahasiswa/', $row);
+
+                if($response->failed()){
+                    array_push($failed, $row);
+                }
+
+                if($response->successful()) {
+                    array_push($success, $row);
+                }
+            }
+
+            if(count($success) == 0) $res = [
+                'status' => 'danger',
+                'message' => 'Data gagal ditambahkan.'
+            ];
+
+            if(count($failed) == 0) $res = [
+                'status' => 'success',
+                'message' => 'Data berhasil ditambahkan.'
+            ];
+
+            if(count($success) > 0 && count($failed) > 0) $res = [
+                'status' => 'warning',
+                'message' => 'Data berhasil ditambahkan sebagian.'
+            ];
+        }
+
+        return response()->redirectToRoute('administrator.monitoring.pendaftar.index')->with($res);
     }
 }

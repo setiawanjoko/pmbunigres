@@ -21,6 +21,7 @@ use App\Http\Controllers\Administrator\Master\KelasController as MasterKelasCont
 use App\Http\Controllers\Administrator\Master\PengumumanController as MasterPengumumanController;
 use App\Http\Controllers\Administrator\Master\ProgramStudiController as MasterProgramStudiController;
 use App\Http\Controllers\Administrator\PendaftarController as AdminPendaftarController;
+use App\Http\Controllers\Administrator\Pengaturan\SiakadController;
 use App\Http\Controllers\Administrator\TesOnlineController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\HomeController;
@@ -166,6 +167,7 @@ Route::middleware(['auth'])->prefix('/administrator')->name('administrator.')->g
             Route::prefix('/export')->name('export.')->group(function(){
                 Route::get('/excel', [AdminPendaftarController::class, 'exportExcel'])->name('excel');
                 Route::get('/csv', [AdminPendaftarController::class, 'exportCSV'])->name('csv');
+                Route::get('/api', [AdminPendaftarController::class, 'exportAPI'])->name('api');
             });
         });
 

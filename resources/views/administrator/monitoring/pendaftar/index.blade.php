@@ -15,7 +15,8 @@
         </button>
         <div class="dropdown-menu" role="menu" aria-labelledby="dropdownSubMenu1">
             <a href="{{ route('administrator.monitoring.pendaftar.export.excel') }}" class="dropdown-item"><i class="fas fa-file-excel"></i> Excel</a>
-            <a href="{{ route('administrator.monitoring.pendaftar.export.csv') }}" class="dropdown-item"><i class="fas fa-file csv"></i> CSV</a>
+            <a href="{{ route('administrator.monitoring.pendaftar.export.csv') }}" class="dropdown-item"><i class="fas fa-file-csv"></i> CSV</a>
+            <a href="{{ route('administrator.monitoring.pendaftar.export.api') }}" class="dropdown-item"><i class="fas fa-server"></i> SIAKAD</a>
         </div>
     </div>
     <button class="btn btn-sm btn-primary ml-1" data-toggle="modal" data-target="#addRegistrar"><i class="fas fa-plus"></i> Tambah</button>

@@ -187,7 +187,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => 'administrator',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -237,8 +237,19 @@ return [
         ],
         [
             'text' => 'Keuangan',
-            'url'  => 'administrator/keuangan',
             'icon' => 'fas fa-fw fa-receipt',
+            'submenu' => [
+                [
+                    'text'  => 'Biaya',
+                    'url'   => 'administrator/biaya',
+                    'shift' => 'ml-3'
+                ],
+                [
+                    'text'  => 'Pembayaran',
+                    'url'   => 'administrator/pembayaran',
+                    'shift' => 'ml-3'
+                ],
+            ],
         ],
         [
             'text' => 'Tes Online dan Kesehatan',
@@ -272,9 +283,20 @@ return [
             'icon' => 'fas fa-fw fa-atom',
         ],
         [
+            'text' => 'Jalur Masuk',
+            'url'  => 'administrator/jalur-masuk',
+            'icon' => 'fas fa-fw fa-route',
+        ],
+        [
             'text' => 'Pengumuman',
             'url'  => 'administrator/pengumuman',
             'icon' => 'fas fa-fw fa-bullhorn',
+        ],
+        ['header' => 'PENGATURAN'],
+        [
+            'text' => 'SIAKAD',
+            'url'  => 'administrator/siakad',
+            'icon'  => 'fas fa-fw fa-school'
         ],
         ['header' => 'MENU LAINNYA'],
         [

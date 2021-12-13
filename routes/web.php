@@ -174,6 +174,42 @@ Route::middleware(['auth'])->prefix('/administrator')->name('administrator.')->g
     });
 
     Route::name('master.')->group(function(){
+        Route::resource('fakultas', MasterFakultasController::class)->only(['index', 'store', 'destroy']); // DONE
+        Route::resource('gelombang', MasterGelombangController::class)->only(['index', 'store', 'destroy']); // DONE
+        Route::resource('jenjang', MasterJenjangController::class)->only(['index', 'store', 'destroy']); // DONE
+        Route::resource('kelas', MasterKelasController::class)->only(['index', 'store', 'show', 'destroy']); // DONE
+        Route::resource('pengumuman', MasterPengumumanController::class)->only(['index', 'store', 'destroy']); // DONE
+        Route::resource('prodi', MasterProgramStudiController::class)->only(['index', 'store', 'destroy']); // DONE
+        Route::resource('jalur-masuk', JalurMasukController::class)->only(['index', 'store', 'destroy']); // DONE
+
+        Route::prefix('/pengumuman')->name('pengumuman.brosur.')->group(function(){
+            Route::post('/brosur', [MasterPengumumanController::class, 'brochureStore'])->name('store');
+            Route::delete('/brosur/{id}', [MasterPengumumanController::class, 'brochureDestroy'])->name('destroy');
+        });
+    });
+
+    Route::name('keuangan.')->group(function(){
+        Route::resource('biaya', MasterBiayaController::class)->only(['index', 'store', 'destroy']);
+        Route::prefix('/biaya')->name('biaya.')->group(function(){
+            Route::post('/filter', [MasterBiayaController::class, 'filter'])->name('filter');
+        });
+
+        Route::resource('pembayaran', PembayaranController::class)->only(['index', 'destroy']);
+        Route::prefix('/pembayaran')->name('pembayaran.')->group(function(){
+            // Internal data manipulation
+            Route::post('/filter', [PembayaranController::class, 'filter'])->name('filter');
+            Route::post('/report', [PembayaranController::class, 'report'])->name('report');
+
+            // BRIVA data manipulation (Local & BRI)
+            Route::get('/check/{id}', [PembayaranController::class, 'check'])->name('check');
+            Route::post('/confirm', [PembayaranController::class, 'confirm'])->name('confirm');
+            Route::get('/renew/{id}', [PembayaranController::class, 'renew'])->name('renew');
+            Route::get('/delete/{id}', [PembayaranController::class, 'delete'])->name('delete');
+        });
+    });
+
+    Route::name('pengaturan.')->group(function(){
+        Route::resource('siakad', SiakadController::class)->only(['index', 'store']);
         Route::resource('fakultas', MasterFakultasController::class)->only(['index', 'store', 'destroy']);
         Route::resource('gelombang', MasterGelombangController::class)->only(['index', 'store', 'destroy']);
         Route::resource('jenjang', MasterJenjangController::class)->only(['index', 'store', 'destroy']);
@@ -189,5 +225,5 @@ Route::middleware(['auth', 'can:keuangan'])->prefix('/keuangan')->name('keuangan
 });
 
 Route::get('/artisan', function (){
-    \Illuminate\Support\Facades\Artisan::call('storage:link');
+    Artisan::call('storage:link');
 });

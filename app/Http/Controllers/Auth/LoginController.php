@@ -32,11 +32,11 @@ class LoginController extends Controller
     public function redirectPath(): string
     {
         $user = Auth::user();
-        if($user->can('admin')) return '/admin/monitoring/pendaftar/';
+        if($user->can('admin')) return '/administrator';
         else if($user->can('camaba')) return '/biodata';
-        else if($user->can('keuangan')) return '/admin/pengaturan-gelombang';
-        else if($user->can('monitor')) return '/admin/monitoring/pendaftar/';
-        else if($user->can('kesehatan')) return '/admin/tes-kesehatan';
+        else if($user->can('keuangan')) return '/administrator';
+        else if($user->can('monitor')) return '/administrator';
+        else if($user->can('kesehatan')) return '/administrator';
     }
 
     /**
@@ -48,7 +48,7 @@ class LoginController extends Controller
     {
         $gate = Gate::inspect('admin');
 
-        if($gate) $this->redirectTo = '/admin/tes-tpa';
+        if($gate) $this->redirectTo = '/administrator';
         $this->middleware('guest')->except('logout');
     }
 }

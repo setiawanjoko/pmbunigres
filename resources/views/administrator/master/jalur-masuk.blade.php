@@ -1,34 +1,34 @@
 @extends('adminlte::page')
 
-@section('title', 'Data Jenjang')
+@section('title', 'Data Jalur Masuk')
 @section('plugin.Datatables', true)
 
 @section('content_header')
-    <h1>Data Jenjang</h1>
+    <h1>Data Jalur Masuk</h1>
 @stop
 
 @section('content_header_breadcrumbs')
-    <button class="btn btn-sm btn-primary ml-1" data-toggle="modal" data-target="#addLevel" onclick="reset()"><i class="fas fa-plus"></i> Tambah</button>
+    <button class="btn btn-sm btn-primary ml-1" data-toggle="modal" data-target="#addEnrollmentMethod" onclick="reset()"><i class="fas fa-plus"></i> Tambah</button>
 @stop
 
 @section('content')
     <x-alert></x-alert>
 
-    <div class="modal fade" id="addLevel" tabindex="-1" role="dialog" aria-labelledby="addLevelLabel">
+    <div class="modal fade" id="addEnrollmentMethod" tabindex="-1" role="dialog" aria-labelledby="addEnrollmentMethodLabel">
         <div class="modal-dialog" role="document">
-            <form action="{{ route('administrator.master.jenjang.store') }}" method="POST">
+            <form action="{{ route('administrator.master.jalur-masuk.store') }}" method="POST">
                 @method('POST')
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="addLevelLabel">Tambah Jenjang</h4>
+                        <h4 class="modal-title" id="addEnrollmentMethodLabel">Tambah Jalur Masuk</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="level">Jenjang</label>
+                            <label for="enrollmentMethod">Jalur Masuk</label>
                             <input type="hidden" name="id" id="id">
-                            <input type="text" name="level" id="level" class="form-control form-control-sm" placeholder="Doktoral" required>
+                            <input type="text" name="enrollmentMethod" id="enrollmentMethod" class="form-control form-control-sm" placeholder="Gelombang 1" required>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -46,7 +46,7 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Jenjang</th>
+                    <th>Jalur Masuk</th>
                     <th>Aksi</th>
                 </tr>
                 </thead>
@@ -54,13 +54,13 @@
                 @foreach($data as $row)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $row->nama }}</td>
+                        <td>{{ $row->jalur_masuk }}</td>
                         <td>
-                            <form action="{{ route('administrator.master.jenjang.destroy', $row->id) }}" method="POST">
+                            <form action="{{ route('administrator.master.jalur-masuk.destroy', $row->id) }}" method="POST">
                                 @method('DELETE')
                                 @csrf
                                 <div class="btn-group btn-group-sm">
-                                    <button type="button" class="btn btn-warning" id="btn-edit" data-toggle="modal" data-target="#addLevel" data-id="{{$row->id}}" data-level="{{$row->nama}}" onclick="edit(this)"><i class="fas fa-pencil-alt"></i></button>
+                                    <button type="button" class="btn btn-warning" id="btn-edit" data-toggle="modal" data-target="#addEnrollmentMethod" data-id="{{$row->id}}" data-enrollment-method="{{$row->jalur_masuk}}" onclick="edit(this)"><i class="fas fa-pencil-alt"></i></button>
                                     <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                                 </div>
                             </form>
@@ -71,7 +71,7 @@
                 <tfoot>
                 <tr>
                     <th>#</th>
-                    <th>Jenjang</th>
+                    <th>Jalur Masuk</th>
                     <th>Aksi</th>
                 </tr>
                 </tfoot>
@@ -89,19 +89,19 @@
         }
 
         reset = () => {
-            $('h4#addLevelLabel').text('Tambah Jenjang');
+            $('h4#addEnrollmentMethodLabel').text('Tambah Jalur Masuk');
             $('#id').val(null);
-            $('#level').val(null);
+            $('#enrollmentMethod').val(null);
         }
 
         edit = (e) => {
             let collection = $(e);
             let id = collection.data('id');
-            let level = collection.data('level');
+            let enrollmentMethod = collection.data('enrollment-method');
 
-            $('h4#addLevelLabel').text('Sunting Jenjang');
+            $('h4#addEnrollmentMethodLabel').text('Sunting Jalur Masuk');
             $('#id').val(id);
-            $('#level').val(level);
+            $('#enrollmentMethod').val(enrollmentMethod);
         }
 
         $(function() {

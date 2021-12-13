@@ -12,11 +12,20 @@
 @stop
 
 @section('content')
-    <x-alert></x-alert>
+    @if(session('status'))
+        <div class="col-12">
+            <div class="alert alert-{{ session('status') }} alert-dismissible fade show" role="alert">
+                {{ session('message') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    @endif
 
     <div class="modal fade" id="addClass" tabindex="-1" role="dialog" aria-labelledby="addClassLabel">
         <div class="modal-dialog" role="document">
-            <form action="{{ route('administrator.master.kelas.store') }}" id="form-input" method="POST">
+            <form action="{{ route('administrator.master.kelas.store') }}" method="POST">
                 @method('POST')
                 @csrf
                 <div class="modal-content">
@@ -79,8 +88,8 @@
                             <label>Jam Masuk</label>
                             @foreach($schedules as $schedule)
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="{{$schedule->id}}" id="schedule-{{$schedule->id}}" name="schedules[]">
-                                    <label class="form-check-label" for="schedule-{{$schedule->id}}">{{ucwords($schedule->jam_masuk)}}</label>
+                                    <input class="form-check-input" type="checkbox" value="{{$schedule->id}}" id="{{$schedule->jam_masuk}}" name="schedules[]">
+                                    <label class="form-check-label" for="{{$schedule->jam_masuk}}">{{ucwords($schedule->jam_masuk)}}</label>
                                 </div>
                             @endforeach
                         </div>
@@ -118,7 +127,7 @@
                                 @method('DELETE')
                                 @csrf
                                 <div class="btn-group btn-group-sm">
-                                    <button type="button" class="btn btn-warning" id="btn-edit" data-toggle="modal" data-target="#addClass" data-id="{{$row->id}}" onclick="editClass(this)"><i class="fas fa-pencil-alt"></i></button>
+                                    <button type="button" class="btn btn-warning" id="btn-edit" data-toggle="modal" data-target="#addClass" data-class="{{$row}}" data-id="{{$row->id}}" data-faculty="{{$row->fakultas}}" onclick="editClass(this)"><i class="fas fa-pencil-alt"></i></button>
                                     <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                                 </div>
                             </form>
@@ -148,35 +157,31 @@
             });
         }
 
-        setSchedule = (schedule, index) => {
-            $('#schedule-' + schedule.jam_masuk_id).click();
-        }
-
         resetClass = () => {
             $('h4#addClassLabel').text('Tambah Kelas');
-            $('#form-input').trigger('reset');
+            $('#major').val(null);
+            $('#idClass').val(null);
+            $('#class').val(null);
+            $('#graduate').val(null);
+            $('#registration').val(null);
+            $('#heregistration').val(null);
+            $('#medical_test').val(null);
+            $('#medical_note').val(null);
         }
 
         editClass = (e) => {
-            let classId = $(e).data('id');
+            let collection = $(e);
+            let classData = collection.data('class');
 
             $('h4#addClassLabel').text('Sunting Kelas');
-            $.ajax({
-                url: "{{ url('/api/kelas') }}/" + classId,
-                method: "get",
-                success: function(data){
-                    $('#major').val(data.prodi_id);
-                    $('#idClass').val(data.id);
-                    $('#class').val(data.kelas);
-                    $('#graduate').val(data.lulusan_unigres);
-                    $('#registration').val(data.biaya_registrasi);
-                    $('#heregistration').val(data.biaya_daftar_ulang);
-                    $('#medical_test').val(data.tes_kesehatan);
-                    $('#medical_note').val(data.keterangan_tes_kesehatan);
-
-                    (data.jam_masuk_kelas).forEach(setSchedule);
-                }
-            });
+            $('#major').val(classData.prodi_id);
+            $('#idClass').val(classData.id);
+            $('#class').val(classData.kelas);
+            $('#graduate').val(classData.lulusan_unigres);
+            $('#registration').val(classData.biaya_registrasi);
+            $('#heregistration').val(classData.biaya_daftar_ulang);
+            $('#medical_test').val(classData.tes_kesehatan);
+            $('#medical_note').val(classData.keterangan_tes_kesehatan);
         }
 
         $(function() {

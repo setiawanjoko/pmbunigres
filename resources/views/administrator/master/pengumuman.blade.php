@@ -8,20 +8,11 @@
 @stop
 
 @section('content_header_breadcrumbs')
-    <button class="btn btn-sm btn-primary ml-1" data-toggle="modal" data-target="#addAnnouncement" onclick="reset()"><i class="fas fa-plus"></i> Tambah</button>
+    <button class="btn btn-sm btn-primary ml-1" data-toggle="modal" data-target="#addAnnouncement" onclick="reset()"><i class="fas fa-plus"></i> Tambah</button>&nbsp;
 @stop
 
 @section('content')
-    @if(session('status'))
-        <div class="col-12">
-            <div class="alert alert-{{ session('status') }} alert-dismissible fade show" role="alert">
-                {{ session('message') }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        </div>
-    @endif
+    <x-alert></x-alert>
 
     <div class="modal fade" id="addAnnouncement" tabindex="-1" role="dialog" aria-labelledby="addAnnouncementLabel">
         <div class="modal-dialog" role="document">
@@ -63,51 +54,93 @@
         </div>
     </div>
 
-    <div class="card">
-        <div class="card-body">
-            <table id="data" class="table table-bordered table-striped dataTable">
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Judul</th>
-                    <th>Deskripsi</th>
-                    <th>Publikasi</th>
-                    <th>Aksi</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($data as $row)
-                    <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $row->judul }}</td>
-                        <td>{{ $row->deskripsi }}</td>
-                        <td>{{ $row->petugas->nama }} pada {{ date_format($row->updated_at, 'd/m/Y') }}</td>
-                        <td>
-                            <form action="{{ route('administrator.master.pengumuman.destroy', $row->id) }}" method="POST">
-                                @method('DELETE')
-                                @csrf
-                                <div class="btn-group btn-group-sm">
-                                    <a href="{{ env('APP_URL') }}/storage/{{ $row->file_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-success"><i class="fas fa-eye"></i></a>
-                                    <button type="button" class="btn btn-warning" id="btn-edit" data-toggle="modal" data-target="#addAnnouncement" data-id="{{$row->id}}" data-title="{{$row->judul}}" data-description="{{$row->deskripsi}}" onclick="edit(this)"><i class="fas fa-pencil-alt"></i></button>
-                                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+    <div class="row">
+        <div class="col-12 col-lg-8">
+            <div class="card">
+                <div class="card-body">
+                    <table id="data" class="table table-bordered table-striped dataTable">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Judul</th>
+                            <th>Deskripsi</th>
+                            <th>Publikasi</th>
+                            <th>Aksi</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($data as $row)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $row->judul }}</td>
+                                <td>{{ $row->deskripsi }}</td>
+                                <td>{{ $row->petugas->nama }} pada {{ date_format($row->updated_at, 'd/m/Y') }}</td>
+                                <td>
+                                    <form action="{{ route('administrator.master.pengumuman.destroy', $row->id) }}" method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <div class="btn-group btn-group-sm">
+                                            <a href="{{ env('APP_URL') }}storage/{{ $row->file_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-success"><i class="fas fa-eye"></i></a>
+                                            <button type="button" class="btn btn-warning" id="btn-edit" data-toggle="modal" data-target="#addAnnouncement" data-id="{{$row->id}}" data-title="{{$row->judul}}" data-description="{{$row->deskripsi}}" onclick="edit(this)"><i class="fas fa-pencil-alt"></i></button>
+                                            <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                                        </div>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th>#</th>
+                            <th>Judul</th>
+                            <th>Deskripsi</th>
+                            <th>Publikasi</th>
+                            <th>Aksi</th>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-4">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title"><i class="fas fa-scroll"></i> Brosur</h3>
+                </div>
+                <div class="card-body">
+                    @isset($brochure)
+                    <form action="{{ route('administrator.master.pengumuman.brosur.destroy', $brochure->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <div class="form-group">
+                            <label for="preview">Terupload : </label>
+                            <div class="btn-group">
+                                <a href="{{ env('APP_URL').'storage/'.$brochure->file_url }}" class="btn btn-success btn-sm text-white"><i class="fas fa-eye"></i></a>
+                                <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                    @endisset
+                    <form action="{{ route('administrator.master.pengumuman.brosur.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method('POST')
+                        <div class="form-group">
+                            <label for="brochure">Pilih Brosur</label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" name="brochure" id="brochure" class="custom-file-input">
+                                    <label for="brochure" class="custom-file-label">Pilih File</label>
                                 </div>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-                </tbody>
-                <tfoot>
-                <tr>
-                    <th>#</th>
-                    <th>Judul</th>
-                    <th>Deskripsi</th>
-                    <th>Publikasi</th>
-                    <th>Aksi</th>
-                </tr>
-                </tfoot>
-            </table>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-save"></i> Simpan</button>&nbsp;
+                        <button type="reset" class="btn btn-danger btn-sm"><i class="fas fa-eraser"></i> Batal</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
+
 @stop
 
 @section('js')

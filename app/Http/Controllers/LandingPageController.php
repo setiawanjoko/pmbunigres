@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Pengumuman;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -20,10 +21,12 @@ class LandingPageController extends Controller
         $data = DB::select('SELECT p.id,p.judul,p.deskripsi,p.file_url,CONCAT(u.nama,\' | \',date(p.created_at)) AS publish
                             FROM pengumuman p
                             LEFT OUTER JOIN users u ON p.petugas_id = u.id
+                            WHERE p.deskripsi != "#brochure#"
                             ORDER BY p.created_at desc
                             LIMIT 2');
+        $brochure = Pengumuman::where('deskripsi', '#brochure#')->first();
 
-        return view('welcome',compact('data'));
+        return view('welcome',compact('data', 'brochure'));
     }
 
     /**

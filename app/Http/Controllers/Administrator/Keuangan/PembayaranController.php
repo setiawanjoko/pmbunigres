@@ -202,7 +202,7 @@ class PembayaranController extends Controller
                 'message' => 'Tidak dapat memperbarui kode BRIVA. Kode BRIVA telah dibayarkan.'
             ];
         } else {
-            if(deleteBriva($data)){
+            if(deleteBriva($data->custCode)){
                 $data->delete();
 
                 $paymentType = $data->kategori;
@@ -265,7 +265,7 @@ class PembayaranController extends Controller
                 'message' => 'Tidak dapat menghapus kode BRIVA. Kode BRIVA telah dibayarkan.'
             ];
         } else {
-            if(deleteBriva($data)){
+            if(deleteBriva($data->custCode)){
                 $data->delete();
 
                 $res = [

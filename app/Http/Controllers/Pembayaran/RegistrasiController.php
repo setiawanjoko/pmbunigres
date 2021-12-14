@@ -45,44 +45,11 @@ class RegistrasiController extends Controller
         ])->first();
         if(is_null($data)) {
             $biaya = $user->biaya();
-            $response = json_encode(createBriva('registrasi', $biaya, $user));
+            $response = json_decode(json_encode(createBriva('registrasi', $biaya, $user)));
+            $data = $response->data;
 
-            if($response->status == 'success') return response()->view('instruksi-pembayaran', compact(['data'=>$response->data]));
+            if($response->status == 'success') return response()->view('instruksi-pembayaran', compact('data'));
             else abort(500);
         } else return response()->view('instruksi-pembayaran', compact('data'));
-
-        // cek apakah sudah ada data pembayaran
-//        if(!is_null($data)) {
-//            // cek apakah pembayaran sudah expired
-//            if($data->expiredDate < Carbon::now() && !$data->status) {
-//                // todo: kalau expired hapus briva yang ada di server
-//                $path = '/v1/briva/';
-//                $verb = 'DELETE';
-//
-//                $data = [
-//                    'institutionCode' => env('BRIVA_INSTITUTION_CODE') ,
-//                    'brivaNo' => env('BRIVA_NO'),
-//                    'custCode' => $data->custCode
-//                ];
-//                $payload = json_encode($data);
-//
-//                $signature = generateSignature($path, $verb, $token, $timestamp, $payload);
-//                $url = env('BRIVA_APP_URL') . $path;
-//                $res = Http::withHeaders([
-//                    'BRI-Signature' => $signature,
-//                    'BRI-Timestamp' => $timestamp,
-//                ])->withToken($token)->delete($url, $data);
-//
-//                $response = json_decode($res->body());
-//
-//                if($response->status && $response->responseDescription == 'Success') {
-//                    // todo: route instruksi pembayaran
-//                    return response()->redirectToRoute('instruksi-pembayaran');
-//                }
-//            }
-//        } else {
-//
-//        }
-
     }
 }

@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\TesKesehatanController as AdminTesKesehatanContro
 use App\Http\Controllers\Admin\TesTPAController;
 use App\Http\Controllers\Administrator\DashboardController;
 use App\Http\Controllers\Administrator\Keuangan\BiayaController as MasterBiayaController;
+use App\Http\Controllers\Administrator\Keuangan\BrivaController;
 use App\Http\Controllers\Administrator\Keuangan\PembayaranController;
 use App\Http\Controllers\Administrator\Master\FakultasController as MasterFakultasController;
 use App\Http\Controllers\Administrator\Master\GelombangController as MasterGelombangController;
@@ -211,6 +212,15 @@ Route::middleware(['auth'])->prefix('/administrator')->name('administrator.')->g
             Route::post('/confirm', [PembayaranController::class, 'confirm'])->name('confirm');
             Route::get('/renew/{id}', [PembayaranController::class, 'renew'])->name('renew');
             Route::get('/delete/{id}', [PembayaranController::class, 'delete'])->name('delete');
+        });
+
+        Route::group([
+            'prefix' => '/briva',
+            'as' => 'briva.'
+        ], function(){
+            Route::get('/', [BrivaController::class, 'index'])->name('index');
+            Route::get('/{custCode}', [BrivaController::class, 'show'])->name('show');
+            Route::get('/delete/{custCode}', [BrivaController::class, 'destroy'])->name('destroy');
         });
     });
 

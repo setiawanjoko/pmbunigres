@@ -46,6 +46,14 @@ function getToken(){
 
 function generateSignature($path,$verb,$token,$timestamp,$payload){
     $g = "path=$path&verb=$verb&token=Bearer $token&timestamp=$timestamp&body=$payload";
+    $payload = sprintf(
+        'path=%s&verb=%s&token=Bearer %s&timestamp=%s&body=%s',
+        $path,
+        $verb,
+        $token,
+        $timestamp,
+        $payload
+    );
     $signPayload = hash_hmac('sha256', $g, env('BRIVA_CONSUMER_SECRET'), true);
 
     return base64_encode($signPayload);
@@ -189,6 +197,31 @@ function generateNomorSurat(): string
     return $sequence . '/PAN-PMB/' . $year; // Format : xxx/PAN-PMB/yyyy
 }
 
+function getBriva(string $custCode){
+    $token = getToken();
+    $timestamp = gmdate("Y-m-d\TH:i:s.000\Z");
+
+    $path = '/v1/briva/' . env('BRIVA_INSTITUTION_CODE') . '/' . env('BRIVA_NO') . '/' . $custCode;
+    $verb = 'GET';
+
+    $signature = generateSignature($path, $verb, $token, $timestamp, null);
+    $url = env('BRIVA_APP_URL') . $path;
+
+    var_dump($url);
+
+    try {
+        $res = Http::withHeaders([
+            'BRI-Signature' => $signature,
+            'BRI-Timestamp' => $timestamp,
+        ])->withToken($token)->get($url);
+        $response = json_decode($res->body());
+
+        dd($response);
+    } catch (\Exception $e){
+        dd($e->getMessage());
+    }
+}
+
 /**
  * @param string $kategori
  * @param Biaya $biaya
@@ -263,7 +296,7 @@ function createBriva(string $kategori, Biaya $biaya, User $user): array
             ];
         } catch (Exception $e) {
             return [
-                'status' => 'status',
+                'status' => 'danger',
                 'message' => 'Gagal membuat tagihan. ERR_CODE: ' . $e->getMessage()
             ];
         }
@@ -311,32 +344,36 @@ function updateStatusBriva(Pembayaran $pembayaran, string $statusBayar = 'N'): b
 }
 
 /**
- * @param Pembayaran $pembayaran
+ * @param $custCode
  * @return bool
  */
-function deleteBriva(Pembayaran $pembayaran): bool
+function deleteBriva($custCode): bool
 {
     $token = getToken();
     $timestamp = gmdate("Y-m-d\TH:i:s.000\Z");
     $path = '/v1/briva';
     $verb = 'DELETE';
 
-    $data = [
-        'institutionCode' => env('BRIVA_INSTITUTION_CODE'),
-        'brivaNo' => env('BRIVA_NO'),
-        'custCode' => $pembayaran->custCode
-    ];
-    $payload = json_encode($data);
+    $institutionCode = env('BRIVA_INSTITUTION_CODE');
+    $brivaNo = env('BRIVA_NO');
+    $data = compact('institutionCode', 'brivaNo', 'custCode');
+    $payload = http_build_query($data);
 
-    $signature = generateSignature($path, $verb, $token, $timestamp, $payload);
     $url = env('BRIVA_APP_URL') . $path;
-    $res = Http::withHeaders([
-        'BRI-Signature' => $signature,
-        'BRI-Timestamp' => $timestamp,
-        'Content-Type' => 'text/plain'
-    ])->withToken($token)->delete($url, http_build_query($data, '', '&amp;'));
+    $signature = generateSignature($path, $verb, $token, $timestamp, $payload);
 
-    $response = json_decode($res->body());
+    $client = new GuzzleHttp\Client();
+    $options['headers'] = [
+        'Authorization' => 'Bearer ' . $token,
+        'BRI-Timestamp' => $timestamp,
+        'BRI-Signature' => $signature,
+        'Content-Type' => 'text/plain'
+    ];
+    $options['body'] = $payload;
+
+    $res = $client->request($verb, $url, $options);
+
+    $response = json_decode($res->getBody());
 
     return isset($response->status) && $response->status;
 }

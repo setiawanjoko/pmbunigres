@@ -49,9 +49,10 @@ class DaftarUlangController extends Controller
         ])->first();
         if(is_null($data)) {
             $biaya = $user->biaya();
-            $response = json_encode(createBriva('daftar_ulang', $biaya, $user));
+            $response = json_decode(json_encode(createBriva('daftar_ulang', $biaya, $user)));
+            $data = $response->data;
 
-            if($response->status == 'success') return response()->view('instruksi-pembayaran', compact(['data'=>$response->data]));
+            if($response->status == 'success') return response()->view('instruksi-pembayaran', compact('data'));
             else back()->with($response);
         } else {
             return response()->view('instruksi-pembayaran', compact('data'));
@@ -69,23 +70,5 @@ class DaftarUlangController extends Controller
         $pembayaran = auth()->user()->pembayaranDaftarUlang();
 
         return response()->view('print-sk', compact('biodata', 'prodi', 'gelombang', 'biaya', 'tanggal', 'pembayaran'));
-    }
-
-    public function nomorSurat(){
-        $tahun = Carbon::today()->year;
-        $count = Pembayaran::where('kategori', 'daftar_ulang')->whereNotNull('no_surat')->whereYear('created_at', $tahun)->count();
-        $seq = substr(str_repeat(0, 3) . ($count + 1), - 3);
-
-        return $seq . '/PAN-PMB/' . $tahun;
-    }
-
-    public function generateCustCode(): string
-    {
-        $count = Pembayaran::whereDate('created_at', Carbon::today())->where('kategori', 'daftar_ulang')->count();
-        $number = $count + 5001;
-        $date = date_format(Carbon::today(), 'ymd');
-        $seq = substr(str_repeat(0, 4).$number, - 4);
-
-        return $date . $seq;
     }
 }

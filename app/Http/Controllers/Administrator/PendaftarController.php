@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Administrator;
 
 use App\Http\Controllers\Controller;
+use App\Models\Biodata;
 use App\Models\Prodi;
 use App\Models\ServerSetting;
 use App\Models\User;
 use Carbon\Carbon;
 use Exception;
+use GuzzleHttp\Client;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -126,22 +128,26 @@ class PendaftarController extends Controller
     {
         $data = User::find($id);
 
-        $payment = $data->pembayaranRegistrasi();
+        $payment = Pembayaran::where('user_id', $data->id)->first();
+        $bio = Biodata::where('user_id', $data->id)->first();
+        $wali = Wali::where('biodata_id', $bio->id)->first();
 
         try {
             if (isset($payment)) {
-                $response = [
-                    'status' => 'warning',
-                    'message' => 'Tidak dapat menghapus pendaftar yang telah melakukan pembayaran.'
-                ];
-            } else {
-                $data->delete();
-
-                $response = [
-                    'status' => 'success',
-                    'message' => 'Berhasil menghapus pendaftar.'
-                ];
+                $payment->delete();
             }
+            if (isset($wali)) {
+                $wali->delete();
+            }
+            if (isset($bio)) {
+                $bio->delete();
+            }
+            $data->delete();
+
+            $response = [
+                'status' => 'success',
+                'message' => 'Berhasil menghapus pendaftar.'
+            ];
         } catch (Exception $e) {
             $response = [
                 'status' => 'danger',
@@ -149,7 +155,7 @@ class PendaftarController extends Controller
             ];
         }
 
-        return response()->redirectToRoute('administrator.monitoring.pendaftar')->with($response);
+        return response()->redirectToRoute('administrator.monitoring.pendaftar.index')->with($response);
     }
 
     /**
@@ -234,15 +240,19 @@ class PendaftarController extends Controller
             $failed = [];
             $success = [];
             foreach ($data as $row){
-                $response = Http::withHeaders([
-                    'access-token' => $accessToken->value
-                ])->asForm()->post('http://siakad.unigres.ac.id/api/mahasiswa/', $row);
+                $client = new Client(['base_uri' => 'http://siakad.unigres.ac.id/api/']);
+                $response = $client->request('POST', 'mahasiswa', [
+                    'form_params' => $row,
+                    'headers' => [
+                        'access-token' => $accessToken->value
+                    ]
+                ]);
 
-                if($response->failed()){
+                if($response->getStatusCode() < 200 && $response->getStatusCode() >= 300){
                     array_push($failed, $row);
                 }
 
-                if($response->successful()) {
+                if($response->getStatusCode() >= 200 && $response->getStatusCode() < 300) {
                     array_push($success, $row);
                 }
             }

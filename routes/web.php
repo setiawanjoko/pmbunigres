@@ -23,6 +23,7 @@ use App\Http\Controllers\Administrator\Master\PengumumanController as MasterPeng
 use App\Http\Controllers\Administrator\Master\ProgramStudiController as MasterProgramStudiController;
 use App\Http\Controllers\Administrator\PendaftarController as AdminPendaftarController;
 use App\Http\Controllers\Administrator\Pengaturan\SiakadController;
+use App\Http\Controllers\Administrator\Pengaturan\TandatanganSKLController;
 use App\Http\Controllers\Administrator\TesOnlineController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\HomeController;
@@ -36,6 +37,7 @@ use App\Http\Controllers\Mahasiswa\TesKesehatanController;
 use App\Http\Controllers\Monitoring\PendaftarController as MonitoringPendaftarController;
 use App\Http\Controllers\Pembayaran\DaftarUlangController;
 use App\Http\Controllers\Pembayaran\RegistrasiController;
+use App\Models\ServerSetting;
 use App\Models\User;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -158,7 +160,7 @@ Route::prefix('/admin')->name('admin.')->group(function(){
 Route::middleware(['auth'])->prefix('/administrator')->name('administrator.')->group(function(){
     Route::get('/', [DashboardController::class, 'index'])->name('index');
     Route::name('monitoring.')->group(function(){
-        Route::prefix('/pendaftar')->name('pendaftar.')->group(function(){
+        Route::prefix('/pendaftar')->name('pendaftar.')->middleware('can:monitor')->group(function(){
             Route::get('/', [AdminPendaftarController::class, 'index'])->name('index');
             Route::post('/filter', [AdminPendaftarController::class, 'filter'])->name('filter');
             Route::get('/{id}', [AdminPendaftarController::class, 'show'])->name('show');
@@ -172,7 +174,7 @@ Route::middleware(['auth'])->prefix('/administrator')->name('administrator.')->g
             });
         });
 
-        Route::prefix('/tes-online')->name('tes-online.')->group(function(){
+        Route::prefix('/tes-online')->name('tes-online.')->middleware('can:kesehatan')->group(function(){
             Route::get('/', [TesOnlineController::class, 'index'])->name('index');
             Route::post('/filter', [TesOnlineController::class, 'filter'])->name('filter');
             Route::get('/kesehatan/{id}/{action}', [TesOnlineController::class, 'medicalAction'])->name('medicalAction');
@@ -180,7 +182,7 @@ Route::middleware(['auth'])->prefix('/administrator')->name('administrator.')->g
         });
     });
 
-    Route::name('master.')->group(function(){
+    Route::name('master.')->middleware('can:admin')->group(function(){
         Route::resource('fakultas', MasterFakultasController::class)->only(['index', 'store', 'destroy']); // DONE
         Route::resource('gelombang', MasterGelombangController::class)->only(['index', 'store', 'destroy']); // DONE
         Route::resource('jenjang', MasterJenjangController::class)->only(['index', 'store', 'destroy']); // DONE
@@ -195,7 +197,7 @@ Route::middleware(['auth'])->prefix('/administrator')->name('administrator.')->g
         });
     });
 
-    Route::name('keuangan.')->group(function(){
+    Route::name('keuangan.')->middleware('can:keuangan')->group(function(){
         Route::resource('biaya', MasterBiayaController::class)->only(['index', 'store', 'destroy']);
         Route::prefix('/biaya')->name('biaya.')->group(function(){
             Route::post('/filter', [MasterBiayaController::class, 'filter'])->name('filter');
@@ -224,14 +226,9 @@ Route::middleware(['auth'])->prefix('/administrator')->name('administrator.')->g
         });
     });
 
-    Route::name('pengaturan.')->group(function(){
+    Route::name('pengaturan.')->middleware('can:admin')->group(function(){
         Route::resource('siakad', SiakadController::class)->only(['index', 'store']);
-        Route::resource('fakultas', MasterFakultasController::class)->only(['index', 'store', 'destroy']);
-        Route::resource('gelombang', MasterGelombangController::class)->only(['index', 'store', 'destroy']);
-        Route::resource('jenjang', MasterJenjangController::class)->only(['index', 'store', 'destroy']);
-        Route::resource('kelas', MasterKelasController::class)->only(['index', 'store', 'show', 'destroy']);
-        Route::resource('pengumuman', MasterPengumumanController::class)->only(['index', 'store', 'destroy']);
-        Route::resource('prodi', MasterProgramStudiController::class)->only(['index', 'store', 'destroy']);
+        Route::resource('skl', TandatanganSKLController::class)->only(['index', 'store', 'destroy']);
     });
 });
 

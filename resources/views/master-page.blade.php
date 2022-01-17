@@ -55,7 +55,7 @@
                             <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">{{ auth()->user()->nama }}</a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 @can('admin')
-                                    <a class="dropdown-item" href="{{ route('admin.tes-tpa.index')}}">Halaman Admin</a>
+                                    <a class="dropdown-item" href="{{ route('administrator.index')}}">Halaman Admin</a>
                                 @endcan
                                 <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{__('logout')}}</a>
                             </div>
@@ -102,7 +102,7 @@
                             <img src="{{ asset('unigres/images/ic-document.svg') }}">
                             <div class="ak-body">
                                 <p class="title-1">Daftar Ulang</p>
-                                <p class="title-2">Mahasiswa Baru 2021</p>
+                                <p class="title-2">Mahasiswa Baru {{ \Carbon\Carbon::now()->year }}</p>
                             </div>
                         </div>
                     </a>
@@ -111,7 +111,7 @@
                             <img src="{{ asset('unigres/images/ic-book.svg') }}">
                             <div class="ak-body">
                                 <p class="title-1">Test Potensi Akademik</p>
-                                <p class="title-2">Mahasiswa Baru 2021</p>
+                                <p class="title-2">Mahasiswa Baru  {{ \Carbon\Carbon::now()->year }}</p>
                             </div>
                         </div>
                     </a>
@@ -128,7 +128,7 @@
                             <img src="{{ asset('unigres/images/ic-document.svg') }}">
                             <div class="ak-body">
                                 <p class="title-1">Pendaftaran</p>
-                                <p class="title-2">Mahasiswa Baru 2021</p>
+                                <p class="title-2">Mahasiswa Baru  {{ \Carbon\Carbon::now()->year }}</p>
                             </div>
                         </div>
                     </a>
@@ -137,7 +137,7 @@
                             <img src="{{ asset('unigres/images/ic-document.svg') }}">
                             <div class="ak-body">
                                 <p class="title-1">Daftar Ulang</p>
-                                <p class="title-2">Mahasiswa Baru 2021</p>
+                                <p class="title-2">Mahasiswa Baru  {{ \Carbon\Carbon::now()->year }}</p>
                             </div>
                         </div>
                     </a>
@@ -146,7 +146,7 @@
                             <img src="{{ asset('unigres/images/ic-book.svg') }}">
                             <div class="ak-body">
                                 <p class="title-1">Test Potensi Akademik</p>
-                                <p class="title-2">Mahasiswa Baru 2021</p>
+                                <p class="title-2">Mahasiswa Baru  {{ \Carbon\Carbon::now()->year }}</p>
                             </div>
                         </div>
                     </a>
@@ -158,7 +158,7 @@
         <section class="akademis-group">
             <div class="second-container">
                     <div class="wrapper-ak-group">
-                        <a class="link-item" href="{{ route('admin.monitoring.pendaftar.index') }}">
+                        <a class="link-item" href="{{ route('administrator.monitoring.pendaftar.index') }}">
                             <div class="ak-item">
                                 <img src="{{ asset('unigres/images/ic-document.svg') }}">
                                 <div class="ak-body">
@@ -167,7 +167,7 @@
                                 </div>
                             </div>
                         </a>
-                        <a class="link-item" href="{{ route('admin.jenjang.index') }}">
+                        <a class="link-item" href="{{ route('administrator.master.fakultas.index') }}">
                             <div class="ak-item">
                                 <img src="{{ asset('unigres/images/ic-document.svg') }}">
                                 <div class="ak-body">
@@ -176,7 +176,7 @@
                                 </div>
                             </div>
                         </a>
-                        <a class="link-item" href="{{ route('admin.pengaturan-gelombang.index') }}">
+                        <a class="link-item" href="{{ route('administrator.keuangan.biaya.index') }}">
                             <div class="ak-item">
                                 <img src="{{ asset('unigres/images/ic-document.svg') }}">
                                 <div class="ak-body">
@@ -192,7 +192,7 @@
         <section class="akademis-group">
             <div class="second-container">
                     <div class="wrapper-ak-group">
-                        <a class="link-item" href="{{ route('admin.monitoring.pendaftar.index') }}">
+                        <a class="link-item" href="{{ route('administrator.monitoring.pendaftar.index') }}">
                             <div class="ak-item">
                                 <img src="{{ asset('unigres/images/ic-document.svg') }}">
                                 <div class="ak-body">
@@ -208,7 +208,7 @@
         <section class="akademis-group">
             <div class="second-container">
                     <div class="wrapper-ak-group">
-                        <a class="link-item" href="{{ route('admin.pengaturan-gelombang.index') }}">
+                        <a class="link-item" href="{{ route('administrator.keuangan.biaya.index') }}">
                             <div class="ak-item">
                                 <img src="{{ asset('unigres/images/ic-document.svg') }}">
                                 <div class="ak-body">
@@ -224,7 +224,7 @@
         <section class="akademis-group">
             <div class="second-container">
                     <div class="wrapper-ak-group">
-                        <a class="link-item" href="{{ route('admin.tes-kesehatan.index') }}">
+                        <a class="link-item" href="{{ route('administrator.monitoring.tes-online.index') }}">
                             <div class="ak-item">
                                 <img src="{{ asset('unigres/images/ic-document.svg') }}">
                                 <div class="ak-body">
@@ -260,7 +260,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <a href="{{ asset('unigres/images/alur-pmb.jpg') }}" target="_blank" type="button" class="btn btn-primary">Lihat</a>
+                        <a href="{{ asset('storage/'.$brochure->file_url) }}" target="_blank" type="button" class="btn btn-primary">Lihat</a>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Keluar</button>
                     </div>
                 </div>

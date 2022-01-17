@@ -229,15 +229,19 @@ return [
             'url'         => 'administrator/',
             'icon'        => 'fas fa-fw fa-tachometer-alt',
         ],
-        ['header' => 'MONITORING PENDAFTARAN'],
+        [
+            'header' => 'MONITORING PENDAFTARAN'
+        ],
         [
             'text' => 'Pendaftar',
             'url'  => 'administrator/pendaftar',
             'icon' => 'fas fa-fw fa-users',
+            'can' => 'monitor'
         ],
         [
             'text' => 'Keuangan',
             'icon' => 'fas fa-fw fa-receipt',
+            'can' => 'keuangan',
             'submenu' => [
                 [
                     'text'  => 'Biaya',
@@ -255,54 +259,69 @@ return [
             'text' => 'Tes Online dan Kesehatan',
             'url'  => 'administrator/tes-online',
             'icon' => 'fas fa-fw fa-file-alt',
+            'can' => 'kesehatan'
         ],
-        ['header' => 'DATA MASTER'],
+        [
+            'header' => 'DATA MASTER',
+            'can' => 'admin'
+        ],
         [
             'text' => 'Gelombang',
             'url'  => 'administrator/gelombang',
             'icon' => 'fas fa-fw fa-calendar-alt',
+            'can' => 'admin'
         ],
         [
             'text' => 'Fakultas',
             'url'  => 'administrator/fakultas',
             'icon' => 'fas fa-fw fa-building',
+            'can' => 'admin'
         ],
         [
             'text' => 'Jenjang',
             'url'  => 'administrator/jenjang',
             'icon' => 'fas fa-fw fa-graduation-cap',
+            'can' => 'admin'
         ],
         [
             'text' => 'Kelas',
             'url'  => 'administrator/kelas',
             'icon' => 'fas fa-fw fa-user-friends',
+            'can' => 'admin'
         ],
         [
             'text' => 'Program Studi',
             'url'  => 'administrator/prodi',
             'icon' => 'fas fa-fw fa-atom',
+            'can' => 'admin'
         ],
         [
             'text' => 'Jalur Masuk',
             'url'  => 'administrator/jalur-masuk',
             'icon' => 'fas fa-fw fa-route',
+            'can' => 'admin'
         ],
         [
             'text' => 'Pengumuman',
             'url'  => 'administrator/pengumuman',
             'icon' => 'fas fa-fw fa-bullhorn',
+            'can' => 'admin'
         ],
-        ['header' => 'PENGATURAN'],
+        [
+            'header' => 'PENGATURAN',
+            'can' => 'admin'
+        ],
         [
             'text' => 'SIAKAD',
             'url'  => 'administrator/siakad',
-            'icon'  => 'fas fa-fw fa-school'
+            'icon'  => 'fas fa-fw fa-school',
+            'can' => 'admin'
         ],
-        ['header' => 'MENU LAINNYA'],
         [
-            'text'       => 'Admin Panel Lama',
-            'icon_color' => 'cyan',
-            'url'        => 'admin/monitoring/pendaftar',
+            'text' => 'SKL',
+            'url' => 'administrator/skl',
+            'icon' => 'fas fa-envelope-open-text',
+            'can' => 'admin'
         ],
     ],
 
@@ -387,7 +406,7 @@ return [
             ],
         ],
         'Sweetalert2' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',

@@ -8,7 +8,6 @@ use App\Http\Controllers\Administrator\Master\GelombangController;
 use App\Http\Controllers\Administrator\Master\JalurMasukController;
 use App\Http\Controllers\Administrator\Master\KelasController;
 use App\Http\Controllers\Administrator\Master\ProgramStudiController;
-use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -36,7 +35,7 @@ Route::name('biaya')->group(function(){
 Route::name('regis.')->group(function () {
     Route::get('/getgelombang', [RegisController::class, 'get_gelombang'])->name('getGelombang');
     Route::get('/getprodi', [RegisController::class, 'get_prodi'])->name('getProdi');
-    Route::get('/getjalurmasuk/{id}/{phaseId}', [RegisController::class, 'get_jalur_masuk']);
+    Route::get('/getjalurmasuk/{id}', [RegisController::class, 'get_jalur_masuk']);
     Route::get('/getjammasuk/{id}/{lulusan_unigres}', [RegisController::class, 'get_jam_masuk']);
 
     Route::get('/getenrollmentmethod/{phaseId}/{classId}', [RegisController::class, 'getJalurMasuk'])->name('getEnrollmentMethod');

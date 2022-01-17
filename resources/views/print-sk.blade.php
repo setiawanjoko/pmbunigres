@@ -74,7 +74,7 @@
                             <td width="5%">&nbsp;:&nbsp;</td>
                             <td>{{ $gelombang->gelombang }}</td>
                         </tr>
-                    </tbody>     
+                    </tbody>
                 </table>
                 <br>
                 <p>Dinyatakan <strong>DITERIMA</strong>, sebagai mahasiswa Universitas Gresik, Tahun Akademik 2021/2022, Selanjutnya agar melakukan heregistrasi dengan rincian pembayaran sebagai berikut :</p>
@@ -109,13 +109,17 @@
                         <td width="50%">
                             <div style="text-align: right;">
                                 <p style="text-align: left; padding-left:100px;">Gresik, {{ $tanggal }}</p>
-                                <img style="width: 70%" src="{{ asset('unigres/images/ttd-surat.jpg') }}" alt="" srcset="">
+                                @isset($signature)
+                                    <img style="width: 70%" src="{{ \Illuminate\Support\Facades\Storage::url($signature->value)}}" alt="" srcset="">
+                                @else
+                                    <img style="width: 70%" src="{{ asset('unigres/images/ttd-surat.jpg') }}" alt="" srcset="">
+                                @endisset
                             </div>
                         </td>
-                    </tr>        
-                </table>    
+                    </tr>
+                </table>
             </div>
         </div>
-    </div>    
+    </div>
 </body>
 </html>

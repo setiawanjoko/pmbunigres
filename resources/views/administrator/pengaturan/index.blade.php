@@ -49,7 +49,7 @@
 
     <div class="card">
         <div class="card-body">
-            <strong><i class="fas fa-network-wired"></i>&nbsp;&nbsp;Acess Token API</strong>
+            <strong><i class="fas fa-network-wired"></i>&nbsp;&nbsp;Access Token API</strong>
             <p>{{ $data->value ?? null }}</p>
         </div>
     </div>

@@ -252,11 +252,6 @@
             $("select#phase").append(newOption);
         }
 
-        setMajor = (data) => {
-            newOption = "<option value=\"" + data.id + "\">" + data.nama + "</option>";
-            $("select#major").append(newOption);
-        }
-
         setClass = (data) => {
             newOption = "<option value=\"" + data.id + "\">" + data.kelas + "</option>";
             $("select#class").append(newOption);
@@ -337,14 +332,6 @@
                 method: "get",
                 success: function(data){
                     data.forEach(setPhase);
-                }
-            })
-
-            $.ajax({
-                url: "{{ env('APP_URL') }}api/prodi",
-                method: "get",
-                success: function(data){
-                    data.forEach(setMajor)
                 }
             })
 

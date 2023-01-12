@@ -56,6 +56,11 @@ class GelombangController extends Controller
             'message' => 'Data gelombang tidak ditemukan'
         ]);
 
+        if(!is_null($data->user)) return response()->redirectToRoute('administrator.master.gelombang.index')->with([
+            'status' => 'danger',
+            'message' => 'Tidak dapat menghapus gelombang yang memiliki pendaftar'
+        ]);
+
         try {
             $data->delete();
 
@@ -71,5 +76,17 @@ class GelombangController extends Controller
         }
 
         return response()->redirectToRoute('administrator.master.gelombang.index')->with($res);
+    }
+
+    public function getGelombang(){
+        $data = Gelombang::all();
+
+        return response($data, 200);
+    }
+
+    public function getGelombangProperty($id){
+        $data = Gelombang::findOrFail($id);
+
+        return response($data, 200);
     }
 }

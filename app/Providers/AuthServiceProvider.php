@@ -39,7 +39,7 @@ class AuthServiceProvider extends ServiceProvider
             return $user->permission_id == 4 || $user->permission_id == 1;
         });
         Gate::define('kesehatan', function (User $user) {
-            return $user->permission_id == 5 || $user->permission_id == 1;
+            return $user->permission_id == 5 || $user->permission_id == 1 || $user->permission_id == 3;
         });
     }
 }

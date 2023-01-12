@@ -4,14 +4,17 @@ namespace App\Http\Controllers\Administrator\Master;
 
 use App\Http\Controllers\Controller;
 use App\Models\Fakultas;
+use Exception;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class FakultasController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -23,8 +26,8 @@ class FakultasController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
@@ -46,7 +49,7 @@ class FakultasController extends Controller
                 'status' => 'success',
                 'message' => 'Data fakultas berhasil dimasukkan'
             ];
-        } catch (\Exception $e){
+        } catch (Exception $e){
             $res = [
                 'status' => 'danger',
                 'message' => 'Data fakultas gagal dimasukkan'
@@ -60,7 +63,7 @@ class FakultasController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function destroy($id)
     {
@@ -83,7 +86,7 @@ class FakultasController extends Controller
                 'status' => 'success',
                 'message' => 'Data fakultas berhasil dihapus'
             ];
-        } catch (\Exception $e){
+        } catch (Exception $e){
             $res = [
                 'status' => 'danger',
                 'message' => 'Data fakultas gagal dihapus'

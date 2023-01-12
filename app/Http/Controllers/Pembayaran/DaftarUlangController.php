@@ -49,72 +49,11 @@ class DaftarUlangController extends Controller
         ])->first();
         if(is_null($data)) {
             $biaya = $user->biaya();
-            $token = getToken();
-            $timestamp = gmdate("Y-m-d\TH:i:s.000\Z");
+            $response = json_decode(json_encode(createBriva('daftar_ulang', $biaya, $user)));
+            $data = $response->data;
 
-            $path = '/v1/briva/';
-            $verb = 'POST';
-            $custCode = $this->generateCustCode();
-            $expDate = Carbon::tomorrow()->format('Y-m-d H:i:s');
-
-            $data = [
-                'institutionCode' => env('BRIVA_INSTITUTION_CODE'),
-                'brivaNo' => env('BRIVA_NO'),
-                'custCode' => $custCode,
-                'nama' => auth()->user()->nama,
-                'amount' => $biaya->total_daftar_ulang,
-                'keterangan' => 'Daftar Ulang PMB Unigres',
-                'expiredDate' => $expDate
-            ];
-            $payload = json_encode($data);
-
-            $signature = generateSignature($path, $verb, $token, $timestamp, $payload);
-            $url = env('BRIVA_APP_URL') . $path;
-
-            $res = Http::withHeaders([
-                'BRI-Signature' => $signature,
-                'BRI-Timestamp' => $timestamp,
-                'Content-Type' => 'application/json'
-            ])->withToken($token)->post($url, $data);
-            $response = json_decode($res->body());
-
-            if ($response->status && $response->responseDescription == 'Success') {
-                try {
-                    $data = Pembayaran::create([
-                        'user_id' => auth()->user()->id,
-                        'custCode' => $custCode,
-                        'amount' => $biaya->total_daftar_ulang,
-                        'keterangan' => 'Daftar Ulang PMB Unigres',
-                        'expiredDate' => $expDate,
-                        'status' => false,
-                        'kategori' => 'daftar_ulang',
-                        'no_surat' => $this->nomorSurat()
-                    ]);
-
-                    kirimTagihan($user, $data);
-                    return response()->view('instruksi-pembayaran', compact('data'));
-                } catch (Exception $e) {
-                    dd($e->getMessage());
-                }
-            } else {
-                if (!is_null($response->data)) {
-                    $data = Pembayaran::create([
-                        'user_id' => auth()->user()->id,
-                        'kategori' => 'daftar_ulang',
-                        'custCode' => $response->data->custCode,
-                        'amount' => $response->data->amount,
-                        'keterangan' => 'Daftar Ulang PMB Unigres',
-                        'expiredDate' => $response->data->expiredDate,
-                        'status' => false,
-                        'no_surat' => $this->nomorSurat()
-                    ]);
-                    kirimTagihan($user, $data);
-                    return response()->view('instruksi-pembayaran', compact('data'));
-                } else {
-                    abort(500);
-                }
-
-            }
+            if($response->status == 'success') return response()->view('instruksi-pembayaran', compact('data'));
+            else back()->with($response);
         } else {
             return response()->view('instruksi-pembayaran', compact('data'));
         }
@@ -131,23 +70,5 @@ class DaftarUlangController extends Controller
         $pembayaran = auth()->user()->pembayaranDaftarUlang();
 
         return response()->view('print-sk', compact('biodata', 'prodi', 'gelombang', 'biaya', 'tanggal', 'pembayaran'));
-    }
-
-    public function nomorSurat(){
-        $tahun = Carbon::today()->year;
-        $count = Pembayaran::where('kategori', 'daftar_ulang')->whereNotNull('no_surat')->whereYear('created_at', $tahun)->count();
-        $seq = substr(str_repeat(0, 3) . ($count + 1), - 3);
-
-        return $seq . '/PAN-PMB/' . $tahun;
-    }
-
-    public function generateCustCode(): string
-    {
-        $count = Pembayaran::whereDate('created_at', Carbon::today())->where('kategori', 'daftar_ulang')->count();
-        $number = $count + 5001;
-        $date = date_format(Carbon::today(), 'ymd');
-        $seq = substr(str_repeat(0, 4).$number, - 4);
-
-        return $date . $seq;
     }
 }

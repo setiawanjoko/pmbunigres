@@ -2,6 +2,7 @@
 
 @section('title', 'Monitoring Pendaftar')
 @section('plugin.Datatables', true)
+@section('plugin.Sweetalert2', true)
 
 @section('content_header')
     <h1>Monitoring Pendaftar</h1>
@@ -15,7 +16,8 @@
         </button>
         <div class="dropdown-menu" role="menu" aria-labelledby="dropdownSubMenu1">
             <a href="{{ route('administrator.monitoring.pendaftar.export.excel') }}" class="dropdown-item"><i class="fas fa-file-excel"></i> Excel</a>
-            <a href="{{ route('administrator.monitoring.pendaftar.export.csv') }}" class="dropdown-item"><i class="fas fa-file csv"></i> CSV</a>
+            <a href="{{ route('administrator.monitoring.pendaftar.export.csv') }}" class="dropdown-item"><i class="fas fa-file-csv"></i> CSV</a>
+            <a href="{{ route('administrator.monitoring.pendaftar.export.api') }}" class="dropdown-item" id="siakad-api"><i class="fas fa-server"></i> SIAKAD</a>
         </div>
     </div>
     <button class="btn btn-sm btn-primary ml-1" data-toggle="modal" data-target="#addRegistrar"><i class="fas fa-plus"></i> Tambah</button>
@@ -201,13 +203,11 @@
                                     <i class="fas fa-eye"></i> Lihat
                                 </a>
                             @endif
-                            @if(empty($row->pembayaranRegistrasi()) && empty($row->pembayaranDaftarUlang()) && empty($row->biodata->nim))
-                                <form action="{{ route('administrator.monitoring.pendaftar.destroy', $row->id) }}" method="POST" class="d-inline-block">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
-                                </form>
-                            @endif
+                            <form action="{{ route('administrator.monitoring.pendaftar.destroy', $row->id) }}" method="POST" class="d-inline-block" onsubmit="return confirm('Apakah anda yakin akan menghapus pendaftar? Semua data pendaftar termasuk pembayaran akan dihapus')">
+                                @method('DELETE')
+                                @csrf
+                                <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
@@ -365,6 +365,27 @@
                     }
                 });
             });
+
+            $('body').on('click', 'a#siakad-api', function (e){
+                e.preventDefault()
+                let urlToRedirect = e.currentTarget.getAttribute('href')
+                Swal.fire({
+                    title: 'Apakah anda yakin?',
+                    text: 'Apakah anda yakin ingin untuk ekspor data ke SIAKAD?',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonClass: 'btn-primary',
+                    confirmButtonText: 'Yakin',
+                    cancelButtonText: 'Tidak',
+                }).then((result) => {
+                    if(result.value){
+                        window.location.href = urlToRedirect
+                    } else {
+                        return false
+                    }
+                })
+                return false
+            })
         });
     </script>
 @stop

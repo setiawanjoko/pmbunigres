@@ -12,16 +12,7 @@
 @stop
 
 @section('content')
-    @if(session('status'))
-        <div class="col-12">
-            <div class="alert alert-{{ session('status') }} alert-dismissible fade show" role="alert">
-                {{ session('message') }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        </div>
-    @endif
+    <x-alert></x-alert>
 
     <div class="modal fade" id="addPhase" tabindex="-1" role="dialog" aria-labelledby="addPhaseLabel">
         <div class="modal-dialog" role="document">

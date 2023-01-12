@@ -66,7 +66,7 @@
                     </div>
                     <div class="col-3">
                         <button type="submit" class="btn btn-sm btn-primary">Filter</button>
-                        <a href="{{ route('administrator.monitoring.pendaftar.index') }}" class="btn btn-sm btn-warning">Hapus Filter</a>
+                        <a href="{{ route('administrator.monitoring.tes-online.index') }}" class="btn btn-sm btn-warning">Hapus Filter</a>
                     </div>
                 </div>
             </form>

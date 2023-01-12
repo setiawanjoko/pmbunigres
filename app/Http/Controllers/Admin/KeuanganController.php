@@ -18,9 +18,7 @@ class KeuanganController extends Controller
 
     public function brivaSearchShow(Request $request){
         $validatedData = $request->validate([
-            'briva' => 'required|exists:pembayaran,custCode'
-        ],[
-            'briva.exists' => 'BRI Virtual Account tidak terdaftar di database PMB.'
+            'briva' => 'required'
         ]);
 
         try {

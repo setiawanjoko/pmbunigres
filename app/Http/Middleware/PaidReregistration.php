@@ -30,7 +30,7 @@ class PaidReregistration
                 return response()->redirectToRoute('daftar-ulang');
             }
         }
-        if((!is_null($pembayaran) && $pembayaran->status) && is_null($biodata->nim)) {
+        if((!is_null($pembayaran) && $pembayaran->status) && (isset($biodata) && is_null($biodata->nim))) {
             $biodata->nim = generateNIM($user->prodi_id);
             $biodata->save();
         }

@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class DashboardController extends Controller
 {
     public function index(){
-        $totalRegistrar = User::all()->count();
+        $totalRegistrar = User::where('permission_id', 2)->get()->count();
         $pendaftarHariIni = User::with(['prodi'])
             ->where('permission_id', 2)
             ->whereDate('created_at', Carbon::today()

@@ -5,15 +5,19 @@ namespace App\Http\Controllers\Administrator\Master;
 use App\Http\Controllers\Controller;
 use App\Models\Fakultas;
 use App\Models\Jenjang;
+use App\Models\Kelas;
 use App\Models\Prodi;
+use Exception;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class ProgramStudiController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -27,8 +31,8 @@ class ProgramStudiController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
@@ -58,7 +62,7 @@ class ProgramStudiController extends Controller
                 'status' => 'success',
                 'message' => 'Data program studi berhasil dimasukkan'
             ];
-        } catch (\Exception $e){
+        } catch (Exception $e){
             $res = [
                 'status' => 'danger',
                 'message' => 'Data program studi gagal dimasukkan'
@@ -72,7 +76,7 @@ class ProgramStudiController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function destroy($id)
     {
@@ -95,7 +99,7 @@ class ProgramStudiController extends Controller
                 'status' => 'success',
                 'message' => 'Data program studi berhasil dihapus'
             ];
-        } catch (\Exception $e){
+        } catch (Exception $e){
             $res = [
                 'status' => 'danger',
                 'message' => 'Data program studi gagal dihapus'
@@ -103,5 +107,17 @@ class ProgramStudiController extends Controller
         }
 
         return response()->redirectToRoute('administrator.master.prodi.index')->with($res);
+    }
+
+    public function getProdi(){
+        $data = Prodi::all();
+
+        return response($data, 200);
+    }
+
+    public function getProdiClass($id){
+        $data = Kelas::where('prodi_id', $id)->get();
+
+        return response($data, 200);
     }
 }

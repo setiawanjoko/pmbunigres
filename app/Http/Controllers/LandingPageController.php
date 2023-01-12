@@ -24,7 +24,7 @@ class LandingPageController extends Controller
 //                            WHERE p.deskripsi != "#brochure#"
 //                            ORDER BY p.created_at desc
 //                            LIMIT 2');
-        $data = Pengumuman::where('deskripsi', '!=', '#brochure#')->limit(2)->get()->toArray();
+        $data = Pengumuman::where('deskripsi', '!=', '#brochure#')->orderBy('created_at', 'desc')->limit(2)->get()->toArray();
         $brochure = Pengumuman::where('deskripsi', '#brochure#')->first();
 
         return view('welcome',compact('data', 'brochure'));

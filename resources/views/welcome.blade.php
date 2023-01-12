@@ -26,7 +26,7 @@
         <div class="row gx-3 gy-3">
             @foreach ($data as $key=>$value)
             <div class="col-lg-6">
-                <a class="link-item-ann" href="{{ asset('storage/' . $value['file_url']) }}" target="_blank">
+                <a class="link-item-ann" @isset($value['file_url']) href="{{ asset('storage/' . $value['file_url']) }}" target="_blank" @else href="#" @endisset>
                     <div class="wrappe-item-ann">
                         <p class="#"><small>{{ $value['judul'] }}</small></p>
                         <p class="item-ann-title-1">{{ $value['deskripsi'] }}</p>

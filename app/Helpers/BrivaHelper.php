@@ -2,6 +2,7 @@
 
 use App\Mail\InvoiceMail;
 use App\Models\Biaya;
+use App\Models\Biodata;
 use App\Models\Pembayaran;
 use App\Models\Prodi;
 use App\Models\User;
@@ -82,12 +83,20 @@ function checkBrivaStatus($pembayaran) {
 }
 
 function generateNIM($prodi_id){
-    $count = User::whereHas('pembayaran', function($query){
+    $count = Biodata::whereHas('user', function ($query) use($prodi_id){
+        $query->whereHas('pembayaran', function($que) use($prodi_id){
+            return $que->where([
+                ['kategori', 'daftar_ulang'],
+                ['status', 1]
+            ]);
+        })->where('prodi_id', $prodi_id);
+    })->count();
+    /*$count = User::whereHas('pembayaran', function($query){
         return $query->where([
             ['kategori', 'daftar_ulang'],
             ['status', 1]
         ]);
-    })->where('prodi_id', $prodi_id)->count();
+    })->where('prodi_id', $prodi_id)->count();*/
     $prodi = Prodi::find($prodi_id);
 
     $date = Carbon::today()->year;

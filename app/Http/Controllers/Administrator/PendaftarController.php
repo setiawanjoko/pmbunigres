@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Administrator;
 
 use App\Http\Controllers\Controller;
 use App\Models\Biodata;
+use App\Models\Pembayaran;
 use App\Models\Prodi;
 use App\Models\ServerSetting;
 use App\Models\User;
+use App\Models\Wali;
 use Carbon\Carbon;
 use Exception;
 use GuzzleHttp\Client;
@@ -130,16 +132,16 @@ class PendaftarController extends Controller
 
         $payment = Pembayaran::where('user_id', $data->id)->first();
         $bio = Biodata::where('user_id', $data->id)->first();
-        $wali = Wali::where('biodata_id', $bio->id)->first();
 
         try {
             if (isset($payment)) {
                 $payment->delete();
             }
-            if (isset($wali)) {
-                $wali->delete();
-            }
-            if (isset($bio)) {
+            if ($bio) {
+                $wali = Wali::where('biodata_id', $bio->id)->first();
+                if (isset($wali)) {
+                    $wali->delete();
+                }
                 $bio->delete();
             }
             $data->delete();

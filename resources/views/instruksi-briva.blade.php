@@ -1,6 +1,6 @@
 @extends('master-page')
 
-@section('title', 'Instruksi Pembayaran')
+@section('title', 'Instruksi BNI')
 
 @section('content-title')
 @endsection
@@ -14,11 +14,11 @@
     <div class="wrapper-verif">
       <div class="wrap-content">
         <img class="verif-ic" src="{{asset('unigres/images/ic-check.svg')}}" style="width: 58px;">
-          @if(auth()->user()->pembayaranRegistrasi()->status)
+
               <h5 class="verif-title mb-2">Lakukan daftar ulang untuk mendapatkan NIM</h5>
-          @else
+  
               <h5 class="verif-title mb-2">Selamat, Pendaftaran anda berhasil !</h5>
-          @endif
+
         <p class="step2-title">Segera selesaikan pembayaran anda.</p>
         <div class="card card-payment">
           <div class="card-header">
@@ -26,19 +26,19 @@
           </div>
           <ul class="list-group list-group-flush">
             <li class="list-group-item">
-              <p class="list-title">TRANSFER VIRTUAL ACCOUNT BRI/BRIVA</p>
+              <p class="list-title">TRANSFER BRI VIRTUAL ACCOUNT (BRIVA)</p>
               <div class="wrap-briva">
                 <img src="{{asset('unigres/images/briva.png')}}">
-                <p>{{ env('BRIVA_NO') . ' ' . $data->custCode }}</p>
+                <p>1234-56789</p>
               </div>
             </li>
             <li class="list-group-item">
               <p class="list-title">Jumlah yang harus di bayarkan:</p>
-              <p class="price">Rp. {{ number_format($data->amount, 0, '', '.') }},-</p>
+              <p class="price">Rp. 1.234.589,-</p>
             </li>
           </ul>
         </div>
-        @if ($data->kategori == 'daftar_ulang')
+        @if (false)
         <div class="wrap-button-verif wp-step-1" id="btn1">
           <a class="btn btn-login" href="{{ route('print-sk') }}" target="_blank">Surat Keterangan Lolos PMB</a>
         </div>            

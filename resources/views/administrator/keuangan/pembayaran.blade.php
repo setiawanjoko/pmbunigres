@@ -28,7 +28,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="brivaNo">No. BRIVA</label>
+                            <label for="brivaNo">No. BRIVA/BNIVA</label>
                             <input type="text" name="brivaNo" id="brivaNo" class="form-control form-control-sm" readonly>
                         </div>
                         <div class="form-group">
@@ -99,7 +99,7 @@
                 <tr>
                     <th>#</th>
                     <th>Nama Pendaftar</th>
-                    <th>No. BRIVA</th>
+                    <th>No. BRIVA/BNIVA</th>
                     <th>Nominal</th>
                     <th></th>
                 </tr>
@@ -132,7 +132,7 @@
                                     </a>
                                 @elseif($payment->status)
                                     <span class="badge badge-success">
-                                        Lunas BRIVA
+                                        Lunas BRIVA/BNIVA
                                     </span>
                                 @else
                                     <div class="btn-group">
@@ -152,7 +152,7 @@
                 <tr>
                     <th>#</th>
                     <th>Nama Pendaftar</th>
-                    <th>No. BRIVA</th>
+                    <th>No. BRIVA/BNIVA</th>
                     <th>Nominal</th>
                     <th></th>
                 </tr>

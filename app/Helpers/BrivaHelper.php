@@ -32,7 +32,7 @@ CONST ERRORMESSAGE = [
     '0109' => 'Parameter request tidak valid.'
 ];
 
-function getToken(){
+function getToken() : String{
     $params = [
         'client_id' => env('BRIVA_CONSUMER_KEY'),
         'client_secret' => env('BRIVA_CONSUMER_SECRET')

@@ -44,6 +44,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\Pembayaran\BNIPaymentController;
 use App\Http\Controllers\PengumumanPageController;
 use App\Http\Controllers\Pembayaran\SklController;
 
@@ -248,6 +249,9 @@ Route::middleware(['auth', 'can:keuangan'])->prefix('/keuangan')->name('keuangan
     Route::get('/check-status', [CheckStatusController::class, 'index'])->name('check-status');
     Route::post('/check-status', [CheckStatusController::class, 'index'])->name('check-status.filter');
 });
+
+Route::get('/create/bni/inv', [BNIPaymentController::class, 'createBNIInvoice'])->name('bni-invoice');
+Route::get('/create/bni/inquiry', [BNIPaymentController::class, 'inquiryBilling'])->name('bni-invoice');
 
 Route::get('/artisan', function (){
     Artisan::call('storage:link');

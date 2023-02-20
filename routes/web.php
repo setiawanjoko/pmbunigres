@@ -250,9 +250,14 @@ Route::middleware(['auth', 'can:keuangan'])->prefix('/keuangan')->name('keuangan
     Route::post('/check-status', [CheckStatusController::class, 'index'])->name('check-status.filter');
 });
 
-Route::get('/create/bni/inv', [BNIPaymentController::class, 'createBNIInvoice'])->name('bni-invoice');
-Route::get('/create/bni/inquiry', [BNIPaymentController::class, 'inquiryBilling'])->name('bni-invoice');
 
 Route::get('/artisan', function (){
     Artisan::call('storage:link');
 });
+
+/**
+ * TESTING ROUTE API BNI
+ * bisa di hapus setelah selesai testing
+ */
+Route::get('/create/bni/inv', [BNIPaymentController::class, 'createBNIInvoice'])->name('bni-invoice');
+Route::get('/create/bni/inquiry', [BNIPaymentController::class, 'inquiryBilling'])->name('bni-invoice');

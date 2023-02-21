@@ -8,6 +8,7 @@ use App\Http\Controllers\Administrator\Master\GelombangController;
 use App\Http\Controllers\Administrator\Master\JalurMasukController;
 use App\Http\Controllers\Administrator\Master\KelasController;
 use App\Http\Controllers\Administrator\Master\ProgramStudiController;
+use App\Http\Controllers\Api\BNIController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -119,3 +120,10 @@ Route::get('/biaya/{id}', [MasterBiayaController::class, 'getBiayaProperty']);
  *
  * */
 Route::get('/pembayaran/{id}', [PembayaranController::class, 'getPembayaranProperty']);
+
+/**
+ * 
+ * [POST] /api/payment/bni/callback
+ * callback payment
+ */
+Route::post('payment/bni/callback', [BNIController::class, 'callback']);

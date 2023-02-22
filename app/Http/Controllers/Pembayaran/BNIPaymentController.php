@@ -11,23 +11,6 @@ use Illuminate\Support\Facades\Http;
 class BNIPaymentController extends Controller
 {
 
-    function getBNIToken(){
-        $path = '/api/oauth/token';
-        $uri = config()->get('unigrespayment.bni.hostname') . ':'. config()->get('unigrespayment.bni.request_type') . $path;
-
-        try {
-            $res = Http::asForm()->withHeaders([
-                'Authorization' => 'Basic '. base64_encode(config()->get('unigrespayment.bni.client_id') . ':' . config()->get('unigrespayment.bni.client_secret'))
-            ])->post($uri, ['grant_type'=>'client_credentials']);
-
-
-            $response = json_decode($res->body());
-            dd($response);
-        } catch (Exception $e){
-            dd($e);
-        }
-    }
-
     function createBNIInvoice(){
         $path = '/api/oauth/token';
         $uri = config()->get('unigrespayment.bni.hostname') . $path;

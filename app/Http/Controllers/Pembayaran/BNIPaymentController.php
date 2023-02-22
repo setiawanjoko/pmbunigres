@@ -11,28 +11,37 @@ use Illuminate\Support\Facades\Http;
 class BNIPaymentController extends Controller
 {
 
+    protected $prefix;
+    protected $client_id;
+    protected $client_secret;
+    protected $uri;
+
+    public function __construct(){
+        $this->prefix = config()->get('unigrespayment.bni.prefix');
+        $this->uri = config()->get('unigrespayment.bni.hostname');
+        $this->client_id = config()->get('unigrespayment.bni.client_id');
+        $this->client_secret = config()->get('unigrespayment.bni.client_secret');
+    }
+
     function createBNIInvoice(){
         // Function to create new BNI Virtual Account invoice
 
-        $uri = config()->get('unigrespayment.bni.hostname');
-        $client_id = config()->get('unigrespayment.bni.client_id');
-        $client_secret = config()->get('unigrespayment.bni.client_secret');
 
         try {
 
             $raw_invoice = array(
                 'client_id' => config()->get('unigrespayment.bni.client_id'),
                 'trx_id' => mt_rand(),
-                'trx_amount' => '500000',
-                'customer_name' => 'BNI Billing Testing',
+                'trx_amount' => '500000', //TODO: change trx amount
+                'customer_name' => 'BNI Billing Testing', //TODO: change customer name
                 'billing_type' => 'c',
                 'type' => 'createbilling'
             );
 
-            $hashed_string = BniEnc::encrypt($raw_invoice, $client_id, $client_secret);
+            $hashed_string = BniEnc::encrypt($raw_invoice, $this->client_id, $this->client_secret);
 
-            $data = array('client_id' => $client_id, 'data' => $hashed_string);
-            $response = $this->get_content($uri, json_encode($data));
+            $data = array('client_id' => $this->client_id, 'prefix' => $this->prefix, 'data' => $hashed_string);
+            $response = $this->get_content($this->uri, json_encode($data));
             // dd(json_decode($response, true));
 
             $response_json = json_decode($response, 'true');
@@ -40,7 +49,7 @@ class BNIPaymentController extends Controller
             if ($response_json['status'] !== '000') {
                 dd($response_json);
             } else {
-                $data_response = BniEnc::decrypt($response_json['data'], $client_id, $client_secret);
+                $data_response = BniEnc::decrypt($response_json['data'], $this->client_id, $this->client_secret);
 
                 dd($data_response);
             }
@@ -96,28 +105,23 @@ class BNIPaymentController extends Controller
     function inquiryBilling($trx_id)
     {
         // Function to inquire BNI Virtual Account invoice
-        
-        $uri = config()->get('unigrespayment.bni.hostname');
-        $client_id = config()->get('unigrespayment.bni.client_id');
-        $client_secret = config()->get('unigrespayment.bni.client_secret');
-
 
         try {
 
             $raw_billing = array(
                 "type" => "inquirybilling",
-                "client_id" => $client_id,
+                "client_id" => $this->client_id,
                 "trx_id" => $trx_id
             );
     
-            $hashed_string = BniEnc::encrypt($raw_billing, $client_id, $client_secret);
+            $hashed_string = BniEnc::encrypt($raw_billing, $this->client_id, $this->client_secret);
             $data = array(
-                "client_id" => $client_id,
-                "prefix" => config()->get('unigrespayment.bni.prefix'),
+                "client_id" => $this->client_id,
+                "prefix" => $this->prefix,
                 "data" => $hashed_string
             );
     
-            $response = $this->get_content($uri, json_encode($data));
+            $response = $this->get_content($this->uri, json_encode($data));
 
             //dd(json_decode($response, 'true'));
             $response_json = json_decode($response, 'true');
@@ -129,7 +133,7 @@ class BNIPaymentController extends Controller
             } else {
                 
                 // Dekripsi response data
-                $decryptResponse = BniEnc::decrypt($response_json['data'], $client_id, $client_secret);
+                $decryptResponse = BniEnc::decrypt($response_json['data'], $this->client_id, $this->client_secret);
                 dd($decryptResponse);
 
             }
@@ -140,6 +144,41 @@ class BNIPaymentController extends Controller
 
     }
 
+    function updateTransaction($data){
+        try {
+            $raw_invoice = array(
+                'type' => 'updatebilling',
+                'client_id' => $this->client_id,
+                'trx_id' => '1', //TODO: change trx id
+                'trx_amount' => 0, //TODO: change trx amount
+                'customer_name' => '', //TODO: change customer name
+            );
+            $hashed_string = BniEnc::encrypt($raw_invoice, $this->client_id, $this->client_secret);
+            $data = array(
+                'client_id' => $this->client_id,
+                'prefix' => $this->prefix,
+                'data' => $hashed_string
+            );
+    
+            $response = $this->get_content($this->uri, json_encode($data));
 
+            //dd(json_decode($response, 'true'));
+            $response_json = json_decode($response, 'true');
+            
+            if ($response_json['status'] !== '000') {
+                
+                dd($response_json);
+                
+            } else {
+                
+                // Dekripsi response data
+                $decryptResponse = BniEnc::decrypt($response_json['data'], $this->client_id, $this->client_secret);
+                dd($decryptResponse);
+
+            }
+        } catch(Exception $e) {
+            dd($e);
+        }
+    }
 
 }

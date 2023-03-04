@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Pembayaran;
 
+use App\Helpers\BNIPayment;
 use App\Http\Controllers\Controller;
 use App\Models\Biaya;
 use App\Models\Biodata;
@@ -51,6 +52,35 @@ class RegistrasiController extends Controller
             if($response->status == 'success') return response()->view('instruksi-pembayaran', compact('data'));
             else abort(500);
         } else return response()->view('instruksi-pembayaran', compact('data'));
+    }
+
+    public function makeBNIInvoice(){
+        $user = auth()->user();
+        $biaya = $user->biaya();
+
+        $response = BNIPayment::createBNIInvoice([
+            'trx_amount' => $biaya,
+            'costumer_name' => $user->nama,
+            'customer_email' => $user->email,
+            'customer_phone' => $user->no_telepon,
+            'datetime_expired' => date('c', time() + 24 * 3600)
+        ]);
+
+        try {
+            Pembayaran::create([
+                "user_id" => $user->id,
+                "custCode" => $response['virtual_account'],
+                "amount" => $biaya,
+                "keterangan" => "Pembayaran registrasi PMB UNIGRES",
+                "expiredDate" => date('c', time() + 24 * 3600),
+                "kategori" => "registrasi",
+                "add_info" => [
+                    "trx_id" => $response['trx_id'],
+                ]
+            ]);
+        } catch (\Throwable $e) {
+            //
+        }
     }
 
     public function choosePaymentMethod(){

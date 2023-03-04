@@ -20,7 +20,8 @@ class Pembayaran extends Model
         'status',
         'kategori',
         'no_surat',
-        'bukti_kirim'
+        'bukti_kirim',
+        'add_info'
     ];
 
     protected $casts = [

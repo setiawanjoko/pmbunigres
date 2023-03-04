@@ -46,6 +46,7 @@ class BNIPayment extends Controller
                 'customer_name' => $Trx['customer_name'], //TODO: change customer name
                 'customer_email' => $Trx['customer_email'],
                 'customer_phone' => $Trx['customer_phone'],
+                'datetime_expired' => $Trx['datetime_expired'],
                 'billing_type' => 'c',
                 'type' => 'createbilling'
             );

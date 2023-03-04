@@ -13,6 +13,29 @@ class BNIPayment extends Controller
     public static function createBNIInvoice($Trx){
         // Function to create new BNI Virtual Account invoice
 
+        /**
+         * Example of API Response
+         * array("trx_id" => "1465968898"
+         * "client_id" => "19063"
+         * "virtual_account" => "9881906323022201"      TODO: transformed to custCode
+         * "trx_amount" => "500000"                     TODO: transformed to amount
+         * "customer_name" => "BNI Billing Testing"
+         * "customer_email" => ""
+         * "customer_phone" => ""
+         * "datetime_created" => "2023-02-22 12:37:26"
+         * "datetime_expired" => "2023-02-24 12:37:28"
+         * "datetime_payment" => "2023-02-22 12:41:35"
+         * "datetime_last_updated" => "2023-02-22 12:37:26"
+         * "payment_ntb" => "752895"
+         * "payment_amount" => "500000"
+         * "va_status" => "2"                           TODO: translated and transformed to status
+         * "description" => ""
+         * "billing_type" => "c"
+         * "datetime_created_iso8601" => "2023-02-22T12:37:26+07:00"
+         * "datetime_expired_iso8601" => "2023-02-24T12:37:28+07:00"       TODO: transformed to expiredDate
+         * "datetime_payment_iso8601" => "2023-02-22T12:41:35+07:00"
+         * "datetime_last_updated_iso8601" => "2023-02-22T12:37:26+07:00")
+         */
 
         try {
 

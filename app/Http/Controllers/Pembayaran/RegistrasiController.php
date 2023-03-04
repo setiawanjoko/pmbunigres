@@ -52,4 +52,8 @@ class RegistrasiController extends Controller
             else abort(500);
         } else return response()->view('instruksi-pembayaran', compact('data'));
     }
+
+    public function choosePaymentMethod(){
+        return response()->view('metode-pembayaran');
+    }
 }

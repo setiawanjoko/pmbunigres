@@ -81,7 +81,10 @@ Auth::routes(['verify'=>true]);
 Route::get('/verify/failed', [VerificationController::class, 'warning'])->name('verification.failed');
 
 Route::middleware(['auth', 'verify', 'can:camaba'])->group(function(){
+    Route::get('/metode-pembayaran', [RegistrasiController::class, 'choosePaymentMethod'])->name('choose-payment-method');
     Route::get('/instruksi-pembayaran', [RegistrasiController::class, 'index'])->name('instruksi-bayar');
+    Route::get('/instruksi-bni', [RegistrasiController::class, 'notyet'])->name('instruksi-bni');
+    Route::get('/instruksi-briva', [RegistrasiController::class, 'notyet'])->name('instruksi-briva');
     Route::middleware(['paid.registration'])->group(function(){
         Route::middleware(['paid.reregistration'])->group(function(){
             Route::get('/home', [HomeController::class, 'index'])->name('home');

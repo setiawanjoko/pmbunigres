@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Http;
 
 class BNIPayment extends Controller
 {
-    public static function createBNIInvoice(){
+    public static function createBNIInvoice($Trx){
         // Function to create new BNI Virtual Account invoice
 
         /**
@@ -42,8 +42,8 @@ class BNIPayment extends Controller
             $raw_invoice = array(
                 'client_id' => config()->get('unigrespayment.bni.client_id'),
                 'trx_id' => mt_rand(),
-                'trx_amount' => '500000', //TODO: change trx amount
-                'customer_name' => 'BNI Billing Testing', //TODO: change customer name
+                'trx_amount' => $Trx['trx_amount'], //TODO: change trx amount
+                'customer_name' => $Trx['customer_name'], //TODO: change customer name
                 'billing_type' => 'c',
                 'type' => 'createbilling'
             );
@@ -154,14 +154,14 @@ class BNIPayment extends Controller
 
     }
 
-    public static function updateTransaction($data){
+    public static function updateTransaction($raw){
         try {
             $raw_invoice = array(
                 'type' => 'updatebilling',
                 'client_id' => config()->get('unigrespayment.bni.client_id'),
-                'trx_id' => '1', //TODO: change trx id
-                'trx_amount' => 0, //TODO: change trx amount
-                'customer_name' => '', //TODO: change customer name
+                'trx_id' => $raw['trx_id'] ?? '1', //TODO: change trx id
+                'trx_amount' => $raw['trx_amount'], //TODO: change trx amount
+                'customer_name' => $raw['customer_name'] ?? '', //TODO: change customer name
             );
             $hashed_string = BniEnc::encrypt($raw_invoice, config()->get('unigrespayment.bni.client_id'), config()->get('unigrespayment.bni.client_secret'));
             $data = array(

@@ -26,10 +26,6 @@ class CheckDaftarUlang
         $heregistrationPayment = $user->pembayaranDaftarUlang();
         $bio = $user->biodata;
 
-        if(is_null($heregistrationPayment)) {
-            return response()->redirectToRoute('choose-payment-method');
-        }
-
         $paymentExpiredDate = Carbon::create($heregistrationPayment->expiredDate);
         $nowDateTime = Carbon::now();
         if($nowDateTime->greaterThanOrEqualTo($paymentExpiredDate)){

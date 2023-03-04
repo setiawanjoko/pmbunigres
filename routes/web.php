@@ -85,7 +85,7 @@ Route::middleware(['auth', 'verify', 'can:camaba'])->group(function(){
     Route::get('/instruksi-pembayaran', [RegistrasiController::class, 'index'])->name('instruksi-bayar');
     Route::get('/instruksi-bni', [RegistrasiController::class, 'notyet'])->name('instruksi-bni');
     Route::get('/instruksi-briva', [RegistrasiController::class, 'notyet'])->name('instruksi-briva');
-    Route::middleware(['paid.registration'])->group(function(){
+    Route::middleware(['payment.checkRegistration'])->group(function(){
         Route::middleware(['paid.reregistration'])->group(function(){
             Route::get('/home', [HomeController::class, 'index'])->name('home');
             Route::get('/biodata', [BiodataController::class, 'create'])->name('biodata.create');

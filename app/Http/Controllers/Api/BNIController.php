@@ -4,14 +4,14 @@ namespace App\Http\Controllers\Api;
 
 use App\Helpers\BniEnc;
 use App\Http\Controllers\Controller;
+use App\Models\Pembayaran;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class BNIController extends Controller
 {
-    public function callback(Request $request)
+    public function callback()
     {
-        dd($request->all());
-
         // FROM BNI
         $client_id = config()->get('unigrespayment.bni.client_id');
         $secret_key = config()->get('unigrespayment.bni.client_secret');
@@ -55,6 +55,34 @@ class BNIController extends Controller
                     exit;
                 }
             }
+        }
+    }
+
+    public function testCallback (Request $request) {
+        $response = BniEnc::decrypt($request['data'], $request['client_id'], config()->get('unigrespayment.bni.client_secret'));
+        $pembayaran = Pembayaran::where('custCode', $response['virtual_account'])->first();
+
+
+        $add_info = json_decode($pembayaran->add_info);
+        $add_info->payment_amount = $response['payment_amount'];
+        $add_info->cumulative_payment_amount = $response['cumulative_payment_amount'];
+        $add_info->payment_ntb = $response['cumulative_payment_amount'];
+        $add_info->datetime_payment = $response['cumulative_payment_amount'];
+        $add_info->datetime_payment_iso8601 = $response['datetime_payment_iso8601'];
+
+        try {
+            $pembayaran->update([
+                "status" => 1,
+                "add_info" => json_encode($add_info)
+            ]);
+
+            return response()->json([
+                "status" => "000"
+            ]);
+        } catch (\Throwable $e) {
+            return response()->json([
+                "status" => "009"
+            ], 422);
         }
     }
 }

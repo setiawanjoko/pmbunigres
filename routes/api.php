@@ -130,4 +130,4 @@ Route::get('/pembayaran/{id}', [PembayaranController::class, 'getPembayaranPrope
  * [POST] /api/payment/bni/callback
  * callback payment
  */
-Route::post('payment/bni/callback', [BNIController::class, 'callback']);
+Route::post('payment/bni/callback', [BNIController::class, 'testCallback']);

@@ -23,4 +23,8 @@ class TestControllerPayment extends Controller
             'customer_name' => $request->customer_name
         ]));
     }
+
+    public function inquiryBilling(Request $request) {
+        dd(BNIPayment::inquiryBilling($request->trx_id));
+    }
 }

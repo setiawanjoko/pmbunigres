@@ -2,6 +2,8 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\CheckDaftarUlang;
+use App\Http\Middleware\CheckRegistrasi;
 use App\Http\Middleware\PaidRegistration;
 use App\Http\Middleware\PaidReregistration;
 use App\Http\Middleware\VerifyEmail;
@@ -61,12 +63,16 @@ class Kernel extends HttpKernel
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        'paid.registration' => PaidRegistration::class,
-        'paid.reregistration' => PaidReregistration::class,
         'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'verify' => VerifyEmail::class,
+
+        /* Custom Middleware Created By Setiawan Joko */
+        'paid.registration' => PaidRegistration::class,
+        'paid.reregistration' => PaidReregistration::class,
+        'payment.checkRegistration' => CheckRegistrasi::class,
+        'payment.checkHeregistration' => CheckDaftarUlang::class,
     ];
 }

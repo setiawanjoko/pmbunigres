@@ -59,13 +59,6 @@ use App\Http\Controllers\Pembayaran\SklController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('metode-bayar', function () {
-    return view('metode-pembayaran');
-})->name('metode-bayar');
-
-Route::get('instruksi-briva', function () {
-    return view('instruksi-briva');
-})->name('instruksi-briva');
 
 Route::get('/', [LandingPageController::class, 'index'])->name('homepage');
 Route::get('pengumuman', [PengumumanPageController::class, 'index'])->name('pengumuman');

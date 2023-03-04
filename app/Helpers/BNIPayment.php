@@ -154,14 +154,14 @@ class BNIPayment extends Controller
 
     }
 
-    public static function updateTransaction($data){
+    public static function updateTransaction($raw){
         try {
             $raw_invoice = array(
                 'type' => 'updatebilling',
                 'client_id' => config()->get('unigrespayment.bni.client_id'),
-                'trx_id' => '1', //TODO: change trx id
-                'trx_amount' => 0, //TODO: change trx amount
-                'customer_name' => '', //TODO: change customer name
+                'trx_id' => $raw['trx_id'] ?? '1', //TODO: change trx id
+                'trx_amount' => $raw['trx_amount'], //TODO: change trx amount
+                'customer_name' => $raw['customer_name'] ?? '', //TODO: change customer name
             );
             $hashed_string = BniEnc::encrypt($raw_invoice, config()->get('unigrespayment.bni.client_id'), config()->get('unigrespayment.bni.client_secret'));
             $data = array(

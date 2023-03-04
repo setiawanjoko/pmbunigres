@@ -33,6 +33,10 @@ Route::name('biaya')->group(function(){
     Route::get('/getBiaya/byGelombang/{gelombang}/byKelas/{kelas}/byJalurMasuk/{jalurMasuk}', [BiayaController::class, 'getBiaya'])->name('getBiayaByGelombangByKelasByJalurMasuk');
 });
 
+Route::post('/test/payment', [\App\Http\Controllers\Pembayaran\TestControllerPayment::class, 'index']);
+
+Route::post('/test/update-payment', [\App\Http\Controllers\Pembayaran\TestControllerPayment::class, 'updateTransaction']);
+
 Route::name('regis.')->group(function () {
     Route::get('/getgelombang', [RegisController::class, 'get_gelombang'])->name('getGelombang');
     Route::get('/getprodi', [RegisController::class, 'get_prodi'])->name('getProdi');
@@ -122,7 +126,7 @@ Route::get('/biaya/{id}', [MasterBiayaController::class, 'getBiayaProperty']);
 Route::get('/pembayaran/{id}', [PembayaranController::class, 'getPembayaranProperty']);
 
 /**
- * 
+ *
  * [POST] /api/payment/bni/callback
  * callback payment
  */

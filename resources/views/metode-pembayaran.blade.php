@@ -23,7 +23,7 @@
             SILAHKAN PILIH METODE PEMBAYARAN DI BAWAH INI.
           </div>
           <ul class="list-group list-group-flush">
-          <a class="ak-item" href="{{ route('instruksi-bni') }}">
+          <a class="ak-item" href="{{ route('create-bni') }}">
             <li class="list-group-item">
               <div class="wrap-briva">
                 <img src="{{asset('unigres/images/bniva.png')}}">

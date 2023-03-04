@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Biaya;
 use App\Models\Biodata;
 use App\Models\Pembayaran;
+use Carbon\Carbon;
 use Carbon\Exceptions\Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -72,7 +73,7 @@ class RegistrasiController extends Controller
                 "custCode" => $response['virtual_account'],
                 "amount" => $biaya->biaya_registrasi,
                 "keterangan" => "Pembayaran registrasi PMB UNIGRES",
-                "expiredDate" => date('Y-m-d', strtotime($date)),
+                "expiredDate" => date('Y-m-d H:i:s', strtotime($date)),
                 "kategori" => "registrasi",
                 "type" => "bni",
                 "add_info" => json_encode([
@@ -83,6 +84,16 @@ class RegistrasiController extends Controller
             return redirect()->route('instruksi-bni');
         } catch (\Throwable $e) {
             dd($e);
+        }
+    }
+
+    public function expired(){
+        $user = auth()->user();
+        $data = Pembayaran::where('user_id', $user->id)->where('kategori', 'registrasi')->where('status', '!=', 1)->first();
+
+        if(date('Y-m-d H:i:s',strtotime($data->expiredDate)) <= date('Y-m-d H:i:s')){
+            $data->delete();
+            return $this->makeBNIInvoice();
         }
     }
 

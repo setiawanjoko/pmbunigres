@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Pembayaran;
 
+use App\Helpers\BNIPayment;
 use App\Http\Controllers\Controller;
 use App\Models\Biaya;
 use App\Models\Pembayaran;
@@ -70,5 +71,50 @@ class DaftarUlangController extends Controller
         $pembayaran = auth()->user()->pembayaranDaftarUlang();
 
         return response()->view('print-sk', compact('biodata', 'prodi', 'gelombang', 'biaya', 'tanggal', 'pembayaran'));
+    }
+
+    public function makeDaftarUlangInvoice()
+    {
+        $user = auth()->user();
+        $biaya = $user->biaya();
+        $date = date('c', time() + 24 * 3600);
+
+        $response = BNIPayment::createBNIInvoice([
+            'trx_amount' => $biaya->biaya_total_daftar_ulang,
+            'customer_name' => $user->nama,
+            'customer_email' => $user->email,
+            'customer_phone' => $user->no_telepon,
+            'datetime_expired' => $date
+        ]);
+
+        try {
+            Pembayaran::create([
+                "user_id" => $user->id,
+                "custCode" => $response['virtual_account'],
+                "amount" => $biaya->biaya_total_daftar_ulang,
+                "keterangan" => "Pembayaran daftar ulang PMB UNIGRES",
+                "expiredDate" => date('Y-m-d H:i:s', strtotime($date)),
+                "kategori" => "daftar_ulang",
+                "type" => "bni",
+                "add_info" => json_encode([
+                    "trx_id" => $response['trx_id'],
+                ])
+            ]);
+
+            return redirect()->route('instruksi-bni');
+        } catch (\Throwable $e) {
+            dd($e);
+        }
+    }
+
+    public function expiredDaftarUlang ()
+    {
+        $user = auth()->user();
+        $data = Pembayaran::where('user_id', $user->id)->where('kategori', 'daftar_ulang')->where('status', '!=', 1)->first();
+
+        if(date('Y-m-d H:i:s',strtotime($data->expiredDate)) <= date('Y-m-d H:i:s')){
+            $data->delete();
+            return $this->makeBNIInvoice();
+        }
     }
 }

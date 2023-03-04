@@ -76,6 +76,7 @@ Route::middleware(['auth', 'verify', 'can:camaba'])->group(function(){
     Route::get('/create-bni', [RegistrasiController::class, 'makeBNIInvoice'])->name('create-bni');
     Route::get('/instruksi-bni', [PaymentController::class, 'showBNIInstruction'])->name('instruksi-bni');
     Route::get('/instruksi-briva', [PaymentController::class, 'showBRIVAInstruction'])->name('instruksi-briva');
+    Route::get('/daftar-ulang/create-bni', [DaftarUlangController::class, 'makeDaftarUlangInvoice'])->name('daftar-ulang-creat-va');
     Route::middleware(['payment.checkRegistration'])->group(function(){
         Route::middleware(['paid.reregistration'])->group(function(){
             Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -253,3 +254,4 @@ Route::get('/artisan', function (){
  * TESTING ROUTE API BNI
  * bisa di hapus setelah selesai testing
  */
+Route::get('/test', [RegistrasiController::class, 'expired']);

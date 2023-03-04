@@ -54,6 +54,14 @@ class RegistrasiController extends Controller
     }
 
     public function choosePaymentMethod(){
-        return response()->view('metode-pembayaran');
+        $user = auth()->user();
+        $costs = $user->biaya();
+
+        if(is_null($user->pembayaranRegistrasi())) {
+            $cost = $costs->biaya_registrasi;
+        } else if(is_null($user->pembayaranDaftarUlang())) {
+            $cost = $costs->total_daftar_ulang;
+        }
+        return response()->view('metode-pembayaran', compact('cost'));
     }
 }

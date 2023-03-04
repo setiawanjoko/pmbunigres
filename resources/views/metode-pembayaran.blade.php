@@ -14,7 +14,7 @@
     <div class="wrapper-verif">
       <div class="wrap-content">
         <img class="verif-ic" src="{{asset('unigres/images/ic-check.svg')}}" style="width: 58px;">
- 
+
         <h5 class="verif-title mb-2">Pilih Metode Pembayaran</h5>
 
         <p class="step2-title">Segera selesaikan pembayaran anda.</p>
@@ -28,7 +28,7 @@
               <div class="wrap-briva">
                 <img src="{{asset('unigres/images/bniva.png')}}">
                 <h6>BNI Virtual Account</h6>
-              </div>            
+              </div>
             </li>
             </a>
             <a class="ak-item" href="{{ route('instruksi-briva') }}">
@@ -41,7 +41,7 @@
             </a>
             <li class="list-group-item">
               <p class="list-title">Jumlah yang harus di bayarkan:</p>
-              <p class="price">Rp. 1.234.589,-</p>
+              <p class="price">Rp. {{ number_format($cost, 0, '', '.') }},-</p>
             </li>
           </ul>
         </div>

@@ -83,10 +83,10 @@ class PendaftarController extends Controller
             $data->email_verified_at = Carbon::now();
             $data->save();
 
-            return redirect()->back()->with(['status'=>'success', 'message'=>'Email berhasil dikonfirmasi.']);
+            return redirect()->route('administrator.monitoring.pendaftar.index')->with(['status'=>'success', 'message'=>'Email berhasil dikonfirmasi.']);
         }
 
-        return redirect()->back()->with(['status'=>'danger', 'message'=>'Email gagal dikonfirmasi.']);
+        return redirect()->route('administrator.monitoring.pendaftar.index')->with(['status'=>'danger', 'message'=>'Email gagal dikonfirmasi.']);
     }
 
     public function biodata($id): Response

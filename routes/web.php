@@ -262,5 +262,3 @@ Route::get('/artisan', function (){
  * TESTING ROUTE API BNI
  * bisa di hapus setelah selesai testing
  */
-Route::get('/create/bni/inv', [BNIPaymentController::class, 'createBNIInvoice'])->name('bni-invoice');
-Route::get('/create/bni/inquiry/{trx_id}', [BNIPaymentController::class, 'inquiryBilling'])->name('bni-invoice');

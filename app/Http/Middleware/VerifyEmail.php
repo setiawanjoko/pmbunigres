@@ -19,6 +19,7 @@ class VerifyEmail
      */
     public function handle($request, Closure $next, $redirectToRoute = null)
     {
+        dd('p');
         if (! $request->user() ||
             ($request->user() instanceof MustVerifyEmail &&
                 ! $request->user()->hasVerifiedEmail())) {

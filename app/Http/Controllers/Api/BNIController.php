@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\BniEnc;
+use App\Helpers\BniEnc;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class BNIController extends Controller
 {
-    public function callback()
+    public function callback(Request $request)
     {
+        dd($request->all());
+
         // FROM BNI
         $client_id = config()->get('unigrespayment.bni.client_id');
         $secret_key = config()->get('unigrespayment.bni.client_secret');

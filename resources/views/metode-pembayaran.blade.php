@@ -1,6 +1,6 @@
 @extends('master-page')
 
-@section('title', 'Metode Pembarayan')
+@section('title', 'Metode Pembayaran')
 
 @section('content-title')
 @endsection
@@ -15,7 +15,7 @@
       <div class="wrap-content">
         <img class="verif-ic" src="{{asset('unigres/images/ic-check.svg')}}" style="width: 58px;">
  
-              <h5 class="verif-title mb-2">Pilih Metode Pembarayan</h5>
+        <h5 class="verif-title mb-2">Pilih Metode Pembayaran</h5>
 
         <p class="step2-title">Segera selesaikan pembayaran anda.</p>
         <div class="card card-payment">

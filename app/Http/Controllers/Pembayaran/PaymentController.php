@@ -23,12 +23,10 @@ class PaymentController extends Controller
         $user = auth()->user();
 
         if(!$user->pembayaranRegistrasi()->status) {
-            // TODO: isi instruksi BNI dengan data $user->pembayaranRegistrasi()
             $data = $user->pembayaranRegistrasi();
             return response()->view('instruksi-bni', compact('data'));
         }
         if(!$user->pembayaranDaftarUlang()->status) {
-            // TODO: isi instruksi BNI dengan data $user->pembayaranDaftarUlang()
             $data = $user->pembayaranDaftarUlang();
             return response()->view('instruksi-bni', compact('data'));
         }
@@ -39,12 +37,10 @@ class PaymentController extends Controller
         $user = auth()->user();
 
         if(!$user->pembayaranRegistrasi()->status) {
-            // TODO: isi instruksi BNI dengan data $user->pembayaranRegistrasi()
             $data = $user->pembayaranRegistrasi();
             return response()->view('instruksi-briva', compact('data'));
         }
         if(!$user->pembayaranDaftarUlang()->status) {
-            // TODO: isi instruksi BNI dengan data $user->pembayaranDaftarUlang()
             $data = $user->pembayaranDaftarUlang();
             return response()->view('instruksi-briva', compact('data'));
         }

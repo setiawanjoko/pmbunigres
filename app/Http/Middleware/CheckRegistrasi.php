@@ -21,7 +21,7 @@ class CheckRegistrasi
         $registrationPayment = $user->pembayaranRegistrasi();
 
         if(is_null($registrationPayment)) {
-            return response()->redirectToRoute('choose-payment-method');
+            return response()->redirectToRoute('payment.choose-payment-method');
         }
 
         $paymentExpiredDate = Carbon::create($registrationPayment->expiredDate);
@@ -30,9 +30,9 @@ class CheckRegistrasi
             // TODO: jika waktu pembayaran kadaluarsa maka buat pembayaran baru
         } else if(!$registrationPayment->status) {
             if($registrationPayment->type == 'bni'){
-                return response()->redirectToRoute('instruksi-bni');
+                return response()->redirectToRoute('payment.instruksi-bni');
             }
-            return response()->redirectToRoute('instruksi-briva');
+            return response()->redirectToRoute('payment.instruksi-briva');
         }
 
         return $next($request);

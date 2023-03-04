@@ -32,9 +32,9 @@ class CheckDaftarUlang
             // TODO: jika waktu pembayaran kadaluarsa maka buat pembayaran baru
         } else if(!$heregistrationPayment->status) {
             if($heregistrationPayment->type == 'bni'){
-                return response()->redirectToRoute('instruksi-bni');
+                return response()->redirectToRoute('payment.instruksi-bni');
             }
-            return response()->redirectToRoute('instruksi-briva');
+            return response()->redirectToRoute('payment.instruksi-briva');
         }
 
         if((!is_null($heregistrationPayment) && $heregistrationPayment->status) && (isset($bio) && is_null($bio->nim))) {

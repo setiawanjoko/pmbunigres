@@ -80,7 +80,7 @@ class RegistrasiController extends Controller
                 ])
             ]);
 
-            return redirect()->route('instruksi-bni');
+            return redirect()->route('payment.instruksi-bni');
         } catch (\Throwable $e) {
             dd($e);
         }

@@ -83,7 +83,7 @@
                 <tr>
                     <td style="text-align: right;">Jumlah</td>
                     <td>&nbsp;&nbsp;&nbsp;</td>
-                    <td style="font-weight: bold; color: #11222B; line-height: 36px; font-size: larger">Rp. {{ number_format($data->amount, 0), '', '.' }},-</td>
+                    <td style="font-weight: bold; color: #11222B; line-height: 36px; font-size: larger">Rp. {{ number_format($data->amount, 0, '', '.') }},-</td>
                 </tr>
                 </tbody>
             </table>

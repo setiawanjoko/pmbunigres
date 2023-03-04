@@ -44,7 +44,7 @@
                 @show
                 @if (!Auth::check())
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ route('register') }}">Pendaftaran</a>
+                    <a class="nav-link {{ (request()->is('register')) ? 'active' : '' }}" aria-current="page" href="{{ route('register') }}">Pendaftaran</a>
                 </li>
                 <li class="nav-item btn-nav">
                     <a class="nav-link" href="{{ route('login') }}">Login</a>
@@ -273,7 +273,7 @@
             <li>Copyright © 2019 Universitas Gresik</li>
             <li>Jl. Arif Rahman Hakim 2B, Gresik</li>
             <li>Telp.(031) 3981918, 3978628</li>
-            <li>WA. 081 230 798 700</li>
+            <li>WA. 081 333 798 288</li>
         </ul>
     </footer>
 </main>

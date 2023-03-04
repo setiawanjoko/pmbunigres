@@ -6,6 +6,18 @@
 <h5 class="banner-caption">Universitas Gresik</h5>
 @endsection
 
+@section('nav-bar')
+    <li class="nav-item">
+        <a class="nav-link" aria-current="page" href="{{ route('homepage') }}">Beranda</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('pengumuman') }}">Pengumuman</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('kontak') }}">Kontak</a>
+    </li>
+@endsection
+
 @section('fill-content')
 <section class="form-registration">
     <div class="second-container">

@@ -11,7 +11,9 @@ class TestControllerPayment extends Controller
     public function index(Request $request) {
         dd(BNIPayment::createBNIInvoice([
             'trx_amount' => $request->trx_amount,
-            'costumer_name' => $request->customer_name
+            'costumer_name' => $request->customer_name,
+            'customer_email' => $request->customer_email,
+            'customer_phone' => $request->customer_phone
         ]));
     }
 

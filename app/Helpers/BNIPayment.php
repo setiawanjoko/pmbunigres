@@ -44,6 +44,8 @@ class BNIPayment extends Controller
                 'trx_id' => mt_rand(),
                 'trx_amount' => $Trx['trx_amount'], //TODO: change trx amount
                 'customer_name' => $Trx['customer_name'], //TODO: change customer name
+                'customer_email' => $Trx['customer_email'],
+                'customer_phone' => $Trx['customer_phone'],
                 'billing_type' => 'c',
                 'type' => 'createbilling'
             );

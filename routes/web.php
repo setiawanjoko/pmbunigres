@@ -36,6 +36,7 @@ use App\Http\Controllers\Mahasiswa\TesAkademikController;
 use App\Http\Controllers\Mahasiswa\TesKesehatanController;
 use App\Http\Controllers\Monitoring\PendaftarController as MonitoringPendaftarController;
 use App\Http\Controllers\Pembayaran\DaftarUlangController;
+use App\Http\Controllers\Pembayaran\PaymentController;
 use App\Http\Controllers\Pembayaran\RegistrasiController;
 use App\Models\ServerSetting;
 use App\Models\User;
@@ -66,10 +67,6 @@ Route::get('instruksi-briva', function () {
     return view('instruksi-briva');
 })->name('instruksi-briva');
 
-Route::get('instruksi-bni', function () {
-    return view('instruksi-bni');
-})->name('instruksi-bni');
-
 Route::get('/', [LandingPageController::class, 'index'])->name('homepage');
 Route::get('pengumuman', [PengumumanPageController::class, 'index'])->name('pengumuman');
 
@@ -83,8 +80,8 @@ Route::get('/verify/failed', [VerificationController::class, 'warning'])->name('
 Route::middleware(['auth', 'verify', 'can:camaba'])->group(function(){
     Route::get('/metode-pembayaran', [RegistrasiController::class, 'choosePaymentMethod'])->name('choose-payment-method');
     Route::get('/instruksi-pembayaran', [RegistrasiController::class, 'index'])->name('instruksi-bayar');
-    Route::get('/instruksi-bni', [RegistrasiController::class, 'notyet'])->name('instruksi-bni');
-    Route::get('/instruksi-briva', [RegistrasiController::class, 'notyet'])->name('instruksi-briva');
+    Route::get('/instruksi-bni', [PaymentController::class, 'showBNIInstruction'])->name('instruksi-bni');
+    Route::get('/instruksi-briva', [PaymentController::class, 'showBRIVAInstruction'])->name('instruksi-briva');
     Route::middleware(['payment.checkRegistration'])->group(function(){
         Route::middleware(['paid.reregistration'])->group(function(){
             Route::get('/home', [HomeController::class, 'index'])->name('home');

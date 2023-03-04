@@ -64,7 +64,7 @@ class BNIPayment extends Controller
             } else {
                 $data_response = BniEnc::decrypt($response_json['data'], config()->get('unigrespayment.bni.client_id'), config()->get('unigrespayment.bni.client_secret'));
 
-                dd($data_response);
+                return $data_response;
             }
         } catch (Exception $e){
             dd($e);

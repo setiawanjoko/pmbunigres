@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Biaya;
 use App\Models\Biodata;
 use App\Models\Pembayaran;
-use Carbon\Carbon;
 use Carbon\Exceptions\Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -57,29 +56,33 @@ class RegistrasiController extends Controller
     public function makeBNIInvoice(){
         $user = auth()->user();
         $biaya = $user->biaya();
+        $date = date('c', time() + 24 * 3600);
 
         $response = BNIPayment::createBNIInvoice([
-            'trx_amount' => $biaya,
-            'costumer_name' => $user->nama,
+            'trx_amount' => $biaya->biaya_registrasi,
+            'customer_name' => $user->nama,
             'customer_email' => $user->email,
             'customer_phone' => $user->no_telepon,
-            'datetime_expired' => date('c', time() + 24 * 3600)
+            'datetime_expired' => $date
         ]);
 
         try {
             Pembayaran::create([
                 "user_id" => $user->id,
                 "custCode" => $response['virtual_account'],
-                "amount" => $biaya,
+                "amount" => $biaya->biaya_registrasi,
                 "keterangan" => "Pembayaran registrasi PMB UNIGRES",
-                "expiredDate" => date('c', time() + 24 * 3600),
+                "expiredDate" => date('Y-m-d', strtotime($date)),
                 "kategori" => "registrasi",
-                "add_info" => [
+                "type" => "bni",
+                "add_info" => json_encode([
                     "trx_id" => $response['trx_id'],
-                ]
+                ])
             ]);
+
+            return redirect()->route('instruksi-bni');
         } catch (\Throwable $e) {
-            //
+            dd($e);
         }
     }
 

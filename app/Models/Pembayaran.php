@@ -20,6 +20,7 @@ class Pembayaran extends Model
         'status',
         'kategori',
         'no_surat',
+        'type',
         'bukti_kirim',
         'add_info'
     ];

@@ -70,9 +70,10 @@ class Kernel extends HttpKernel
 
         /* Custom Middleware Created By Setiawan Joko */
         'verify' => VerifyEmail::class,
-        'paid.registration' => PaidRegistration::class,
-        'paid.reregistration' => PaidReregistration::class,
         'payment.checkRegistration' => CheckRegistrasi::class,
         'payment.checkHeregistration' => CheckDaftarUlang::class,
+        // Below are deprecated. Use middlewares listed above.
+        'paid.registration' => PaidRegistration::class,
+        'paid.reregistration' => PaidReregistration::class,
     ];
 }

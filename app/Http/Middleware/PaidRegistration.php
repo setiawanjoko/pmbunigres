@@ -8,6 +8,15 @@ use Illuminate\Support\Facades\Http;
 
 class PaidRegistration
 {
+    /*
+     *
+     * Please note that this middleware is deprecated.
+     *
+     * Author: Setiawan Joko Prakoso
+     * Date modified: March 5, 2023
+     *
+     * */
+
     /**
      * Handle an incoming request.
      *

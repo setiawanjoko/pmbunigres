@@ -130,13 +130,10 @@ class PendaftarController extends Controller
     {
         $data = User::find($id);
 
-        $payment = Pembayaran::where('user_id', $data->id)->first();
+        $payment = Pembayaran::where('user_id', $data->id)->delete();
         $bio = Biodata::where('user_id', $data->id)->first();
 
         try {
-            if (isset($payment)) {
-                $payment->delete();
-            }
             if ($bio) {
                 $wali = Wali::where('biodata_id', $bio->id)->first();
                 if (isset($wali)) {

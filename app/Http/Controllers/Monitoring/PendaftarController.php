@@ -357,7 +357,13 @@ class PendaftarController extends Controller
         if($data->status) return redirect()->back()->with(['status'=>'danger', 'message'=>'Pembayaran telah dibayarkan.']);
 
         if ($data->type === "bri") return $this->sentTagihan($user, $data);
-        else return Mail::to($user->email)->send(new BNIInvoiceMail($user, $data));
+        else {
+            Mail::to($user->email)->send(new BNIInvoiceMail($user, $data));
+            return redirect()->route('administrator.monitoring.pendaftar.index')->with([
+                "status" => "success",
+                "message" => "Tagihan berhasil dikirim"
+            ]);
+        }
     }
 
     public function tagihanDaftarUlang($id){
@@ -368,7 +374,13 @@ class PendaftarController extends Controller
         if($data->status) return redirect()->back()->with(['status'=>'danger', 'message'=>'Pembayaran telah dibayarkan.']);
 
         if ($data->type === "bri") return $this->sentTagihan($user, $data);
-        else return Mail::to($user->email)->send(new BNIInvoiceMail($user, $data));
+        else {
+            Mail::to($user->email)->send(new BNIInvoiceMail($user, $data));
+            return redirect()->route('administrator.monitoring.pendaftar.index')->with([
+                "status" => "success",
+                "message" => "Tagihan berhasil dikirim"
+            ]);
+        }
     }
 
     private function sentTagihan($user, $data){

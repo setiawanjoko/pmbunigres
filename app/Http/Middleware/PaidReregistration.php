@@ -7,6 +7,15 @@ use Illuminate\Http\Request;
 
 class PaidReregistration
 {
+    /*
+     *
+     * Please note that this middleware is deprecated.
+     *
+     * Author: Setiawan Joko Prakoso
+     * Date modified: March 5, 2023
+     *
+     */
+
     /**
      * Handle an incoming request.
      *

@@ -24,6 +24,9 @@ class PaymentController extends Controller
     public function showBNIInstruction(){
         $user = auth()->user();
 
+        if(is_null($user->pembayaranRegistrasi()) && is_null($user->pembayaranDaftarUlang())) {
+            return response()->redirectToRoute('biodata.create');
+        }
         if(!$user->pembayaranRegistrasi()->status) {
             $data = $user->pembayaranRegistrasi();
             return response()->view('instruksi-bni', compact('data'));
@@ -39,6 +42,9 @@ class PaymentController extends Controller
     public function showBrivaInstruction(){
         $user = auth()->user();
 
+        if(is_null($user->pembayaranRegistrasi()) && is_null($user->pembayaranDaftarUlang())) {
+            return response()->redirectToRoute('biodata.create');
+        }
         if(!$user->pembayaranRegistrasi()->status) {
             $data = $user->pembayaranRegistrasi();
             return response()->view('instruksi-briva', compact('data'));

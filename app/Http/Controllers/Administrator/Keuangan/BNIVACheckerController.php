@@ -13,12 +13,12 @@ class BNIVACheckerController extends Controller
         return view('administrator.keuangan.check-bniva');
     }
 
-    public function checker($bniava) {
-        $pembayaran = Pembayaran::where('custCode', $bniava)->first();
+    public function checker(Request $request) {
+        $pembayaran = Pembayaran::where('custCode', $request->bniva)->first();
 
         $addInfo = json_decode($pembayaran->add_info);
         $response = BNIPayment::inquiryBilling($addInfo->trx_id);
 
-        return redirect()->route('administrator.keuangan.checkva')->with($response);
+        return view('administrator.keuangan.check-bniva', compact('response'));
     }
 }

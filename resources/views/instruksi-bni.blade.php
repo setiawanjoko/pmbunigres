@@ -29,12 +29,12 @@
               <p class="list-title">TRANSFER BNI VIRTUAL ACCOUNT</p>
               <div class="wrap-briva">
                 <img src="{{asset('unigres/images/bniva.png')}}">
-                <p>{{ $data->custCode }}</p> {{-- TODO: VIRTUAL ACCOUNT --}}
+                <p>{{ $data->custCode }}</p>
               </div>
             </li>
             <li class="list-group-item">
               <p class="list-title">Jumlah yang harus di bayarkan:</p>
-              <p class="price">Rp. {{ number_format($data->amount, 0, '', '.') }},-</p> {{-- TODO: AMOUNT --}}
+              <p class="price">Rp. {{ number_format($data->amount, 0, '', '.') }},-</p>
             </li>
           </ul>
         </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Helpers\DaftarUlangHelper;
 use Carbon\Carbon;
 use Closure;
 use Illuminate\Http\Request;
@@ -23,8 +24,11 @@ class CheckDaftarUlang
 
         if(is_null($heregistrationPayment) || $heregistrationPayment->status) {
             if(!is_null($heregistrationPayment) && $heregistrationPayment->status && (isset($bio) && is_null($bio->nim))){
-                $bio->nim = generateNIM($user->prodi_id);
-                $bio->save();
+                $nim = DaftarUlangHelper::generateNIM($user->prodi_id);
+                if(!DaftarUlangHelper::checkNIM($nim)){
+                    $bio->nim =
+                    $bio->save();
+                }
             }
             return $next($request);
         }

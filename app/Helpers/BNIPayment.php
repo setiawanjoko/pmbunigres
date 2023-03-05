@@ -17,8 +17,8 @@ class BNIPayment extends Controller
          * Example of API Response
          * array("trx_id" => "1465968898"
          * "client_id" => "19063"
-         * "virtual_account" => "9881906323022201"      TODO: transformed to custCode
-         * "trx_amount" => "500000"                     TODO: transformed to amount
+         * "virtual_account" => "9881906323022201"
+         * "trx_amount" => "500000"
          * "customer_name" => "BNI Billing Testing"
          * "customer_email" => ""
          * "customer_phone" => ""
@@ -28,11 +28,11 @@ class BNIPayment extends Controller
          * "datetime_last_updated" => "2023-02-22 12:37:26"
          * "payment_ntb" => "752895"
          * "payment_amount" => "500000"
-         * "va_status" => "2"                           TODO: translated and transformed to status
+         * "va_status" => "2"
          * "description" => ""
          * "billing_type" => "c"
          * "datetime_created_iso8601" => "2023-02-22T12:37:26+07:00"
-         * "datetime_expired_iso8601" => "2023-02-24T12:37:28+07:00"       TODO: transformed to expiredDate
+         * "datetime_expired_iso8601" => "2023-02-24T12:37:28+07:00"
          * "datetime_payment_iso8601" => "2023-02-22T12:41:35+07:00"
          * "datetime_last_updated_iso8601" => "2023-02-22T12:37:26+07:00")
          */
@@ -42,8 +42,8 @@ class BNIPayment extends Controller
             $raw_invoice = array(
                 'client_id' => config()->get('unigrespayment.bni.client_id'),
                 'trx_id' => mt_rand(),
-                'trx_amount' => $Trx['trx_amount'], //TODO: change trx amount
-                'customer_name' => $Trx['customer_name'], //TODO: change customer name
+                'trx_amount' => $Trx['trx_amount'],
+                'customer_name' => $Trx['customer_name'],
                 'customer_email' => $Trx['customer_email'],
                 'customer_phone' => $Trx['customer_phone'],
                 'datetime_expired' => $Trx['datetime_expired'],
@@ -162,9 +162,9 @@ class BNIPayment extends Controller
             $raw_invoice = array(
                 'type' => 'updatebilling',
                 'client_id' => config()->get('unigrespayment.bni.client_id'),
-                'trx_id' => $raw['trx_id'], //TODO: change trx id
-                'trx_amount' => $raw['trx_amount'], //TODO: change trx amount
-                'customer_name' => $raw['customer_name'], //TODO: change customer name
+                'trx_id' => $raw['trx_id'],
+                'trx_amount' => $raw['trx_amount'],
+                'customer_name' => $raw['customer_name'],
                 'customer_email' => $raw['customer_email'],
                 'customer_phone' => $raw['customer_phone'],
                 'datetime_expired' => $raw['datetime_expired'],

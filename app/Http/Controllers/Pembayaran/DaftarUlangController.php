@@ -15,7 +15,6 @@ class DaftarUlangController extends Controller
 {
     public function __construct()
     {
-        // todo: cek nilai tes kesehatan jika ada
         $this->middleware(function ($request, $next) {
             $user = auth()->user();
             if(!is_null($user->moodleAccount->nilai_tpa)) {

@@ -34,4 +34,29 @@ class BNIPembayaranController extends Controller
             dd(e);
         }
     }
+
+    public function checkPayment ($id)
+    {
+        $pembayaran = model::findOrFail($id);
+
+        // BNI check status
+        $addInfo = json_decode($pembayaran->add_info);
+        $bniInquiry = BNIPayment::inquiryBilling($addInfo->trx_id);
+        try {
+            if (is_null($bniInquiry['payment_ntb'])){
+                return redirect()->route('administrator.keuangan.pembayaran.index')->with([
+                    'status' => 'warning',
+                    'message' => 'Belum dibayar.'
+                ]);
+            } else {
+                return redirect()->route('administrator.keuangan.pembayaran.index')->with([
+                    'status' => 'success',
+                    'message' => 'Sudah dibayar.'
+                ]);
+            }
+        } catch (\Throwable $e){
+            dd($e);
+        }
+
+    }
 }

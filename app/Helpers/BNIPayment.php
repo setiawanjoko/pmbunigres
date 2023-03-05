@@ -147,7 +147,7 @@ class BNIPayment extends Controller
 
                 // Dekripsi response data
                 $decryptResponse = BniEnc::decrypt($response_json['data'], config()->get('unigrespayment.bni.client_id'), config()->get('unigrespayment.bni.client_secret'));
-                dd($decryptResponse);
+                return $decryptResponse;
 
             }
 

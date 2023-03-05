@@ -86,7 +86,7 @@ Route::middleware(['auth', 'verify', 'can:camaba'])->group(function(){
         });
     });
     Route::middleware(['payment.checkRegistration'])->group(function(){
-        Route::middleware(['paid.reregistration'])->group(function(){
+        Route::middleware(['payment.checkHeregistration'])->group(function(){
             Route::get('/home', [HomeController::class, 'index'])->name('home');
             Route::get('/biodata', [BiodataController::class, 'create'])->name('biodata.create');
             Route::post('/biodata', [BiodataController::class, 'store'])->name('biodata.store');

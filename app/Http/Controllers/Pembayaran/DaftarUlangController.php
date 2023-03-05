@@ -79,7 +79,7 @@ class DaftarUlangController extends Controller
         $date = date('c', time() + 24 * 3600);
 
         $response = BNIPayment::createBNIInvoice([
-            'trx_amount' => $biaya->biaya_total_daftar_ulang,
+            'trx_amount' => $biaya->total_daftar_ulang,
             'customer_name' => $user->nama,
             'customer_email' => $user->email,
             'customer_phone' => $user->no_telepon,
@@ -90,7 +90,7 @@ class DaftarUlangController extends Controller
             Pembayaran::create([
                 "user_id" => $user->id,
                 "custCode" => $response['virtual_account'],
-                "amount" => $biaya->biaya_total_daftar_ulang,
+                "amount" => $biaya->total_daftar_ulang,
                 "keterangan" => "Pembayaran daftar ulang PMB UNIGRES",
                 "expiredDate" => date('Y-m-d H:i:s', strtotime($date)),
                 "kategori" => "daftar_ulang",
@@ -100,7 +100,7 @@ class DaftarUlangController extends Controller
                 ])
             ]);
 
-            return redirect()->route('instruksi-bni');
+            return redirect()->route('payment.instruksi-bni');
         } catch (\Throwable $e) {
             dd($e);
         }

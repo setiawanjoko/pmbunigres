@@ -6,6 +6,9 @@ use App\Models\Biodata;
 use App\Models\Prodi;
 use Illuminate\Support\Carbon;
 
+/**
+ * A helper class to accomodate heregistration
+ */
 class DaftarUlangHelper
 {
     /**

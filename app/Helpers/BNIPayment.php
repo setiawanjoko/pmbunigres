@@ -2,8 +2,8 @@
 
 namespace App\Helpers;
 
-use App\Helpers\BniEnc;
 use App\Http\Controllers\Controller;
+use App\Helpers\BniEnc;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -165,6 +165,8 @@ class BNIPayment extends Controller
                 'trx_id' => $raw['trx_id'], //TODO: change trx id
                 'trx_amount' => $raw['trx_amount'], //TODO: change trx amount
                 'customer_name' => $raw['customer_name'], //TODO: change customer name
+                'customer_email' => $raw['customer_email'],
+                'customer_phone' => $raw['customer_phone'],
                 'datetime_expired' => $raw['datetime_expired'],
             );
 

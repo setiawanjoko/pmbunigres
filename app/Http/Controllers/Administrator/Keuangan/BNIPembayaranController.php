@@ -72,6 +72,8 @@ class BNIPembayaranController extends Controller
                 'trx_amount' => $pembayaran->amount,
                 'customer_name' => $user->nama,
                 'datetime_expired' => $date,
+                'customer_email' => $user->email,
+                'customer_phone' => $user->no_telepon,
             ]);
             $pembayaran->update([
                 "expiredDate" => date("Y-m-d H:i:s", strtotime($date))

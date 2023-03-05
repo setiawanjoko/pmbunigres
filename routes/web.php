@@ -223,7 +223,7 @@ Route::middleware(['auth'])->prefix('/administrator')->name('administrator.')->g
 
         Route::prefix('/check')->name('check.')->group(function () {
             Route::get('/bniva', [BNIVACheckerController::class, 'index'])->name('bniva');
-            Route::get('/bniva/{bniva}', [BNIVACheckerController::class, 'checker'])->name('bniva');
+            Route::post('/bniva/check', [BNIVACheckerController::class, 'checker'])->name('checker');
 
         });
 

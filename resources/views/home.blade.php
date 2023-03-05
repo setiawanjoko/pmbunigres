@@ -41,7 +41,7 @@
                 </div>
             @endif
             @if(!empty(auth()->user()->moodleAccount->nilai_tpa) && is_null(auth()->user()->pembayaranDaftarUlang()) && ((auth()->user()->tes_kesehatan && !is_null(auth()->user()->tes_kesehatan_at)) || (!auth()->user()->tes_kesehatan_kelas)))
-            <a class="link-item-ann" href="{{ route('daftar-ulang') }}">
+            <a class="link-item-ann" href="{{ route('payment.choose-payment-method') }}">
                 <div class="wrappe-item-ann">
                     <p class="item-ann-title-1">Instruksi Pembayaran Daftar Ulang</p>
                     <span class="badge badge-item">Penting</span>

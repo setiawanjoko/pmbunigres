@@ -78,7 +78,7 @@
                     <tr>
                         <td class="text-bold w-50">Tanggal Pembayaran</td>
                         <td width="10">:</td>
-                        <td>{{date('Y-m-d H:i:s', strtotime($response['datetime_payment_iso8601']))}}</td>
+                        <td>{{(date('Y-m-d H:i:s', strtotime($response['datetime_payment_iso8601'])) < date('Y-m-d H:i:s', strtotime($response['datetime_created_iso8601']))) ? '-' : date('Y-m-d H:i:s', strtotime($response['datetime_payment_iso8601']))}}</td>
                     </tr>
                     <tr>
                         <td class="text-bold w-50">Total Pembayaran</td>

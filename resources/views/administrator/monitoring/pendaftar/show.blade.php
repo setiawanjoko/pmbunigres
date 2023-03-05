@@ -343,4 +343,79 @@
             </div> {{-- ## END USER FILES CARD ## --}}
         </div>
     </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Informasi Pembayaran</h3>
+                </div>
+                <div class="card-body">
+                    @if(is_null($data->pembayaranRegistrasi()) && is_null($data->pembayaranDaftarUlang()))
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    Data tidak tersedia
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                    <div class="row">
+                        <div class="col-12 @if(is_null($data->pembayaranDaftarUlang())) col-sm-12 @else col-sm-6 @endif">
+                            <div class="card bg-light">
+                                <div class="card-header text-muted border-bottom-0">
+                                    Registrasi <span class="badge badge-info">{{ $data->pembayaranRegistrasi()->type }}</span>
+                                </div>
+                                <div class="card-body pt-0">
+                                    <h2 class="lead">{{ $data->pembayaranRegistrasi()->custCode }}</h2>
+                                    <ul class="ml-4 mb-0 fa-ul text-muted">
+                                        <li class="small">
+                                            <span class="fa-li"><i class="fas fa-money-bill"></i></span> Rp. {{ number_format($data->pembayaranRegistrasi()->amount, 0, '', '.') }},-
+                                        </li>
+                                        @if(!($data->pembayaranRegistrasi()->status) && Carbon\Carbon::now()->greaterThanOrEqualTo(Carbon\Carbon::create($data->pembayaranRegistrasi()->expiredDate)))
+                                        <li class="small text-danger">
+                                            <span class="fa-li"><i class="fas fa-calendar-times"></i></span> {{ $data->pembayaranRegistrasi()->expiredDate }} <span class="badge badge-danger">kadaluarsa</span>
+                                        </li>
+                                        @elseif($data->pembayaranRegistrasi()->status)
+                                            <li class="small">
+                                                <span class="fa-li"><i class="fas fa-calendar-check"></i></span> <span class="badge badge-success">Lunas @if(is_null($data->pembayaranRegistrasi()->bukti_kirim)) Cek Otomatis @else Manual @endif</span>
+                                            </li>
+                                       @endif
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        @if(!is_null($data->pembayaranDaftarUlang()))
+                            <div class="col-12 @if(is_null($data->pembayaranDaftarUlang())) col-sm-12 @else col-sm-6 @endif">
+                                <div class="card bg-light">
+                                    <div class="card-header text-muted border-bottom-0">
+                                        Registrasi <span class="badge badge-info">{{ $data->pembayaranDaftarUlang()->type }}</span>
+                                    </div>
+                                    <div class="card-body pt-0">
+                                        <h2 class="lead">{{ $data->pembayaranDaftarUlang()->custCode }}</h2>
+                                        <ul class="ml-4 mb-0 fa-ul text-muted">
+                                            <li class="small">
+                                                <span class="fa-li"><i class="fas fa-money-bill"></i></span> Rp. {{ number_format($data->pembayaranDaftarUlang()->amount, 0, '', '.') }},-
+                                            </li>
+                                            @if(!($data->pembayaranDaftarUlang()->status) && Carbon\Carbon::now()->greaterThanOrEqualTo(Carbon\Carbon::create($data->pembayaranDaftarUlang()->expiredDate)))
+                                                <li class="small text-danger">
+                                                    <span class="fa-li"><i class="fas fa-calendar-times"></i></span> {{ $data->pembayaranDaftarUlang()->expiredDate }} <span class="badge badge-danger">kadaluarsa</span>
+                                                </li>
+                                            @elseif($data->pembayaranDaftarUlang()->status)
+                                                <li class="small">
+                                                    <span class="fa-li"><i class="fas fa-calendar-check"></i></span> <span class="badge badge-success">Lunas @if(is_null($data->pembayaranDaftarUlang()->bukti_kirim)) Cek Otomatis @else Manual @endif</span>
+                                                </li>
+                                            @endif
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @stop

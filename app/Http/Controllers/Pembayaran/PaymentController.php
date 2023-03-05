@@ -32,7 +32,8 @@ class PaymentController extends Controller
             $data = $user->pembayaranDaftarUlang();
             return response()->view('instruksi-bni', compact('data'));
         }
-        // TODO: berarti sudah dibayar, atau masih kosong
+
+        return response()->redirectToRoute('biodata.create');
     }
 
     public function showBrivaInstruction(){
@@ -46,6 +47,7 @@ class PaymentController extends Controller
             $data = $user->pembayaranDaftarUlang();
             return response()->view('instruksi-briva', compact('data'));
         }
-        // TODO: berarti sudah dibayar, atau masih kosong
+
+        return response()->redirectToRoute('biodata.create');
     }
 }

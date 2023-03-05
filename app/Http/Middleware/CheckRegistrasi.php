@@ -27,7 +27,7 @@ class CheckRegistrasi
         $paymentExpiredDate = Carbon::create($registrationPayment->expiredDate);
         $nowDateTime = Carbon::now();
         if($nowDateTime->greaterThanOrEqualTo($paymentExpiredDate)){
-            // TODO: jika waktu pembayaran kadaluarsa maka buat pembayaran baru
+            return response()->redirectToRoute('expiredpayment');
         } else if(!$registrationPayment->status) {
             if($registrationPayment->type == 'bni'){
                 return response()->redirectToRoute('payment.instruksi-bni');

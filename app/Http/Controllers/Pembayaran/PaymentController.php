@@ -13,10 +13,12 @@ class PaymentController extends Controller
 
         if(is_null($user->pembayaranRegistrasi())) {
             $cost = $costs->biaya_registrasi;
+            $category = 'registrasi';
         } else if(is_null($user->pembayaranDaftarUlang())) {
             $cost = $costs->total_daftar_ulang;
+            $category = 'daftar-ulang';
         }
-        return response()->view('metode-pembayaran', compact('cost'));
+        return response()->view('metode-pembayaran', compact('cost', 'category'));
     }
 
     public function showBNIInstruction(){

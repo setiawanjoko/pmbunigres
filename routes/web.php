@@ -71,13 +71,19 @@ Auth::routes(['verify'=>true]);
 Route::get('/verify/failed', [VerificationController::class, 'warning'])->name('verification.failed');
 
 Route::middleware(['auth', 'verify', 'can:camaba'])->group(function(){
-    Route::get('/daftar-ulang/create-bni', [DaftarUlangController::class, 'makeDaftarUlangInvoice'])->name('daftar-ulang-creat-va');
     Route::name('payment.')->group(function(){
         Route::get('/metode-pembayaran', [PaymentController::class, 'choosePaymentMethod'])->name('choose-payment-method');
         Route::get('/instruksi-pembayaran', [RegistrasiController::class, 'index'])->name('instruksi-bayar');
-        Route::get('/create-bni', [RegistrasiController::class, 'makeBNIInvoice'])->name('create-bni');
         Route::get('/instruksi-bni', [PaymentController::class, 'showBNIInstruction'])->name('instruksi-bni');
         Route::get('/instruksi-briva', [PaymentController::class, 'showBRIVAInstruction'])->name('instruksi-briva');
+        Route::prefix('/registrasi')->name('registrasi')->group(function(){
+            Route::get('/create-bni', [RegistrasiController::class, 'makeBNIInvoice'])->name('create-bni');
+            Route::get('/expired', [RegistrasiController::class, 'expired'])->name('expiredPayment');
+        });
+        Route::prefix('/daftar-ulang')->name('daftar-ulang.')->group(function(){
+            Route::get('/create-bni', [DaftarUlangController::class, 'makeDaftarUlangInvoice'])->name('create-bni');
+            Route::get('/expired', [DaftarUlangController::class, 'expiredDaftarUlang'])->name('expiredPayment');
+        });
     });
     Route::middleware(['payment.checkRegistration'])->group(function(){
         Route::middleware(['paid.reregistration'])->group(function(){
@@ -256,4 +262,3 @@ Route::get('/artisan', function (){
  * TESTING ROUTE API BNI
  * bisa di hapus setelah selesai testing
  */
-Route::get('/test', [RegistrasiController::class, 'expired']);

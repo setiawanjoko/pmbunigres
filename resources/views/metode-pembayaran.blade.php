@@ -30,13 +30,14 @@
                 <h6>BNI Virtual Account</h6>
               </div>
             </li>
-            </a>
-            <a class="ak-item" href="{{ route('payment.' . $category . '.instruksi-briva') }}">
+          </a>
+            <a class="ak-item" href="#">
             <li class="list-group-item">
               <div class="wrap-briva">
                 <img src="{{asset('unigres/images/briva.png')}}">
                 <h6>BRI Virtual Account</h6>
               </div>
+                <span style="color: darkred">Layanan tidak tersedia. Mohon gunakan layanan lainnya.</span>
             </li>
             </a>
             <li class="list-group-item">
@@ -48,6 +49,7 @@
         <div class="wrap-button-verif wp-step-1" id="btn1">
             <a class="btn btn-login" href="{{ route('biodata.create') }}">Kembali</a>
         </div>
+      </div>
     </div>
   </div>
 </section>

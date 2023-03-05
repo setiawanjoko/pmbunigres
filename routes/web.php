@@ -77,7 +77,7 @@ Route::middleware(['auth', 'verify', 'can:camaba'])->group(function(){
         Route::get('/instruksi-pembayaran', [RegistrasiController::class, 'index'])->name('instruksi-bayar');
         Route::get('/instruksi-bni', [PaymentController::class, 'showBNIInstruction'])->name('instruksi-bni');
         Route::get('/instruksi-briva', [PaymentController::class, 'showBRIVAInstruction'])->name('instruksi-briva');
-        Route::prefix('/registrasi')->name('registrasi')->group(function(){
+        Route::prefix('/registrasi')->name('registrasi.')->group(function(){
             Route::get('/create-bni', [RegistrasiController::class, 'makeBNIInvoice'])->name('create-bni');
             Route::get('/expired', [RegistrasiController::class, 'expired'])->name('expiredPayment');
         });
@@ -87,7 +87,7 @@ Route::middleware(['auth', 'verify', 'can:camaba'])->group(function(){
         });
     });
     Route::middleware(['payment.checkRegistration'])->group(function(){
-        Route::middleware(['paid.reregistration'])->group(function(){
+        Route::middleware(['payment.checkHeregistration'])->group(function(){
             Route::get('/home', [HomeController::class, 'index'])->name('home');
             Route::get('/biodata', [BiodataController::class, 'create'])->name('biodata.create');
             Route::post('/biodata', [BiodataController::class, 'store'])->name('biodata.store');

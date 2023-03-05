@@ -139,7 +139,11 @@
                                         <a href="{{ route('administrator.keuangan.pembayaran.check', $payment->id) }}" class="btn btn-primary btn-xs"><i class="fas fa-sync-alt"></i> Cek</a>
                                         <button class="btn btn-warning btn-xs" data-toggle="modal" data-target="#manualConfirmation" onclick="load(this)" data-payment-id="{{ $payment->id }}"><i class="fas fa-check"></i> Konfirmasi</button>
                                         <a href="{{ route('administrator.keuangan.pembayaran.renew', $payment->id) }}" class="btn btn-success btn-xs"><i class="fas fa-edit"></i> Perbarui</a>
-                                        <a href="{{ route('administrator.keuangan.pembayaran.delete', $payment->id) }}" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Hapus</a>
+                                        @if($payment->type === "bri")
+                                            <a href="{{ route('administrator.keuangan.pembayaran.delete', $payment->id) }}" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Hapus</a>
+                                        @else
+                                            <a href="{{ route('administrator.keuangan.pembayaran.bni.delete', $payment->id) }}" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Hapus</a>
+                                        @endif
                                     </div>
                                 @endif
                                 @if(!$loop->last) <br> @endif

@@ -48,6 +48,7 @@ use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\Pembayaran\BNIPaymentController;
 use App\Http\Controllers\PengumumanPageController;
 use App\Http\Controllers\Pembayaran\SklController;
+use App\Http\Controllers\Administrator\Keuangan\BNIVACheckerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -219,6 +220,12 @@ Route::middleware(['auth'])->prefix('/administrator')->name('administrator.')->g
             Route::post('/filter', [MasterBiayaController::class, 'filter'])->name('filter');
         });
 
+    Route::prefix('/check')->name('check.')->group(function () {
+        Route::get('/bniva', [BNIVACheckerController::class, 'index'])->name('bniva');
+        Route::get('/bniva/{bniva}', [BNIVACheckerController::class, 'checker'])->name('bniva');
+
+    });
+
         Route::resource('pembayaran', PembayaranController::class)->only(['index', 'destroy']);
         Route::prefix('/pembayaran')->name('pembayaran.')->group(function(){
             // Internal data manipulation
@@ -230,7 +237,16 @@ Route::middleware(['auth'])->prefix('/administrator')->name('administrator.')->g
             Route::post('/confirm', [PembayaranController::class, 'confirm'])->name('confirm');
             Route::get('/renew/{id}', [PembayaranController::class, 'renew'])->name('renew');
             Route::get('/delete/{id}', [PembayaranController::class, 'delete'])->name('delete');
+
+            // BNI data manipulatin
+            Route::prefix('/bni')->name('bni.')->group(function () {
+                Route::get('/check/{id}', [BNIPembayaranController::class, 'checkPayment'])->name('check');
+                Route::post('/confirm', [PembayaranController::class, 'confirm'])->name('confirm');
+                Route::get('/renew/{id}', [PembayaranController::class, 'renew'])->name('renew');
+                Route::get('/delete/{id}', [BNIPembayaranController::class, 'delete'])->name('delete');
+            });
         });
+
 
         Route::group([
             'prefix' => '/briva',

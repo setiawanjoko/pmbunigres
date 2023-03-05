@@ -253,6 +253,11 @@ return [
                     'url'   => 'administrator/pembayaran',
                     'shift' => 'ml-3'
                 ],
+                [
+                    'text'  => 'Check BNIVA',
+                    'url'   => 'administrator/check/bniva',
+                    'shift' => 'ml-3'
+                ],
             ],
         ],
         [

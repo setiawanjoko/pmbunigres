@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Monitoring;
 
 use App\Http\Controllers\Controller;
+use App\Mail\BNIInvoiceMail;
 use App\Mail\InvoiceMail;
 use App\Models\Berkas;
 use App\Models\Biodata;
@@ -355,7 +356,8 @@ class PendaftarController extends Controller
         if(is_null($data)) return redirect()->back()->with(['status'=>'danger', 'message'=>'Pendaftar belum pernah login. Pastikan pendaftar sudah login terlebih dahulu.']);
         if($data->status) return redirect()->back()->with(['status'=>'danger', 'message'=>'Pembayaran telah dibayarkan.']);
 
-        return $this->sentTagihan($user, $data);
+        if ($data->type === "bri") return $this->sentTagihan($user, $data);
+        else return Mail::to($user->email)->send(new BNIInvoiceMail($user, $data));
     }
 
     public function tagihanDaftarUlang($id){
@@ -365,7 +367,8 @@ class PendaftarController extends Controller
         if(is_null($data)) return redirect()->back()->with(['status'=>'danger', 'message'=>'Pendaftar belum update data tes online. Pastikan pendaftar sudah login terlebih dahulu setelah melakukan tes online.']);
         if($data->status) return redirect()->back()->with(['status'=>'danger', 'message'=>'Pembayaran telah dibayarkan.']);
 
-        return $this->sentTagihan($user, $data);
+        if ($data->type === "bri") return $this->sentTagihan($user, $data);
+        else return Mail::to($user->email)->send(new BNIInvoiceMail($user, $data));
     }
 
     private function sentTagihan($user, $data){

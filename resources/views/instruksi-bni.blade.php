@@ -76,7 +76,7 @@
                   <li>Masukkan User ID dan password anda.</li>
                   <li>Pilih menu Transfer > Virtual Account Billing > Pilih Rekening Debet.</li>
                   <li>Masukan 5 angka kode perusahaan untuk Universitas gresik (10004) dan NRP/NIM (contoh: 1004 2020010032) Input baru</li>
-                  <li>Di halaman konfirmasi, pastikan detil pembayaran sesuai seperti nomor BRIVA, Nama Mahasiswa dan jumlah pembayaran.</li>
+                  <li>Di halaman konfirmasi, pastikan detil pembayaran sesuai seperti nomor BNIVA, Nama Mahasiswa dan jumlah pembayaran.</li>
                   <li>Konfirmasi Trasnsaksi dan Masukkan Password, Ikuti instruksi untuk menyelesaikan transaksi.</li>
                   <li>Simpan struk transaksi sebagai bukti pembayaran.</li>
                 </ol>

@@ -72,13 +72,13 @@
                     <td style="text-align: right;">Virtual Account</td>
                     <td>&nbsp;&nbsp;&nbsp;</td>
                     <td>
-                        <img src="http://pmb.unigres.ac.id/unigres/images/briva.png" style="height: 30px;" alt="">
+                        <img src="{{asset('unigres/images/bniva.png')}}" style="height: 30px;" alt="">
                     </td>
                 </tr>
                 <tr>
                     <td style="text-align: right;">Kode Virtual Account</td>
                     <td>&nbsp;&nbsp;&nbsp;</td>
-                    <td style="font-weight: bold; color: #11222B; line-height: 36px;">{{ env('BRIVA_NO') . ' ' . $data->custCode }}</td>
+                    <td style="font-weight: bold; color: #11222B; line-height: 36px;">{{ $data->custCode }}</td>
                 </tr>
                 <tr>
                     <td style="text-align: right;">Jumlah</td>
@@ -91,26 +91,25 @@
         <div style="color: #11222B; margin: 42px 0px 0px 0px;">
             <p style="font-size: 18px; font-weight: normal;">Petunjuk Pembayaran</p>
             <div style="color: #8F8E94; font-size: smaller">
-                <p>ATM BRI</p>
+                <p>ATM BNI</p>
                 <ol type="1">
-                    <li>Masukkan Kartu Debit BRI dan PIN anda</li>
-                    <li>Pilih menu Transaksi Lainnya > Pembayaran > Lainnya > BRIVA</li>
-                    <li>Masukkan 5 angka Kode Perusahaan untuk Universitas Gresik (10004) dan kode pembayaran (contoh: 10004 1234567890)</li>
-                    <li>Di halaman konfirmasi, pastikan detail pembayaran sesuai seperti nomor BRIVA, nama pendaftar, dan jumlah yang harus dibayarkan</li>
-                    <li>Ikuti instruksi untuk menyelesaikan transaksi</li>
-                    <li>Simpan struk transaksi sebagai bukti pembayaran</li>
+                    <li>Masukkan kartu debit BNI dan PIN anda.</li>
+                    <li>Pilih menu transaksi lain > transfer > Virtual Account Billing</li>
+                    <li>Masukan 5 angka kode perusahaan untuk Universitas gresik (10004) dan NRP/NIM (contoh: 1004 2020010032)</li>
+                    <li>dDi halaman konfirmasi, pastikan detil pembayaran sesuai seperti nomor BNI Vitrual Account, Nama Mahasiswa dan jumlah pembayaran.</li>
+                    <li>Ikuti instruksi untuk menyelesaikan transaksi.</li>
+                    <li>Simpan struk transaksi sebagai bukti pembayaran.</li>
                 </ol>
             </div>
             <div style="color: #8F8E94; font-size: smaller">
-                <p>Mobile Banking BRI</p>
+                <p>Mobile Banking BNI</p>
                 <ol type="1">
-                    <li>Masuk ke aplikasi Mobile Banking BRI</li>
-                    <li>Pilih Pembayaran</li>
-                    <li>Pilih BRIVA</li>
-                    <li>Masukkan nomor BRIVA dan nominal pembayaran</li>
-                    <li>Masukkan PIN anda</li>
-                    <li>Tekan OK</li>
-                    <li>SMS konfirmasi akan masuk ke nomor telepon anda jika transaksi berhasil</li>
+                    <li>Masukkan User ID dan password anda.</li>
+                    <li>Pilih menu Transfer > Virtual Account Billing > Pilih Rekening Debet.</li>
+                    <li>Masukan 5 angka kode perusahaan untuk Universitas gresik (10004) dan NRP/NIM (contoh: 1004 2020010032) Input baru</li>
+                    <li>Di halaman konfirmasi, pastikan detil pembayaran sesuai seperti nomor BNIVA, Nama Mahasiswa dan jumlah pembayaran.</li>
+                    <li>Konfirmasi Trasnsaksi dan Masukkan Password, Ikuti instruksi untuk menyelesaikan transaksi.</li>
+                    <li>Simpan struk transaksi sebagai bukti pembayaran.</li>
                 </ol>
             </div>
         </div>

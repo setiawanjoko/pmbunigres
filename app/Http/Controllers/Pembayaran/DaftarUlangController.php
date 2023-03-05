@@ -112,6 +112,8 @@ class DaftarUlangController extends Controller
         $user = auth()->user();
         $data = Pembayaran::where('user_id', $user->id)->where('kategori', 'daftar_ulang')->where('status', '!=', 1)->first();
 
+        if(is_null($data)) return response()->redirectToRoute('biodata.create');
+
         if(date('Y-m-d H:i:s',strtotime($data->expiredDate)) <= date('Y-m-d H:i:s')){
             $data->delete();
             return $this->makeBNIInvoice();

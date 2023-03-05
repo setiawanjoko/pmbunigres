@@ -13,10 +13,12 @@ class PaymentController extends Controller
 
         if(is_null($user->pembayaranRegistrasi())) {
             $cost = $costs->biaya_registrasi;
+            $category = 'registrasi';
         } else if(is_null($user->pembayaranDaftarUlang())) {
             $cost = $costs->total_daftar_ulang;
+            $category = 'daftar-ulang';
         }
-        return response()->view('metode-pembayaran', compact('cost'));
+        return response()->view('metode-pembayaran', compact('cost', 'category'));
     }
 
     public function showBNIInstruction(){
@@ -30,7 +32,8 @@ class PaymentController extends Controller
             $data = $user->pembayaranDaftarUlang();
             return response()->view('instruksi-bni', compact('data'));
         }
-        // TODO: berarti sudah dibayar, atau masih kosong
+
+        return response()->redirectToRoute('biodata.create');
     }
 
     public function showBrivaInstruction(){
@@ -44,6 +47,7 @@ class PaymentController extends Controller
             $data = $user->pembayaranDaftarUlang();
             return response()->view('instruksi-briva', compact('data'));
         }
-        // TODO: berarti sudah dibayar, atau masih kosong
+
+        return response()->redirectToRoute('biodata.create');
     }
 }

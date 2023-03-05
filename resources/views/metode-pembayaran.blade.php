@@ -23,7 +23,7 @@
             SILAHKAN PILIH METODE PEMBAYARAN DI BAWAH INI.
           </div>
           <ul class="list-group list-group-flush">
-          <a class="ak-item" href="{{ route('payment.create-bni') }}">
+          <a class="ak-item" href="{{ route('payment.' . $category . '.create-bni') }}">
             <li class="list-group-item">
               <div class="wrap-briva">
                 <img src="{{asset('unigres/images/bniva.png')}}">
@@ -31,7 +31,7 @@
               </div>
             </li>
             </a>
-            <a class="ak-item" href="{{ route('payment.instruksi-briva') }}">
+            <a class="ak-item" href="{{ route('payment.' . $category . '.instruksi-briva') }}">
             <li class="list-group-item">
               <div class="wrap-briva">
                 <img src="{{asset('unigres/images/briva.png')}}">

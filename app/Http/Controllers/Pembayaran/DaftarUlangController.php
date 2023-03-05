@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Pembayaran;
 
 use App\Helpers\BNIPayment;
 use App\Http\Controllers\Controller;
+use App\Mail\BNIInvoiceMail;
 use App\Models\Biaya;
 use App\Models\Pembayaran;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 
 class DaftarUlangController extends Controller
 {
@@ -87,7 +89,7 @@ class DaftarUlangController extends Controller
         ]);
 
         try {
-            Pembayaran::create([
+            $data = Pembayaran::create([
                 "user_id" => $user->id,
                 "custCode" => $response['virtual_account'],
                 "amount" => $biaya->biaya_total_daftar_ulang,
@@ -99,6 +101,8 @@ class DaftarUlangController extends Controller
                     "trx_id" => $response['trx_id'],
                 ])
             ]);
+
+            Mail::to($user->email)->send(new BNIInvoiceMail($user, $data));
 
             return redirect()->route('instruksi-bni');
         } catch (\Throwable $e) {

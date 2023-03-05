@@ -24,6 +24,8 @@ class CheckRegistrasi
             return response()->redirectToRoute('payment.choose-payment-method');
         }
 
+        if($registrationPayment->status) return $next($request);
+
         $paymentExpiredDate = Carbon::create($registrationPayment->expiredDate);
         $nowDateTime = Carbon::now();
         if($nowDateTime->greaterThanOrEqualTo($paymentExpiredDate)){
@@ -34,7 +36,5 @@ class CheckRegistrasi
             }
             return response()->redirectToRoute('payment.instruksi-briva');
         }
-
-        return $next($request);
     }
 }

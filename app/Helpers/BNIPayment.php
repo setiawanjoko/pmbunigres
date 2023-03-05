@@ -2,8 +2,8 @@
 
 namespace App\Helpers;
 
-use App\Http\Controllers\Controller;
 use App\Helpers\BniEnc;
+use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -162,10 +162,12 @@ class BNIPayment extends Controller
             $raw_invoice = array(
                 'type' => 'updatebilling',
                 'client_id' => config()->get('unigrespayment.bni.client_id'),
-                'trx_id' => $raw['trx_id'] ?? '1', //TODO: change trx id
+                'trx_id' => $raw['trx_id'], //TODO: change trx id
                 'trx_amount' => $raw['trx_amount'], //TODO: change trx amount
-                'customer_name' => $raw['customer_name'] ?? '', //TODO: change customer name
+                'customer_name' => $raw['customer_name'], //TODO: change customer name
+                'datetime_expired' => $raw['datetime_expired'],
             );
+
             $hashed_string = BniEnc::encrypt($raw_invoice, config()->get('unigrespayment.bni.client_id'), config()->get('unigrespayment.bni.client_secret'));
             $data = array(
                 'client_id' => config()->get('unigrespayment.bni.client_id'),
@@ -186,7 +188,7 @@ class BNIPayment extends Controller
 
                 // Dekripsi response data
                 $decryptResponse = BniEnc::decrypt($response_json['data'], config()->get('unigrespayment.bni.client_id'), config()->get('unigrespayment.bni.client_secret'));
-                dd($decryptResponse);
+                return $decryptResponse;
 
             }
         } catch(Exception $e) {

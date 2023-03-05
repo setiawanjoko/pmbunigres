@@ -7,46 +7,42 @@
     <h1>Check BNIVA</h1>
 @stop
 
-@section('content_header_breadcrumbs')
-    <button class="btn btn-sm btn-primary ml-1 text-white" data-toggle="modal" data-target="#paymentReport"><i class="fas fa-print"></i> Laporan</button>
-@stop
-
 @section('content')
     <x-alert></x-alert>
 
-    <x-modal.pembayaran.report :dataProdi="$dataProdi"></x-modal.pembayaran.report>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Penyaringan Pendaftar</h3>
+        </div>
+        <div class="card-body">
+            <form action="{{ route('administrator.keuangan.pembayaran.filter') }}" method="post" id="filter">
+                @csrf
+                @method('POST')
+                <div class="row g-3">
+                    <div class="col-3">
+                        <label for="prodi" class="col-form-label-sm">Program Studi</label>
+                    </div>
+                    <div class="col-6">
+                        <input type="search" class="col form-control form-control-sm" name="bniva">
+                    </div>
+                    <div class="col-3">
+                        <button type="submit" class="btn btn-sm btn-primary">Filter</button>
+                        <a href="{{ route('administrator.keuangan.pembayaran.index') }}" class="btn btn-sm btn-warning">Hapus Filter</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 
 
-@stop
+    @isset($response)
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Detail VA</h3>
+            </div>
+            <div class="card-body">
 
-@section('js')
-    <script>
-        ucwords = (str) => {
-            return (str + '').replace(/^([a-z])|\s+([a-z])/g, function ($1) {
-                return $1.toUpperCase();
-            });
-        }
-
-        load = (e) => {
-            let collection = $(e)
-            let paymentId = collection.data('payment-id')
-            let formatter = new Intl.NumberFormat('id', {style: 'currency', currency: 'IDR'})
-
-
-            $.ajax({
-                url: "{{ url('/api/pembayaran') }}/"+paymentId,
-                method: "get",
-                success: function(data){
-                    $('#brivaNo').val(data.custCode)
-                    $('#name').val(data.pendaftar.nama)
-                    $('#amount').val(formatter.format(data.amount))
-                    $('#description').val(data.keterangan)
-                }
-            })
-        }
-
-        $(function(){
-            $('#data').DataTable();
-        });
-    </script>
+            </div>
+        </div>
+    @endisset
 @stop

@@ -28,7 +28,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="brivaNo">No. BRIVA/BNIVA</label>
+                            <label for="brivaNo">No. BRIVA</label>
                             <input type="text" name="brivaNo" id="brivaNo" class="form-control form-control-sm" readonly>
                         </div>
                         <div class="form-group">
@@ -92,78 +92,86 @@
     </div>
 
     @isset($data)
-    <div class="card">
-        <div class="card-body">
-            <table id="data" class="table table-bordered table-striped dataTable">
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Nama Pendaftar</th>
-                    <th>No. BRIVA/BNIVA</th>
-                    <th>Nominal</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($data as $row)
+        <div class="card">
+            <div class="card-body">
+                <table id="data" class="table table-bordered table-striped dataTable">
+                    <thead>
                     <tr>
-                        <td class="align-middle">{{ $loop->iteration }}</td>
-                        <td>
-                            <span class="badge badge-info">{{ $row->gelombang->gelombang }}</span>&nbsp;
-                            <span class="badge badge-primary">{{ $row->prodi->nama . ' ' . $row->kelas->kelas }}</span><br>
-                            {{ $row->nama }}</td>
-                        <td class="align-middle">
-                            @foreach($row->pembayaran as $payment)
-                                <strong class="@if($payment->kategori == 'registrasi') text-primary @else text-secondary @endif">{{ $payment->custCode }}</strong>
-                                @if(!$loop->last) <br> @endif
-                            @endforeach
-                        </td>
-                        <td class="align-middle">
-                            @foreach($row->pembayaran as $payment)
-                                <strong class="@if($payment->kategori == 'registrasi') text-primary @else text-secondary @endif">Rp.{{ number_format($payment->amount, 2, ',', '.') }}</strong>
-                                @if(!$loop->last) <br> @endif
-                            @endforeach
-                        </td>
-                        <td class="align-middle">
-                            @foreach($row->pembayaran as $payment)
-                                @if($payment->status && !is_null($payment->bukti_kirim))
-                                    <a href="{{ env('APP_URL') }}storage/{{ $payment->bukti_kirim }}" target="_blank" class="badge badge-success">
-                                        Lunas Manual
-                                    </a>
-                                @elseif($payment->status)
-                                    <span class="badge badge-success">
-                                        Lunas BRIVA/BNIVA
-                                    </span>
-                                @else
-                                    <div class="btn-group">
-                                        <a href="{{ route('administrator.keuangan.pembayaran.check', $payment->id) }}" class="btn btn-primary btn-xs"><i class="fas fa-sync-alt"></i> Cek</a>
-                                        <button class="btn btn-warning btn-xs" data-toggle="modal" data-target="#manualConfirmation" onclick="load(this)" data-payment-id="{{ $payment->id }}"><i class="fas fa-check"></i> Konfirmasi</button>
-                                        <a href="{{ route('administrator.keuangan.pembayaran.renew', $payment->id) }}" class="btn btn-success btn-xs"><i class="fas fa-edit"></i> Perbarui</a>
-                                        @if($payment->type === "bri")
-                                            <a href="{{ route('administrator.keuangan.pembayaran.delete', $payment->id) }}" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Hapus</a>
-                                        @else
-                                            <a href="{{ route('administrator.keuangan.pembayaran.bni.delete', $payment->id) }}" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Hapus</a>
-                                        @endif
-                                    </div>
-                                @endif
-                                @if(!$loop->last) <br> @endif
-                            @endforeach
-                        </td>
+                        <th>#</th>
+                        <th>Nama Pendaftar</th>
+                        <th>No. BRIVA</th>
+                        <th>Nominal</th>
+                        <th></th>
                     </tr>
-                @endforeach
-                </tbody>
-                <tfoot>
-                <tr>
-                    <th>#</th>
-                    <th>Nama Pendaftar</th>
-                    <th>No. BRIVA/BNIVA</th>
-                    <th>Nominal</th>
-                    <th></th>
-                </tr>
-                </tfoot>
-            </table>
+                    </thead>
+                    <tbody>
+                    @foreach($data as $row)
+                        <tr>
+                            <td class="align-middle">{{ $loop->iteration }}</td>
+                            <td>
+                                <span class="badge badge-info">{{ $row->gelombang->gelombang }}</span>&nbsp;
+                                <span class="badge badge-primary">{{ $row->prodi->nama . ' ' . $row->kelas->kelas }}</span><br>
+                                {{ $row->nama }}</td>
+                            <td class="align-middle">
+                                @foreach($row->pembayaran as $payment)
+                                    <strong class="@if($payment->kategori == 'registrasi') text-primary @else text-secondary @endif">{{ $payment->custCode }}</strong>
+                                    @if(!$loop->last) <br> @endif
+                                @endforeach
+                            </td>
+                            <td class="align-middle">
+                                @foreach($row->pembayaran as $payment)
+                                    <strong class="@if($payment->kategori == 'registrasi') text-primary @else text-secondary @endif">Rp.{{ number_format($payment->amount, 2, ',', '.') }}</strong>
+                                    @if(!$loop->last) <br> @endif
+                                @endforeach
+                            </td>
+                            <td class="align-middle">
+                                @foreach($row->pembayaran as $payment)
+                                    @if($payment->status && !is_null($payment->bukti_kirim))
+                                        <a href="{{ env('APP_URL') }}storage/{{ $payment->bukti_kirim }}" target="_blank" class="badge badge-success">
+                                            Lunas Manual
+                                        </a>
+                                    @elseif($payment->status)
+                                        <span class="badge badge-success">
+                                        Lunas BRIVA
+                                    </span>
+                                    @else
+                                        <div class="btn-group">
+                                            @if($payment->type === "bri")
+                                                <a href="{{ route('administrator.keuangan.pembayaran.check', $payment->id) }}" class="btn btn-primary btn-xs"><i class="fas fa-sync-alt"></i> Cek</a>
+                                            @else
+                                                <a href="{{ route('administrator.keuangan.pembayaran.bni.check', $payment->id) }}" class="btn btn-primary btn-xs"><i class="fas fa-sync-alt"></i> Cek</a>
+                                            @endif
+                                            <button class="btn btn-warning btn-xs" data-toggle="modal" data-target="#manualConfirmation" onclick="load(this)" data-payment-id="{{ $payment->id }}"><i class="fas fa-check"></i> Konfirmasi</button>
+                                            @if($payment->type === "bri")
+                                                <a href="{{ route('administrator.keuangan.pembayaran.renew', $payment->id) }}" class="btn btn-success btn-xs"><i class="fas fa-edit"></i> Perbarui</a>
+                                            @else
+                                                <a href="{{ route('administrator.keuangan.pembayaran.bni.renew', $payment->id) }}" class="btn btn-success btn-xs"><i class="fas fa-edit"></i> Perbarui</a>
+                                            @endif
+                                            @if($payment->type === "bri")
+                                                <a href="{{ route('administrator.keuangan.pembayaran.delete', $payment->id) }}" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Hapus</a>
+                                            @else
+                                                <a href="{{ route('administrator.keuangan.pembayaran.bni.delete', $payment->id) }}" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Hapus</a>
+                                            @endif
+                                        </div>
+                                    @endif
+                                    @if(!$loop->last) <br> @endif
+                                @endforeach
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <th>#</th>
+                        <th>Nama Pendaftar</th>
+                        <th>No. BRIVA</th>
+                        <th>Nominal</th>
+                        <th></th>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
         </div>
-    </div>
     @endisset
 @stop
 

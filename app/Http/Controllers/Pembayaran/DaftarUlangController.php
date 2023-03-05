@@ -22,7 +22,7 @@ class DaftarUlangController extends Controller
 
                 $pembayaran = $user->pembayaranDaftarUlang();
 
-                if( !is_null($pembayaran)) {
+                if( !is_null($pembayaran) && $pembayaran->type == 'briva') {
                     if(checkBrivaStatus($pembayaran)) {
                         $pembayaran->status = true;
                         $pembayaran->save();

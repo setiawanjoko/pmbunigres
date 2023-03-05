@@ -76,7 +76,7 @@ Route::middleware(['auth', 'verify', 'can:camaba'])->group(function(){
         Route::get('/instruksi-pembayaran', [RegistrasiController::class, 'index'])->name('instruksi-bayar');
         Route::get('/instruksi-bni', [PaymentController::class, 'showBNIInstruction'])->name('instruksi-bni');
         Route::get('/instruksi-briva', [PaymentController::class, 'showBRIVAInstruction'])->name('instruksi-briva');
-        Route::prefix('/registrasi')->name('registrasi')->group(function(){
+        Route::prefix('/registrasi')->name('registrasi.')->group(function(){
             Route::get('/create-bni', [RegistrasiController::class, 'makeBNIInvoice'])->name('create-bni');
             Route::get('/expired', [RegistrasiController::class, 'expired'])->name('expiredPayment');
         });

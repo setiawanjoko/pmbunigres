@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\GelombangController;
 use App\Http\Controllers\Admin\JenjangController;
 use App\Http\Controllers\Admin\FakultasController;
 use App\Http\Controllers\Admin\KeuanganController;
+use App\Http\Controllers\Administrator\Keuangan\BNIPembayaranController;
 use App\Http\Controllers\Admin\PendaftarController;
 use App\Http\Controllers\Admin\PengaturanGelombangController;
 use App\Http\Controllers\Admin\PengumumanController;
@@ -118,10 +119,10 @@ Route::prefix('/admin')->name('admin.')->group(function(){
             Route::get('/berkas/{id}', [MonitoringPendaftarController::class, 'berkas'])->name('berkas.index');
             Route::get('/email/confirm/{id}', [MonitoringPendaftarController::class, 'emailConfirm'])->name('email.confirm');
             Route::get('/email/resent/{id}', function ($id){
-               $data = User::find($id);
-               $data->sendEmailVerificationNotification();
+                $data = User::find($id);
+                $data->sendEmailVerificationNotification();
 
-               return redirect()->back()->with(['status'=>'success', 'message'=>'Email berhasil dikirimkan.']);
+                return redirect()->back()->with(['status'=>'success', 'message'=>'Email berhasil dikirimkan.']);
             })->name('email.resent');
 
 
@@ -220,11 +221,11 @@ Route::middleware(['auth'])->prefix('/administrator')->name('administrator.')->g
             Route::post('/filter', [MasterBiayaController::class, 'filter'])->name('filter');
         });
 
-    Route::prefix('/check')->name('check.')->group(function () {
-        Route::get('/bniva', [BNIVACheckerController::class, 'index'])->name('bniva');
-        Route::get('/bniva/{bniva}', [BNIVACheckerController::class, 'checker'])->name('bniva');
+        Route::prefix('/check')->name('check.')->group(function () {
+            Route::get('/bniva', [BNIVACheckerController::class, 'index'])->name('bniva');
+            Route::get('/bniva/{bniva}', [BNIVACheckerController::class, 'checker'])->name('bniva');
 
-    });
+        });
 
         Route::resource('pembayaran', PembayaranController::class)->only(['index', 'destroy']);
         Route::prefix('/pembayaran')->name('pembayaran.')->group(function(){
@@ -238,15 +239,14 @@ Route::middleware(['auth'])->prefix('/administrator')->name('administrator.')->g
             Route::get('/renew/{id}', [PembayaranController::class, 'renew'])->name('renew');
             Route::get('/delete/{id}', [PembayaranController::class, 'delete'])->name('delete');
 
-            // BNI data manipulatin
+            // BNI data manipulation
             Route::prefix('/bni')->name('bni.')->group(function () {
                 Route::get('/check/{id}', [BNIPembayaranController::class, 'checkPayment'])->name('check');
                 Route::post('/confirm', [PembayaranController::class, 'confirm'])->name('confirm');
-                Route::get('/renew/{id}', [PembayaranController::class, 'renew'])->name('renew');
+                Route::get('/renew/{id}', [BNIPembayaranController::class, 'renew'])->name('renew');
                 Route::get('/delete/{id}', [BNIPembayaranController::class, 'delete'])->name('delete');
             });
         });
-
 
         Route::group([
             'prefix' => '/briva',

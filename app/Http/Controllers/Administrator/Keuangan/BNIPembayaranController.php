@@ -6,6 +6,7 @@ use App\Helpers\BniEnc;
 use App\Helpers\BNIPayment;
 use App\Http\Controllers\Controller;
 use App\Models\Pembayaran as model;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class BNIPembayaranController extends Controller
@@ -58,5 +59,30 @@ class BNIPembayaranController extends Controller
             dd($e);
         }
 
+    }
+
+    public function renew($id){
+        $pembayaran = model::findOrFail($id);
+        $user = User::findOrFail($pembayaran->user_id);
+        $date = date('c', time() + 24 * 3600);
+
+        try {
+            BNIPayment::updateTransaction([
+                'trx_id' => json_decode($pembayaran->add_info)->trx_id,
+                'trx_amount' => $pembayaran->amount,
+                'customer_name' => $user->nama,
+                'datetime_expired' => $date,
+            ]);
+            $pembayaran->update([
+                "expiredDate" => date("Y-m-d H:i:s", strtotime($date))
+            ]);
+
+            return redirect()->route('administrator.keuangan.pembayaran.index')->with([
+                'status' => 'success',
+                'message' => 'Pembayaran berhasil diperbarui.'
+            ]);
+        } catch (\Throwable $e) {
+            dd($e);
+        }
     }
 }

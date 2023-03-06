@@ -32,13 +32,13 @@ class PendaftarController extends Controller
      */
     public function index($filter = null): Response
     {
-        $data = User::with(['prodi'])->where('permission_id', 2)->get();
+        $data = User::with(['prodi'])->where('permission_id', 2)->orderBy('created_at', 'desc')->get();
 
         if(!is_null($filter)){
             $data = User::with(['prodi'])->where([
                 ['permission_id', 2],
                 ['prodi_id', $filter]
-            ])->get();
+            ])->orderBy('created_at', 'desc')->get();
         }
 
         $dataProdi = Prodi::all();

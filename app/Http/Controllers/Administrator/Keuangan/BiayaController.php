@@ -153,7 +153,7 @@ class BiayaController extends Controller
                     return $query->distinct('id');
                 },
                 'gelombang.biaya' => function($query) use($classId){
-                    return $query->where('kelas_id', $classId)->orderBy('jalur_masuk_id');
+                    return $query->where('kelas_id', $classId)->orderBy('jalur_masuk_id', 'desc');
                 },
                 'gelombang.biaya.jalurMasuk',
                 'gelombang.biaya.kelas',

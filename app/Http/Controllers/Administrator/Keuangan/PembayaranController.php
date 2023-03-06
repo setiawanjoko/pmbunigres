@@ -118,6 +118,9 @@ class PembayaranController extends Controller
             'kelas'])
             ->whereHas('pembayaran')
             ->where('prodi_id', $input['prodi'])
+            ->orderBy('created_at', 'desc
+
+           ')
             ->get();
 
         return response()->view('administrator.keuangan.pembayaran', compact('data', 'dataProdi'));

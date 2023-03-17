@@ -18,6 +18,11 @@ class BNIPayment extends Controller
     const TYPE_OPEN_MINIMUM_PAYMENT = 'n';
     const TYPE_OPEN_MAXIMUM_PAYMENT = 'x';
 
+    const CREATE_BILLING = 'createbilling';
+    const CREATE_BILLING_SMS = 'createbillingsms';
+    const UPDATE_BILLING = 'updatebilling';
+    const INQUIRY_BILLING = 'inquirybilling';
+
     private $statusCode = array();
 
     public function __construct()

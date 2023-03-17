@@ -61,15 +61,19 @@ class RegistrasiController extends Controller
         $biaya = $user->biaya();
         $date = date('c', time() + 24 * 3600);
 
-        $response = BNIPayment::createBNIInvoice([
-            'trx_amount' => $biaya->biaya_registrasi,
-            'customer_name' => $user->nama,
-            'customer_email' => $user->email,
-            'customer_phone' => $user->no_telepon,
-            'datetime_expired' => $date
-        ]);
+
 
         try {
+            $response = BNIPayment::createBNIInvoice([
+                'trx_amount' => $biaya->biaya_registrasi,
+                'customer_name' => $user->nama,
+                'customer_email' => $user->email,
+                'customer_phone' => $user->no_telepon,
+                'datetime_expired' => $date
+            ]);
+
+            if($response['status'] != '000') return redirect()->route('metode-pembayaran');
+
             $data = Pembayaran::create([
                 "user_id" => $user->id,
                 "custCode" => $response['virtual_account'],

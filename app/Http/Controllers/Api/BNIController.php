@@ -60,6 +60,11 @@ class BNIController extends Controller
 
     public function testCallback (Request $request) {
         $response = BniEnc::decrypt($request['data'], $request['client_id'], config()->get('unigrespayment.bni.client_secret'));
+        Log::info('CALLBACK REQUEST DETECTED', [
+            'API' => 'callback',
+            'request-body' => $request,
+            'decrypted-response' => $response
+        ]);
         $pembayaran = Pembayaran::where('custCode', $response['virtual_account'])->first();
 
 

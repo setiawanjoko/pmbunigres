@@ -7,9 +7,24 @@ use App\Helpers\BniEnc;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class BNIPayment extends Controller
 {
+    const TYPE_OPEN_PAYMENT = 'o';
+    const TYPE_FIXED_PAYMENT = 'c';
+    const TYPE_INSTALLMENT = 'i';
+    const TYPE_MINIMUM_PAYMENT = 'm';
+    const TYPE_OPEN_MINIMUM_PAYMENT = 'n';
+    const TYPE_OPEN_MAXIMUM_PAYMENT = 'x';
+
+    private $statusCode = array();
+
+    public function __construct()
+    {
+        $statusCode = config()->get('unigrespayment.bni.status_code');
+    }
+
     public static function createBNIInvoice($Trx){
         // Function to create new BNI Virtual Account invoice
 
@@ -47,7 +62,7 @@ class BNIPayment extends Controller
                 'customer_email' => $Trx['customer_email'],
                 'customer_phone' => $Trx['customer_phone'],
                 'datetime_expired' => $Trx['datetime_expired'],
-                'billing_type' => 'c',
+                'billing_type' => self::TYPE_FIXED_PAYMENT,
                 'type' => 'createbilling'
             );
 
@@ -60,10 +75,20 @@ class BNIPayment extends Controller
             $response_json = json_decode($response, 'true');
 
             if ($response_json['status'] !== '000') {
-                dd($response_json);
+                Log::error('Status_code '.$response_json['status'].':'. (config()->get('unigrespayment.bni.status_code'))[$response_json['status']],[
+                    'API' => 'createbilling',
+                    'raw-data' => $raw_invoice,
+                    'returned-callback' => $response_json
+                ]);
             } else {
                 $data_response = BniEnc::decrypt($response_json['data'], config()->get('unigrespayment.bni.client_id'), config()->get('unigrespayment.bni.client_secret'));
 
+                Log::info('Status_code '.$response_json['status'], [
+                    'API' => 'createbilling',
+                    'raw-data' => $raw_invoice,
+                    'response' => $response_json,
+                    'decrypted-response' => $data_response
+                ]);
                 return $data_response;
             }
         } catch (Exception $e){
@@ -140,13 +165,22 @@ class BNIPayment extends Controller
             $response_json = json_decode($response, 'true');
 
             if ($response_json['status'] !== '000') {
-
-                dd($response_json);
+                Log::error('Status_code '.$response_json['status'].':'. (config()->get('unigrespayment.bni.status_code'))[$response_json['status']],[
+                    'API' => 'inquirybilling',
+                    'raw-data/' => $raw_billing,
+                    'returned-callback' => $response_json
+                ]);
 
             } else {
 
                 // Dekripsi response data
                 $decryptResponse = BniEnc::decrypt($response_json['data'], config()->get('unigrespayment.bni.client_id'), config()->get('unigrespayment.bni.client_secret'));
+                Log::info('Status_code '.$response_json['status'], [
+                    'API' => 'inquirybilling',
+                    'raw-data' => $raw_billing,
+                    'returned-callback' => $response_json,
+                    'decrypted-response' => $decryptResponse
+                ]);
                 return $decryptResponse;
 
             }
@@ -183,13 +217,22 @@ class BNIPayment extends Controller
             $response_json = json_decode($response, 'true');
 
             if ($response_json['status'] !== '000') {
-
-                dd($response_json);
+                Log::error('Status_code '.$response_json['status'].':'. (config()->get('unigrespayment.bni.status_code'))[$response_json['status']],[
+                    'API' => 'updatebilling',
+                    'raw-data/' => $raw_invoice,
+                    'returned-callback' => $response_json
+                ]);
 
             } else {
 
                 // Dekripsi response data
                 $decryptResponse = BniEnc::decrypt($response_json['data'], config()->get('unigrespayment.bni.client_id'), config()->get('unigrespayment.bni.client_secret'));
+                Log::info('Status_code '.$response_json['status'], [
+                    'API' => 'updatebilling',
+                    'raw-data' => $raw_invoice,
+                    'returned-callback' => $response_json,
+                    'decrypted-response' => $decryptResponse
+                ]);
                 return $decryptResponse;
 
             }

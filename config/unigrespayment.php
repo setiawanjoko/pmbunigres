@@ -10,6 +10,6 @@ return [
         'request_type' => 8065,
 
         // hostname prod (https://api.bni.co.id), non prod (https://newapidev.bni.co.id), from email(https://api.bni-ecollection.com), sandbox(https://sandbox.bni.co.id)
-        'hostname' => 'https://apibeta.bni-ecollection.com'
+        'hostname' => 'https://api.bni-ecollection.com'
     ],
 ];

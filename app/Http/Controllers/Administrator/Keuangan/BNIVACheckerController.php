@@ -25,6 +25,11 @@ class BNIVACheckerController extends Controller
             $addInfo = json_decode($pembayaran->add_info);
             $response = BNIPayment::inquiryBilling($addInfo->trx_id);
 
+            if($response['va_status'] === "2"){
+                $pembayaran->status = 1;
+                $pembayaran->update();
+            }
+
             return view('administrator.keuangan.check-bniva', compact('response'));
         }
     }

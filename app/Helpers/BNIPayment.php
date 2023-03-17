@@ -228,6 +228,8 @@ class BNIPayment extends Controller
                     'returned-callback' => $response_json
                 ]);
 
+                return $response_json;
+
             } else {
 
                 // Dekripsi response data

@@ -23,7 +23,7 @@
             SILAHKAN PILIH METODE PEMBAYARAN DI BAWAH INI.
           </div>
           <ul class="list-group list-group-flush">
-          <a class="ak-item" href="{{ route('payment.' . $category . '.create-bni') }}">
+          <a class="ak-item" id="createBNIVA" href="{{ route('payment.' . $category . '.create-bni') }}">
             <li class="list-group-item">
               <div class="wrap-briva">
                 <img src="{{asset('unigres/images/bniva.png')}}">
@@ -53,4 +53,10 @@
     </div>
   </div>
 </section>
+
+<script>
+    document.getElementById("createBNIVA").onclick = function (){
+        document.getElementById("createBNIVA").href = "#"
+    }
+</script>
 @endsection

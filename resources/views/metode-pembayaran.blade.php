@@ -55,8 +55,15 @@
 </section>
 
 <script>
-    document.getElementById("createBNIVA").onclick = function (){
-        document.getElementById("createBNIVA").href = "#"
+    var check = false
+    function switchHref (){
+        var link = document.getElementById("createBNIVA");
+        if(check){
+            link.setAttribute("href", "#");
+            return
+        } else {
+            check = true
+        }
     }
 </script>
 @endsection

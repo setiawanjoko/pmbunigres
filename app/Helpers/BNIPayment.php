@@ -2,8 +2,8 @@
 
 namespace App\Helpers;
 
-use App\Http\Controllers\Controller;
 use App\Helpers\BniEnc;
+use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -68,14 +68,13 @@ class BNIPayment extends Controller
                 'customer_phone' => $Trx['customer_phone'],
                 'datetime_expired' => $Trx['datetime_expired'],
                 'billing_type' => self::TYPE_FIXED_PAYMENT,
-                'type' => 'createbilling'
+                'type' => self::CREATE_BILLING
             );
 
             $hashed_string = BniEnc::encrypt($raw_invoice, config()->get('unigrespayment.bni.client_id'), config()->get('unigrespayment.bni.client_secret'));
 
             $data = array('client_id' => config()->get('unigrespayment.bni.client_id'), 'prefix' => config()->get('unigrespayment.bni.prefix'), 'data' => $hashed_string);
             $response = self::get_content(config()->get('unigrespayment.bni.hostname'), json_encode($data));
-            // dd(json_decode($response, true));
 
             $response_json = json_decode($response, 'true');
 
@@ -85,6 +84,8 @@ class BNIPayment extends Controller
                     'raw-data' => $raw_invoice,
                     'returned-callback' => $response_json
                 ]);
+
+                return $response_json;
             } else {
                 $data_response = BniEnc::decrypt($response_json['data'], config()->get('unigrespayment.bni.client_id'), config()->get('unigrespayment.bni.client_secret'));
 
@@ -94,6 +95,7 @@ class BNIPayment extends Controller
                     'response' => $response_json,
                     'decrypted-response' => $data_response
                 ]);
+                $data_response['status'] = $response_json['status'];
                 return $data_response;
             }
         } catch (Exception $e){
@@ -176,6 +178,8 @@ class BNIPayment extends Controller
                     'returned-callback' => $response_json
                 ]);
 
+                return $response_json;
+
             } else {
 
                 // Dekripsi response data
@@ -186,6 +190,10 @@ class BNIPayment extends Controller
                     'returned-callback' => $response_json,
                     'decrypted-response' => $decryptResponse
                 ]);
+
+                $decryptResponse['status'] = $response_json['status'];
+                $decryptResponse['message'] = isset($response_json['message']) && $response_json['message'];
+
                 return $decryptResponse;
 
             }
@@ -240,7 +248,12 @@ class BNIPayment extends Controller
                     'returned-callback' => $response_json,
                     'decrypted-response' => $decryptResponse
                 ]);
-                return $decryptResponse;
+
+                return [
+                    "status" => $response_json['status'],
+                    "message" => isset($response_json['message']) && $response_json['message'],
+                    "data" => $decryptResponse
+                ];
 
             }
         } catch(Exception $e) {

@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Pembayaran;
 
 use App\Helpers\BNIPayment;
 use App\Http\Controllers\Controller;
+use App\Mail\BNIInvoiceMail;
 use App\Models\Biaya;
 use App\Models\Pembayaran;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 
 class DaftarUlangController extends Controller
 {
@@ -78,31 +80,42 @@ class DaftarUlangController extends Controller
         $biaya = $user->biaya();
         $date = date('c', time() + 24 * 3600);
 
-        $response = BNIPayment::createBNIInvoice([
-            'trx_amount' => $biaya->total_daftar_ulang,
-            'customer_name' => $user->nama,
-            'customer_email' => $user->email,
-            'customer_phone' => $user->no_telepon,
-            'datetime_expired' => $date
-        ]);
+        $checkVA = Pembayaran::where('kategori', 'daftar_ulang')->where('user_id', $user->id)->count();
 
-        try {
-            Pembayaran::create([
-                "user_id" => $user->id,
-                "custCode" => $response['virtual_account'],
-                "amount" => $biaya->total_daftar_ulang,
-                "keterangan" => "Pembayaran daftar ulang PMB UNIGRES",
-                "expiredDate" => date('Y-m-d H:i:s', strtotime($date)),
-                "kategori" => "daftar_ulang",
-                "type" => "bni",
-                "add_info" => json_encode([
-                    "trx_id" => $response['trx_id'],
-                ])
+        if ($checkVA > 0){
+            return redirect()->back()->with([
+                "status" => "warning",
+                "message" => "Anda sudah membuat invoice sebelumnya"
+            ]);
+        } else {
+            $response = BNIPayment::createBNIInvoice([
+                'trx_amount' => $biaya->total_daftar_ulang,
+                'customer_name' => $user->nama,
+                'customer_email' => $user->email,
+                'customer_phone' => $user->no_telepon,
+                'datetime_expired' => $date
             ]);
 
-            return redirect()->route('payment.instruksi-bni');
-        } catch (\Throwable $e) {
-            dd($e);
+            try {
+                $data = Pembayaran::create([
+                    "user_id" => $user->id,
+                    "custCode" => $response['virtual_account'],
+                    "amount" => $biaya->total_daftar_ulang,
+                    "keterangan" => "Pembayaran daftar ulang PMB UNIGRES",
+                    "expiredDate" => date('Y-m-d H:i:s', strtotime($date)),
+                    "kategori" => "daftar_ulang",
+                    "type" => "bni",
+                    "add_info" => json_encode([
+                        "trx_id" => $response['trx_id'],
+                    ])
+                ]);
+
+                Mail::to($user->email)->send(new BNIInvoiceMail($user, $data));
+
+                return redirect()->route('payment.instruksi-bni');
+            } catch (\Throwable $e) {
+                dd($e);
+            }
         }
     }
 

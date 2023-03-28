@@ -89,10 +89,12 @@
                         <td class="text-bold w-50">Status Pembayaran</td>
                         <td width="10">:</td>
                         <td>
-                            @if($response['va_status'] === "1")
-                                <div class="badge badge-danger">Belum lunas</div>
-                            @else
+                            @if($response['va_status'] === "1" && date('Y-m-d H:i:s', strtotime($response['datetime_expired_iso8601'])) >= date('Y-m-d H:i:s') && $response['payment_amount'] <= "0")
+                                <div class="badge badge-warning">Belum lunas</div>
+                            @elseif($response['payment_amount'] >= $response['trx_amount'] && $response['va_status'] === "2")
                                 <div class="badge badge-success">Lunas</div>
+                            @else
+                                <div class="badge badge-danger">Expired</div>
                             @endif
                         </td>
 
